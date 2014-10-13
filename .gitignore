@@ -1,0 +1,8 @@
+*.pyc
+.DS_Store
+/.venv/
+/static/
+/media/
+/.vagrant/
+/Vagrantfile.local
+/docs/_build/
