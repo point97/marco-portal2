@@ -14,8 +14,7 @@
     djrun
 
 
-This will make the app accessible on the host machine as http://localhost:8111/ . The codebase is located on the host
-machine, exported to the VM as a shared folder; code editing and Git operations will generally be done on the host.
+This will make the app accessible on the host machine as http://localhost:8111/ . The codebase is located on the host machine, exported to the VM as a shared folder; code editing and Git operations will generally be done on the host.
 
 ## Working with styles
 
