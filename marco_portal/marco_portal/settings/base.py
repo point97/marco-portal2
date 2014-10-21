@@ -67,7 +67,7 @@ INSTALLED_APPS = (
     'portal.utils',
     'portal.home',
     'portal.pages',
-    'portal.initial_data',
+    'portal.ocean_stories',
 )
 
 MIDDLEWARE_CLASSES = (
