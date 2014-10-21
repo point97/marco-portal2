@@ -66,6 +66,8 @@ INSTALLED_APPS = (
 
     'portal.utils',
     'portal.home',
+    'portal.pages',
+    'portal.initial_data',
 )
 
 MIDDLEWARE_CLASSES = (
