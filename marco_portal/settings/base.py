@@ -147,7 +147,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
 LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
-WAGTAIL_SITE_NAME = "marco_portal"
+WAGTAIL_SITE_NAME = 'MARCO Portal'
 
 # Use Elasticsearch as the search backend for extra performance and better search results:
 # http://wagtail.readthedocs.org/en/latest/howto/performance.html#search
