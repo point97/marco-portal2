@@ -13,27 +13,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {% compress css %}
-            
+
             <link rel="stylesheet" type="text/x-scss" href="{% static 'css/marco_portal.scss' %}">
         {% endcompress %}
 
         {% block extra_css %}
-            
+
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %}">
+    <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
 
         {% compress js %}
-            
+
             <script type="text/javascript" src="{% static 'js/marco_portal.js' %}"></script>
         {% endcompress %}
 
         {% block extra_js %}
-            
+
         {% endblock %}
     </body>
 </html>
