@@ -14,7 +14,7 @@ def create_ocean_stories_container(apps, schema_editor):
         model='oceanstories', app_label='ocean_stories', defaults={'name': 'Ocean Stories'})
 
     # Find root page
-    root_page = Page.objects.get(id=3)
+    home_page = Page.objects.get(url_path="/home/")
 
     # Add child page
     child_page = OceanStories(
@@ -23,12 +23,14 @@ def create_ocean_stories_container(apps, schema_editor):
         live=False,
         content_type=ocean_stories_content_type,
     )
-    root_page.add_child(instance=child_page)
+    home_page.add_child(instance=child_page)
 
 class Migration(migrations.Migration):
 
     dependencies = [
         ('ocean_stories', '0001_initial'),
+        ('home', '0002_create_homepage'),
+
     ]
 
     operations = [
