@@ -64,8 +64,11 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
 
-    'utils',
-    'home',
+    'portal.utils',
+    'portal.home',
+    'portal.pages',
+    'portal.ocean_stories',
+    'portal.initial_data',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -177,7 +180,7 @@ CACHES = {
 LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
-WAGTAIL_SITE_NAME = "marco_portal"
+WAGTAIL_SITE_NAME = 'MARCO Portal'
 
 # Use Elasticsearch as the search backend for extra performance and better search results
 WAGTAILSEARCH_BACKENDS = {
