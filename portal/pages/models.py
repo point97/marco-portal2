@@ -6,7 +6,6 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 
 class Page(WagtailPage):
-    parent_page_types = ['home.HomePage', 'Page']
 
     body = RichTextField()
     indexed_fields = ('body', )
