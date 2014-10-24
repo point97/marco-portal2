@@ -11,6 +11,7 @@ def create_initial_data(apps, schema_editor):
     top_level_pages = [
         {'app': 'ocean_stories', 'model_name': 'OceanStories', 'title': 'Ocean Stories', 'content_type': 'oceanstories'},
         {'app': 'calendar', 'model_name': 'Calendar', 'title': 'Calendar', 'content_type': 'calendar'},
+        {'app': 'data_gaps', 'model_name': 'DataGaps', 'title': 'Data Gaps', 'content_type': 'datagaps'},
     ]
 
     for p in top_level_pages:
@@ -31,6 +32,7 @@ class Migration(migrations.Migration):
         ('ocean_stories', '0001_initial'),
         ('home', '0002_create_homepage'),
         ('calendar', '__latest__'),
+        ('data_gaps', '__latest__'),
 
     ]
 
