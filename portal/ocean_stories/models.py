@@ -29,7 +29,6 @@ class OceanStorySection(Orderable, OceanStorySectionBase):
 
 class OceanStories(Page):
     subpage_types = ['OceanStory']
-    parent_page_types = ['home.HomePage']
 
 class OceanStory(Page):
     parent_page_types = ['OceanStories']
