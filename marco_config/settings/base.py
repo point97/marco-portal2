@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'marco_site',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,12 +56,12 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
 
-    'site',
     'portal.home',
     'portal.pages',
     'portal.ocean_stories',
     'portal.calendar',
     'portal.data_gaps',
+    'portal.data_catalog',
     'portal.initial_data',
 )
 
@@ -75,8 +77,8 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
-ROOT_URLCONF = 'marco_portal.urls'
-WSGI_APPLICATION = 'marco_portal.wsgi.application'
+ROOT_URLCONF = 'marco_config.urls'
+WSGI_APPLICATION = 'marco_config.wsgi.application'
 
 
 # Database
