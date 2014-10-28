@@ -12,6 +12,7 @@ def create_initial_data(apps, schema_editor):
         {'app': 'ocean_stories', 'model_name': 'OceanStories', 'title': 'Ocean Stories', 'content_type': 'oceanstories'},
         {'app': 'calendar', 'model_name': 'Calendar', 'title': 'Calendar', 'content_type': 'calendar'},
         {'app': 'data_gaps', 'model_name': 'DataGaps', 'title': 'Data Gaps', 'content_type': 'datagaps'},
+        {'app': 'data_catalog', 'model_name': 'DataCatalog', 'title': 'Data Catalog', 'content_type': 'datacatalog'},
     ]
 
     for p in top_level_pages:
@@ -31,6 +32,7 @@ class Migration(migrations.Migration):
         ('ocean_stories', '__latest__'),
         ('calendar', '__latest__'),
         ('data_gaps', '__latest__'),
+        ('data_catalog', '__latest__'),
         ('home', '__latest__'),
 
     ]
