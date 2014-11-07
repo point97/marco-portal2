@@ -16,7 +16,7 @@ Vagrant::Config.run do |config|
     config.vm.share_folder "project", "/home/vagrant/marco_portal", "."
 
     # Enable provisioning with a shell script.
-    config.vm.provision :shell, :path => "vagrant/provision.sh", :args => "marco_portal"
+    config.vm.provision :shell, :path => "scripts/vagrant_provision.sh", :args => "marco_portal"
 
     # If a 'Vagrantfile.local' file exists, import any configuration settings
     # defined there into here. Vagrantfile.local is ignored in version control,

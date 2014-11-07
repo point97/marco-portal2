@@ -8,8 +8,8 @@ VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-+# Dependencies for OpenCV image feature detection
-+apt-get install -y python-opencv python-numpy
+# Dependencies for OpenCV image feature detection
+apt-get install -y python-opencv python-numpy
 
 # Virtualenv setup for project
 su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DIR && \
@@ -18,15 +18,12 @@ su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DI
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
 
-
 # Set execute permissions on manage.py as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py
-
 
 # Run syncdb/migrate/update_index
 su - vagrant -c "$PYTHON $PROJECT_DIR/manage.py migrate --noinput && \
                  $PYTHON $PROJECT_DIR/manage.py update_index"
-
 
 # Add a couple of aliases to manage.py into .bashrc
 cat << EOF >> /home/vagrant/.bashrc
