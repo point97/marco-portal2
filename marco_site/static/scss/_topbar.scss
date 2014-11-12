@@ -1,4 +1,4 @@
 #wagtail-userbar {
   z-index: 90;
-  top: 90px;
+  top: $navbar-height + $navbar-margin-bottom;
 }
