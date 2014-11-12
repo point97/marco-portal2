@@ -1,39 +1,35 @@
 {% load compress static wagtailuserbar %}
 
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
 
-        {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/marco_site.css' %}" />
 
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/marco_portal.scss' %}">
-        {% endcompress %}
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}>
+    {% wagtailuserbar %}
 
-        {% block extra_css %}
+    {% block content %}{% endblock %}
 
-        {% endblock %}
-    </head>
+    {% compress js %}
+      <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+      <script src="{% static 'js/marco_site.js' %}"></script>
+    {% endcompress %}
 
-    <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
-        {% wagtailuserbar %}
+    {% block extra_js %}
 
-        {% block content %}{% endblock %}
+    {% endblock %}
 
-        {% compress js %}
-
-            <script type="text/javascript" src="{% static 'js/marco_portal.js' %}"></script>
-        {% endcompress %}
-
-        {% block extra_js %}
-
-        {% endblock %}
-    </body>
+  </body>
 </html>
