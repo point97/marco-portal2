@@ -1,9 +1,9 @@
 ## Used technologies
 
- * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
- * [Wagtail](http://wagtail.io/)
  * [Openlayers 3](http://openlayers.org/)
- * [Web Starter Kit](https://github.com/point97/web-starter-kit)
+ * [Bootstrap 3](https://github.com/point97/web-starter-kit)
+ * [Wagtail](http://wagtail.io/)
+ * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
 
 ## Setup
 
@@ -24,7 +24,6 @@ machine, exported to the VM as a shared folder; code editing and Git operations 
 
 #### Icons
 
- - http://fortawesome.github.io/Font-Awesome/
  - https://icomoon.io
  - https://www.npmjs.org/package/icomoon-build
 
