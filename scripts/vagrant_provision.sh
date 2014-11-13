@@ -5,6 +5,8 @@ PROJECT_NAME=$1
 PROJECT_DIR=/home/vagrant/$PROJECT_NAME
 VIRTUALENV_DIR=/home/vagrant/.virtualenvs/$PROJECT_NAME
 
+APP_DB_NAME=$PROJECT_NAME
+
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
@@ -17,6 +19,12 @@ su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DI
     PIP_DOWNLOAD_CACHE=/home/vagrant/.pip_download_cache $PIP install -r $PROJECT_DIR/requirements.txt"
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
+
+cat << EOF | su - postgres -c psql
+-- uncomment to reset your DB
+-- DROP DATABASE $APP_DB_NAME;
+CREATE DATABASE $APP_DB_NAME;
+EOF
 
 # Set execute permissions on manage.py as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py
