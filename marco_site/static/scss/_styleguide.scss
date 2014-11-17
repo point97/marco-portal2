@@ -1,0 +1,41 @@
+// Styles in support of the styleguide
+
+.page-styleguide {
+	.color-palette {
+	  @include make-row;
+		.palette-card {
+	  	@include make-sm-column(6);
+	  	@include make-md-column(3);
+		}
+	}
+	.swatch {
+		border-radius: 50%;
+		width: 100px;
+		height: 100px;
+	  @include center-block;
+	  &.deep-blue {
+		  background-color: #22408f;
+		}
+	  &.green {
+		  background-color: #00a564;
+		}
+	  &.turquoise {
+		  background-color: #00788a;
+		}
+	  &.yellow {
+		  background-color: #eab13a;
+		}
+	  &.dark-gray {
+		  background-color: #58585b;
+		}
+	  &.medium-gray {
+		  background-color: #84837d;
+		}
+	  &.gray {
+		  background-color: #b1b3b5;
+		}
+	  &.light-gray {
+		  background-color: #e7e7e8;
+		}
+	}
+}
