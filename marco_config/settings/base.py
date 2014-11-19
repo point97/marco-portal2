@@ -58,6 +58,7 @@ INSTALLED_APPS = (
 
     'wagtail.contrib.wagtailsitemaps',
 
+    'portal.base',
     'portal.home',
     'portal.pages',
     'portal.ocean_stories',
