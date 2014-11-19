@@ -12,6 +12,23 @@ TEMPLATE_DEBUG = False
 
 COMPRESS_OFFLINE = True
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'WARNING',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}
 
 # Send notification emails as a background task using Celery,
 # to prevent this from blocking web server threads

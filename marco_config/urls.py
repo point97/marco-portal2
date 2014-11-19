@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^search/', include(wagtailsearch_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
+    url(r'^styleguide/$', 'marco_site.views.styleguide', name='styleguide'),
     url(r'', include(wagtail_urls)),
 )
 

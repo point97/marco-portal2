@@ -1,11 +1,11 @@
 ## Used technologies
 
- * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
- * [Wagtail](http://wagtail.io/)
  * [Openlayers 3](http://openlayers.org/)
- * [Web Starter Kit](https://github.com/point97/web-starter-kit)
+ * [Bootstrap 3](https://github.com/point97/web-starter-kit)
+ * [Wagtail](http://wagtail.io/)
+ * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
 
-## Setup
+## Development Setup
 
     vagrant up
     vagrant ssh
@@ -16,6 +16,27 @@
 This will make the app accessible on the host machine as http://localhost:8111/ . The codebase is located on the host
 machine, exported to the VM as a shared folder; code editing and Git operations will generally be done on the host.
 
+## Production Setup
+
+### Dependencies
+
+ - Elasticsearch
+ - Redis
+ - Postgresql DB
+
+### Steps
+
+ - Clone the repo
+ - Copy `marco_config/settings/local.template.py` as `local.py` and customize.
+ - `pip install -r requirements.txt`
+ - createsuperuser
+ - `DJANGO_SETTINGS_MODULE="marco_config.settings.production" ./manage.py migrate update_index createsuperuser`
+
+#### Static assets
+
+ - **for now**, rsync marco_site/static/ from your development instance (or run gulp from that dir on the server, if node is available)
+ - Run `DJANGO_SETTINGS_MODULE="marco_config.settings.production" ./manage.py compress collectstatic`
+
 ## Candidate Technologies
 
 #### Animation
@@ -24,7 +45,6 @@ machine, exported to the VM as a shared folder; code editing and Git operations 
 
 #### Icons
 
- - http://fortawesome.github.io/Font-Awesome/
  - https://icomoon.io
  - https://www.npmjs.org/package/icomoon-build
 

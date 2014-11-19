@@ -85,25 +85,25 @@ WSGI_APPLICATION = 'marco_config.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 # SQLite (simplest install)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(PROJECT_ROOT, 'db.sqlite3'),
-    }
-}
-
-# PostgreSQL (Recommended, but requires the psycopg2 library and Postgresql development headers)
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'marco_portal',
-#         'USER': 'postgres',
-#         'PASSWORD': '',
-#         'HOST': '',  # Set to empty string for localhost.
-#         'PORT': '',  # Set to empty string for default.
-#         'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': join(PROJECT_ROOT, 'db.sqlite3'),
 #     }
 # }
+
+# PostgreSQL (Recommended, but requires the psycopg2 library and Postgresql development headers)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'marco_portal',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': '',  # Set to empty string for localhost.
+        'PORT': '',  # Set to empty string for default.
+        'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
+    }
+}
 
 
 # Internationalization
@@ -148,6 +148,9 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
 )
 
+TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
+    'apptemplates.Loader',
+)
 
 # Wagtail settings
 
@@ -170,3 +173,5 @@ WAGTAIL_SITE_NAME = 'MARCO Portal'
 
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
+
+FEEDBACK_JS_URL = "https://point97.atlassian.net/s/1ba4b91a5ab8c6133464cc37b8c0bc23-T/en_US-3kdfpp/64005/55/1.4.17/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c145c21d"
