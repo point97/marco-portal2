@@ -56,6 +56,8 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
 
+    'wagtail.contrib.wagtailsitemaps',
+
     'portal.home',
     'portal.pages',
     'portal.ocean_stories',
