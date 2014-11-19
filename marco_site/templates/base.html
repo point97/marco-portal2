@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar %}
+{% load compress static wagtailuserbar feedback %}
 
 <!doctype html>
 <html lang="en">
@@ -87,5 +87,6 @@
 
     {% endblock %}
 
+    {% feedback_js %}
   </body>
 </html>
