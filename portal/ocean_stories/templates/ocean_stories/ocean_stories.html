@@ -1,10 +1,1 @@
-{% extends "base.html" %}
-{% load portal %}
-
-{% block content %}
-  <div class="container">
-    <h1>{{ self.title }}</h1>
-
-    {% index_listing calling_page=self %}
-  </div>
-{% endblock %}
+{% extends "portal/index_page.html" %}
