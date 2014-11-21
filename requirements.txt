@@ -8,6 +8,7 @@ libsass==0.5.1
 # Recommended components (require additional setup):
 psycopg2==2.5.2
 # elasticsearch==1.1.1
+embedly==0.5.0
 
 # Recommended components to improve performance in production:
 # django-redis-cache==0.13.0
