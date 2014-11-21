@@ -25,9 +25,13 @@ urlpatterns = patterns('',
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-
+    url(r'^data_manager/', include('data_manager.urls')),
     url(r'^styleguide/$', 'marco_site.views.styleguide', name='styleguide'),
+    url(r'^visualize/', include('visualize.urls')),
+    url(r'^mp_profile/', include('mp_profile.urls')),
+
     url(r'', include(wagtail_urls)),
+
 )
 
 

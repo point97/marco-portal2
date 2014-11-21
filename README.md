@@ -28,7 +28,7 @@ machine, exported to the VM as a shared folder; code editing and Git operations 
 
  - Clone the repo
  - Copy `marco_config/settings/local.template.py` as `local.py` and customize.
- - `pip install -r requirements.txt`
+ - `pip install --src ./src -r requirements.txt`
  - createsuperuser
  - `DJANGO_SETTINGS_MODULE="marco_config.settings.production" ./manage.py migrate update_index createsuperuser`
 
