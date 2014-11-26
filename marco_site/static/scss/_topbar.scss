@@ -1,4 +1,10 @@
 #wagtail-userbar {
-  z-index: 90;
-  top: $navbar-height + $navbar-margin-bottom;
+  z-index: 9000;
+  // top: $navbar-height + $navbar-margin-bottom;
+}
+
+.navbar {
+  a {
+    font-weight: 900;
+  }
 }

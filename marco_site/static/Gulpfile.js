@@ -32,6 +32,7 @@ gulp.task('css', function() {
     return gulp.src(config.sassPath + '/*.scss')
         .pipe(sass({
             style: 'compressed',
+            precision: 10,
             loadPath: [
                 config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/',
             ]

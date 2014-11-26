@@ -13,29 +13,29 @@
 		width: 100px;
 		height: 100px;
 	  @include center-block;
-	  &.deep-blue {
-		  background-color: #22408f;
-		}
-	  &.green {
-		  background-color: #00a564;
-		}
-	  &.turquoise {
-		  background-color: #00788a;
-		}
-	  &.yellow {
-		  background-color: #eab13a;
-		}
-	  &.dark-gray {
-		  background-color: #58585b;
-		}
-	  &.medium-gray {
-		  background-color: #84837d;
-		}
-	  &.gray {
-		  background-color: #b1b3b5;
-		}
-	  &.light-gray {
-		  background-color: #e7e7e8;
-		}
+	}
+  .deep-blue {
+	  background-color: $deep-blue;
+	}
+  .green {
+	  background-color: $green;
+	}
+  .turquoise {
+	  background-color: $turquoise;
+	}
+  .yellow {
+	  background-color: $yellow;
+	}
+  .dark-gray {
+	  background-color: $dark-gray;
+	}
+  .medium-gray {
+	  background-color: $medium-gray;
+	}
+  .gray {
+	  background-color: $gray;
+	}
+  .light-gray {
+	  background-color: $light-gray;
 	}
 }
