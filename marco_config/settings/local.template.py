@@ -18,3 +18,4 @@ DATABASES = {
     }
 }
 
+EMBEDLY_KEY = 'F000000000'
