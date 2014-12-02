@@ -37,6 +37,7 @@
 	<script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
   <script src="{% static 'bower_components/leaflet-plugins/layer/tile/Google.js' %}"></script>
   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js"></script>
+  <script src="{% static 'portal/ocean_stories/leaflet_map_engine.js' %}"></script>
   <script src="{% static 'portal/ocean_story.js' %}"></script>
   <script type="text/javascript">
     var story = {
@@ -68,11 +69,8 @@
     var storyMap;
     $.getJSON("/data_manager/api/layers", function(data) {
       var dataLayers = _.indexBy(data, 'id');
-      storyMap = OceanStory.create('map', story, dataLayers);
-
+      storyMap = OceanStory.create(leafletMapEngine('map'), story, dataLayers);
     });
-
-
   </script>
 
 {% endblock %}
