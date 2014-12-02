@@ -340,7 +340,67 @@ body.borderless #map-wrapper {
     height: 100%;
 }
 
+.panel-title>a{
+    float: right;
+    color: white;
+    background-color: $green;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding-left: 2px;
+    padding-top: 2px;
+    text-align: center;
+}
+.col-md-3, .col-md-4 {
+    padding-left:0px;
+    padding-right:0px;
+}
 
+.panel-body{
+    padding: 0px;
+}
+.panel-heading {
+    padding: 10px 4px;
+    height: 54px;
+}
+.panel-default>.panel-heading{
+    background-color: $white;
+    border-color: $light-gray;
+}
+
+.nav-tabs{
+    border-top: 1px solid #ddd;
+    background-color: $white;
+}
+
+.nav-tabs>li{
+    padding: 0px 25px 0px 25px;
+}
+.nav-tabs>li a{
+    margin-right:0px;
+    border-top: 0px ;
+    border-bottom: 0px ;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px;
+    text-decoraation: none;
+}
+
+.nav-tabs>li.active a, .nav-tabs>li.active a:hover, .nav-tabs>li.active a:focus {
+    border-bottom: 2px solid $green;
+    color: $green;
+    border-left: 0px;
+    border-right: 0px;
+    text-decoration: none;
+}
+
+.tab-content, #data-accordion{
+    background-color: $white;
+}
+
+.jspContainer{
+    overflow-y: auto;
+}
 @media (max-width: 767px) {
     #data-panel {
         width: 100%;
