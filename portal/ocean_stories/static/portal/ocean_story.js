@@ -23,13 +23,6 @@ var OceanStory = (function() {
     var layerCache = {};
     var currentLayers = [];
 
-    function createDataLayer(l) {
-      console.log("Create data layer " + l.name + ' of layer_type ' +l.layer_type);
-      if (engine.typeCreateHandlers.hasOwnProperty(l.layer_type)) {
-        return engine.typeCreateHandlers[l.layer_type](l);
-      }
-    }
-
     return function(layers) {
       var layerKeys = Object.keys(layers)
 
@@ -45,7 +38,7 @@ var OceanStory = (function() {
       _.each(_.difference(layerKeys, currentLayers), function(id) {
         // create layer object if it hasn't been already
         if (!layerCache.hasOwnProperty(id)) {
-          layerCache[id] = createDataLayer(layerCatalog[id]);
+          layerCache[id] = engine.createDataLayer(layerCatalog[id]);
         }
         console.log("Add data layer " + layerCatalog[id].name);
         if (layerCache[id]) {
@@ -75,8 +68,6 @@ var OceanStory = (function() {
 
       activeSection = section;
     }
-
-    goToSection(0);
 
     return {
       goToSection: goToSection,

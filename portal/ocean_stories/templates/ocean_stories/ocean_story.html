@@ -72,6 +72,8 @@
     $.getJSON("/data_manager/api/layers", function(data) {
       var dataLayers = _.indexBy(data, 'id');
       storyMap = OceanStory.create(leafletMapEngine('map'), story, dataLayers);
+
+      storyMap.goToSection(0);
     });
   </script>
 

@@ -29,12 +29,15 @@ function leafletMapEngine(selector) {
 
   var typeCreateHandlers = {
     'XYZ': function(l) {
-      console.log("XYZ: " + l.url);
-      leafletUrl = l.url.replace(/\$\{([xyz])\}/g, '\{$1\}')
+      var leafletUrl = l.url.replace(/\$\{([xyz])\}/g, '\{$1\}')
       return L.tileLayer(leafletUrl);
     },
     'Vector': function(l) {
       var layerObj = L.Proj.geoJson(null, {
+        "fillColor": l.vector_color,
+        "fillOpacity": l.opacity * l.vector_fill,
+        "color": l.vector_outline_color,
+        "opacity": l.opacity * l.vector_outline_opacity,
       });
       $.getJSON(l.url, function(data) {
         layerObj.addData(data);
@@ -43,9 +46,20 @@ function leafletMapEngine(selector) {
     },
   }
 
+  function createDataLayer(l) {
+    console.log("Create data layer " + l.name + ' of layer_type ' +l.layer_type);
+    if (typeCreateHandlers.hasOwnProperty(l.layer_type)) {
+      var layerObj = typeCreateHandlers[l.layer_type](l);
+      if (l.type == 'XYZ' || l.type == 'ArcRest') {
+        layerObj.setOpacity(l.opacity);
+      }
+      return layerObj
+    }
+  }
+
   return {
     setView: function(center, zoom){ return map.setView(center, zoom) },
-    typeCreateHandlers: typeCreateHandlers,
+    createDataLayer: createDataLayer,
     addLayer: function(layer){ return map.addLayer(layer) },
     removeLayer: function(layer){ return map.removeLayer(layer) },
     baseLayers: baseLayers,
