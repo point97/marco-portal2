@@ -44,6 +44,13 @@ function leafletMapEngine(selector) {
       });
       return layerObj;
     },
+    'ArcRest': function(l) {
+      var baseUrl = l.url.replace(/\/export$/, '')
+      var arcGisLayers = l.arcgis_layers.split(',')
+      return L.esri.dynamicMapLayer(baseUrl, {
+        layers: arcGisLayers,
+      })
+    }
   }
 
   function createDataLayer(l) {
