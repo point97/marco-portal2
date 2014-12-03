@@ -22,9 +22,6 @@
                   {% if section.body %}
                     {{ section.body|richtext }}
                   {% endif %}
-                  {% if section.map_state %}
-                      <pre class="map-state">{{ section.map_state }}</pre>
-                  {% endif %}
               </div>
           {% endfor %}
       </div>
@@ -43,30 +40,14 @@
   <script src="{% static 'portal/ocean_story.js' %}"></script>
   <script type="text/javascript">
     var story = {
-      sections: [
-      {
-        name: "section 1",
-        view: {
-          center: [41.5827282,-71.5064508],
-          zoom: 6
-        },
-        baseLayer: "Open Street Map",
-        dataLayers: {
-          60: {},
-        },
-      }, {
-        name: "section 1",
-        view: {
-          center: [40.5827282,-72.5064508],
-          zoom: 3
-        },
-        baseLayer: "Esri Oceans",
-        dataLayers: {
-          61: {},
-        },
-      },
-      ],
-    }
+      {% if self.sections %}
+        sections: [
+        {% for section in self.sections.all %}
+          {{ section.map_state|safe }},
+        {% endfor %}
+        ],
+      {% endif %}
+    };
 
     var storyMap;
     $.getJSON("/data_manager/api/layers", function(data) {
