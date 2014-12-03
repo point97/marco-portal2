@@ -1,6 +1,19 @@
 {
   "name": "marco-portal-static",
   "dependencies": {
-    "bootstrap-sass-official": "~3.3.1"
+    "bootstrap-sass-official": "~3.3.1",
+    "font-awesome": "~4.2.0",
+    "knockout": "~v2.1.0",
+    "knockout-mapping": "~v2.3.5",
+    "amplify": "~1.1.0",
+    "bigscreen": "~v1.0.0",
+    "ratchet": "~v1.0.0",
+    "jquery.bbq": "master",
+    "jscrollpane": "~v2.0.0",
+    "malihu-custom-scrollbar-plugin": "~2.8.0",
+    "jqueryui-touch-punch": "*",
+    "bootstrap3-typeahead": "~3.1.0",
+    "jquery-ui": "~1.11.2",
+    "lodash": "~2.4.1"
   }
 }
