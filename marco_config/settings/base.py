@@ -66,6 +66,9 @@ INSTALLED_APPS = (
     'portal.data_gaps',
     'portal.data_catalog',
     'portal.initial_data',
+    'data_manager',
+    'visualize',
+    'flatblocks',
 )
 
 MIDDLEWARE_CLASSES = (
