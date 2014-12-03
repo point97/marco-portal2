@@ -34,7 +34,8 @@ function leafletMapEngine(selector) {
       return L.tileLayer(leafletUrl);
     },
     'Vector': function(l) {
-      var layerObj = L.geoJson();
+      var layerObj = L.Proj.geoJson(null, {
+      });
       $.getJSON(l.url, function(data) {
         layerObj.addData(data);
       });
