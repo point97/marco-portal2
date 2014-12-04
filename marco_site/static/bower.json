@@ -18,6 +18,7 @@
     "leaflet-plugins": "git@github.com:shramov/leaflet-plugins.git#v1.2.0",
     "lodash": "~2.4.1",
     "Proj4Leaflet": "https://github.com/DISID/Proj4Leaflet.git#geojson-empty-constructor",
-    "esri-leaflet": "~1.0.0-rc.4"
+    "esri-leaflet": "~1.0.0-rc.4",
+    "jquery-migrate": "~1.2.1"
   }
 }
