@@ -10,7 +10,7 @@ function scrollSpy(containerSelector, sectionSelector, callback) {
   var container = $(containerSelector);
   var sections = container.find(sectionSelector);
   var currentIndex;
-  var fuzz = 10;
+  var fuzz = 15;
 
   function handleScroll() {
     // Get container scroll position
@@ -18,9 +18,12 @@ function scrollSpy(containerSelector, sectionSelector, callback) {
     var contentScrollTop = $(this).scrollTop() + topMargin;
 
     var sectionIndex = _.findLastIndex(sections, function(s){
-      return $(s).offset().top - fuzz < contentScrollTop;
+      return contentScrollTop >= $(s).offset().top - fuzz;
     })
 
+    if (sectionIndex < 0) {
+      sectionIndex = 0;
+    }
     if (sectionIndex !== currentIndex) {
       callback(sectionIndex);
     }
