@@ -2,15 +2,19 @@
 {% load wagtailcore_tags static%}
 
 {% block extra_css %}
-  <style>
-    #map { height: 50vh; }
-  </style>
   <link rel="stylesheet" href="{% static 'bower_components/leaflet/dist/leaflet.css' %}" />
+{% endblock %}
+
+
+{% block header %}
+  <div class="sticky-header">
+    {{ block.super }}
+    <div id="map"></div>
+  </div>
 {% endblock %}
 
 {% block content %}
 
-  <div id="map"></div>
 
   <div class="container">
     <h1>{{ self.title }}</h1>
