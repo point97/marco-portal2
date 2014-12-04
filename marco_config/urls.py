@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
+from django.views.generic.base import RedirectView
+
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
@@ -31,6 +33,12 @@ urlpatterns = patterns('',
     url(r'^styleguide/$', 'marco_site.views.styleguide', name='styleguide'),
     url(r'^visualize/', include('visualize.urls')),
     url(r'^mp_profile/', include('mp_profile.urls')),
+
+    # this is a temporary measure since data_manager
+    # has local layer paths starting with /media/
+    url(r'^media/(?P<path>.*)',
+        RedirectView.as_view(url='/static/%(path)s'),
+        name="cloud_browser_index"),
 
     url(r'', include(wagtail_urls)),
 

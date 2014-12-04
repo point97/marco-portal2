@@ -1,0 +1,23 @@
+.template-ocean-story {
+  .sticky-header {
+    position: fixed;
+    top: 0px;
+  }
+  .navbar-default {
+    margin-bottom: 0;
+    z-index: 1000;
+  }
+  #map {
+    width: 100vw;
+    height: 50vh;
+    margin-top: - ($navbar-height + 2);
+    cursor: inherit;
+  }
+  .content {
+    margin-top: 50vh;
+  }
+  // could add :last-child
+  .section {
+    min-height: 50vh;
+  }
+}

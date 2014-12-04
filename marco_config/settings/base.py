@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'portal.data_gaps',
     'portal.data_catalog',
     'portal.initial_data',
+    'rest_framework',
     'data_manager',
     'visualize',
     'flatblocks',

@@ -1,6 +1,7 @@
 *.pyc
 .DS_Store
 /.venv/
+/deps/
 /*/settings/local.py
 /static/
 /media/
