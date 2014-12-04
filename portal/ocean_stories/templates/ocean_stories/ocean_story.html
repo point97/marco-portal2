@@ -42,6 +42,7 @@
   <script src="{% static 'bower_components/Proj4Leaflet/src/proj4leaflet.js' %}"></script>
   <script src="{% static 'portal/ocean_stories/leaflet_map_engine.js' %}"></script>
   <script src="{% static 'portal/ocean_story.js' %}"></script>
+  <script src="{% static 'portal/ocean_stories/scroll_spy.js' %}"></script>
   <script type="text/javascript">
     var story = {
       {% if self.sections %}
@@ -58,7 +59,9 @@
       var dataLayers = _.indexBy(data, 'id');
       storyMap = OceanStory.create(leafletMapEngine('map'), story, dataLayers);
 
-      storyMap.goToSection(0);
+      scrollSpy('.content', '> .container > .sections > .section', function(sectionIndex){
+        return storyMap.goToSection(sectionIndex);
+      })
     });
   </script>
 
