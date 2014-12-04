@@ -1,17 +1,20 @@
 ## Used technologies
 
- * [Openlayers 3](http://openlayers.org/)
- * [Bootstrap 3](https://github.com/point97/web-starter-kit)
- * [Wagtail](http://wagtail.io/)
- * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
+  * [Leaftlet](http://leafletjs.com/)
+  * [Bootstrap 3](http://getbootstrap.com/)
+  * [Wagtail](http://wagtail.io/)
+  * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
 
 ## Development Setup
 
-    vagrant up
-    vagrant ssh
-      (then, within the SSH session:)
-    dj createsuperuser
-    djrun
+```
+vagrant up
+vagrant ssh
+(then, within the SSH session:)
+dj createsuperuser
+dj loaddata --app data_manager data_manager_fixture
+djrun
+```
 
 This will make the app accessible on the host machine as http://localhost:8111/ . The codebase is located on the host
 machine, exported to the VM as a shared folder; code editing and Git operations will generally be done on the host.
@@ -24,7 +27,7 @@ machine, exported to the VM as a shared folder; code editing and Git operations 
  - Redis
  - Postgresql DB
 
-### Steps
+### Configuration
 
  - Clone the repo
  - Copy `marco_config/settings/local.template.py` as `local.py` and customize.
