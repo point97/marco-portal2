@@ -60,7 +60,8 @@ var OceanStory = (function() {
     var setDataLayers = dataLayersSetter(engine, layerCatalog);
 
     function goToSection(section) {
-      s = story.sections[section];
+      var s = story.sections[section];
+      console.log("go to section "+section);
 
       setBaseLayer(s.baseLayer);
       setDataLayers(s.dataLayers);

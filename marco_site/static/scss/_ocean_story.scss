@@ -2,6 +2,7 @@
   .sticky-header {
     position: fixed;
     top: 0px;
+    z-index: 100;
   }
   .navbar-default {
     margin-bottom: 0;

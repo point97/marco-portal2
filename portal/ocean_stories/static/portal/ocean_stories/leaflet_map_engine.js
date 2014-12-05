@@ -65,7 +65,12 @@ function leafletMapEngine(selector) {
   }
 
   return {
-    setView: function(center, zoom){ return map.setView(center, zoom) },
+    setView: function(center, zoom){
+      console.log("set view center: " + center + ", zoom: " + zoom);
+      return map.setView(center, zoom, {
+        animate: true,
+      })
+    },
     createDataLayer: createDataLayer,
     addLayer: function(layer){ return map.addLayer(layer) },
     removeLayer: function(layer){ return map.removeLayer(layer) },
