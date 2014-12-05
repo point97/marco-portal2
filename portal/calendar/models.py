@@ -12,7 +12,7 @@ class Event(Page):
     parent_page_types = ['Calendar']
     subpage_types = []
 
-    description = models.TextField()
+    description = RichTextField()
     date = models.DateField()
 
     search_fields = Page.search_fields + ( # Inherit search_fields from Page

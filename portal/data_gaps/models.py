@@ -6,13 +6,25 @@ from wagtail.wagtailsearch import index
 from wagtail.wagtailadmin.edit_handlers import FieldPanel,MultiFieldPanel
 
 class DataGaps(Page):
+    search_fields = Page.search_fields + ( # Inherit search_fields from Page
+        index.SearchField('description'),
+    )
+
+    description = RichTextField()
     subpage_types = ['DataGap']
+
+    content_panels = [
+        MultiFieldPanel([
+            FieldPanel('title', classname="title"),
+            FieldPanel('description'),
+        ], 'Data Gaps Page')
+    ]
 
 class DataGap(Page):
     parent_page_types = ['DataGaps']
     subpage_types = []
 
-    description = models.TextField()
+    description = RichTextField()
 
     search_fields = Page.search_fields + ( # Inherit search_fields from Page
         index.SearchField('description'),

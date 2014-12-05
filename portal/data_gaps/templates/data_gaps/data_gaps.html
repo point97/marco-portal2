@@ -1,1 +1,14 @@
-{% extends "portal/index_page.html" %}
+{% extends "base.html" %}
+{% load portal wagtailcore_tags %}
+
+{% block content %}
+<div class="container">
+  <h1>{{ self.title }}</h1>
+
+  <div class="description">
+    {{ self.description|richtext }}
+  </div>
+
+  {% index_listing calling_page=self %}
+</div>
+{% endblock %}
