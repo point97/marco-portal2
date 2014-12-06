@@ -131,6 +131,19 @@ function ol3MapEngine(selector) {
   return {
     setView: function(center, zoom){
       console.log("set view center: " + center + ", zoom: " + zoom);
+      if (view.getCenter() && view.getZoom()) {
+        map.beforeRender(
+          ol.animation.pan({
+            duration: 500,
+            source: /** <at> type {ol.Coordinate} */ (view.getCenter())
+          }),
+          ol.animation.zoom({
+            duration: 500,
+            resolution: view.getResolution(),
+            source: /** <at> type {ol.Coordinate} */ (view.getZoom())
+          })
+        );
+      }
       view.setCenter(ol.proj.transform(center.slice().reverse(), 'EPSG:4326', 'EPSG:3857'));
       view.setZoom(zoom);
     },
