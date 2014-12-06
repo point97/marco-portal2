@@ -6,6 +6,7 @@ var OceanStory = (function() {
       // noop
       if (value == current) return;
 
+      console.log("set base layer: " + value)
       // return early if layer is unknown
       if (!engine.baseLayers.hasOwnProperty(value)) return;
 
