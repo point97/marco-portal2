@@ -30,6 +30,8 @@ function ol3MapEngine(selector) {
     target: selector,
     layers: _.values(baseLayers),
     view: view,
+    interactions: [],
+    controls: [],
   });
 
   // var map = L.map(selector, {
