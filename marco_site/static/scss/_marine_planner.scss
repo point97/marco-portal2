@@ -56,7 +56,7 @@ body.template-visualize{
         cursor: -moz-zoom-in, pointer;
     }
 
-    #basemaps, #right-btns, #baselayers {
+    #map-controls, #right-btns, #baselayers {
       position: absolute;
       z-index: 1020;
       padding: 2px;
@@ -68,7 +68,7 @@ body.template-visualize{
         right: 80px;
     }
 
-    #basemaps {
+    #map-controls {
         top: 70px;
         right: 30px;
     }
@@ -78,7 +78,7 @@ body.template-visualize{
         left: 4px;
     }
 
-    #baselayers a, #basemaps a, #right-btns a {
+    #baselayers a, #map-controls a, #right-btns a {
         display: block;
         margin: 2px;
         padding: 2px 0px 0px 6px;
@@ -94,7 +94,7 @@ body.template-visualize{
         border-bottom-left-radius: 0px;
     }
 
-    #baselayers a, #basemaps a {
+    #baselayers a, #map-controls a {
         text-align: left;
     }
     #right-btns a {
@@ -102,13 +102,13 @@ body.template-visualize{
         padding-right: 10px;
     }
 
-    #baselayers span, #basemaps span, #right-btns span {
+    #baselayers span, #map-controls span, #right-btns span {
         opacity: 0;
         filter: alpha(opacity=0);
         font-size: 12px;
     }
 
-    #baselayers span, #basemaps span {
+    #baselayers span, #map-controls span {
         visibility: hidden;
         width: 100%;
     }
@@ -129,7 +129,7 @@ body.template-visualize{
         margin-left: -75px;
     }
 
-    #basemaps .btn i {
+    #map-controls .btn i {
         display: inline-block;
     }
     #right-btns:hover a,
@@ -147,13 +147,13 @@ body.template-visualize{
     #right-btns.open i {
         margin-left: 0px;
     }
-    #basemaps a:hover,
+    #map-controls a:hover,
     #right-btns a:hover,
     #right-btns a.active {
         color: $green;
     }
 
-    #basemaps .btn i {
+    #map-controls .btn i {
         width: 20px;
     }
 
@@ -271,7 +271,7 @@ body.template-visualize{
     &.print .user-btn,
     &.print #feedback-tab,
     &.print #help-tab,
-    &.print #basemaps,
+    &.print #map-controls,
     &.print .olControlZoom
      {
         display: none;
@@ -352,7 +352,7 @@ body.template-visualize{
         padding-top: 2px;
         text-align: center;
     }
-    .col-md-3, .col-md-4 {
+    .col-md-3, .col-md-4, .col-md-12, .col-md-5 {
         padding-left:0px;
         padding-right:0px;
     }
@@ -363,6 +363,7 @@ body.template-visualize{
     .panel-heading {
         padding: 10px 4px;
         height: 54px;
+        border: 0px;
     }
     .panel-default>.panel-heading{
         background-color: $white;
@@ -375,7 +376,7 @@ body.template-visualize{
     }
 
     .nav-tabs>li{
-        padding: 0px 25px 0px 25px;
+        padding: 0px 15px 0px 15px;
     }
     .nav-tabs>li a{
         margin-right:0px;
@@ -386,7 +387,9 @@ body.template-visualize{
         border-radius: 0px;
         text-decoraation: none;
     }
-
+    .nav-tabs>li.active{
+        background-color: $light-gray;
+    }
     .nav-tabs>li.active a, .nav-tabs>li.active a:hover, .nav-tabs>li.active a:focus {
         border-bottom: 2px solid $green;
         color: $green;
@@ -398,9 +401,89 @@ body.template-visualize{
     .tab-content, #data-accordion{
         background-color: $white;
     }
-
+/*
     .jspContainer{
         overflow-y: auto;
+    }
+*/
+    .accordion-toggle{
+        padding: 10px 20px;
+        display: block;
+        color: $dark-gray;
+        font-size: 16px;
+    }
+
+    .accordion-heading.active{
+        background-color: $light-gray;
+    }
+    .jspTrack{
+        border-left: 1px solid $light-gray;
+        border-right: 1px solid $light-gray;
+        background: $white;
+    }
+    .jspDrag{
+        background: $gray;
+    }
+    #data-panel{
+        background-color: $white;
+    }
+
+    ul.unstyled{
+        list-style: none;
+        padding-left: 0px
+    }
+
+    .btn:hover, .btn:focus , .btn.active, .btn.focus{
+        color: $green;
+        box-shadow: none;
+    }
+    .dropdown-menu{
+        left:15px;
+    }
+
+    .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
+        color: $deep-blue;
+        background-color: transparent;
+    }
+    .btn{
+        text-align: left;
+    }
+    .btn .btn-text{
+        width:80%;
+        text-align:left;
+        white-space: normal;
+        display: inline-block;
+    }
+    span.layer-toggle{
+        float: right;
+    }
+    .layer-menu li a {
+        display: block;
+        margin-left: 5px;
+    }
+
+    #bookmark-popover{
+        width: 200px;
+        height: 300px;
+    }
+
+    .search-box{
+        border: none;
+        border-bottom: 1px solid $dark-gray;
+        box-shadow: none;
+        border-radius: 0px;
+    }
+    #left-minimized{
+        top:0px;
+        position: absolute;
+        padding-left: 11px;
+        h4{
+            margin-bottom: 0px;
+        }
+        span{
+            font-size: 12px;
+            padding: 0;
+        }
     }
     @media (max-width: 767px) {
         #data-panel {
