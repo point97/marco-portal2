@@ -11,71 +11,31 @@ function ol3MapEngine(selector) {
       }),
       visible: false,
     }),
-
-    //   "Esri Oceans": L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
-    //     attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri',
-    //     maxZoom: 13
-    //   }),
-    //   "Open Street Map": L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    //     attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-    //   }),
-    //   "Google Street": new L.Google('STREET'),
-    //   "Google Terrain": new L.Google('TERRAIN'),
-    //   "Google Satellite": new L.Google('SATELLITE'),
   };
+
+  var baseLayerGroup = new ol.layer.Group({
+    layers: _.values(baseLayers),
+  });
+  var dataLayerGroup = new ol.layer.Group({
+    layers: [],
+  });
+
 
   var view = new ol.View();
 
   var map = new ol.Map({
     target: selector,
-    layers: _.values(baseLayers),
+    layers: [
+      baseLayerGroup,
+      dataLayerGroup,
+    ],
     view: view,
     interactions: [],
     controls: [],
   });
-
-  // var map = L.map(selector, {
-  //   zoomControl: false,
-  //   touchZoom: false,
-  //   dragging: false,
-  //   scrollWheelZoom: false,
-  //   doubleClickZoom: false,
-  //   boxZoom: false,
-  //   tap: false,
-  //   keyboard: false,
-  //   attributionControl: false,
-  // });
-  //
-
-  function hackyMarineCadastreLayerConversion(l) {
-    l.layer_type = "WMS";
-    l.url = l.url.replace(
-      /^(http:\/\/coast.noaa.gov\/arcgis)\/rest\/(services\/MarineCadastre\/[^/]+\/MapServer)\/export$/,
-      '$1/$2/WMSServer'
-    );
-
-    var idMappings = {
-      "http://coast.noaa.gov/arcgis/services/MarineCadastre/NavigationAndMarineTransportation/MapServer/WMSServer": {
-        7: 2,
-        8: 1,
-        9: 0,
-      },
-      "http://coast.noaa.gov/arcgis/services/MarineCadastre/OceanEnergy/MapServer/WMSServer": {
-        4: 0,
-        3: 1,
-      }
-    }
-
-    if (idMappings.hasOwnProperty(l.url)) {
-      var mapping = idMappings[l.url];
-      var arcRestLayers = l.arcgis_layers.split(',');
-      mappedLayers = _.map(arcRestLayers, function(restId) {
-        return mapping.hasOwnProperty(restId) ? mapping[restId] : restId
-      });
-      l.arcgis_layers = mappedLayers.join(',');
-    }
-    return l;
-  }
+  map.on("render", function(){
+    console.log(e);
+  });
 
   var typeCreateHandlers = {
     'XYZ': function(l) {
@@ -114,44 +74,61 @@ function ol3MapEngine(selector) {
     },
   }
 
-  function createDataLayer(l) {
-    console.log("Create data layer " + l.name + ' of layer_type ' +l.layer_type);
-
-    if (l.layer_type == 'ArcRest') {
-      console.log("converting to WMS: " + l.name);
-      l = hackyMarineCadastreLayerConversion(l);
-    }
-
-    if (typeCreateHandlers.hasOwnProperty(l.layer_type)) {
-      var layerObj = typeCreateHandlers[l.layer_type](l);
-      layerObj.setVisible(false);
-      map.addLayer(layerObj);
-      return layerObj;
+  function wrapAnimations(animations, after) {
+    return function(map, state) {
+      for (i = 0; i < animations.length; ++i) {
+        if (!animations[i](map, state)) {
+          animations.splice(i--, 1);
+        }
+      }
+      if (animations.length == 0) {
+        after(map, state);
+        return false;
+      }
+      return true;
     }
   }
 
   return {
-    setView: function(center, zoom){
+    setView: function(center, zoom, afterFunc){
       console.log("set view center: " + center + ", zoom: " + zoom);
       if (view.getCenter() && view.getZoom()) {
-        map.beforeRender(
+        dataLayerGroup.setVisible(false);
+        map.beforeRender(wrapAnimations([
           ol.animation.pan({
-            duration: 500,
+            duration: 2000,
             source: /** <at> type {ol.Coordinate} */ (view.getCenter())
           }),
           ol.animation.zoom({
-            duration: 500,
+            duration: 2000,
             resolution: view.getResolution(),
             source: /** <at> type {ol.Coordinate} */ (view.getZoom())
           })
+          ], function() {
+            afterFunc();
+            dataLayerGroup.setVisible(true);
+          })
         );
+      } else {
+        afterFunc();
       }
       view.setCenter(ol.proj.transform(center.slice().reverse(), 'EPSG:4326', 'EPSG:3857'));
       view.setZoom(zoom);
     },
-    createDataLayer: createDataLayer,
-    addLayer: function(layer){ return layer.setVisible(true) },
-    removeLayer: function(layer){ return layer.setVisible(false) },
+    newDataLayer: function(l) {
+      if (!typeCreateHandlers.hasOwnProperty(l.layer_type)) {
+        console.warn("Unknown layer_type: " + l.layer_type);
+        return null;
+      }
+
+      var layerObj = typeCreateHandlers[l.layer_type](l);
+      layerObj.setVisible(false);
+      dataLayerGroup.getLayers().push(layerObj);
+
+      return layerObj;
+    },
+    showLayer: function(layer){ return layer.setVisible(true) },
+    hideLayer: function(layer){ return layer.setVisible(false) },
     baseLayers: baseLayers,
   };
 }
