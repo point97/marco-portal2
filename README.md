@@ -1,6 +1,6 @@
 ## Used technologies
 
-  * [Leaftlet](http://leafletjs.com/)
+  * [Openlayers 3](http://openlayers.org/)
   * [Bootstrap 3](http://getbootstrap.com/)
   * [Wagtail](http://wagtail.io/)
   * [Django 1.7](https://docs.djangoproject.com/en/1.7/)
