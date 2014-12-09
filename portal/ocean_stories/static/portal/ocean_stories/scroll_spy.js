@@ -25,7 +25,8 @@ function scrollSpy(containerSelector, sectionSelector, callback) {
       sectionIndex = 0;
     }
     if (sectionIndex !== currentIndex) {
-      callback(sectionIndex);
+      currentIndex = sectionIndex
+      callback(currentIndex);
     }
   }
 

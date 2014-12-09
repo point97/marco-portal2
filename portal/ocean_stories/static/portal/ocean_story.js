@@ -1,80 +1,67 @@
-var OceanStory = (function() {
+function OceanStoryMap (engine, story, layerCatalog) {
 
-  function baseLayerSetter(engine) {
-    var current;
-    return function(value) {
-      // noop
-      if (value == current) return;
+  var dataLayers = {};
+  var visibleDataLayers = [];
+  var currentBaseLayer;
+  var activeSection;
 
-      // return early if layer is unknown
-      if (!engine.baseLayers.hasOwnProperty(value)) return;
-
-      // add layer
-      engine.addLayer(engine.baseLayers[value], true);
-
-      // remove old layer if there is one
-      if (current) engine.removeLayer(engine.baseLayers[current]);
-
-      current = value;
+  function setBaseLayer(layer) {
+    // return early if layer is unknown
+    if (!engine.baseLayers.hasOwnProperty(layer)) {
+      console.warn('attempt to set unknown base layer ' + layer);
+      return;
     }
+    if (layer == currentBaseLayer) return;
+
+    console.debug('set base layer ' + layer);
+    engine.showLayer(engine.baseLayers[layer], true);
+
+    if (currentBaseLayer) {
+      engine.hideLayer(engine.baseLayers[currentBaseLayer]);
+    }
+
+    currentBaseLayer = layer;
+
   }
 
-  function dataLayersSetter(engine, layerCatalog) {
-    var layerCache = {};
-    var currentLayers = [];
-
-    return function(layers) {
-      var layerKeys = Object.keys(layers)
-
-      // trim unused layers
-      _.each(_.difference(currentLayers, layerKeys), function(id) {
-        console.log("Remove data layer " + layerCatalog[id].name);
-        if (layerCache[id]) {
-          engine.removeLayer(layerCache[id]);
-        }
-      });
-
-      // add new layers
-      _.each(_.difference(layerKeys, currentLayers), function(id) {
-        // create layer object if it hasn't been already
-        if (!layerCache.hasOwnProperty(id)) {
-          layerCache[id] = engine.createDataLayer(layerCatalog[id]);
-        }
-        console.log("Add data layer " + layerCatalog[id].name);
-        if (layerCache[id]) {
-          engine.addLayer(layerCache[id]);
-        }
-      });
-
-      // set layer properties
-      _.each(layerKeys, function(id){
-        console.log("set layer props for "+layerCatalog[id].name)
-      });
-      currentLayers = layerKeys;
+  function fetchDataLayer(id) {
+    if (!dataLayers.hasOwnProperty(id)) {
+      dataLayers[id] = engine.newDataLayer(layerCatalog[id]);
     }
+    return dataLayers[id];
   }
 
-  function create(engine, story, layerCatalog) {
-    var activeSection;
-    var setBaseLayer = baseLayerSetter(engine);
-    var setDataLayers = dataLayersSetter(engine, layerCatalog);
+  function setDataLayers(layers) {
+    var layerKeys = Object.keys(layers)
 
-    function goToSection(section) {
-      s = story.sections[section];
+    // trim unused layers
+    _.each(_.difference(visibleDataLayers, layerKeys), function(id) {
+      l = fetchDataLayer(id);
+      if (l){
+        engine.hideLayer(fetchDataLayer(id));
+      }
+    });
 
-      setBaseLayer(s.baseLayer);
-      setDataLayers(s.dataLayers);
-      engine.setView(s.view.center, s.view.zoom);
-
-      activeSection = section;
-    }
-
-    return {
-      goToSection: goToSection,
-    };
+    // add new layers
+    _.each(_.difference(layerKeys, visibleDataLayers), function(id) {
+      l = fetchDataLayer(id);
+      if (l){
+        engine.showLayer(l);
+      }
+    });
+    visibleDataLayers = layerKeys;
   }
 
   return {
-    create: create,
+    goToSection: function(section) {
+      var s = story.sections[section];
+
+      engine.setView(s.view.center, s.view.zoom, function(){
+        setBaseLayer(s.baseLayer);
+        setDataLayers(s.dataLayers);
+      });
+
+      activeSection = section;
+    },
   };
-}());
+}
