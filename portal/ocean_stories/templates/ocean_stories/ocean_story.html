@@ -42,15 +42,7 @@
   <script src="{% static 'portal/ocean_stories/scroll_spy.js' %}"></script>
 
     <script type="text/javascript">
-    var story = {
-      {% if self.sections %}
-        sections: [
-        {% for section in self.sections.all %}
-          {{ section.map_state|safe }},
-        {% endfor %}
-        ],
-      {% endif %}
-    };
+    var story = {{ self.as_json|safe }};
 
     var storyMap;
     $.getJSON("/data_manager/api/layers", function(data) {

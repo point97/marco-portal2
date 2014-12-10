@@ -1,9 +1,16 @@
 function OceanStoryMap (engine, story, layerCatalog) {
 
+  function normalizeSection(data) {
+    data.view = {
+      center: _.map(data.view.center, parseFloat),
+      zoom: parseInt(data.view.zoom),
+    };
+  }
+  story.sections.forEach(normalizeSection);
+
   var dataLayers = {};
   var visibleDataLayers = [];
   var currentBaseLayer;
-  var activeSection;
 
   function setBaseLayer(layer) {
     // return early if layer is unknown
@@ -26,6 +33,10 @@ function OceanStoryMap (engine, story, layerCatalog) {
 
   function fetchDataLayer(id) {
     if (!dataLayers.hasOwnProperty(id)) {
+      if (!layerCatalog.hasOwnProperty(id)) {
+        console.warn("Ignoring unknown layer id " + id);
+        return false;
+      }
       dataLayers[id] = engine.newDataLayer(layerCatalog[id]);
     }
     return dataLayers[id];
@@ -38,7 +49,7 @@ function OceanStoryMap (engine, story, layerCatalog) {
     _.each(_.difference(visibleDataLayers, layerKeys), function(id) {
       l = fetchDataLayer(id);
       if (l){
-        engine.hideLayer(fetchDataLayer(id));
+        engine.hideLayer(l);
       }
     });
 
@@ -60,8 +71,6 @@ function OceanStoryMap (engine, story, layerCatalog) {
         setBaseLayer(s.baseLayer);
         setDataLayers(s.dataLayers);
       });
-
-      activeSection = section;
     },
   };
 }

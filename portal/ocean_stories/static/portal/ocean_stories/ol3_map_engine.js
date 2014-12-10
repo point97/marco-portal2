@@ -5,12 +5,16 @@ function ol3MapEngine(selector) {
       source: new ol.source.MapQuest({layer: 'osm'}),
       visible: false,
     }),
-    "Esri Oceans": new ol.layer.Tile({
+    "ESRI Ocean": new ol.layer.Tile({
       source: new ol.source.XYZ({
         url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}'
       }),
       visible: false,
     }),
+    // Google Streets
+    // Google Physical
+    // Google Satellite
+    // Nautical Charts
   };
 
   var baseLayerGroup = new ol.layer.Group({
@@ -112,7 +116,7 @@ function ol3MapEngine(selector) {
       } else {
         afterFunc();
       }
-      view.setCenter(ol.proj.transform(center.slice().reverse(), 'EPSG:4326', 'EPSG:3857'));
+      view.setCenter(ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'));
       view.setZoom(zoom);
     },
     newDataLayer: function(l) {
