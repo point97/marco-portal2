@@ -69,7 +69,7 @@ body.template-visualize{
     }
 
     #map-controls {
-        top: 70px;
+        top: 91px;
         right: 30px;
     }
 
@@ -78,7 +78,7 @@ body.template-visualize{
         left: 4px;
     }
 
-    #baselayers a, #map-controls a, #right-btns a {
+    #baselayers a, #map-controls a, #map-controls span, #right-btns a {
         display: block;
         margin: 2px;
         padding: 2px 0px 0px 6px;
@@ -228,6 +228,12 @@ body.template-visualize{
 
     #printing-popover {
         max-width: 460px;
+        border: none;
+        border-radius: 0px; 
+        box-shadow: none;
+        .pull-right{
+            margin: 6px 0 0 0px;
+        }
     }
     #printing-popover .arrow {
         display: none;
@@ -240,10 +246,9 @@ body.template-visualize{
     #printing-popover .print-title {
         width: 418px;
     }
-
     #printing-popover .well {
         padding-top: 5px;
-        height: 210px;
+        padding-bottom: 6px;
     }
     #printing-popover .well strong {
         margin-left: -8px;
@@ -252,6 +257,12 @@ body.template-visualize{
     #printing-popover .checkbox {
         margin-left: 9px;
     }
+    /*
+    #printing-popover .popover-content{
+        max-height:260px;
+        overflow: auto;
+    }
+    */
     #print-modal .modal-header {
         border-bottom: 0px;
     }
@@ -352,7 +363,7 @@ body.template-visualize{
         padding-top: 2px;
         text-align: center;
     }
-    .col-md-3, .col-md-4, .col-md-12, .col-md-5 {
+    .col-md-1, .col-md-3, .col-md-4, .col-md-5, .col-md-8, .col-md-12  {
         padding-left:0px;
         padding-right:0px;
     }
@@ -437,10 +448,11 @@ body.template-visualize{
         color: $green;
         box-shadow: none;
     }
+/*
     .dropdown-menu{
         left:15px;
     }
-
+*/
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
         color: $deep-blue;
         background-color: transparent;
@@ -449,7 +461,6 @@ body.template-visualize{
         text-align: left;
     }
     .btn .btn-text{
-        width:80%;
         text-align:left;
         white-space: normal;
         display: inline-block;
@@ -463,8 +474,15 @@ body.template-visualize{
     }
 
     #bookmark-popover{
-        width: 200px;
+        width: 400px;
         height: 300px;
+        background-color: $white;
+        border: none;
+        border-radius:0px;
+        box-shadow: none;
+        .popover-title{
+            background-color: $white;
+        }
     }
 
     .search-box{
@@ -483,6 +501,39 @@ body.template-visualize{
         span{
             font-size: 12px;
             padding: 0;
+        }
+    }
+
+    .radio, .checkbox{
+        display:inline;
+    }
+    .popover{
+        min-width: 150px;
+        min-height: 30px;
+    }
+
+    .tooltip-inner {
+        background-color: $white;
+        color: $black;
+        border: 1px solid $black;
+    }
+
+    .tooltip.right .tooltip-arrow {
+        border-right: 5px solid $black;
+    }
+    .tooltip.left .tooltip-arrow {
+        border-left: 5px solid $black;
+    }
+
+
+    @media print {
+        left-panel{
+            display:none;
+        } 
+    }
+    @media (min-width: 992px){
+        .col-md-4{
+            width:33%;
         }
     }
     @media (max-width: 767px) {
