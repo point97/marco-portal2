@@ -20,7 +20,7 @@
     <![endif]-->
   </head>
   <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
-    {% block header %}{% navbar %}{% endblock %}
+    {% block header %}{% include 'navbar.html' %}{% endblock %}
     <div class="content">
       {% block content %}{% endblock %}
     </div>
