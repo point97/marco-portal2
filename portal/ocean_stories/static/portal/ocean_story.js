@@ -65,6 +65,10 @@ function OceanStoryMap (engine, story, layerCatalog) {
 
   return {
     goToSection: function(section) {
+      if (section > story.sections.length - 1) {
+        console.warn("Requested story section " + (section+1) + ", but only " + story.sections.length + " are present.")
+        return;
+      }
       var s = story.sections[section];
 
       engine.setView(s.view.center, s.view.zoom, function(){
