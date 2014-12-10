@@ -25,6 +25,8 @@ urlpatterns = patterns('',
     url('^sitemap\.xml$', sitemap),
 
     url(r'^django-admin/', include(admin.site.urls)),
+    
+    url(r'^accounts/', include('accounts.urls')),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
