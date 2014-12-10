@@ -1,16 +1,31 @@
 function OceanStoryMap (engine, story, layerCatalog) {
 
+  function normalizeSection(data) {
+    data.view = {
+      center: _.map(data.view.center, parseFloat),
+      zoom: parseInt(data.view.zoom),
+    };
+  }
+  story.sections.forEach(normalizeSection);
+
   var dataLayers = {};
   var visibleDataLayers = [];
   var currentBaseLayer;
-  var activeSection;
+
+  function defaultBaseLayer() {
+    // return first base layer
+    for (k in engine.baseLayers) {
+      return k;
+    }
+  }
 
   function setBaseLayer(layer) {
     // return early if layer is unknown
     if (!engine.baseLayers.hasOwnProperty(layer)) {
       console.warn('attempt to set unknown base layer ' + layer);
-      return;
+      layer = currentBaseLayer || defaultBaseLayer();
     }
+
     if (layer == currentBaseLayer) return;
 
     console.debug('set base layer ' + layer);
@@ -26,6 +41,10 @@ function OceanStoryMap (engine, story, layerCatalog) {
 
   function fetchDataLayer(id) {
     if (!dataLayers.hasOwnProperty(id)) {
+      if (!layerCatalog.hasOwnProperty(id)) {
+        console.warn("Ignoring unknown layer id " + id);
+        return false;
+      }
       dataLayers[id] = engine.newDataLayer(layerCatalog[id]);
     }
     return dataLayers[id];
@@ -38,7 +57,7 @@ function OceanStoryMap (engine, story, layerCatalog) {
     _.each(_.difference(visibleDataLayers, layerKeys), function(id) {
       l = fetchDataLayer(id);
       if (l){
-        engine.hideLayer(fetchDataLayer(id));
+        engine.hideLayer(l);
       }
     });
 
@@ -54,14 +73,16 @@ function OceanStoryMap (engine, story, layerCatalog) {
 
   return {
     goToSection: function(section) {
+      if (section > story.sections.length - 1) {
+        console.warn("Requested story section " + (section+1) + ", but only " + story.sections.length + " are present.")
+        return;
+      }
       var s = story.sections[section];
 
       engine.setView(s.view.center, s.view.zoom, function(){
         setBaseLayer(s.baseLayer);
         setDataLayers(s.dataLayers);
       });
-
-      activeSection = section;
     },
   };
 }
