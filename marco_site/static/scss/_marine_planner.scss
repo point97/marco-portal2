@@ -377,13 +377,13 @@ body.template-visualize{
         border: 0px;
     }
     .panel-default>.panel-heading{
-        background-color: $white;
+        background-color: $gray-lighter;
         border-color: $light-gray;
     }
 
     .nav-tabs{
         border-top: 1px solid #ddd;
-        background-color: $white;
+        background-color: $gray-lighter;
     }
 
     .nav-tabs>li{
@@ -410,7 +410,7 @@ body.template-visualize{
     }
 
     .tab-content, #data-accordion{
-        background-color: $white;
+        background-color: $gray-lighter;
     }
 /*
     .jspContainer{
@@ -436,7 +436,7 @@ body.template-visualize{
         background: $gray;
     }
     #data-panel{
-        background-color: $white;
+        background-color: $gray-lighter;
     }
 
     ul.unstyled{
@@ -476,12 +476,12 @@ body.template-visualize{
     #bookmark-popover{
         width: 400px;
         height: 300px;
-        background-color: $white;
+        background-color: $gray-lighter;
         border: none;
         border-radius:0px;
         box-shadow: none;
         .popover-title{
-            background-color: $white;
+            background-color: $gray-lighter;
         }
     }
 
@@ -490,6 +490,7 @@ body.template-visualize{
         border-bottom: 1px solid $dark-gray;
         box-shadow: none;
         border-radius: 0px;
+        background-color: $gray-lighter;
     }
     #left-minimized{
         top:0px;
@@ -513,7 +514,7 @@ body.template-visualize{
     }
 
     .tooltip-inner {
-        background-color: $white;
+        background-color: $gray-lighter;
         color: $black;
         border: 1px solid $black;
     }
@@ -523,6 +524,10 @@ body.template-visualize{
     }
     .tooltip.left .tooltip-arrow {
         border-left: 5px solid $black;
+    }
+
+    .popover-inner{
+        background-color: $gray-lighter;
     }
 
 
