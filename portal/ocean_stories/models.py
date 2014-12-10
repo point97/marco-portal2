@@ -79,9 +79,11 @@ class OceanStory(Page):
 
     @property
     def as_json(self):
-        return json.dumps({
-            'sections': [ s.parsed_map_state for s in self.sections.all() ]
-        });
+        try:
+            o = {'sections': [ s.parsed_map_state for s in self.sections.all() ]}
+        except:
+            o = {'sections': []}
+        return json.dumps(o);
 
 OceanStory.content_panels = [
     FieldPanel('title'),
