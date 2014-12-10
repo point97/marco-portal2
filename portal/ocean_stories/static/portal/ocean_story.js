@@ -12,12 +12,20 @@ function OceanStoryMap (engine, story, layerCatalog) {
   var visibleDataLayers = [];
   var currentBaseLayer;
 
+  function defaultBaseLayer() {
+    // return first base layer
+    for (k in engine.baseLayers) {
+      return k;
+    }
+  }
+
   function setBaseLayer(layer) {
     // return early if layer is unknown
     if (!engine.baseLayers.hasOwnProperty(layer)) {
       console.warn('attempt to set unknown base layer ' + layer);
-      return;
+      layer = currentBaseLayer || defaultBaseLayer();
     }
+
     if (layer == currentBaseLayer) return;
 
     console.debug('set base layer ' + layer);
