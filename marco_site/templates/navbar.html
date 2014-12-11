@@ -52,6 +52,14 @@
             </li>
           </ul>
         </li>
+        <li>
+        {% if user.is_authenticated %}
+            <a href="{% url 'account:index' %}">{{ user }} <span class="fa fa-user"></span></a>
+        {% else %}
+            <a href="{% url 'social:begin' 'google-oauth' %}?next=/">LOG IN <span class="fa fa-user"></span></a>
+        {% endif %}
+        </li>
+        <li><a href=""><span class="fa fa-search"></span></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
