@@ -80,15 +80,13 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.open_id.OpenIdAuth',
     'social.backends.google.GoogleOpenId',
     'social.backends.google.GoogleOAuth2',
     'social.backends.google.GoogleOAuth',
     'social.backends.twitter.TwitterOAuth',
-    'social.backends.yahoo.YahooOpenId',
+    'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
-
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -183,6 +181,7 @@ TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
 # Wagtail settings
 
 LOGIN_URL = 'wagtailadmin_login'
+LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
