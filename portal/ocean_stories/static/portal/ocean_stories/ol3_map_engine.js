@@ -97,7 +97,7 @@ function ol3MapEngine(selector) {
     setView: function(center, zoom, afterFunc){
       console.info("set view center: " + center + ", zoom: " + zoom);
       if (view.getCenter() && view.getZoom()) {
-        dataLayerGroup.setVisible(false);
+        // dataLayerGroup.setVisible(false);
         map.beforeRender(wrapAnimations([
           ol.animation.pan({
             duration: 2000,
