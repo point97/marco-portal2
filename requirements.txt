@@ -18,12 +18,10 @@ django-apptemplates==0.0.1
 -e git+git@bitbucket.org:point97/madrona-forms.git@master#egg=madrona_forms-master
 -e git+git@bitbucket.org:point97/madrona-scenarios.git@master#egg=madrona_scenarios-master
 -e git+git@bitbucket.org:point97/madrona-manipulators.git@master#egg=madrona_manipulators-master
--e git+git@bitbucket.org:point97/madrona-openid.git@master#egg=madrona_openid-master
--e git+git@bitbucket.org:point97/madrona-user-profile.git@master#egg=user_profile-master
 -e git+git@bitbucket.org:point97/mp-clipping.git@master#egg=mp_clipping-master
 -e git+git@bitbucket.org:point97/mp-drawing.git@master#egg=mp_drawing-master
 -e git+git@bitbucket.org:point97/mp-explore.git@master#egg=mp_explore-master
--e git+git@bitbucket.org:point97/mp-profile.git@master#egg=mp_profile-master
+-e git+git@bitbucket.org:point97/mp-accounts.git@master#egg=mp_accounts-master
 -e git+git@bitbucket.org:point97/mp-visualize.git@master#egg=mp_visualize-master
 -e git+git@bitbucket.org:point97/mp-data-manager.git@master#egg=mp_data_manager-master
 -e git+git@bitbucket.org:point97/p97-nursery.git@master#egg=nursery-master

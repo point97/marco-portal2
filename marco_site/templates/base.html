@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar feedback navbar %}
+{% load compress static wagtailuserbar feedback %}
 
 <!doctype html>
 <html lang="en">
@@ -11,6 +11,7 @@
     {% block extra_css %}{% endblock %}
 
     <link rel="stylesheet" href="{% static 'css/marco_site.css' %}" />
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,7 +21,7 @@
     <![endif]-->
   </head>
   <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
-    {% block header %}{% navbar %}{% endblock %}
+    {% block header %}{% include 'navbar.html' %}{% endblock %}
     <div class="content">
       {% block content %}{% endblock %}
     </div>

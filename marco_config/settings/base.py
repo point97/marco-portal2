@@ -67,9 +67,25 @@ INSTALLED_APPS = (
     'portal.data_catalog',
     'portal.initial_data',
     'rest_framework',
+    'flatblocks',
+
     'data_manager',
     'visualize',
-    'flatblocks',
+    'explore',
+    'mp_profile',
+    
+    # Account management
+    'social.apps.django_app.default',
+    'accounts',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.google.GoogleOpenId',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.google.GoogleOAuth',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -153,6 +169,9 @@ from django.conf import global_settings
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 )
 
 TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
@@ -162,6 +181,7 @@ TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
 # Wagtail settings
 
 LOGIN_URL = 'wagtailadmin_login'
+LOGIN_URL = 'account:login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
