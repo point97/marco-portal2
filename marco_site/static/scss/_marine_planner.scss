@@ -81,7 +81,7 @@ body.template-visualize{
     #baselayers a, #map-controls a, #map-controls span, #right-btns a {
         display: block;
         margin: 2px;
-        padding: 2px 0px 0px 6px;
+        padding: 2px 0px 0px 2px;
         color: $gray-darker;
         text-decoration: none;
         text-align: center;
@@ -94,9 +94,6 @@ body.template-visualize{
         border-bottom-left-radius: 0px;
     }
 
-    #baselayers a, #map-controls a {
-        text-align: left;
-    }
     #right-btns a {
         text-align: right;
         padding-right: 10px;
@@ -129,9 +126,6 @@ body.template-visualize{
         margin-left: -75px;
     }
 
-    #map-controls .btn i {
-        display: inline-block;
-    }
     #right-btns:hover a,
     #right-btns.open {
         width: 120px;
@@ -151,10 +145,6 @@ body.template-visualize{
     #right-btns a:hover,
     #right-btns a.active {
         color: $green;
-    }
-
-    #map-controls .btn i {
-        width: 20px;
     }
 
     #map.zoomBox .olHandlerBoxZoomBox {
@@ -384,6 +374,7 @@ body.template-visualize{
     .nav-tabs{
         border-top: 1px solid #ddd;
         background-color: $gray-lighter;
+        text-align: center;
     }
 
     .nav-tabs>li{
@@ -396,9 +387,10 @@ body.template-visualize{
         border-left: 0px;
         border-right: 0px;
         border-radius: 0px;
-        text-decoraation: none;
+        text-decoration: none;
+        color: $gray-darker;
     }
-    .nav-tabs>li.active{
+    .nav-tabs li.active{
         background-color: $light-gray;
     }
     .nav-tabs>li.active a, .nav-tabs>li.active a:hover, .nav-tabs>li.active a:focus {
@@ -412,11 +404,7 @@ body.template-visualize{
     .tab-content, #data-accordion{
         background-color: $gray-lighter;
     }
-/*
-    .jspContainer{
-        overflow-y: auto;
-    }
-*/
+
     .accordion-toggle{
         padding: 10px 20px;
         display: block;
@@ -430,7 +418,7 @@ body.template-visualize{
     .jspTrack{
         border-left: 1px solid $light-gray;
         border-right: 1px solid $light-gray;
-        background: $white;
+        background: $gray-lighter;
     }
     .jspDrag{
         background: $gray;
@@ -491,6 +479,8 @@ body.template-visualize{
         box-shadow: none;
         border-radius: 0px;
         background-color: $gray-lighter;
+        font-size: 20px;
+        font-weight: 100;
     }
     #left-minimized{
         top:0px;
