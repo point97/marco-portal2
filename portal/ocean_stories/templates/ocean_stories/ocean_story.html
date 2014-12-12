@@ -50,7 +50,7 @@
       })
       oceanStoryMap = new OceanStoryMap(ol3MapEngine('map'), story, dataLayers);
 
-      scrollSpy('.content', '> .container > .sections > .section', function(sectionIndex){
+      scrollSpy('.content', '.sections > .section', function(sectionIndex){
         return oceanStoryMap.goToSection(sectionIndex);
       })
     });
