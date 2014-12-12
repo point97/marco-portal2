@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'data_manager',
     'visualize',
+    'features', # madrona-features
     'flatblocks',
 )
 
@@ -102,7 +103,7 @@ WSGI_APPLICATION = 'marco_config.wsgi.application'
 # PostgreSQL (Recommended, but requires the psycopg2 library and Postgresql development headers)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'marco_portal',
         'USER': 'postgres',
         'PASSWORD': '',
@@ -182,3 +183,7 @@ WAGTAIL_SITE_NAME = 'MARCO Portal'
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 
 FEEDBACK_JS_URL = "https://point97.atlassian.net/s/1ba4b91a5ab8c6133464cc37b8c0bc23-T/en_US-3kdfpp/64005/55/1.4.17/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c145c21d"
+
+# nadrona-features
+SHARING_TO_PUBLIC_GROUPS = ['Share with Public']
+SHARING_TO_STAFF_GROUPS = ['Share with Staff']
