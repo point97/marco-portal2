@@ -59,10 +59,14 @@ INSTALLED_APPS = (
     'portal.initial_data',
     'rest_framework',
 
+    'flatblocks',
+
     'data_manager',
     'visualize',
     'features',
-    'flatblocks',
+    'scenarios',
+    'drawing',
+    'manipulators',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -161,6 +165,7 @@ GEOMETRY_DB_SRID = 3857
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
+GEOJSON_DOWNLOAD = True  # force headers to treat like an attachment
 
 
 

@@ -33,6 +33,8 @@ urlpatterns = patterns('',
     url(r'^styleguide/$', 'marco_site.views.styleguide', name='styleguide'),
     url(r'^visualize/', include('visualize.urls')),
     url(r'^mp_profile/', include('mp_profile.urls')),
+    url(r'^features/', include('features.urls')),
+    url(r'^scenario/', include('scenarios.urls')),
 
     url(r'', include(wagtail_urls)),
 
