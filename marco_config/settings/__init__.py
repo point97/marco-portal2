@@ -61,7 +61,7 @@ INSTALLED_APPS = (
 
     'data_manager',
     'visualize',
-    'features', # madrona-features
+    'features',
     'flatblocks',
 )
 
