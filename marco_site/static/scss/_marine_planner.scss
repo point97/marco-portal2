@@ -78,6 +78,36 @@ body.template-visualize{
         left: 4px;
     }
 
+    .layer-info{
+        text-align:center;
+        float: none;
+        .link-bar{
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            span{
+                background-color: $gray-light;
+                padding: 2px;
+            }
+        }
+        a, a:hover, a:active, a:visited{
+            font-size: 12px;
+            font-weight:bold;
+
+        }
+        .layer-text{
+            text-align: left;
+            float: none;
+            margin-left: auto;
+            margin-right: auto;
+            span{
+                display: inline-block;
+                margin: 7px;
+                font-size: 12px;
+            }
+        }
+    }
+
     #baselayers a, #map-controls a, #map-controls span, #right-btns a {
         display: block;
         margin: 2px;
@@ -353,7 +383,7 @@ body.template-visualize{
         padding-top: 2px;
         text-align: center;
     }
-    .col-md-1, .col-md-3, .col-md-4, .col-md-5, .col-md-8, .col-md-12  {
+    .col-md-1, .col-md-3, .col-md-4, .col-md-5, .col-md-8, .col-md-10, .col-md-12  {
         padding-left:0px;
         padding-right:0px;
     }
