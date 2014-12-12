@@ -19,8 +19,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="{% block body_class %}{% endblock %}">
     {% block header %}{% navbar %}{% endblock %}
+  <body class="{% block body_class %}classless-page{% endblock %}">
     <div class="content">
       <div class="container">
         {% block page_header %}{% endblock %}
