@@ -19,10 +19,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
+  <body class="{% block body_class %}{% endblock %}">
     {% block header %}{% navbar %}{% endblock %}
     <div class="content">
-      {% block content %}{% endblock %}
+      <div class="container">
+        {% block page_header %}{% endblock %}
+        {% block content %}{% endblock %}
+      </div>
+      {% block outer_content %}
+      {% endblock %}
     </div>
 
     {% compress js %}
