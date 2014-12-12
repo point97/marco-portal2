@@ -5,9 +5,9 @@
   <link rel="stylesheet" href="{% static 'bower_components/ol3-unofficial/ol.css' %}" />
 {% endblock %}
 
+{% block navbar-extra-classes %}navbar-fixed-top{% endblock %}
 
 {% block header %}
-  <div class="sticky-header">
     {{ block.super }}
     <div id="map"></div>
   </div>
