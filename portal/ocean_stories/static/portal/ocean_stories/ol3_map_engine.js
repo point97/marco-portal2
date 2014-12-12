@@ -2,7 +2,7 @@ function ol3MapEngine(selector) {
 
   var baseLayers = {
     "Open Street Map": new ol.layer.Tile({
-      source: new ol.source.MapQuest({layer: 'osm'}),
+      source: new ol.source.OSM(),
       visible: false,
     }),
     "ESRI Ocean": new ol.layer.Tile({
@@ -95,9 +95,9 @@ function ol3MapEngine(selector) {
 
   return {
     setView: function(center, zoom, afterFunc){
-      console.log("set view center: " + center + ", zoom: " + zoom);
+      console.info("set view center: " + center + ", zoom: " + zoom);
       if (view.getCenter() && view.getZoom()) {
-        dataLayerGroup.setVisible(false);
+        // dataLayerGroup.setVisible(false);
         map.beforeRender(wrapAnimations([
           ol.animation.pan({
             duration: 2000,

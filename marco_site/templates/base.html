@@ -19,22 +19,30 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
-    {% block header %}{% navbar %}{% endblock %}
+  <body class="{% block body_class %}classless-page{% endblock %}">
+    <header>
+      {% block header %}
+        {% navbar %}
+      {% endblock %}
+    </header>
     <div class="content">
-      {% block content %}{% endblock %}
+      <div class="container">
+        {% block page_header %}{% endblock %}
+        {% block content %}{% endblock %}
+      </div>
+      {% block outer_content %}
+      {% endblock %}
     </div>
 
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
       <script src="{% static 'bower_components/lodash/dist/lodash.js' %}"></script>
-      <script src="{% static 'js/bootstrap.js' %}"></script>
+      <script src="{% static 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js' %}"></script>
       <script src="{% static 'js/marco_site.js' %}"></script>
     {% endcompress %}
 
     {% block extra_js %}{% endblock %}
 
-    {% wagtailuserbar %}
     {% feedback_js %}
   </body>
 </html>

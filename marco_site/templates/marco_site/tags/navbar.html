@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,13 +9,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">MARCO</a>
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'brand/MARCO_portal_logo_blue_green.svg' %}"></img>
+      </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li class=""><a href="#">MARINE PLANNER</a></li>
+        <li class=""><a href="/visualize">MARINE PLANNER</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">DATA &amp; STORIES <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -40,16 +43,6 @@
             <li><a href="#">CONTACT US</a></li>
             <li class="divider"></li>
             <li><a href="/styleguide">STYLE GUIDE</a></li>
-            <li>
-              <form class="navbar-form navbar-right" role="search">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search">
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                  </span>
-                </div><!-- /input-group -->
-              </form>
-            </li>
           </ul>
         </li>
       </ul>

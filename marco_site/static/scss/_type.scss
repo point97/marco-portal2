@@ -2,8 +2,11 @@ body {
   letter-spacing: 0.035em;
 }
 
-.page-header h1 {
-  color: $green;
-  font-size: 51px;
-  line-height: 61px;
+.page-header {
+  border-bottom: none;
+  h1 {
+    color: $green;
+    font-size: 51px;
+    line-height: 61px;
+  }
 }

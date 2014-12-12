@@ -1,0 +1,22 @@
+.navbar {
+  li > a {
+    font-weight: 900;
+  }
+  .dropdown-menu {
+    & > li > a {
+      font-weight: 900;
+    }
+
+  }
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  img {
+    position: relative;
+    // nudge down since the top margin is a bit large
+    top: 5px;
+    height: $navbar-height;
+  }
+}

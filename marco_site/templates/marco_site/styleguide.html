@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block body_class %}page-styleguide{% endblock %}
 
+{% block page_header %}
+{% include "includes/page_header.html" with title="Styleguide" only %}
+{% endblock %}
+
 {% block content %}
 <div class="container">
-    <div class="page-header">
-      <h1>Styleguide</h1>
-    </div>
   <h2>Colors</h2>
   <div class="color-palette">
     <div class="palette-card">

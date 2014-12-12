@@ -22,10 +22,10 @@ gulp.task('icons', function() {
         .pipe(gulp.dest('./fonts/bootstrap'));
 });
 
-gulp.task('copyjs', function() {
-    return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js')
-        .pipe(gulp.dest('./js'));
-});
+// gulp.task('copyjs', function() {
+//     return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js')
+//         .pipe(gulp.dest('./js'));
+// });
 
 
 gulp.task('css', function() {

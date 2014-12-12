@@ -34,12 +34,6 @@ urlpatterns = patterns('',
     url(r'^visualize/', include('visualize.urls')),
     url(r'^mp_profile/', include('mp_profile.urls')),
 
-    # this is a temporary measure since data_manager
-    # has local layer paths starting with /media/
-    url(r'^media/(?P<path>.*)',
-        RedirectView.as_view(url='/static/%(path)s'),
-        name="cloud_browser_index"),
-
     url(r'', include(wagtail_urls)),
 
 )
