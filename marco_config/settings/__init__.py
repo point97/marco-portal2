@@ -155,6 +155,20 @@ FEEDBACK_JS_URL = "https://point97.atlassian.net/s/1ba4b91a5ab8c6133464cc37b8c0b
 SHARING_TO_PUBLIC_GROUPS = ['Share with Public']
 SHARING_TO_STAFF_GROUPS = ['Share with Staff']
 
+
+# madrona-scenarios
+GEOMETRY_DB_SRID = 3857
+GEOMETRY_CLIENT_SRID = 3857 #for latlon
+GEOJSON_SRID = 3857
+
+
+
+
+
+
+
+
+
 from .dev import *
 
 try:
