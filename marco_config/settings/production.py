@@ -1,11 +1,7 @@
-from .base import *
-
-
 # Disable debug mode
-
 DEBUG = False
 TEMPLATE_DEBUG = False
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
@@ -57,9 +53,3 @@ LOGGING = {
 #         }
 #     }
 # }
-
-
-try:
-    from .local import *
-except ImportError:
-    pass

@@ -1,4 +1,6 @@
-# https://gist.github.com/ndarville/3452907
+from .production import *
+
+# generate with https://gist.github.com/ndarville/3452907
 SECRET_KEY = 'FOOOOOOOO'
 
 ALLOWED_HOSTS = ['marco.point97.io']
