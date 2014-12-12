@@ -10,6 +10,9 @@ APP_DB_NAME=$PROJECT_NAME
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
+# TODO: this should be in the base image
+apt-get install -y postgresql-9.3-postgis-2.1
+
 # Dependencies for OpenCV image feature detection
 apt-get install -y python-opencv python-numpy
 
@@ -24,6 +27,9 @@ cat << EOF | su - postgres -c psql
 -- uncomment to reset your DB
 -- DROP DATABASE $APP_DB_NAME;
 CREATE DATABASE $APP_DB_NAME;
+\connect $APP_DB_NAME
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
 EOF
 
 # Set execute permissions on manage.py as they get lost if we build from a zip file
