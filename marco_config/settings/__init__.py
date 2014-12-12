@@ -61,6 +61,7 @@ INSTALLED_APPS = (
 
     'data_manager',
     'visualize',
+    'features', # madrona-features
     'flatblocks',
 )
 
@@ -149,6 +150,10 @@ WAGTAIL_SITE_NAME = 'MARCO Portal'
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 
 FEEDBACK_JS_URL = "https://point97.atlassian.net/s/1ba4b91a5ab8c6133464cc37b8c0bc23-T/en_US-3kdfpp/64005/55/1.4.17/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c145c21d"
+
+# madrona-features
+SHARING_TO_PUBLIC_GROUPS = ['Share with Public']
+SHARING_TO_STAFF_GROUPS = ['Share with Staff']
 
 from .dev import *
 
