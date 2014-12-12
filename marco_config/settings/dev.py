@@ -8,7 +8,7 @@ ALLOWED_HOSTS = []
 # PostgreSQL (Recommended, but requires the psycopg2 library and Postgresql development headers)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'marco_portal',
         'USER': 'postgres',
         'PASSWORD': '',
