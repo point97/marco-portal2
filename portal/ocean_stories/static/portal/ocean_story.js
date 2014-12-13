@@ -115,6 +115,25 @@ function newOceanStory(story, animate) {
   var oceanStoryMap;
   var mapEngine = ol3MapEngine('map', animate);
 
+  if (animate) {
+    // copied without modification from
+    // http://www.paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
+    $(document).ready(function(){
+      $('a[href^="#"]').on('click',function (e) {
+        e.preventDefault();
+
+        var target = this.hash;
+        $target = $(target);
+
+        $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+        }, 900, 'swing', function () {
+          window.location.hash = target;
+        });
+      });
+    });
+  }
+
   $.getJSON("/data_manager/api/layers", function(data) {
 
     var dataLayers = _.indexBy(data, 'id');
