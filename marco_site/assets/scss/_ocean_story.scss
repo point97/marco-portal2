@@ -1,9 +1,11 @@
 .ocean-story-page {
-  .navbar {
+  nav.navbar {
     background: rgba($gray-lighter, .5);
     border-color: transparent;
     li { color: #000 }
     z-index: 1000;
+    margin-bottom: -$navbar-height;
+    position: absolute;
   }
 
   #map {
