@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     url(r'^mp_profile/', include('mp_profile.urls')),
     url(r'^features/', include('features.urls')),
     url(r'^scenario/', include('scenarios.urls')),
+    url(r'^drawing/', include('drawing.urls')),
 
     url(r'', include(wagtail_urls)),
 
