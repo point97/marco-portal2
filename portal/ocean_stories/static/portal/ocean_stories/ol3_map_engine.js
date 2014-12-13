@@ -1,4 +1,4 @@
-function ol3MapEngine(selector) {
+function ol3MapEngine(selector, animate) {
 
   var baseLayers = {
     "Open Street Map": new ol.layer.Tile({
@@ -96,7 +96,8 @@ function ol3MapEngine(selector) {
   return {
     setView: function(center, zoom, afterFunc){
       console.info("set view center: " + center + ", zoom: " + zoom);
-      if (view.getCenter() && view.getZoom()) {
+      // only animate if enabled and there is a previous view state
+      if (animate && view.getCenter() && view.getZoom()) {
         // dataLayerGroup.setVisible(false);
         map.beforeRender(wrapAnimations([
           ol.animation.pan({
@@ -115,7 +116,8 @@ function ol3MapEngine(selector) {
         );
       } else {
         afterFunc();
-      }
+      };
+
       view.setCenter(ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'));
       view.setZoom(zoom);
     },
@@ -134,5 +136,8 @@ function ol3MapEngine(selector) {
     showLayer: function(layer){ return layer.setVisible(true) },
     hideLayer: function(layer){ return layer.setVisible(false) },
     baseLayers: baseLayers,
+    updateSize: function(){
+      map.updateSize();
+    }
   };
 }
