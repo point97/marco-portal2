@@ -22,7 +22,12 @@
   <body class="{% block body_class %}classless-page{% endblock %}">
     <header>
       {% block header %}
-        {% navbar %}
+        <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">
+          <div class="container">
+            {% navbar %}
+          </div><!-- /.container-fluid -->
+        </nav>
+
       {% endblock %}
     </header>
     <div class="content">
