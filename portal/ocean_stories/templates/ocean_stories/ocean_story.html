@@ -10,7 +10,11 @@
 {% block header %}
     {{ block.super }}
     <div id="map"></div>
-  </div>
+{% endblock %}
+
+{% block page_header %}
+  <a href="#page-header" class="learn-more">learn more</a>
+  {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -27,16 +31,15 @@
 
 
   {% if self.sections %}
-    <div class="sections">
-        {% for section in self.sections.all %}
-            <div class="section">
-                <h2>{{ section.title }}</h2>
-                {% if section.body %}
-                  {{ section.body|richtext }}
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
+      {% for section in self.sections.all %}
+          <a class="anchor" id="section-{{forloop.counter}}"></a>
+          <section>
+              <h2>{{ section.title }}</h2>
+              {% if section.body %}
+                {{ section.body|richtext }}
+              {% endif %}
+          </section>
+      {% endfor %}
   {% endif %}
 {% endblock %}
 
@@ -64,7 +67,7 @@
       })
       oceanStoryMap = new OceanStoryMap(mapEngine, story, dataLayers);
 
-      scrollSpy('.content', '.sections > .section', function(sectionIndex){
+      scrollSpy('.content', '> .section', function(sectionIndex){
         return oceanStoryMap.goToSection(sectionIndex);
       })
 

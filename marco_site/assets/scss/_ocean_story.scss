@@ -14,9 +14,21 @@
     background: $gray;
   }
   .content {
-    margin-top: 100vh;
+    margin-top: calc(100vh - 60px);
+    a.anchor {
+      display: block;
+      position: relative;
+      top: -50vh;
+      visibility: hidden;
+    }
   }
-
+  .learn-more {
+    display: block;
+    height: 40px;
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+  }
   a.next-page, a.previous-page {
     background: rgba($gray-darker, 0.5);
     color: $white;
