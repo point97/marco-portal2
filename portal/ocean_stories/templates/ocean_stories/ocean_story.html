@@ -51,6 +51,6 @@
   <script src="{% static 'portal/ocean_stories/scroll_spy.js' %}"></script>
   <script src="{% static 'portal/ocean_story.js' %}"></script>
   <script type="text/javascript">
-    newOceanStory({{ self.as_json|safe }});
+    newOceanStory({{ self.as_json|safe }}, true);
   </script>
 {% endblock %}
