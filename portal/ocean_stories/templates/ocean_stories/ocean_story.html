@@ -1,5 +1,5 @@
 {% extends "cms_base.html" %}
-{% load wagtailcore_tags static%}
+{% load wagtailcore_tags static icon %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'bower_components/ol3-unofficial/ol.css' %}" />
@@ -10,21 +10,36 @@
 {% block header %}
     {{ block.super }}
     <div id="map"></div>
-  </div>
+{% endblock %}
+
+{% block page_header %}
+  <a href="#page-header" class="learn-more">learn more</a>
+  {{ block.super }}
 {% endblock %}
 
 {% block content %}
+  {% with page=self.get_prev_sibling %}
+    {% if page %}
+      <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+    {% endif %}
+  {% endwith %}
+  {% with page=self.get_next_sibling %}
+    {% if page %}
+      <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
+    {% endif %}
+  {% endwith %}
+
+
   {% if self.sections %}
-    <div class="sections">
-        {% for section in self.sections.all %}
-            <div class="section">
-                <h2>{{ section.title }}</h2>
-                {% if section.body %}
-                  {{ section.body|richtext }}
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
+      {% for section in self.sections.all %}
+          <a class="anchor" id="section-{{forloop.counter}}"></a>
+          <section>
+              <h2>{{ section.title }}</h2>
+              {% if section.body %}
+                {{ section.body|richtext }}
+              {% endif %}
+          </section>
+      {% endfor %}
   {% endif %}
 {% endblock %}
 
@@ -39,8 +54,10 @@
     <script type="text/javascript">
     var story = {{ self.as_json|safe }};
 
-    var storyMap;
+    var oceanStoryMap;
+    var mapEngine = ol3MapEngine('map');
     $.getJSON("/data_manager/api/layers", function(data) {
+      var map = $('#map');
 
       var dataLayers = _.indexBy(data, 'id');
       _.each(dataLayers, function(d) {
@@ -48,11 +65,35 @@
           hackyMarineCadastreLayerConversion(d);
         }
       })
-      oceanStoryMap = new OceanStoryMap(ol3MapEngine('map'), story, dataLayers);
+      oceanStoryMap = new OceanStoryMap(mapEngine, story, dataLayers);
 
-      scrollSpy('.content', '.sections > .section', function(sectionIndex){
+      scrollSpy('.content', '> .section', function(sectionIndex){
         return oceanStoryMap.goToSection(sectionIndex);
       })
+
+      var calcMapHeight = function(){
+        var scrollTop = $(this).scrollTop();
+        var viewHeight = $( this ).height();
+        var startHeight = viewHeight - 60;
+        var endHeight = viewHeight/2;
+        var proportion = scrollTop/(startHeight - endHeight);
+        if (proportion <= 0) {
+          return startHeight;
+        }
+        if (proportion <= 1) {
+          return endHeight*proportion + startHeight*(1-proportion);
+        }
+        return endHeight;
+      };
+
+      var setMapHeight = function() {
+        var height = calcMapHeight();
+        map.height(height);
+        mapEngine.updateSize();
+      }
+      setMapHeight();
+      $(window).scroll(setMapHeight);
+      $(window).resize(setMapHeight);
     });
   </script>
 {% endblock %}
