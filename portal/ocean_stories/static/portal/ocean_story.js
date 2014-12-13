@@ -125,7 +125,7 @@ function newOceanStory(story) {
     })
     oceanStoryMap = newMap(mapEngine, story, dataLayers);
 
-    scrollSpy('.content', '> .section', function(sectionIndex){
+    scrollSpy('.content', 'a.anchor[id^=\'section-\']', function(sectionIndex){
       return oceanStoryMap.goToSection(sectionIndex);
     })
 
