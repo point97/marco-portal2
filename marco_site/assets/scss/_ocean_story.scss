@@ -16,6 +16,23 @@
   .content {
     margin-top: 100vh;
   }
+
+  a.next-page, a.previous-page {
+    background: rgba($gray-darker, 0.5);
+    color: $white;
+    padding: 15px;
+    z-index: 1000;
+    position: absolute;
+    top: calc( 50vh - 30px );
+  }
+  a.next-page {
+    right: 0;
+  }
+  a.previous-page {
+    left: 0;
+  }
+
+
   // could add :last-child
   .section {
     min-height: 50vh;

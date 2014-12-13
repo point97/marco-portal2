@@ -1,5 +1,5 @@
 {% extends "cms_base.html" %}
-{% load wagtailcore_tags static%}
+{% load wagtailcore_tags static icon %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'bower_components/ol3-unofficial/ol.css' %}" />
@@ -14,6 +14,18 @@
 {% endblock %}
 
 {% block content %}
+  {% with page=self.get_prev_sibling %}
+    {% if page %}
+      <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+    {% endif %}
+  {% endwith %}
+  {% with page=self.get_next_sibling %}
+    {% if page %}
+      <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
+    {% endif %}
+  {% endwith %}
+
+
   {% if self.sections %}
     <div class="sections">
         {% for section in self.sections.all %}
