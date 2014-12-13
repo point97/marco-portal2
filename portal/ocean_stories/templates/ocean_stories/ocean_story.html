@@ -71,13 +71,16 @@
       var calcMapHeight = function(){
         var scrollTop = $(this).scrollTop();
         var viewHeight = $( this ).height();
-        if (scrollTop <= 0) {
-          return viewHeight;
+        var startHeight = viewHeight - 60;
+        var endHeight = viewHeight/2;
+        var proportion = scrollTop/(startHeight - endHeight);
+        if (proportion <= 0) {
+          return startHeight;
         }
-        if (scrollTop <= viewHeight/2) {
-          return viewHeight - scrollTop;
+        if (proportion <= 1) {
+          return endHeight*proportion + startHeight*(1-proportion);
         }
-        return viewHeight/2;
+        return endHeight;
       };
 
       var setMapHeight = function() {
