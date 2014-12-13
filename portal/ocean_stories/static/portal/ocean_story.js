@@ -1,4 +1,4 @@
-function newOceanStory(story) {
+function newOceanStory(story, animate) {
   function newMap (engine, story, layerCatalog) {
 
     function normalizeSection(data) {
@@ -113,7 +113,7 @@ function newOceanStory(story) {
 
 
   var oceanStoryMap;
-  var mapEngine = ol3MapEngine('map');
+  var mapEngine = ol3MapEngine('map', animate);
 
   $.getJSON("/data_manager/api/layers", function(data) {
 
