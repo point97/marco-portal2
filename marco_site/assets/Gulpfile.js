@@ -6,11 +6,14 @@ var gulp = require('gulp'),
     autoprefix = require('gulp-autoprefixer')
     notify = require("gulp-notify")
     bower = require('gulp-bower');
+    var browserSync = require('browser-sync');
 
 var config = {
     sassPath: './scss',
-    bowerDir: './bower_components'
+    outDir: '../static'
 }
+
+config.bowerDir = config.outDir + '/bower_components';
 
 gulp.task('bower', function() {
     return bower()
@@ -19,13 +22,13 @@ gulp.task('bower', function() {
 
 gulp.task('icons', function() {
     return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/fonts/bootstrap/*')
-        .pipe(gulp.dest('./fonts/bootstrap'));
+        .pipe(gulp.dest(config.outDir + '/fonts/bootstrap'));
 });
 
-// gulp.task('copyjs', function() {
-//     return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js')
-//         .pipe(gulp.dest('./js'));
-// });
+gulp.task('copyjs', function() {
+    // return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js')
+    //     .pipe(gulp.dest(config.outDir + '/js'));
+});
 
 
 gulp.task('css', function() {
@@ -41,7 +44,7 @@ gulp.task('css', function() {
                 return "Error: " + error.message;
             })))
         .pipe(autoprefix('last 2 version'))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest(config.outDir + '/css'));
 });
 
 // Rerun the task when a file changes
