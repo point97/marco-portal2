@@ -1,17 +1,16 @@
 .ocean-story-page {
-  .sticky-header {
-    position: fixed;
-    top: 0px;
-    z-index: 100;
-  }
-  .navbar-default {
-    margin-bottom: 0;
+  .navbar {
+    background: rgba($gray-lighter, .5);
+    border-color: transparent;
+    li { color: #000 }
     z-index: 1000;
   }
+
   #map {
-    width: 100vw;
+    position: fixed;
+    top: 0px;
+    width: 100%;
     height: 50vh;
-    margin-top: - ($navbar-height + 2);
     cursor: inherit;
     background: $gray;
   }
