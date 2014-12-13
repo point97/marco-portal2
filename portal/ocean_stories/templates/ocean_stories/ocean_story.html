@@ -39,8 +39,10 @@
     <script type="text/javascript">
     var story = {{ self.as_json|safe }};
 
-    var storyMap;
+    var oceanStoryMap;
+    var mapEngine = ol3MapEngine('map');
     $.getJSON("/data_manager/api/layers", function(data) {
+      var map = $('#map');
 
       var dataLayers = _.indexBy(data, 'id');
       _.each(dataLayers, function(d) {
@@ -48,11 +50,33 @@
           hackyMarineCadastreLayerConversion(d);
         }
       })
-      oceanStoryMap = new OceanStoryMap(ol3MapEngine('map'), story, dataLayers);
+      oceanStoryMap = new OceanStoryMap(mapEngine, story, dataLayers);
 
       scrollSpy('.content', '.sections > .section', function(sectionIndex){
         return oceanStoryMap.goToSection(sectionIndex);
       })
+
+      var calcMapHeight = function(){
+        var scrollTop = $(this).scrollTop();
+        var viewHeight = $( this ).height();
+        if (scrollTop <= 0) {
+          return viewHeight;
+        }
+        if (scrollTop <= viewHeight/2) {
+          return viewHeight - scrollTop;
+        }
+        return viewHeight/2;
+      };
+
+      var setMapHeight = function() {
+        var height = calcMapHeight();
+        console.debug("setting map height:" + height);
+        map.height(height);
+        mapEngine.updateSize();
+      }
+      setMapHeight();
+      $(window).scroll(setMapHeight);
+      $(window).resize(setMapHeight);
     });
   </script>
 {% endblock %}
