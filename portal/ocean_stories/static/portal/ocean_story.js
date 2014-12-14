@@ -116,10 +116,11 @@ function newOceanStory(story, animate) {
   var mapEngine = ol3MapEngine('map', animate);
 
   if (animate) {
-    // copied without modification from
+    // copied with modification from
     // http://www.paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
     $(document).ready(function(){
-      $('a[href^="#"]').on('click',function (e) {
+      // only animate intra-page links inside .content
+      $('.content a[href^="#"]').on('click',function (e) {
         e.preventDefault();
 
         var target = this.hash;
