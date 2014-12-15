@@ -14,11 +14,10 @@ function scrollSpy(containerSelector, sectionSelector, callback) {
 
   function handleScroll() {
     // Get container scroll position
-    var topMargin = parseInt(container.css('margin-top'));
-    var contentScrollTop = $(this).scrollTop() + topMargin;
+    var scrollTop = $(this).scrollTop();
 
     var sectionIndex = _.findLastIndex(sections, function(s){
-      return contentScrollTop >= $(s).offset().top - fuzz;
+      return scrollTop >= $(s).offset().top - fuzz;
     })
 
     if (sectionIndex < 0) {

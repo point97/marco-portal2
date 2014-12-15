@@ -1,4 +1,4 @@
-function newOceanStory(story) {
+function newOceanStory(story, animate) {
   function newMap (engine, story, layerCatalog) {
 
     function normalizeSection(data) {
@@ -88,12 +88,11 @@ function newOceanStory(story) {
     };
   }
 
-  var map = $('#map');
-
+  var learnMoreHeight = $('.learn-more').height();
   var calcMapHeight = function(){
     var scrollTop = $(this).scrollTop();
     var viewHeight = $( this ).height();
-    var startHeight = viewHeight - 60;
+    var startHeight = viewHeight - learnMoreHeight;
     var endHeight = viewHeight/2;
     var proportion = scrollTop/(startHeight - endHeight);
     if (proportion <= 0) {
@@ -105,15 +104,36 @@ function newOceanStory(story) {
     return endHeight;
   };
 
+  var mapContainer = $('.map-container');
   var setMapHeight = function() {
     var height = calcMapHeight();
-    map.height(height);
+    mapContainer.height(height);
     mapEngine.updateSize();
   };
 
 
   var oceanStoryMap;
-  var mapEngine = ol3MapEngine('map');
+  var mapEngine = ol3MapEngine('map', animate);
+
+  if (animate) {
+    // copied with modification from
+    // http://www.paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
+    $(document).ready(function(){
+      // only animate intra-page links inside .content
+      $('a[href^="#"].animate').on('click',function (e) {
+        e.preventDefault();
+
+        var target = this.hash;
+        $target = $(target);
+
+        $('html, body').stop().animate({
+          'scrollTop': $target.offset().top
+        }, 900, 'swing', function () {
+          window.location.hash = target;
+        });
+      });
+    });
+  }
 
   $.getJSON("/data_manager/api/layers", function(data) {
 
@@ -125,7 +145,7 @@ function newOceanStory(story) {
     })
     oceanStoryMap = newMap(mapEngine, story, dataLayers);
 
-    scrollSpy('.content', '> .section', function(sectionIndex){
+    scrollSpy('.content', 'a.anchor[id^=\'section-\']', function(sectionIndex){
       return oceanStoryMap.goToSection(sectionIndex);
     })
 
