@@ -10,13 +10,41 @@
     position: fixed;
     top: 0px;
     width: 100%;
-    height: 50vh;
     cursor: inherit;
     background: $gray;
   }
   .content {
-    margin-top: 50vh;
+    margin-top: calc(100vh - 60px);
+    a.anchor {
+      display: block;
+      position: relative;
+      top: -50vh;
+      visibility: hidden;
+    }
   }
+  .learn-more {
+    display: block;
+    height: 40px;
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+  }
+  a.next-page, a.previous-page {
+    background: rgba($gray-darker, 0.5);
+    color: $white;
+    padding: 15px;
+    z-index: 900;
+    position: absolute;
+    top: calc( 50vh - 30px );
+  }
+  a.next-page {
+    right: 0;
+  }
+  a.previous-page {
+    left: 0;
+  }
+
+
   // could add :last-child
   .section {
     min-height: 50vh;

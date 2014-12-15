@@ -134,5 +134,8 @@ function ol3MapEngine(selector) {
     showLayer: function(layer){ return layer.setVisible(true) },
     hideLayer: function(layer){ return layer.setVisible(false) },
     baseLayers: baseLayers,
+    updateSize: function(){
+      map.updateSize();
+    }
   };
 }
