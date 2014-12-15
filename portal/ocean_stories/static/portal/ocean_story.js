@@ -88,12 +88,11 @@ function newOceanStory(story, animate) {
     };
   }
 
-  var map = $('#map');
-
+  var learnMoreHeight = $('.learn-more').height();
   var calcMapHeight = function(){
     var scrollTop = $(this).scrollTop();
     var viewHeight = $( this ).height();
-    var startHeight = viewHeight - 60;
+    var startHeight = viewHeight - learnMoreHeight;
     var endHeight = viewHeight/2;
     var proportion = scrollTop/(startHeight - endHeight);
     if (proportion <= 0) {
@@ -105,9 +104,10 @@ function newOceanStory(story, animate) {
     return endHeight;
   };
 
+  var mapContainer = $('.map-container');
   var setMapHeight = function() {
     var height = calcMapHeight();
-    map.height(height);
+    mapContainer.height(height);
     mapEngine.updateSize();
   };
 
@@ -120,7 +120,7 @@ function newOceanStory(story, animate) {
     // http://www.paulund.co.uk/smooth-scroll-to-internal-links-with-jquery
     $(document).ready(function(){
       // only animate intra-page links inside .content
-      $('.content a[href^="#"]').on('click',function (e) {
+      $('a[href^="#"].animate').on('click',function (e) {
         e.preventDefault();
 
         var target = this.hash;

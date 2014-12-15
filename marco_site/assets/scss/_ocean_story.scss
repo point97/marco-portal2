@@ -2,22 +2,87 @@
   nav.navbar {
     background: rgba($gray-lighter, .5);
     border-color: transparent;
-    li { color: #000 }
+    li { color: #000 };
     z-index: 1000;
     margin-bottom: -$navbar-height;
     position: absolute;
   }
 
-  #map {
+  .map-container {
+    overflow: hidden;
     position: fixed;
     top: 0px;
     width: 100%;
     cursor: inherit;
     background: $gray;
-    z-index: 500;
+    #map {
+      height: 100%;
+      width: 100%;
+    }
   }
+  .view-data {
+    z-index: 900;
+    font-size: 12px;
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 14px;
+    background: $gray-lighter;
+    color: $black;
+  }
+
+  .scrolling-overlay {
+    text-align: center;
+    width: 100%;
+    margin-top: $navbar-height;
+    height: calc(100vh - #{2*$navbar-height});
+    .ocean-story-n {
+      //Roboto condensed regular, all caps, 16pt, tracked 35pt
+      font-size: 16px;
+      border-bottom: 4px solid $brand-warning;
+    }
+    .hook {
+      font-size: 51px;
+      line-height: 61px;
+    }
+    .center {
+      color: $white;
+      & > * {
+        display: inline-block;
+      }
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      padding: 40px;
+      transform: translate(-50%, -50%);
+    }
+    a.next-page, a.previous-page {
+      background: rgba($gray-darker, 0.5);
+      color: $white;
+      padding: 15px;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+    a.next-page {
+      right: 0;
+    }
+    a.previous-page {
+      left: 0;
+    }
+  }
+
+  .learn-more {
+    display: block;
+    height: $navbar-height;
+    line-height: $navbar-height;
+    width: 100%;
+    text-align: center;
+  }
+
   .content {
-    margin-top: calc(100vh - 60px);
+    margin-top: calc(50vh - #{$navbar-height});
     // this is an experiment: making section headings scroll over the map
     h1,h2 {
       position: relative;
@@ -29,27 +94,6 @@
       top: -50vh;
       visibility: hidden;
     }
-  }
-  .learn-more {
-    display: block;
-    height: 40px;
-    width: 100%;
-    padding-top: 20px;
-    text-align: center;
-  }
-  a.next-page, a.previous-page {
-    background: rgba($gray-darker, 0.5);
-    color: $white;
-    padding: 15px;
-    z-index: 900;
-    position: absolute;
-    top: calc( 50vh - 30px );
-  }
-  a.next-page {
-    right: 0;
-  }
-  a.previous-page {
-    left: 0;
   }
 
 

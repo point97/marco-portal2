@@ -9,25 +9,30 @@
 
 {% block header %}
     {{ block.super }}
-    <div id="map"></div>
-{% endblock %}
-
-{% block page_header %}
-  <a href="#page-header" class="learn-more">learn more</a>
-  {{ block.super }}
+    <div class="map-container">
+      <div id="map"></div>
+      <a class="view-data" href='/visualize'>View data layers in Marine Planner</a>
+    </div>
+    <div class="scrolling-overlay">
+      <div class="center">
+        <div class="ocean-story-n">OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</div>
+        <div class="hook">This is an invitation to speak up about ocean planning.</div>
+      </div>
+      {% with page=self.get_prev_sibling %}
+        {% if page %}
+          <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+        {% endif %}
+      {% endwith %}
+      {% with page=self.get_next_sibling %}
+        {% if page %}
+          <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
+        {% endif %}
+      {% endwith %}
+    </div>
+    <a href="#page-header" class="learn-more animate">learn more</a>
 {% endblock %}
 
 {% block content %}
-  {% with page=self.get_prev_sibling %}
-    {% if page %}
-      <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
-    {% endif %}
-  {% endwith %}
-  {% with page=self.get_next_sibling %}
-    {% if page %}
-      <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
-    {% endif %}
-  {% endwith %}
 
 
   {% if self.sections %}
