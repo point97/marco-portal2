@@ -14,13 +14,12 @@
 .navbar-brand {
   padding-top: 0;
   padding-bottom: 0;
-  max-width: calc(100% - 70px);
   height: $navbar-height;
+  position: relative;
   img {
-    max-height: $navbar-height;
-    width: 100%;
-    position: relative;
-    // nudge down since the top margin is a bit large
-    top: 5px;
+    position: absolute;
+    height: 70%;
+    top: 50%;
+    margin-top: -70%;
   }
 }
