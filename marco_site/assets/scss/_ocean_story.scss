@@ -84,11 +84,6 @@
 
   .content {
     margin-top: calc(50vh - #{$navbar-height});
-    // this is an experiment: making section headings scroll over the map
-    h1,h2 {
-      position: relative;
-      z-index: 1000;
-    }
     a.anchor {
       display: block;
       position: relative;
