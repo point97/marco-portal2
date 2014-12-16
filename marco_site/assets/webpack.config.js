@@ -16,7 +16,7 @@ module.exports = {
     ocean_story: "portal/ocean_story/index.js",
   },
   output: {
-    path: path.join(projectRoot, 'static', 'bundles'),
+    path: path.join(__dirname, '..', 'static', 'bundles'),
     filename: "[name].js",
     chunkFilename: "[id].js",
   },
