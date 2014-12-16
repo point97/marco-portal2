@@ -550,6 +550,21 @@ body.template-visualize{
         }
     }
 
+    .bookmark-settings-popover {
+        background-color: $gray-lighter;
+        border: none;
+        border-radius:0px;
+        a{
+            font-size: 12px;
+            text-decoration:none;
+        }
+        a:hover{
+            text-decoration:none;
+            color: $green;
+            cursor: pointer;
+        }
+    }
+
     .search-box{
         border: none;
         border-bottom: 1px solid $dark-gray;
