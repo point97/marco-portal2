@@ -1,4 +1,4 @@
-function ol3MapEngine(selector, animate) {
+function ol3MapEngine(element, animate) {
 
   var baseLayers = {
     "Ocean": new ol.layer.Tile({
@@ -54,7 +54,7 @@ function ol3MapEngine(selector, animate) {
   var view = new ol.View();
 
   var map = new ol.Map({
-    target: selector,
+    target: element,
     layers: [
       baseLayerGroup,
       dataLayerGroup,

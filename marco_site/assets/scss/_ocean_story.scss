@@ -1,28 +1,46 @@
+// These should all be mixins!
+.curtain {
+  position: fixed;
+  width: 100%;
+  background: $gray-dark;
+  overflow: hidden;
+}
+
+.overlay {
+  z-index: 900;
+  background: transparent;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+}
+
 .ocean-story-page {
+  #ocean-story-map {
+    &.full {
+      height: calc(100vh - #{$navbar-height});
+    }
+    &.half {
+      height: 50vh;
+    }
+    cursor: inherit;
+    position: relative;
+    top: 50%;
+    width: 100%;
+    transform: translate(0, -50%);
+  }
+
   nav.navbar {
     background: rgba($gray-lighter, .5);
     border-color: transparent;
     li { color: #000 };
     z-index: 1000;
     margin-bottom: -$navbar-height;
-    position: absolute;
   }
 
-  .map-container {
-    overflow: hidden;
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    cursor: inherit;
-    #map {
-      background: $gray;
-      height: 100%;
-      width: 100%;
-    }
-    &.overlay {
-      z-index: 1000;
-    }
-  }
   .view-data {
     z-index: 900;
     font-size: 12px;
@@ -34,8 +52,9 @@
     color: $black;
   }
 
-  .scrolling-overlay {
+  .intro {
     width: 100%;
+    text-shadow:0px 0px .1em $black;
     height: calc(100vh - #{$navbar-height});
     position: relative;
     .ocean-story-n {
@@ -51,10 +70,6 @@
     .center {
       text-align: center;
       color: $white;
-      position: relative;
-      top: 50%;
-      width: 100%;
-      transform: translate(0, -50%);
     }
     a.next-page, a.previous-page {
       background: rgba($gray-darker, 0.5);
