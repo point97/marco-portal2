@@ -7,8 +7,8 @@ var gulp = require('gulp')
     notify = require("gulp-notify")
     bower = require('gulp-bower')
     browserSync = require('browser-sync')
-    webpack = require('webpack')
-    webpackConfig = require('./webpack.config');
+    webpackConfig = require('./webpack.config')
+    webpack = require('webpack')(webpackConfig);
 
 var config = {
     sassPath: './scss',
@@ -28,7 +28,7 @@ gulp.task('icons', function() {
 });
 
 gulp.task("webpack", function(callback) {
-  webpack(webpackConfig, function(err, stats) {
+  webpack.run(function(err, stats) {
     if(err) throw new gutil.PluginError("webpack", err);
     gutil.log("[webpack]", stats.toString({
       // output options
@@ -36,6 +36,17 @@ gulp.task("webpack", function(callback) {
     callback();
   });
 });
+
+gulp.task("webpack-watch", function(callback) {
+  webpack.watch(200, function(err, stats) {
+    if(err) throw new gutil.PluginError("webpack", err);
+    gutil.log("[webpack]", stats.toString({
+      // output options
+    }));
+  });
+  callback();
+});
+
 
 gulp.task('css', function() {
     return gulp.src(config.sassPath + '/*.scss')
@@ -53,8 +64,16 @@ gulp.task('css', function() {
         .pipe(gulp.dest(config.outDir + '/css'));
 });
 
+gulp.task('browser-sync', function(cb) {
+  browserSync({
+    proxy: "localhost:8111",
+    open: true,
+    files: ["../static/css/*.css","../../static/bundles/*.js"],
+  }, cb);
+});
+
 // Rerun the task when a file changes
-gulp.task('watch', function() {
+gulp.task('watch', ['webpack-watch', 'browser-sync'], function() {
     gulp.watch(config.sassPath + '/**/*.scss', ['css']);
 });
 
