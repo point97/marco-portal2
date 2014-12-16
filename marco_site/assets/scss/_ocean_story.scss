@@ -14,10 +14,13 @@
     top: 0px;
     width: 100%;
     cursor: inherit;
-    background: $gray;
     #map {
+      background: $gray;
       height: 100%;
       width: 100%;
+    }
+    &.overlay {
+      z-index: 1000;
     }
   }
   .view-data {
