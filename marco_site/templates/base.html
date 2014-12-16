@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar feedback navbar %}
+{% load compress static wagtailuserbar feedback %}
 
 <!doctype html>
 <html lang="en">
@@ -25,7 +25,7 @@
       {% block header %}
         <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">
           <div class="container">
-            {% navbar %}
+            {% include 'marco_site/includes/navbar.html' %}
           </div><!-- /.container-fluid -->
         </nav>
 

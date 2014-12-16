@@ -1,25 +1,46 @@
+// These should all be mixins!
+.curtain {
+  position: fixed;
+  width: 100%;
+  background: $gray-dark;
+  overflow: hidden;
+}
+
+.overlay {
+  z-index: 900;
+  background: transparent;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+}
+
 .ocean-story-page {
+  #ocean-story-map {
+    &.full {
+      height: calc(100vh - #{$navbar-height});
+    }
+    &.half {
+      height: 50vh;
+    }
+    cursor: inherit;
+    position: relative;
+    top: 50%;
+    width: 100%;
+    transform: translate(0, -50%);
+  }
+
   nav.navbar {
     background: rgba($gray-lighter, .5);
     border-color: transparent;
     li { color: #000 };
     z-index: 1000;
     margin-bottom: -$navbar-height;
-    position: absolute;
   }
 
-  .map-container {
-    overflow: hidden;
-    position: fixed;
-    top: 0px;
-    width: 100%;
-    cursor: inherit;
-    background: $gray;
-    #map {
-      height: 100%;
-      width: 100%;
-    }
-  }
   .view-data {
     z-index: 900;
     font-size: 12px;
@@ -31,31 +52,24 @@
     color: $black;
   }
 
-  .scrolling-overlay {
-    text-align: center;
+  .intro {
     width: 100%;
-    margin-top: $navbar-height;
-    height: calc(100vh - #{2*$navbar-height});
+    text-shadow:0px 0px .1em $black;
+    height: calc(100vh - #{$navbar-height});
+    position: relative;
     .ocean-story-n {
-      //Roboto condensed regular, all caps, 16pt, tracked 35pt
       font-size: 16px;
-      border-bottom: 4px solid $brand-warning;
+      > span {
+        border-bottom: 4px solid $brand-warning;
+      }
     }
     .hook {
       font-size: 51px;
       line-height: 61px;
     }
     .center {
+      text-align: center;
       color: $white;
-      & > * {
-        display: inline-block;
-      }
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      padding: 40px;
-      transform: translate(-50%, -50%);
     }
     a.next-page, a.previous-page {
       background: rgba($gray-darker, 0.5);
@@ -79,15 +93,12 @@
     line-height: $navbar-height;
     width: 100%;
     text-align: center;
+    font-style: italic;
+    font-weight: bold;
   }
 
   .content {
     margin-top: calc(50vh - #{$navbar-height});
-    // this is an experiment: making section headings scroll over the map
-    h1,h2 {
-      position: relative;
-      z-index: 1000;
-    }
     a.anchor {
       display: block;
       position: relative;
@@ -98,7 +109,7 @@
 
 
   // could add :last-child
-  .section {
+  section {
     min-height: 50vh;
   }
 }

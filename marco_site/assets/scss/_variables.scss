@@ -52,8 +52,8 @@ $text-color:            $black;
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-// http://www.google.com/fonts#UsePlace:use/Collection:Roboto:500,400italic,700italic,300,700,900|Roboto+Condensed:400,700
-@import url(http://fonts.googleapis.com/css?family=Roboto:500,400italic,700italic,300,700,900|Roboto+Condensed:400,700&subset=latin);
+// http://www.google.com/fonts#UsePlace:use/Collection:Roboto:300,500,700,900,400italic,700italic|Roboto+Condensed:400,700
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400,700,500,900,400italic,700italic|Roboto+Condensed:400,700&subset=latin);
 
 $font-family-sans-serif:  'Roboto', sans-serif;
 
