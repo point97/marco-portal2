@@ -3,6 +3,7 @@ var path = require('path');
 
 var projectRoot = path.join(__dirname,'..','..');
 var projectApps = [
+  'marco_site',
   'portal/ocean_stories',
 ].map(function(app){ return path.join(projectRoot,app,'static')});
 
@@ -21,5 +22,11 @@ module.exports = {
   },
   resolve: {
     root: roots,
+  },
+  resolveLoader: {
+    root: path.join(__dirname, "node_modules"),
+  },
+  externals: {
+    'openlayers': 'var window.ol',
   },
 };
