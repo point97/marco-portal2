@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 /**
  * Binds a scroll listener to window.
  * Calls callback with selector index whenever scroll position

@@ -7,7 +7,8 @@ var projectApps = [
 ].map(function(app){ return path.join(projectRoot,app,'static')});
 
 var roots = projectApps;
-roots.push(__dirname)
+roots.push(__dirname);
+roots.push(path.join(__dirname, "node_modules"));
 
 module.exports = {
   entry: {

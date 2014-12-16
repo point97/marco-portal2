@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function(l) {
   l.layer_type = "WMS";
   l.url = l.url.replace(

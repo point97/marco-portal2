@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 module.exports = function(engine, story, layerCatalog) {
 
   function normalizeSection(data) {
