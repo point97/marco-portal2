@@ -1,4 +1,7 @@
-function ol3MapEngine(element, animate) {
+var _ = require('lodash');
+var ol = require('openlayers');
+
+module.exports = function(element, animate) {
 
   var baseLayers = {
     "Ocean": new ol.layer.Tile({

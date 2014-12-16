@@ -1,4 +1,6 @@
-function newMap (engine, story, layerCatalog) {
+var _ = require('lodash');
+
+module.exports = function(engine, story, layerCatalog) {
 
   function normalizeSection(data) {
     data.view = {
