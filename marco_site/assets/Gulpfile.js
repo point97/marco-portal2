@@ -1,12 +1,14 @@
 // Basic Gulp File
 //
-var gulp = require('gulp'),
-    // sass = require('gulp-sass')
+var gulp = require('gulp')
+    gutil = require ('gulp-util')
     sass = require('gulp-ruby-sass')
     autoprefix = require('gulp-autoprefixer')
     notify = require("gulp-notify")
-    bower = require('gulp-bower');
-    var browserSync = require('browser-sync');
+    bower = require('gulp-bower')
+    browserSync = require('browser-sync')
+    webpack = require('webpack')
+    webpackConfig = require('./webpack.config');
 
 var config = {
     sassPath: './scss',
@@ -25,11 +27,15 @@ gulp.task('icons', function() {
         .pipe(gulp.dest(config.outDir + '/fonts/bootstrap'));
 });
 
-gulp.task('copyjs', function() {
-    // return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/javascripts/bootstrap.js')
-    //     .pipe(gulp.dest(config.outDir + '/js'));
+gulp.task("webpack", function(callback) {
+  webpack(webpackConfig, function(err, stats) {
+    if(err) throw new gutil.PluginError("webpack", err);
+    gutil.log("[webpack]", stats.toString({
+      // output options
+    }));
+    callback();
+  });
 });
-
 
 gulp.task('css', function() {
     return gulp.src(config.sassPath + '/*.scss')
@@ -52,4 +58,4 @@ gulp.task('watch', function() {
     gulp.watch(config.sassPath + '/**/*.scss', ['css']);
 });
 
-gulp.task('default', ['bower', 'icons', 'copyjs', 'css']);
+gulp.task('default', ['bower', 'icons', 'webpack', 'css']);
