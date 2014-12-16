@@ -17,8 +17,10 @@
     </div>
     <div class="scrolling-overlay">
       <div class="center">
-        <div class="hook">This is an invitation to speak up about ocean planning.</div>
+        <div class="container">
           <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
+          <div class="hook">This is an invitation to speak up about ocean planning.</div>
+        </div>
       </div>
       {% with page=self.get_prev_sibling %}
         {% if page %}

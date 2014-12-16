@@ -35,12 +35,10 @@
   }
 
   .scrolling-overlay {
-    text-align: center;
     width: 100%;
-    margin-top: $navbar-height;
-    height: calc(100vh - #{2*$navbar-height});
+    height: calc(100vh - #{$navbar-height});
+    position: relative;
     .ocean-story-n {
-      //Roboto condensed regular, all caps, 16pt, tracked 35pt
       font-size: 16px;
       > span {
         border-bottom: 4px solid $brand-warning;
@@ -51,16 +49,12 @@
       line-height: 61px;
     }
     .center {
+      text-align: center;
       color: $white;
-      & > * {
-        display: inline-block;
-      }
-      position: absolute;
+      position: relative;
       top: 50%;
-      left: 50%;
       width: 100%;
-      padding: 40px;
-      transform: translate(-50%, -50%);
+      transform: translate(0, -50%);
     }
     a.next-page, a.previous-page {
       background: rgba($gray-darker, 0.5);
