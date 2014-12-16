@@ -6,7 +6,7 @@
  * @param {array} selector jQuery selector defining page sections
  * @return {Object} with off() method.
  */
-function scrollSpy(containerSelector, sectionSelector, callback) {
+module.exports = function(containerSelector, sectionSelector, callback) {
   var container = $(containerSelector);
   var sections = container.find(sectionSelector);
   var currentIndex;

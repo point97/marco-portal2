@@ -1,4 +1,10 @@
-function newOceanStory(mapElement, story, animate) {
+var curtain = require('./curtain'),
+    hackyMarineCadastreLayerConversion = require('./hacky_marine_cadastre_layer_conversion'),
+    scrollSpy = require('./scroll_spy'),
+    ol3MapEngine = require('./ol3_map_engine'),
+    oceanStoryMap = require('./map');
+
+function mount(mapElement, story, animate) {
 
   var map;
   var mapEngine = ol3MapEngine(mapElement[0], animate);
@@ -30,14 +36,14 @@ function newOceanStory(mapElement, story, animate) {
   function callIfChanged(f) {
     var state;
     return function(newState) {
-      if (newState !== state) {
+      if (typeof(state) == "undefined" || newState !== state) {
         state = newState;
         f(state);
       }
     }
   }
 
-  bindCurtain($('.curtain'), callIfChanged(function(collapsed){
+  curtain($('.curtain'), callIfChanged(function(collapsed){
     console.info('set collapse: '+collapsed)
     mapElement.toggleClass('half', collapsed);
     mapElement.toggleClass('full', !collapsed);
@@ -52,15 +58,14 @@ function newOceanStory(mapElement, story, animate) {
         hackyMarineCadastreLayerConversion(d);
       }
     })
-    oceanStoryMap = newMap(mapEngine, story, dataLayers);
-
+    map = oceanStoryMap(mapEngine, story, dataLayers);
+    // not sure why this is needed here
+    map.updateSize();
     scrollSpy('.content', 'a.anchor[id^=\'section-\']', function(sectionIndex){
-      return oceanStoryMap.goToSection(sectionIndex);
+      return map.goToSection(sectionIndex);
     })
-
-    setMapHeight();
-    $(window).scroll(setMapHeight);
-    $(window).resize(setMapHeight);
   });
-
 }
+
+module.exports = mount;
+window.oceanStory = module.exports;

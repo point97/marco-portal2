@@ -1,4 +1,4 @@
-function ol3MapEngine(element, animate) {
+module.exports = function(element, animate) {
 
   var baseLayers = {
     "Ocean": new ol.layer.Tile({

@@ -2,6 +2,7 @@
   "name": "marco_portal_static",
   "version": "0.0.1",
   "devDependencies": {
+    "webpack": "^1.4.13",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^1.0.1",
     "gulp-bower": "0.0.7",

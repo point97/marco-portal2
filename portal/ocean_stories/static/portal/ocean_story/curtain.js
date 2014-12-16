@@ -36,6 +36,4 @@ var bindCurtain = function(elements, isCollapsed) {
 
 }
 
-// module.exports = {
-//   bind: bindCurtain,
-// }
+module.exports = bindCurtain;

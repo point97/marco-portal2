@@ -1,4 +1,4 @@
-function newMap (engine, story, layerCatalog) {
+module.exports = function(engine, story, layerCatalog) {
 
   function normalizeSection(data) {
     data.view = {
