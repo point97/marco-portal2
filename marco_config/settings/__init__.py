@@ -160,6 +160,11 @@ FEEDBACK_JS_URL = "https://point97.atlassian.net/s/1ba4b91a5ab8c6133464cc37b8c0b
 SHARING_TO_PUBLIC_GROUPS = ['Share with Public']
 SHARING_TO_STAFF_GROUPS = ['Share with Staff']
 
+# KML SETTINGS
+KML_SIMPLIFY_TOLERANCE = 20 # meters
+KML_SIMPLIFY_TOLERANCE_DEGREES = 0.0002 # Very roughly ~ 20 meters
+KML_EXTRUDE_HEIGHT = 100
+KML_ALTITUDEMODE_DEFAULT = 'absolute'
 
 # madrona-scenarios
 GEOMETRY_DB_SRID = 99996
@@ -167,10 +172,6 @@ GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
 GEOJSON_DOWNLOAD = True  # force headers to treat like an attachment
-
-
-
-
 
 
 
