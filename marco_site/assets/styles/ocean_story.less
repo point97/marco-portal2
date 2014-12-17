@@ -2,7 +2,7 @@
 .curtain {
   position: fixed;
   width: 100%;
-  background: $gray-dark;
+  background: @gray-dark;
   overflow: hidden;
 }
 
@@ -21,7 +21,7 @@
 .ocean-story-page {
   #ocean-story-map {
     &.full {
-      height: calc(100vh - #{$navbar-height});
+      height: calc(100vh ~"-" @navbar-height);
     }
     &.half {
       height: 50vh;
@@ -34,11 +34,11 @@
   }
 
   nav.navbar {
-    background: rgba($gray-lighter, .5);
+    background: fade(@gray-lighter, 50%);
     border-color: transparent;
     li { color: #000 };
     z-index: 1000;
-    margin-bottom: -$navbar-height;
+    margin-bottom: -@navbar-height;
   }
 
   .view-data {
@@ -48,19 +48,19 @@
     right: 8px;
     bottom: 8px;
     padding: 14px;
-    background: $gray-lighter;
-    color: $black;
+    background: @gray-lighter;
+    color: @black;
   }
 
   .intro {
     width: 100%;
-    text-shadow:0px 0px .1em $black;
-    height: calc(100vh - #{$navbar-height});
+    text-shadow:0px 0px .1em @black;
+    height: calc(100vh ~"-" @navbar-height);
     position: relative;
     .ocean-story-n {
       font-size: 16px;
       > span {
-        border-bottom: 4px solid $brand-warning;
+        border-bottom: 4px solid @brand-warning;
       }
     }
     .hook {
@@ -69,11 +69,11 @@
     }
     .center {
       text-align: center;
-      color: $white;
+      color: @white;
     }
     a.next-page, a.previous-page {
-      background: rgba($gray-darker, 0.5);
-      color: $white;
+      background: fade(@gray-darker, 50%);
+      color: @white;
       padding: 15px;
       position: absolute;
       top: 50%;
@@ -89,8 +89,8 @@
 
   .learn-more {
     display: block;
-    height: $navbar-height;
-    line-height: $navbar-height;
+    height: @navbar-height;
+    line-height: @navbar-height;
     width: 100%;
     text-align: center;
     font-style: italic;
@@ -98,7 +98,7 @@
   }
 
   .content {
-    margin-top: calc(50vh - #{$navbar-height});
+    margin-top: calc(50vh ~"-" @navbar-height);
     a.anchor {
       display: block;
       position: relative;
