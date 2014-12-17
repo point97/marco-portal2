@@ -15,6 +15,7 @@
     "bootstrap3-typeahead": "~3.1.0",
     "jquery-ui": "~1.11.2",
     "jquery-migrate": "~1.2.1",
-    "ol3-unofficial": "~3.0.3"
+    "ol3-unofficial": "~3.0.3",
+    "bootstrap": "~3.3.1"
   }
 }
