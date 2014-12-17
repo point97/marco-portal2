@@ -1,4 +1,6 @@
-function hackyMarineCadastreLayerConversion(l) {
+var _ = require('lodash');
+
+module.exports = function(l) {
   l.layer_type = "WMS";
   l.url = l.url.replace(
     /^(http:\/\/coast.noaa.gov\/arcgis)\/rest\/(services\/MarineCadastre\/[^/]+\/MapServer)\/export$/,

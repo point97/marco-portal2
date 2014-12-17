@@ -14,10 +14,12 @@
 .navbar-brand {
   padding-top: 0;
   padding-bottom: 0;
+  height: @navbar-height;
+  position: relative;
   img {
-    position: relative;
-    // nudge down since the top margin is a bit large
-    top: 5px;
-    height: $navbar-height;
+    position: absolute;
+    height: 70%;
+    top: 50%;
+    margin-top: -70%;
   }
 }

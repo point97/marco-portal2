@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 /**
  * Binds a scroll listener to window.
  * Calls callback with selector index whenever scroll position
@@ -6,7 +8,7 @@
  * @param {array} selector jQuery selector defining page sections
  * @return {Object} with off() method.
  */
-function scrollSpy(containerSelector, sectionSelector, callback) {
+module.exports = function(containerSelector, sectionSelector, callback) {
   var container = $(containerSelector);
   var sections = container.find(sectionSelector);
   var currentIndex;
@@ -14,11 +16,10 @@ function scrollSpy(containerSelector, sectionSelector, callback) {
 
   function handleScroll() {
     // Get container scroll position
-    var topMargin = parseInt(container.css('margin-top'));
-    var contentScrollTop = $(this).scrollTop() + topMargin;
+    var scrollTop = $(this).scrollTop();
 
     var sectionIndex = _.findLastIndex(sections, function(s){
-      return contentScrollTop >= $(s).offset().top - fuzz;
+      return scrollTop >= $(s).offset().top - fuzz;
     })
 
     if (sectionIndex < 0) {

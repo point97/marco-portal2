@@ -1,20 +1,49 @@
-function ol3MapEngine(selector) {
+var _ = require('lodash');
+var ol = require('openlayers');
+
+module.exports = function(element, animate) {
 
   var baseLayers = {
+    "Ocean": new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}',
+        maxZoom: 17,
+      }),
+      visible: false,
+    }),
     "Open Street Map": new ol.layer.Tile({
       source: new ol.source.OSM(),
       visible: false,
     }),
-    "ESRI Ocean": new ol.layer.Tile({
+    "Streets": new ol.layer.Tile({
       source: new ol.source.XYZ({
-        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}'
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+        maxZoom: 17,
       }),
       visible: false,
     }),
-    // Google Streets
-    // Google Physical
-    // Google Satellite
-    // Nautical Charts
+    "Physical": new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+        maxZoom: 20,
+      }),
+      visible: false,
+    }),
+    "Satellite": new ol.layer.Tile({
+      source: new ol.source.XYZ({
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        maxZoom: 20,
+      }),
+      visible: false,
+    }),
+    "Nautical Charts": new ol.layer.Tile({
+      source: new ol.source.TileWMS({
+        url: "http://egisws02.nos.noaa.gov/ArcGIS/services/RNC/NOAA_RNC/ImageServer/WMSServer",
+        maxZoom: 13,
+        projection: "EPSG:3857",
+      }),
+      visible: false,
+    }),
   };
 
   var baseLayerGroup = new ol.layer.Group({
@@ -28,7 +57,7 @@ function ol3MapEngine(selector) {
   var view = new ol.View();
 
   var map = new ol.Map({
-    target: selector,
+    target: element,
     layers: [
       baseLayerGroup,
       dataLayerGroup,
@@ -96,7 +125,8 @@ function ol3MapEngine(selector) {
   return {
     setView: function(center, zoom, afterFunc){
       console.info("set view center: " + center + ", zoom: " + zoom);
-      if (view.getCenter() && view.getZoom()) {
+      // only animate if enabled and there is a previous view state
+      if (animate && view.getCenter() && view.getZoom()) {
         // dataLayerGroup.setVisible(false);
         map.beforeRender(wrapAnimations([
           ol.animation.pan({
@@ -115,7 +145,8 @@ function ol3MapEngine(selector) {
         );
       } else {
         afterFunc();
-      }
+      };
+
       view.setCenter(ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'));
       view.setZoom(zoom);
     },
@@ -134,5 +165,8 @@ function ol3MapEngine(selector) {
     showLayer: function(layer){ return layer.setVisible(true) },
     hideLayer: function(layer){ return layer.setVisible(false) },
     baseLayers: baseLayers,
+    updateSize: function(){
+      map.updateSize();
+    }
   };
 }

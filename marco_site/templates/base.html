@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar feedback navbar %}
+{% load compress static wagtailuserbar feedback %}
 
 <!doctype html>
 <html lang="en">
@@ -11,6 +11,7 @@
     {% block extra_css %}{% endblock %}
 
     <link rel="stylesheet" href="{% static 'css/marco_site.css' %}" />
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,7 +25,7 @@
       {% block header %}
         <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">
           <div class="container">
-            {% navbar %}
+            {% include 'marco_site/includes/navbar.html' %}
           </div><!-- /.container-fluid -->
         </nav>
 
@@ -40,10 +41,8 @@
     </div>
 
     {% compress js %}
-      <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-      <script src="{% static 'bower_components/lodash/dist/lodash.js' %}"></script>
-      <script src="{% static 'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js' %}"></script>
-      <script src="{% static 'js/marco_site.js' %}"></script>
+      <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>
     {% endcompress %}
 
     {% block extra_js %}{% endblock %}
