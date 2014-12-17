@@ -1,8 +1,8 @@
-var _ = require('lodash'),
-    curtain = require('./curtain'),
+var _ = require('lodash')
+    curtain = require('./curtain')
     hackyMarineCadastreLayerConversion = require('./hacky_marine_cadastre_layer_conversion'),
-    scrollSpy = require('./scroll_spy'),
-    ol3MapEngine = require('./ol3_map_engine'),
+    scrollSpy = require('./scroll_spy')
+    ol3MapEngine = require('./ol3_map_engine')
     oceanStoryMap = require('./map');
 
 function mount(mapElement, story, animate) {
@@ -34,6 +34,8 @@ function mount(mapElement, story, animate) {
 
   bindScrollAnimationToLinks('a[href^="#"].animate');
 
+  // returns a setter that calls the passed function whenever the value changes
+  // this could be useful as part of a utility library
   function callIfChanged(f) {
     var state;
     return function(newState) {
@@ -48,7 +50,7 @@ function mount(mapElement, story, animate) {
     console.info('set collapse: '+collapsed)
     mapElement.toggleClass('half', collapsed);
     mapElement.toggleClass('full', !collapsed);
-    if (map) map.updateSize();
+    mapEngine.updateSize();
   }));
 
   $.getJSON("/data_manager/api/layers", function(data) {
@@ -60,8 +62,6 @@ function mount(mapElement, story, animate) {
       }
     })
     map = oceanStoryMap(mapEngine, story, dataLayers);
-    // not sure why this is needed here
-    map.updateSize();
     scrollSpy('.content', 'a.anchor[id^=\'section-\']', function(sectionIndex){
       return map.goToSection(sectionIndex);
     })
