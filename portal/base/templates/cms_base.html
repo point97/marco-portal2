@@ -5,6 +5,7 @@
 
 {% block page_header %}
   {% include "includes/page_header.html" with title=self.title only %}
+  {% include 'portal/includes/edit_link.html' %}
   {% if self.description %}
     <div class="description">
       {{ self.description|richtext }}
