@@ -2,8 +2,10 @@ from django.db import models
 
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiFieldPanel
 from modelcluster.fields import ParentalKey
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.models import Image
 
 from django.core.exceptions import ValidationError
 import json
@@ -73,9 +75,20 @@ class OceanStorySection(Orderable, OceanStorySectionBase):
 class OceanStories(Page):
     subpage_types = ['OceanStory']
 
+    def get_children(self):
+        return OceanStory.objects.child_of(self)
+
 class OceanStory(Page):
     parent_page_types = ['OceanStories']
     subpage_types = []
+
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     @property
     def as_json(self):
@@ -84,6 +97,12 @@ class OceanStory(Page):
         except:
             o = {'sections': []}
         return json.dumps(o);
+
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        ImageChooserPanel('feature_image'),
+    ]
+
 
 OceanStory.content_panels = [
     FieldPanel('title'),

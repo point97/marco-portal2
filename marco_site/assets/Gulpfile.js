@@ -1,8 +1,9 @@
 // Basic Gulp File
 //
 var gulp = require('gulp')
-    gutil = require ('gulp-util')
-    sass = require('gulp-ruby-sass')
+    path = require('path')
+    gutil = require('gulp-util')
+    less = require('gulp-less')
     autoprefix = require('gulp-autoprefixer')
     notify = require("gulp-notify")
     bower = require('gulp-bower')
@@ -11,7 +12,7 @@ var gulp = require('gulp')
     webpack = require('webpack')(webpackConfig);
 
 var config = {
-    sassPath: './scss',
+    stylePath: './styles',
     outDir: '../static'
 }
 
@@ -47,34 +48,28 @@ gulp.task("webpack-watch", function(callback) {
   callback();
 });
 
-
-gulp.task('css', function() {
-    return gulp.src(config.sassPath + '/*.scss')
-        .pipe(sass({
-            style: 'compressed',
-            precision: 10,
-            loadPath: [
-                config.bowerDir + '/bootstrap-sass-official/assets/stylesheets/',
-            ]
-        })
-            .on("error", notify.onError(function (error) {
-                return "Error: " + error.message;
-            })))
-        .pipe(autoprefix('last 2 version'))
-        .pipe(gulp.dest(config.outDir + '/css'));
+// Compiles LESS > CSS
+gulp.task('css', function(){
+  return gulp.src(path.join(config.stylePath, 'marco_site.less'))
+  .pipe(less())
+  .on("error", notify.onError(function (error) {
+    return "Error: " + error.message;
+  }))
+  .pipe(autoprefix('last 2 version'))
+  .pipe(gulp.dest(config.outDir + '/css'));
 });
 
 gulp.task('browser-sync', function(cb) {
   browserSync({
     proxy: "localhost:8111",
     open: true,
-    files: ["../static/css/*.css","../../static/bundles/*.js"],
+    files: ["../static/css/*.css","../static/bundles/*.js"],
   }, cb);
 });
 
 // Rerun the task when a file changes
 gulp.task('watch', ['webpack-watch', 'browser-sync'], function() {
-    gulp.watch(config.sassPath + '/**/*.scss', ['css']);
+    gulp.watch(config.stylePath + '/**/*.less', ['css']);
 });
 
 gulp.task('default', ['bower', 'icons', 'webpack', 'css']);
