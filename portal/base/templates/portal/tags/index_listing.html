@@ -1,9 +1,12 @@
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="list-group">
+<div class="grid-view">
     {% for page in pages %}
-        <a class="list-group-item" href="{% pageurl page %}">
+        <a class="item" href="{% pageurl page %}">
             <h4 class="list-group-item-heading">{{ page.title }}</h4>
+            {% if page.feature_image %}
+              {% image page.feature_image fill-265x152 class="feature" %}
+            {% endif %}
             {% if page.search_description %}
                 <p class="list-group-item-text">{{ page.search_description }}</p>
             {% endif %}
