@@ -21,7 +21,7 @@ except ImportError: from urllib.parse import unquote
 # The abstract model for ocean story sections, complete with panels
 class OceanStorySectionBase(models.Model):
     title = models.CharField(max_length=255, blank=True)
-    body = RichTextField()
+    body = RichTextField(blank=True)
     map_state = models.TextField()
 
     panels = [
