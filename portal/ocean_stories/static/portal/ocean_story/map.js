@@ -74,9 +74,6 @@ module.exports = function(engine, story, layerCatalog) {
   }
 
   return {
-    updateSize: function() {
-      engine.updateSize();
-    },
     goToSection: function(section) {
       if (section > story.sections.length - 1) {
         console.warn("Requested story section " + (section+1) + ", but only " + story.sections.length + " are present.")

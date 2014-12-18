@@ -63,7 +63,7 @@ gulp.task('browser-sync', function(cb) {
   browserSync({
     proxy: "localhost:8111",
     open: true,
-    files: ["../static/css/*.css","../../static/bundles/*.js"],
+    files: ["../static/css/*.css","../static/bundles/*.js"],
   }, cb);
 });
 

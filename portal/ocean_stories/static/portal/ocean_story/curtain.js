@@ -4,23 +4,27 @@ var bindCurtain = function(elements, isCollapsed) {
   var startHeight;
   var endHeight;
 
-  var calcHeight = function(){
+  var calcState = function(){
     var scrollTop = $(this).scrollTop();
     var proportion = scrollTop/(startHeight - endHeight);
-    if (proportion <= 0) {
-      isCollapsed(false);
-      return startHeight;
+    var collapsed;
+    var height;
+
+    return (proportion <= 0) ? {
+      collapsed: false,
+      height: startHeight
+    } : (proportion <= 1) ? {
+        collapsed: false,
+        height: endHeight*proportion + startHeight*(1-proportion)
+    } : {
+      height: endHeight,
+      collapsed: true
     }
-    if (proportion <= 1) {
-      isCollapsed(false);
-      return endHeight*proportion + startHeight*(1-proportion);
-    }
-    isCollapsed(true);
-    return endHeight;
   };
-  var setHeight = function() {
-    var curtainHeight = calcHeight();
-    elements.height(curtainHeight);
+  var setState = function() {
+    var newState = calcState();
+    elements.height(newState.height);
+    isCollapsed(newState.collapsed);
   };
 
   var handleResize = function(){
@@ -28,10 +32,10 @@ var bindCurtain = function(elements, isCollapsed) {
     viewHeight = $( this ).height();
     startHeight = viewHeight - learnMoreHeight;
     endHeight = viewHeight/2;
-    setHeight();
+    setState();
   }
   handleResize();
-  $(window).scroll(setHeight);
+  $(window).scroll(setState);
   $(window).resize(handleResize);
 
 }
