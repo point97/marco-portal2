@@ -61,6 +61,7 @@ class OceanStorySectionBase(models.Model):
         return s
 
     def clean(self):
+        super(OceanStorySectionBase, self).clean()
         try:
             self.parsed_map_state
         except:
