@@ -11,7 +11,7 @@
     {% block extra_css %}{% endblock %}
 
     <link rel="stylesheet" href="{% static 'css/marco_site.css' %}" />
-    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,14 +20,11 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="{% block body_class %}classless-page{% endblock %}">
-    <header>
-      {% block header %}
-        <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">
-          <div class="container">
-            {% include 'marco_site/includes/navbar.html' %}
-          </div><!-- /.container-fluid -->
-        </nav>
+  <body class="{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}">
+    {% block header %}{% include 'navbar.html' %}{% endblock %}
+    <div class="content">
+      {% block content %}{% endblock %}
+    </div>
 
       {% endblock %}
     </header>
