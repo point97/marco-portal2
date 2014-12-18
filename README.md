@@ -40,6 +40,16 @@ machine, exported to the VM as a shared folder; code editing and Git operations 
  - **for now**, rsync marco_site/static/ from your development instance (or run gulp from that dir on the server, if node is available)
  - Run `DJANGO_SETTINGS_MODULE="marco_config.settings.production" ./manage.py compress collectstatic`
 
+## Getting production data
+
+`pg_dump -U marco_portal marco_portal > dump.pg` (password from local.py)
+
+`rsync -avz point97@midatlantic.point97.io:webapps/marco_portal2/site/dump.pg ./`
+
+drop/create
+
+`psql -U postgres marco_portal < dump.pg`
+
 ## Candidate Technologies
 
 #### Animation
