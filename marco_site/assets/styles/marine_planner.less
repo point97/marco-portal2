@@ -28,6 +28,33 @@ body.template-visualize{
         padding: 0px;
     }
 
+    #aggregated-attribute-overlay{
+        position:absolute;
+        right: 70px;
+        bottom: 120px;
+        z-index: 1000;
+        background-color: white;
+        overflow: none;
+        max-height: 250px;
+    }
+
+    dl{
+        margin-bottom: 0px;
+    }
+    #aggregated-attribute-heading{
+        height: 30px;
+        text-align: center;
+    }
+
+    #aggregated-attribute-content{
+        overflow-y: auto;
+        max-height: 200px;
+
+        .accordion-inner{
+            margin-left: 30px;
+        }
+    }
+
     #toggleBaselayer{
         width:60px;
         height:60px;
@@ -551,7 +578,7 @@ body.template-visualize{
     }
 
     .bookmark-settings-popover {
-        background-color: $gray-lighter;
+        background-color: @gray-lighter;
         border: none;
         border-radius:0px;
         a{
