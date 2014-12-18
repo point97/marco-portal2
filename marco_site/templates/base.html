@@ -31,14 +31,14 @@
 
       {% endblock %}
     </header>
-    <div class="content">
-      <div class="container">
-        {% block page_header %}{% endblock %}
-        {% block content %}{% endblock %}
+    {% block outer_content %}
+      <div class="content">
+        <div class="container">
+          {% block page_header %}{% endblock %}
+          {% block content %}{% endblock %}
+        </div>
       </div>
-      {% block outer_content %}
-      {% endblock %}
-    </div>
+    {% endblock %}
 
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
