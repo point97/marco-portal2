@@ -2,6 +2,9 @@ body.template-visualize{
     .navbar{
         margin-bottom: 0px;
     }
+    .content{
+        margin-bottom:0px;
+    }
     .container-fluid{
         padding-left: 0px;
         padding-right: 0px;
@@ -27,15 +30,25 @@ body.template-visualize{
         width: 400px;
         padding: 0px;
     }
-
+    #aggregated-attribute-overlay-test {
+        max-height: 250px;
+    }
     #aggregated-attribute-overlay{
         position:absolute;
         right: 70px;
         bottom: 120px;
         z-index: 1000;
         background-color: white;
-        overflow: none;
+        overflow: hidden;
         max-height: 250px;
+        opacity: 0.9;
+        .accordion-heading{
+            background-color: @light-gray;
+        }
+        .accordion-toggle, .accordion-toggle:hover{
+            cursor: pointer;
+            padding: 5px 10px;
+        }
     }
 
     dl{
@@ -43,7 +56,11 @@ body.template-visualize{
     }
     #aggregated-attribute-heading{
         height: 30px;
-        text-align: center;
+        padding: 0px 14px;
+        h4{
+            color: #00a564;
+            font-size: 16px;
+        }
     }
 
     #aggregated-attribute-content{
@@ -547,7 +564,7 @@ body.template-visualize{
         left: inherit !important;
         width: 450px;
         max-width: 460px;
-        height: 300px;
+        height: 320px;
         background-color: @gray-lighter;
         border: none;
         border-radius:0px;
