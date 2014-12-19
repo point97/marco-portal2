@@ -9,7 +9,8 @@
     "gulp-less": "^2.0.1",
     "gulp-notify": "^2.1.0",
     "gulp-util": "^3.0.1",
-    "webpack": "^1.4.13"
+    "webpack": "^1.4.13",
+    "exports-loader": "^0.6.2"
   },
   "dependencies": {
     "lodash": "^2.4.1"
