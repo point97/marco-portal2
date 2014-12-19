@@ -90,19 +90,6 @@
     </span>
     {% endif %}
   </li>
-  <li>
-    {% if layer.tiles_link %}
-    <a href="{{layer.tiles_link}}">
-      <span rel="tooltip" title="data_catalog_tiles_link_tooltip">
-        data_catalog_tiles_link
-      </span>
-    </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_tiles_link
-    </span>
-    {% endif %}
-  </li>
 </ul>
 <p class="description">{{layer.data_overview}}</p>
 <p class="source"><strong>Source:</strong> <a href="{{layer.source}}">{{layer.data_source}}</a></p>
