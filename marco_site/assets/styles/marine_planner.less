@@ -7,7 +7,7 @@ body.template-visualize{
         padding-right: 0px;
     }
     #atlwdg-trigger{
-        z-index: 1000;
+       display:none;
     }
 
     .btn{
@@ -103,11 +103,12 @@ body.template-visualize{
         display: table-cell;
         vertical-align: bottom;
         border: 1px solid @gray-darker;
+        color: @gray-dark;
     }
 
     .olControlScaleBar {
         bottom: 0px;
-        right: 100px;
+        right: 13px;
     }
 
     /* Rules for the layer switcher */
@@ -133,7 +134,7 @@ body.template-visualize{
     }
 
     #baselayers {
-        bottom: 38px;
+        bottom: 44px;
         right: 80px;
     }
 
@@ -252,35 +253,33 @@ body.template-visualize{
     }
 
     .SimpleLayerSwitcher {
-      position:absolute;
-      bottom:42px;
-      right:150px;
-      background-color:whiteSmoke;
-      border:1px solid #ccc;
-      border-radius:4px;
-      max-width:150px;
-      text-align: left;
-      background: #130085; /* fallback for IE - IE6 requires background shorthand*/
-      background: rgba(0, 60, 136, 0.5);
-      opacity: .8;
-      border-radius: 4px;
-      display: none;
-      overflow: hidden;
+        position: absolute;
+        bottom: 32px;
+        right: 150px;
+        background-color: @gray-light;
+        border: 2px solid @gray-light;
+        max-width: 450px;
+        text-align: left;
+        background: @gray-light;
+        opacity: 1;
+        border-radius: 0px;
+        display: none; 
+        overflow: hidden;
+        width: 425px;
     }
 
     .SimpleLayerSwitcher a.basey {
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
-      display:block;
+      box-shadow: none;
+      display:inline-block;
       text-decoration:none;
       color:white;
-      padding:5px 5px 5px 5px;
-      padding-left: 10px;
+      padding:0px;
+      padding-left: 0px;
       font-size: 14px;
-      background: #130085; /* fallback for IE - IE6 requires background shorthand*/
-      background: rgba(0, 60, 136, 0.5);
-      opacity: .8;
-      filter: alpha(opacity=80);
-
+      background: @gray-light;
+      opacity: 1;
+      width: 62px;
+      margin: 4px 0px 3px 7px;
     }
 
     .SimpleLayerSwitcher a.basey-on {
@@ -291,6 +290,17 @@ body.template-visualize{
 
     .SimpleLayerSwitcher a {
       /*border-top:1px solid #eee;*/
+      border: 1px solid black;
+      div{
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        height: 60px;
+        width: 60px;
+        color: @gray;
+        font-size: 12px;
+      }
+      
     }
 
     .SimpleLayerSwitcher a:hover {
@@ -298,7 +308,7 @@ body.template-visualize{
     }
 
     .SimpleLayerSwitcher a.basey-off {
-      display:block;
+
     }
 
     .popover .radio input {
