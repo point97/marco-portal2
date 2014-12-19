@@ -12,14 +12,16 @@
     <div class="curtain">
         <div id="ocean-story-map"></div>
     </div>
+    {% if self.explore_title %}
     <div class="curtain overlay">
       <a class="view-data" href='{{ self.explore_url }}'>{{ self.explore_title }}</a>
     </div>
+    {% endif %}
     <div class="intro overlay">
       <div class="center">
         <div class="container">
           <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
-          <div class="hook">{{ self.hook }}</div>
+          {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
         </div>
       </div>
       {% with page=self.get_prev_siblings.live.first %}
