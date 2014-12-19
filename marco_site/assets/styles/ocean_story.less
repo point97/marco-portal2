@@ -9,6 +9,11 @@
 .overlay {
   z-index: 900;
   background: transparent;
+  pointer-events: none;
+}
+
+.clickable {
+  pointer-events: auto;
 }
 
 .center {
@@ -42,6 +47,7 @@
   }
 
   .view-data {
+    .clickable;
     z-index: 900;
     font-size: 12px;
     position: absolute;
@@ -72,6 +78,7 @@
       color: @white;
     }
     a.next-page, a.previous-page {
+      .clickable;
       background: fade(@gray-darker, 50%);
       color: @white;
       padding: 15px;

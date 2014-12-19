@@ -1,9 +1,10 @@
 var _ = require('lodash')
     curtain = require('./curtain')
-    hackyMarineCadastreLayerConversion = require('./hacky_marine_cadastre_layer_conversion'),
+    hackyMarineCadastreLayerConversion = require('./hacky_marine_cadastre_layer_conversion')
     scrollSpy = require('./scroll_spy')
     ol3MapEngine = require('./ol3_map_engine')
-    oceanStoryMap = require('./map');
+    oceanStoryMap = require('./map')
+    polyfills = require('./polyfills');
 
 function mount(mapElement, story, animate) {
 

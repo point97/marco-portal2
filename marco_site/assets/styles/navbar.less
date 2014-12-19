@@ -3,12 +3,6 @@
   li > a {
     font-weight: 900;
   }
-  .dropdown-menu {
-    & > li > a {
-      font-weight: 900;
-    }
-
-  }
 }
 
 .navbar-brand {
@@ -21,5 +15,16 @@
     height: 70%;
     top: 50%;
     margin-top: -70%;
+  }
+}
+
+@media (min-width: @grid-float-breakpoint) {
+  .dropdown-menu {
+    > li {
+      > a {
+        padding-top:    @navbar-padding-vertical/2;
+        padding-bottom: @navbar-padding-vertical/2;
+      }
+    }
   }
 }
