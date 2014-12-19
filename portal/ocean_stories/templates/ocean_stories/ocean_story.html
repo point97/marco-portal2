@@ -22,12 +22,12 @@
           <div class="hook">This is an invitation to speak up about ocean planning.</div>
         </div>
       </div>
-      {% with page=self.get_prev_sibling %}
+      {% with page=self.get_prev_siblings.live.first %}
         {% if page %}
           <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
         {% endif %}
       {% endwith %}
-      {% with page=self.get_next_sibling %}
+      {% with page=self.get_next_siblings.live.first %}
         {% if page %}
           <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
         {% endif %}
