@@ -1,7 +1,6 @@
 {
   "name": "marco-portal-static",
   "dependencies": {
-    "bootstrap-sass-official": "~3.3.1",
     "font-awesome": "~4.2.0",
     "knockout": "~v2.1.0",
     "knockout-mapping": "~v2.3.5",
