@@ -493,10 +493,19 @@ body.template-visualize{
         border-top: 1px solid #ddd;
         background-color: @gray-lighter;
         text-align: center;
+
+        .disabled{
+            background-color:@gray-lighter;
+            
+            a{
+               color: @light-gray !important;
+            }
+        }
     }
 
     .nav-tabs>li{
         padding: 0px 15px 0px 15px;
+        margin-bottom: 0px;
     }
     .nav-tabs>li a{
         margin-right:0px;
@@ -558,11 +567,18 @@ body.template-visualize{
         color: @green;
         box-shadow: none;
     }
-/*
-    .dropdown-menu{
+
+    #data-panel .dropdown-menu{
         left:15px;
+        li{
+            a{
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+        }
     }
-*/
+
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
         color: @deep-blue;
         background-color: transparent;
@@ -587,6 +603,41 @@ body.template-visualize{
 
         a{
             white-space: inherit;
+        }
+    }
+
+    #legend-popover{
+        top: 100px !important;
+        right: 75px !important;
+        left: inherit !important;
+        width: 450px;
+        max-width: 460px;
+        height: 320px;
+        background-color: @gray-lighter;
+        border: none;
+        border-radius:0px;
+        box-shadow: none;
+        h3{
+            color: @green;
+            font-size: 14px;
+        }
+        a:hover{
+            color: @green;
+        }
+        a.close-popup{
+            padding: 5px;
+            top: 1px;
+            position: absolute;
+            right: 5px;
+        }
+        #legend-wrapper{
+            overflow-y:auto;
+            overflow-x:hidden;
+            height: 280px;
+
+            #legend-content{
+                padding: 10px;
+            }
         }
     }
 
@@ -615,7 +666,7 @@ body.template-visualize{
         }
         a.close-popup{
             padding: 5px;
-            top: 5px;
+            top: 1px;
             position: absolute;
             right: 5px;
         }
