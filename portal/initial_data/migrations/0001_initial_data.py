@@ -28,14 +28,14 @@ def create_initial_data(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ocean_stories', '__latest__'),
-        ('calendar', '__latest__'),
-        ('data_gaps', '__latest__'),
-        ('data_catalog', '__latest__'),
-        ('home', '__latest__'),
-
-    ]
+    # dependencies = [
+    #     ('ocean_stories', '__latest__'),
+    #     ('calendar', '__latest__'),
+    #     ('data_gaps', '__latest__'),
+    #     ('data_catalog', '__latest__'),
+    #     ('home', '__latest__'),
+    #
+    # ]
 
     operations = [
         migrations.RunPython(create_initial_data),
