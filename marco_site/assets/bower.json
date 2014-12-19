@@ -1,7 +1,6 @@
 {
   "name": "marco-portal-static",
   "dependencies": {
-    "bootstrap-sass-official": "~3.3.1",
     "font-awesome": "~4.2.0",
     "knockout": "~v2.1.0",
     "knockout-mapping": "~v2.3.5",
@@ -16,6 +15,7 @@
     "jquery-ui": "~1.11.2",
     "jquery-migrate": "~1.2.1",
     "ol3-unofficial": "~3.0.3",
-    "bootstrap": "~3.3.1"
+    "bootstrap": "~3.3.1",
+    "pointer_events_polyfill": "https://github.com/kmewhort/pointer_events_polyfill.git"
   }
 }
