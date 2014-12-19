@@ -13,8 +13,13 @@
 }
 
 #feedback-modal {
+  @media (min-width: 768px) {
+    .modal-dialog {
+      width: 700px;
+    }
+  }
   iframe {
     width: 100%;
-    min-height: 80vh;
+    height: 85vh;
   }
 }
