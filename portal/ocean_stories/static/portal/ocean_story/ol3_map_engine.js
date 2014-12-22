@@ -140,7 +140,7 @@ module.exports = function(element, animate) {
           })
           ], function() {
             afterFunc();
-            dataLayerGroup.setVisible(true);
+            // dataLayerGroup.setVisible(true);
           })
         );
       } else {
@@ -167,6 +167,8 @@ module.exports = function(element, animate) {
     baseLayers: baseLayers,
     updateSize: function(){
       map.updateSize();
+      // render in the same frame as our main requestAnimationFrame loop
+      map.renderSync();
     }
   };
 }

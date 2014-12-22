@@ -58,6 +58,8 @@
   <script src="{% static 'bower_components/ol3-unofficial/ol.js' %}"></script>
   <script src="{% static 'bundles/ocean_story.js' %}"></script>
   <script type="text/javascript">
-    oceanStory($('#ocean-story-map'), {{ self.as_json|safe }}, true);
+    $(document).ready(function() {
+      oceanStory($('#ocean-story-map'), {{ self.as_json|safe }}, true);
+    })
   </script>
 {% endblock %}
