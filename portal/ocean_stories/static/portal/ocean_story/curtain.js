@@ -7,26 +7,15 @@ var bindCurtain = function(elements, isCollapsed) {
       ticking,
       needResize;
 
-  function requestTick(resize) {
+  function requestTick() {
     if(!ticking) {
       requestAnimationFrame(update);
     }
     ticking = true;
-    if (resize) {
-      needResize = true;
-    }
   }
 
   function update() {
     ticking = false;
-
-    if (needResize = true) {
-      needResize = false;
-      learnMoreHeight = $('.learn-more').height();
-      viewHeight = $( this ).height();
-      startHeight = viewHeight - learnMoreHeight;
-      endHeight = viewHeight/2;
-    }
 
     state = calcState(startHeight, endHeight);
 
@@ -53,7 +42,12 @@ var bindCurtain = function(elements, isCollapsed) {
   };
 
   var onResize = function(){
-    requestTick(true);
+    // immediate update onResize
+    learnMoreHeight = $('.learn-more').height();
+    viewHeight = $( this ).height();
+    startHeight = viewHeight - learnMoreHeight;
+    endHeight = viewHeight/2;
+    update();
   }
   onResize();
   $(window).scroll(requestTick);
