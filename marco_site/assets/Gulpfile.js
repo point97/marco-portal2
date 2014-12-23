@@ -63,9 +63,12 @@ gulp.task('browser-sync', function(cb) {
   browserSync({
     proxy: "localhost:8111",
     open: true,
+    // tunnel: true,
+    // ghostMode: true,
     files: ["../static/css/*.css","../static/bundles/*.js"],
   }, cb);
 });
+
 
 // Rerun the task when a file changes
 gulp.task('watch', ['webpack-watch', 'browser-sync'], function() {
