@@ -5,14 +5,9 @@
 {% endblock %}
 
 {% block content %}
-  {% if themes %}
-  <div class="list-group">
+  <div class="grid-view">
     {% for theme in themes %}
-      <a class="list-group-item" href="./{{ theme.name }}">
-        <img src={{theme.thumbnail}}></img>
-        {% include "data_catalog/includes/theme_info.html" %}
-      </a>
+      {% include 'data_catalog/includes/theme_info.html' with theme=theme only %}
     {% endfor %}
   </div>
-  {% endif %}
 {% endblock %}

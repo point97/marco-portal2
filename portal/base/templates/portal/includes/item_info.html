@@ -1,0 +1,24 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="item">
+  <div class="feature">
+    {% if feature_image %}
+      {% image feature_image fill-345x194 class="feature" %}
+    {% elif feature_image_url %}
+      <img src="{{feature_image_url}}">
+    {% endif %}
+  </div>
+  <div class="media">
+    <a class="media-left" href="#">
+      <div class="badge">134</div>
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading"><a href="{{url}}">{{ title }}</a></h4>
+      <div class="item-text">
+        <p>{{ body }}</p>
+      </div>
+    </div>
+  </div>
+  {% if body %}
+  {% endif %}
+</div>
