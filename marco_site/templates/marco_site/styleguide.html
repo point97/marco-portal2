@@ -5,8 +5,11 @@
 {% include "includes/page_header.html" with title="Styleguide" only %}
 {% endblock %}
 
-{% block content %}
+{% block outer_content %}
 <div class="container">
+  <div class="alert alert-info" role="alert">
+    This page is only visible to site admins.
+  </div>
   <h2>Colors</h2>
   <div class="color-palette">
     <div class="palette-card">

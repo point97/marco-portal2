@@ -1,0 +1,90 @@
+@navbar-height:                    67px;
+@navbar-default-bg:                white;
+@navbar-default-link-color:        @deep-blue;
+@navbar-default-link-active-color: @navbar-default-link-color;
+@navbar-default-link-active-bg:    @gray-lighter;
+
+@import "../bootstrap/navbar";
+
+.dropdown-menu {
+  > li > a {
+    &:hover, &:focus {
+      background-color: @navbar-default-link-active-bg;
+    }
+  }
+}
+
+.navbar-default {
+  z-index: 2000;
+  border: 0;
+  li > a {
+    font-weight: 900;
+  }
+  .navbar-nav > .active > a {
+    &, &:hover, &:focus {
+      .underbar(@brand-success);
+      background: inherit;
+      background-color: inherit;
+    }
+  }
+  .navbar-nav > .open > a {
+    &, &:hover, &:focus {
+      background-color: @navbar-default-link-active-bg;
+    }
+  }
+}
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: @navbar-height;
+  position: relative;
+  img {
+    position: absolute;
+    height: 70%;
+    top: 50%;
+    margin-top: -70%;
+  }
+}
+
+.underbar(@color) {
+  &:after {
+    background: @color;
+    height: 4px;
+    bottom: 0px;
+    left: 0px;
+    content: "";
+    position: absolute;
+    width: 100%;
+  }
+}
+
+@media (min-width: @grid-float-breakpoint) {
+
+  .dropdown-menu {
+    > li {
+      > a {
+        padding-top:    @navbar-padding-vertical/2;
+        padding-bottom: @navbar-padding-vertical/2;
+      }
+    }
+  }
+}
+
+/* Variants */
+
+.navbar-transparent {
+  nav.navbar-default {
+    .navbar-nav > .open > a {
+      &, &:hover, &:focus {
+        background-color: @white;
+      }
+    }
+    background: fade(@gray-lighter, 50%);
+    border-color: transparent;
+    li { color: #000 };
+    z-index: 1000;
+    margin-bottom: -@navbar-height;
+  }
+
+}

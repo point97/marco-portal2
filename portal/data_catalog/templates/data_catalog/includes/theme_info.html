@@ -1,5 +1,1 @@
-<h4 class="list-group-item-heading">{{ theme.display_name }}</h4>
-<div class="count">{{ theme.layer_count }}</div>
-{% if theme.description %}
-<p class="list-group-item-text">{{ theme.description }}</p>
-{% endif %}
+{% include 'portal/includes/item_info.html' with title=theme.display_name url=theme.name feature_image_url=theme.thumbnail body=theme.description badge_text=theme.layer_count only %}
