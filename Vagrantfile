@@ -27,7 +27,7 @@ Vagrant::Config.run do |config|
   config.vm.customize [
                         "modifyvm", :id,
                         "--name", "Test_Environment",
-                        "--memory", "1024"
+                        "--memory", "2048"
                       ]
     
     if File.exist? "Vagrantfile.local"
