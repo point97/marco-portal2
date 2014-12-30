@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar feedback %}
+{% load compress static wagtailuserbar feedback ga %}
 
 <!doctype html>
 <html lang="en">
@@ -40,10 +40,12 @@
       </div>
     {% endblock %}
 
+    {% ga %}
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>
-    {% endcompress %}
+      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>      
+      <script src="{% static 'bundles/marco_site.js' %}"></script>
+      {% endcompress %}
 
     {% block extra_js %}{% endblock %}
 

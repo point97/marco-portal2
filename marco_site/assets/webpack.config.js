@@ -14,6 +14,7 @@ roots.push(path.join(__dirname, "node_modules"));
 module.exports = {
   entry: {
     ocean_story: "portal/ocean_story/index.js",
+    marco_site: "javascript/marco_site.js",
   },
   output: {
     path: path.join(__dirname, '..', 'static', 'bundles'),
