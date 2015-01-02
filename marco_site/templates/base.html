@@ -34,12 +34,15 @@
     {% block outer_content %}
       <div class="content">
         <div class="container">
+          <a class="anchor" id="page-header"></a>
           <div class="page-header">
-            <a class="anchor" id="page-header"></a>
-            {% block page_header %}{% endblock %}
+            {% block page_header %}
+              <h1>{% block page_title %}{{ title }}{% endblock %}</h1>
+            {% endblock %}
           </div>
           {% block content %}{% endblock %}
         </div>
+        {% block containerless_content %}{% endblock %}
       </div>
     {% endblock %}
 

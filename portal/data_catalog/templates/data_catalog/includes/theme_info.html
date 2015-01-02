@@ -11,7 +11,14 @@
 	<div class="badge">{{ theme.layer_count }}</div>
 {% endblock %}
 
-{% block heading %}<a href="{{ theme.name }}">{{ theme.display_name }}</a>{% endblock %}
+{% block heading %}
+	{% if full %}
+		{{ theme.display_name }}
+	{% else %}
+		<a href="{{ theme.name }}">{{ theme.display_name }}</a>
+	{% endif %}
+{% endblock %}
+
 {% block text %}
 	{{ theme.description|truncatechars_html:256 }}
 {% endblock %}
