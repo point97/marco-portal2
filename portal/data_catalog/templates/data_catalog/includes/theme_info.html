@@ -1,1 +1,16 @@
-{% include 'portal/includes/item_info.html' with title=theme.display_name url=theme.name feature_image_url=theme.thumbnail body=theme.description badge_text=theme.layer_count only %}
+<div class="item">
+	<div class="feature">
+		<img src="{{theme.thumbnail}}">
+	</div>
+	<div class="media">
+		<a class="media-left" href="{{ theme.name }}">
+			<div class="badge">{{ theme.layer_count }}</div>
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading"><a href="{{ theme.name }}">{{ theme.display_name }}</a></h4>
+			<div class="item-text">
+				<p>{{ theme.description }}</p>
+			</div>
+		</div>
+	</div>
+</div>

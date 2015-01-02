@@ -34,7 +34,10 @@
     {% block outer_content %}
       <div class="content">
         <div class="container">
-          {% block page_header %}{% endblock %}
+          <div class="page-header">
+            <a class="anchor" id="page-header"></a>
+            {% block page_header %}{% endblock %}
+          </div>
           {% block content %}{% endblock %}
         </div>
       </div>
