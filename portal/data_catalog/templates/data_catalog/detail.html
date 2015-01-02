@@ -2,11 +2,11 @@
 
 {% block page_title %}{{theme.display_name}}{% endblock %}
 
-{% block back_text %}Data Catalog{% endblock %}
+{% block back_text %}Catalog{% endblock %}
 
 {% block detail %}{% endblock %}
 {% block content %}
-  {% include "data_catalog/includes/theme_info.html" with full=True %}
+  {% include "data_catalog/includes/theme_info.html" with full=True item=theme %}
   {% if layers %}
   <div class="list-group">
 

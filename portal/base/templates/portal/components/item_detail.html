@@ -1,12 +1,15 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 <div class="detail">
-  {% block feature %}
-    <div class="feature">
-      {% if item.feature_image %}
-        {% image item.feature_image fill-345x194 class="feature" %}
-      {% endif %}
-    </div>
-  {% endblock %}
+  {% if full %}
+  {% else %}
+    {% block feature %}
+      <div class="feature">
+        {% if item.feature_image %}
+          {% image item.feature_image fill-345x194 class="feature" %}
+        {% endif %}
+      </div>
+    {% endblock %}
+  {% endif %}
   <div class="media">
     <div class="media-left" href="{% block media_href %}#{% endblock %}">
       {% block media %}

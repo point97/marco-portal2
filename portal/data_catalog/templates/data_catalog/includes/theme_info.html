@@ -2,23 +2,23 @@
 
 {% block feature %}
 	<div class="feature">
-		<img src="{{theme.thumbnail}}">
+		<img src="{{item.thumbnail}}">
 	</div>
 {% endblock %}
 
-{% block media_href %}{{ theme.name }}{% endblock %}
+{% block media_href %}{{ item.name }}{% endblock %}
 {% block media %}
-	<div class="badge">{{ theme.layer_count }}</div>
+	<div class="badge">{{ item.layer_count }}</div>
 {% endblock %}
 
 {% block heading %}
 	{% if full %}
-		{{ theme.display_name }}
+		{{ item.display_name }}
 	{% else %}
-		<a href="{{ theme.name }}">{{ theme.display_name }}</a>
+		<a href="{{ item.name }}">{{ item.display_name }}</a>
 	{% endif %}
 {% endblock %}
 
 {% block text %}
-	{{ theme.description|truncatechars_html:256 }}
+	{{ item.description|truncatechars_html:256 }}
 {% endblock %}
