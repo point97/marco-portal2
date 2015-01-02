@@ -1,16 +1,21 @@
-<div class="item">
+{% extends "portal/detail.html" %}
+
+{% block feature %}
 	<div class="feature">
 		<img src="{{theme.thumbnail}}">
 	</div>
-	<div class="media">
-		<a class="media-left" href="{{ theme.name }}">
-			<div class="badge">{{ theme.layer_count }}</div>
-		</a>
+{% endblock %}
+
+{% block media_href %}{{ theme.name }}{% endblock %}
+{% block media %}
+	<div class="badge">{{ theme.layer_count }}</div>
+{% endblock %}
+
+{% block heading %}<a href="{{ theme.name }}">{{ theme.display_name }}</a>{% endblock %}
+</a>
 		<div class="media-body">
 			<h4 class="media-heading"><a href="{{ theme.name }}">{{ theme.display_name }}</a></h4>
 			<div class="item-text">
-				<p>{{ theme.description }}</p>
-			</div>
-		</div>
-	</div>
-</div>
+{% block text %}
+	{{ theme.description|truncatechars_html:256 }}
+{% endblock %}
