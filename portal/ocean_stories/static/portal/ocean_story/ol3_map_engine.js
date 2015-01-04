@@ -1,7 +1,8 @@
 var _ = require('lodash');
 var ol = require('openlayers');
+var TWEEN = require('tween.js');
 
-module.exports = function(element, animate) {
+module.exports = function(element, doAnimations) {
 
   var baseLayers = {
     "Ocean": new ol.layer.Tile({
@@ -121,31 +122,53 @@ module.exports = function(element, animate) {
       return true;
     }
   }
-
+  map.beforeRender(function() {
+    TWEEN.update();
+    return true;
+  })
+  
   return {
     setView: function(center, zoom, afterFunc){
       console.info("set view center: " + center + ", zoom: " + zoom);
+      //set up animation from current state to next
+      // initial state:
+      // view.getCenter() && view.getZoom()
+      // target state:
+      // center, zoom
+      // pass update function to beforeRender
+      function setState() {
+        view.setCenter(ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'));
+        view.setZoom(zoom);
+      }
+
       // only animate if enabled and there is a previous view state
-      if (animate && view.getCenter() && view.getZoom()) {
-        // dataLayerGroup.setVisible(false);
-        map.beforeRender(wrapAnimations([
-          ol.animation.pan({
-            duration: 2000,
-            source: /** <at> type {ol.Coordinate} */ (view.getCenter())
-          }),
-          ol.animation.zoom({
-            duration: 2000,
-            resolution: view.getResolution(),
-            source: /** <at> type {ol.Coordinate} */ (view.getZoom())
-          })
-          ], function() {
-            afterFunc();
-            // dataLayerGroup.setVisible(true);
-          })
-        );
+      if (doAnimations && view.getCenter() && view.getZoom()) {
+        function getState(view) {
+          return {
+            x: view.getCenter()[0],
+            y: view.getCenter()[1],
+            resolution: view.getResolution()
+          }
+        }
+        var startState = getState(view);
+        setState();
+        TWEEN.update();
+        map.renderSync();
+        var tween = new TWEEN.Tween(startState)
+        .to(getState(view), 2000)
+        .onUpdate(function() {
+          view.setResolution( this.resolution );
+          view.setCenter([this.x, this.y]);
+          // map.renderSync();
+        })
+        .onComplete(function() {
+          afterFunc();
+        }).start();
+        
       } else {
         afterFunc();
       };
+
 
       view.setCenter(ol.proj.transform(center, 'EPSG:4326', 'EPSG:3857'));
       view.setZoom(zoom);
