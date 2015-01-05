@@ -50,7 +50,7 @@ gulp.task('css', function(){
   .on("error", notify.onError(function (error) {
     return "Error: " + error.message;
   }))
-  .pipe(autoprefix('last 2 version'))
+  .pipe(autoprefix())
   .pipe(gulp.dest(config.outDir + '/css'));
 });
 
