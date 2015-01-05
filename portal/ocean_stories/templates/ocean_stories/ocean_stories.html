@@ -1,1 +1,6 @@
-{% extends "portal/index_page.html" %}
+{% extends "cms/section.html" %}
+{% load portal %}
+
+{% block content %}
+	{% index_listing parent_page=self item_template="ocean_stories/story_detail.html" %}
+{% endblock %}

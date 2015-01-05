@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar feedback %}
+{% load compress static wagtailuserbar feedback ga %}
 
 <!doctype html>
 <html lang="en">
@@ -34,16 +34,24 @@
     {% block outer_content %}
       <div class="content">
         <div class="container">
-          {% block page_header %}{% endblock %}
+          <a class="anchor" id="page-header"></a>
+          <div class="page-header">
+            {% block page_header %}
+              <h1>{% block page_title %}{{ title }}{% endblock %}</h1>
+            {% endblock %}
+          </div>
           {% block content %}{% endblock %}
         </div>
+        {% block containerless_content %}{% endblock %}
       </div>
     {% endblock %}
 
+    {% ga %}
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>
-    {% endcompress %}
+      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>      
+      <script src="{% static 'bundles/marco_site.js' %}"></script>
+      {% endcompress %}
 
     {% block extra_js %}{% endblock %}
 

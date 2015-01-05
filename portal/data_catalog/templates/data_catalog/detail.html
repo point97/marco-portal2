@@ -1,20 +1,20 @@
-{% extends "base.html" %}
+{% extends "layouts/detail.html" %}
 
-{% block page_header %}
-<a href=".." class="back-button">Data Catalog</a>
-{% include "includes/page_header.html" with title=theme.display_name only %}
-{% endblock %}
+{% block page_title %}{{theme.display_name}}{% endblock %}
 
+{% block back_text %}Catalog{% endblock %}
+
+{% block detail %}{% endblock %}
 {% block content %}
-{% if layers %}
-<div class="list-group">
-  {% include "data_catalog/includes/theme_info.html" %}
+  {% include "data_catalog/includes/theme_info.html" with full=True item=theme %}
+  {% if layers %}
+  <div class="list-group">
 
-  {% for layer in layers %}
-  <div class="list-group-item" href="./{{ layer.name }}">
-    {% include "data_catalog/includes/layer_info.html" %}
+    {% for layer in layers %}
+    <div class="list-group-item" href="./{{ layer.name }}">
+      {% include "data_catalog/includes/layer_info.html" %}
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
-{% endif %}
+  {% endif %}
 {% endblock %}

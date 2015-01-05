@@ -1,0 +1,32 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="detail">
+  {% if full %}
+  {% else %}
+    {% block feature %}
+      <div class="feature">
+        {% if item.feature_image %}
+          {% image item.feature_image fill-345x194 class="feature" %}
+        {% endif %}
+      </div>
+    {% endblock %}
+  {% endif %}
+  <div class="media">
+    <div class="media-left" href="{% block media_href %}#{% endblock %}">
+      {% block media %}
+        <div class="badge">{{ badge_text }}</div>
+      {% endblock %}
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{% block heading %}<a href="{{ item.url }}">{{ item.title }}</a>{% endblock %}</h4>
+      <div class="item-text">
+        {% block text %}
+          {% if item.search_description %}
+            {{ item.search_description|truncatechars_html:256|richtext }}
+          {% else %}
+            {{ item.description|truncatechars_html:256|richtext }}
+          {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</div>

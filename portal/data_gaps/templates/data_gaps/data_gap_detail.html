@@ -1,0 +1,5 @@
+{% extends "portal/components/item_detail.html" %}
+
+{% block media %}
+	<a class="badge">{{ item.target_year|default:"NEED" }}</a>
+{% endblock %}

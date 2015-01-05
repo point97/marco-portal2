@@ -1,13 +1,7 @@
 {% extends "base.html" %}
 
-{% block page_header %}
-  {% include "includes/page_header.html" with title="Data Catalog" only %}
-{% endblock %}
+{% block page_title %}Data Catalog{% endblock %}
 
 {% block content %}
-  <div class="grid-view">
-    {% for theme in themes %}
-      {% include 'data_catalog/includes/theme_info.html' with theme=theme only %}
-    {% endfor %}
-  </div>
+  {% include 'portal/components/index_listing.html' with item_template='data_catalog/includes/theme_info.html' items=themes only %}
 {% endblock %}

@@ -1,1 +1,24 @@
-{% include 'portal/includes/item_info.html' with title=theme.display_name url=theme.name feature_image_url=theme.thumbnail body=theme.description badge_text=theme.layer_count only %}
+{% extends "portal/components/item_detail.html" %}
+
+{% block feature %}
+	<div class="feature">
+		<img src="{{item.thumbnail}}">
+	</div>
+{% endblock %}
+
+{% block media_href %}{{ item.name }}{% endblock %}
+{% block media %}
+	<div class="badge">{{ item.layer_count }}</div>
+{% endblock %}
+
+{% block heading %}
+	{% if full %}
+		{{ item.display_name }}
+	{% else %}
+		<a href="{{ item.name }}">{{ item.display_name }}</a>
+	{% endif %}
+{% endblock %}
+
+{% block text %}
+	{{ item.description|truncatechars_html:256 }}
+{% endblock %}

@@ -1,6 +1,6 @@
 .grid-view {
   .make-row;
-  > .item {
+  > * {
     .make-xs-column(12);
     .make-sm-column(6);
     .make-md-column(4);
@@ -12,53 +12,6 @@
       img {
         width: 100%;
       }
-    }
-  }
-}
-
-.ellipsis(@lines: 1) {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  // multi-line ellipsis, webkit only
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: @lines;
-  // fallback
-  height: @font-size-base*@line-height-base*@lines;
-}
-.overflow-on-hover(@background: @gray-light) {
-  &:hover {
-    position: relative;
-    z-index: 1001;
-    overflow: visible;
-    -webkit-line-clamp: inherit;
-    > * {
-      display: block;
-      background: @background;
-      padding-bottom: @font-size-base*@line-height-base/2;
-    }
-  }
-}
-
-.item {
-  .badge {
-    border-radius: 50%;
-    border: 3px solid @brand-success;
-    line-height: 54px;
-    width: 60px;
-    height: 60px;
-    text-align: center;
-  }
-  &:hover {
-    z-index: 1000;
-  }
-  .media-body {
-    .media-heading {
-      .ellipsis(@lines: 2);
-      .overflow-on-hover;
-    }
-    .item-text {
-      .ellipsis(@lines: 4);
     }
   }
 }
