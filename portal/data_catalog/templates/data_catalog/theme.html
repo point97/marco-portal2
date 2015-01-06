@@ -5,18 +5,20 @@
 
 {% block back_text %}Catalog{% endblock %}
 
-
-{% block detail %}{% endblock %}
-{% block content %}
-  {% include "data_catalog/theme_detail.html" with full=True item=theme %}
-  {% if layers %}
-  <div class="list-group">
-
-    {% for layer in layers %}
-    <div class="list-group-item" href="./{{ layer.name }}">
-      {% include "data_catalog/includes/layer_info.html" %}
-    </div>
-    {% endfor %}
+{% block media-body %}
+  <h2>{{ theme.display_name }}</h2>
+  <div class="description">
+    {{ theme.description }}
   </div>
+  {% if layers %}
+    <div class="list-group">
+      {% for layer in layers %}
+        <div class="list-group-item" href="./{{ layer.name }}">
+          {% include "data_catalog/includes/layer_info.html" %}
+        </div>
+      {% endfor %}
+    </div>
   {% endif %}
 {% endblock %}
+
+{% block media %}<div class="badge">{{ theme.layer_count }}</div>{% endblock %}

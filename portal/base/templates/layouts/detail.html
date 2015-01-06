@@ -6,12 +6,16 @@
 	{% block detail %}
 		<div class="detail">
 			<div class="media">
-				<div class="media-left" href="#">
-					{% block media %}
-					{% endblock %}
+				<div class="media-left media-detail">
+					<div class="media-inner">
+						{% block media %}
+						{% endblock %}
+					</div>
 				</div>
 				<div class="media-body">
-					{% include "cms/frontmatter.html" %}
+					{% block media-body %}
+						{% include "cms/detail_frontmatter.html" %}
+					{% endblock %}
 				</div>
 			</div>
 		</div>
