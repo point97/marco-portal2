@@ -22,18 +22,42 @@
 	}
 }
 
+@badge-diameter: 54px;
+@badge-border-width: 3px;
+
 .detail {
+	.feature {
+		height: 194px;
+		img {
+			.center-block();
+			max-height: 194px;
+			max-width: 100%;
+		}
+	}
+	.media-detail {
+		a:hover {
+			text-decoration: none;
+		}
+		text-align: center;
+
+		.media-inner {
+			padding: 1em;
+			padding-bottom: 3em;
+			border-right: 1px solid @gray;
+		}
+	}
 	.badge {
 		display: block;
 		border-radius: 50%;
-		border: 3px solid @brand-success;
+		border: @badge-border-width solid @deep-blue;
+		background-color: @deep-blue;
+		color: @yellow;
 		line-height: 54px;
-		width: 60px;
-		height: 60px;
-		text-align: center;
-	}
-	&:hover {
-		z-index: 1000;
+		width: @badge-diameter + 2*@badge-border-width;
+		height: @badge-diameter + 2*@badge-border-width;
+		font-family: @font-family-condensed;
+		font-weight: bold;
+		font-size: @badge-diameter/2;
 	}
 	.media-body {
 		.media-heading {
@@ -42,6 +66,34 @@
 		}
 		.item-text {
 			.ellipsis(@lines: 4);
+		}
+	}
+}
+
+
+.data-gaps-page, .data-gap-page {
+	.badge {
+		font-size: @badge-diameter/3;
+	}
+}
+
+.data-catalog-page, .data-theme-page {
+	.badge {
+	}
+}
+
+.calendar-page, .event-page {
+	.media-detail {
+		.month {
+			color: @green;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		.badge {
+			font-weight: normal;
+			border-color:  @green;
+			background: transparent;
+			color: @deep-blue;
 		}
 	}
 }

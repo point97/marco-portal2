@@ -21,14 +21,18 @@
     font-weight: 900;
   }
   .navbar-nav > .active > a {
-    &, &:hover, &:focus {
-      .underbar(@brand-success);
-      background: inherit;
+    background-color: inherit;
+    color: @brand-primary;    
+    .underbar(@brand-success);
+    &:hover, &:focus {
+      color: inherit;
       background-color: inherit;
     }
   }
   .navbar-nav > .open > a {
     &, &:hover, &:focus {
+      background: inherit;
+      color: inherit;
       background-color: @navbar-default-link-active-bg;
     }
   }

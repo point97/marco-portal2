@@ -1,0 +1,31 @@
+{% extends "layouts/detail.html" %}
+
+{% block page_title %}{{theme.display_name}}{% endblock %}
+{% block body_class %}data-theme-page{% endblock %}
+
+{% block back_text %}Catalog{% endblock %}
+
+{% block media-body %}
+  <h2>{{ theme.display_name }}</h2>
+  <div class="description">
+    {{ theme.description }}
+  </div>
+  {% if layers %}
+    <div class="list-group">
+      {% for layer in layers %}
+        <div class="list-group-item" href="./{{ layer.name }}">
+          {% include "data_catalog/includes/layer_info.html" %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block media %}<div class="badge">{{ theme.layer_count }}</div>{% endblock %}
+{% block extra_js %}
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+{% endblock %}

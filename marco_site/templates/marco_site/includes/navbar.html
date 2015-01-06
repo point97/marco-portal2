@@ -15,7 +15,7 @@
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav navbar-right">
-    <li class="{% active 'planner' %}"><a href="{% url 'planner' %}">MARINE PLANNER</a></li>
+    <li class="{% active 'planner' %}"><a href="{% url 'planner' %}"><span class="icon-marco oversized"></span>&nbsp; MARINE PLANNER</a></li>
     <li class="dropdown {% active '^/(ocean-stories|data-catalog|data-gaps)/' %}">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">DATA &amp; STORIES <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
@@ -35,7 +35,6 @@
         <li class="disabled"><a href="#">JOIN A MAP GROUP</a></li>
         <li class="divider"></li>
         <li class="disabled"><a href="#">ABOUT US</a></li>
-        <li class="disabled"><a href="#">PARTNERS</a></li>
         <li class="disabled"><a href="#">MARCO COUNCIL</a></li>
         <li class="disabled"><a href="#">CONTACT US</a></li>
         {% if user.is_authenticated and perms.wagtailadmin.can_access_admin %}

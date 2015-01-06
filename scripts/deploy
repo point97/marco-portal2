@@ -14,6 +14,7 @@ git checkout origin/$RELEASE
 cd $ASSET_DIR
 npm install
 ./node_modules/.bin/gulp
+webpack -p
 cd -
 rsync -avz --delete $STATIC_DIR $REMOTE_HOST:$REMOTE_ROOT/$STATIC_DIR
 
