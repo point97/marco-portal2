@@ -22,3 +22,10 @@
 {% endblock %}
 
 {% block media %}<div class="badge">{{ theme.layer_count }}</div>{% endblock %}
+{% block extra_js %}
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+{% endblock %}
