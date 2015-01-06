@@ -1,6 +1,5 @@
 {% extends "cms/section.html" %}
-{% load portal %}
 
 {% block content %}
-	{% index_listing parent_page=self item_template="calendar/event_detail.html" %}
+	{% include "portal/components/index_listing.html" with items=self.events item_template="calendar/event_detail.html" only %}
 {% endblock %}

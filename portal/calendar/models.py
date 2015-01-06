@@ -1,4 +1,7 @@
+from datetime import date
+
 from django.db import models
+from django.db.models import Q
 
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailcore.fields import RichTextField
@@ -49,8 +52,15 @@ class Event(Page):
 class Calendar(Page):
     subpage_types = ['Event']
 
-    def get_children(self):
-        return Event.objects.child_of(self)
+    def events(self):
+        # Get list of live event pages that are descendants of this page
+        events = Event.objects.live().child_of(self)
 
-# Get future events which contain the string "Christmas" in the title or description
-# >>> EventPage.objects.filter(date__gt=timezone.now()).search("Christmas")
+        # Filter events list to get ones that are either
+        # running now or start in the future
+        events = events.filter(Q(end_date__gte=date.today()) | Q(Q(end_date__isnull=True), Q(date__gte=date.today())))
+
+        # Order by date
+        events = events.order_by('date')
+
+        return events
