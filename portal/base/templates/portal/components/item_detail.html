@@ -5,25 +5,29 @@
     {% block feature %}
       <div class="feature">
         {% if item.feature_image %}
-          {% image item.feature_image fill-345x194 class="feature" %}
+          <a href="{{ item.url }}">
+            {% image item.feature_image fill-345x194 class="feature" %}
+          </a>
         {% endif %}
       </div>
     {% endblock %}
   {% endif %}
   <div class="media">
-    <div class="media-left" href="{% block media_href %}#{% endblock %}">
-      {% block media %}
-        <div class="badge">{{ badge_text }}</div>
-      {% endblock %}
+    <div class="media-left media-detail" href="{% block media_href %}#{% endblock %}">
+      <div class="media-inner">
+        {% block media %}
+          <div class="badge">{{ badge_text }}</div>
+        {% endblock %}
+      </div>
     </div>
     <div class="media-body">
       <h4 class="media-heading">{% block heading %}<a href="{{ item.url }}">{{ item.title }}</a>{% endblock %}</h4>
       <div class="item-text">
         {% block text %}
           {% if item.search_description %}
-            {{ item.search_description|truncatechars_html:256|richtext }}
+            {{ item.search_description|striptags|truncatechars:256 }}
           {% else %}
-            {{ item.description|truncatechars_html:256|richtext }}
+            {{ item.description|striptags|truncatechars:256 }}
           {% endif %}
         {% endblock %}
       </div>
