@@ -7,6 +7,14 @@ REMOTE_HOST="point97@midatlantic.point97.io"
 REMOTE_ROOT="~/webapps/marco_portal2/site"
 REMOTE_RESTART_CMD="~/webapps/marco_portal2/apache2/bin/restart"
 
+ssh $REMOTE_HOST << ENDSSH
+cd $REMOTE_ROOT
+git stash
+git fetch
+git checkout origin/$RELEASE
+ENDSSH
+
+
 # local
 git stash
 git fetch
@@ -17,22 +25,16 @@ npm install
 webpack -p
 cd -
 rsync -avz --delete $STATIC_DIR $REMOTE_HOST:$REMOTE_ROOT/$STATIC_DIR
-
 # restore previous branch
 git checkout @{-1}
 git stash pop
 
 
 ssh $REMOTE_HOST << ENDSSH
-cd $REMOTE_ROOT
-git stash
-git fetch
-git checkout origin/$RELEASE
 source ~/env/marco_portal2/bin/activate
 pip install -r requirements.txt
 ./manage.py migrate
 ./manage.py collectstatic -l --noinput
 ./manage.py compress
 ~/webapps/marco_portal2/apache2/bin/restart
-
 ENDSSH
