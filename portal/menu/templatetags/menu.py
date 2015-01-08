@@ -12,7 +12,7 @@ def menu(context, id):
         return
     
     path = context['request'].path
-    active = any([path.startswith(e.url) for e in menu.entries.all()])
+    active = any([path.startswith(e.destination) for e in menu.entries.all()])
     return {
         'menu': menu,
         'active': active,
