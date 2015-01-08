@@ -10,27 +10,20 @@ APP_DB_NAME=$PROJECT_NAME
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-# TODO: this should be in the base image
-apt-get install -y postgresql-9.3-postgis-2.1
-
-# Dependencies for OpenCV image feature detection
-apt-get install -y python-opencv python-numpy
+# # Dependencies for OpenCV image feature detection
+# apt-get install -y python-opencv python-numpy
 
 # Virtualenv setup for project
 su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DIR && \
+    source $VIRTUALENV_DIR/bin/activate && \
     echo $PROJECT_DIR > $VIRTUALENV_DIR/.project && \
-    PIP_DOWNLOAD_CACHE=/home/vagrant/.pip_download_cache $PIP install -r $PROJECT_DIR/requirements.txt"
+    ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts && \
+    cd $PROJECT_DIR && \
+    $PIP install --src ./deps -r requirements.txt"
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
 
-cat << EOF | su - postgres -c psql
--- uncomment to reset your DB
--- DROP DATABASE $APP_DB_NAME;
-CREATE DATABASE $APP_DB_NAME;
-\connect $APP_DB_NAME
-CREATE EXTENSION postgis;
-CREATE EXTENSION postgis_topology;
-EOF
+$PROJECT_NAME/scripts/reset_db $PROJECT_NAME
 
 # Set execute permissions on manage.py as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py
