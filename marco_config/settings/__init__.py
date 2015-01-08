@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 from os.path import abspath, dirname, join
+from social.backends.google import GooglePlusAuth
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
@@ -76,10 +77,7 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.google.GoogleOpenId',
-    'social.backends.google.GoogleOAuth2',
-    'social.backends.google.GoogleOAuth',
-    'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GooglePlusAuth',
     'social.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
@@ -149,7 +147,7 @@ TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
 # Wagtail settings
 
 LOGIN_URL = 'account:login'
-LOGIN_REDIRECT_URL = 'wagtailadmin_home'
+# LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
 
@@ -187,7 +185,79 @@ GEOJSON_SRID = 3857
 
 GEOJSON_DOWNLOAD = True  # force headers to treat like an attachment
 
+# authentication
+SOCIAL_AUTH_NEW_USER_URL = '/account/?new=true'
+SOCIAL_AUTH_FACBEOOK_NEW_USER_URL = '/account/?new=true&facebook'
+SOCIAL_AUTH_GOOGLE_PLUS_NEW_USER_URL = '/account/?new=true&gplus'
 
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/?login-redirect'
+SOCIAL_AUTH_GOOGLE_PLUS_LOGIN_REDIRECT_URL = '/account/?login-redirect&gplus'
+SOCIAL_AUTH_FACEBOOK_LOGIN_REDIRECT_URL = '/account/?login-redirect&facebook'
+
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '' 
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPES = (
+    'https://www.googleapis.com/auth/plus.login', # Minimum needed to login 
+    'https://www.googleapis.com/auth/plus.profile.emails.read', # emails
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# Our authentication pipeline
+SOCIAL_AUTH_PIPELINE = (
+    # Save any redirect destination, if any
+    'accounts.pipeline.save_redirect',                        
+                        
+    # Get the information we can about the user and return it in a simple
+    # format to create the user instance later. On some cases the details are
+    # already part of the auth response from the provider, but sometimes this
+    # could hit a provider API.
+    'social.pipeline.social_auth.social_details',
+
+    # Get the social uid from whichever service we're authing thru. The uid is
+    # the unique identifier of the given user in the provider.
+    'social.pipeline.social_auth.social_uid',
+
+    # Verifies that the current auth process is valid within the current
+    # project, this is were emails and domains whitelists are applied (if
+    # defined).
+    'social.pipeline.social_auth.auth_allowed',
+
+    # Checks if the current social-account is already associated in the site.
+    'social.pipeline.social_auth.social_user',
+
+    # Make up a username for this person, appends a random string at the end if
+    # there's any collision.
+    'social.pipeline.user.get_username',
+
+    # Send a validation email to the user to verify its email address.
+    # 'social.pipeline.mail.mail_validation',
+
+    # Associates the current social details with another user account with
+    # a similar email address.
+    # 'social.pipeline.social_auth.associate_by_email',
+
+    # Create a user account if we haven't found one yet.
+    'social.pipeline.user.create_user',
+
+    # Create the record that associated the social account with this user.
+    'social.pipeline.social_auth.associate_user',
+
+    # Populate the extra_data field in the social record with the values
+    # specified by settings (and the default ones like access_token, etc).
+    'social.pipeline.social_auth.load_extra_data',
+
+    # Update the user record with any changed info from the auth service.
+    'social.pipeline.user.user_details',
+    
+    # Set up default django permission groups for new users. 
+    'accounts.pipeline.add_groups',
+    
+    # Finally, redirect
+    'accounts.pipeline.redirect',
+)
 
 
 from .dev import *
