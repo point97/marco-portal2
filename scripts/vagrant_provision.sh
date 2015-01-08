@@ -10,11 +10,8 @@ APP_DB_NAME=$PROJECT_NAME
 PYTHON=$VIRTUALENV_DIR/bin/python
 PIP=$VIRTUALENV_DIR/bin/pip
 
-# TODO: this should be in the base image
-apt-get install -y postgresql-9.3-postgis-2.1
-
-# Dependencies for OpenCV image feature detection
-apt-get install -y python-opencv python-numpy
+# # Dependencies for OpenCV image feature detection
+# apt-get install -y python-opencv python-numpy
 
 # Virtualenv setup for project
 su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DIR && \
