@@ -18,32 +18,5 @@
     <li class="{% active 'planner' %}"><a href="{% url 'planner' %}"><span class="icon-marco oversized"></span>&nbsp; MARINE PLANNER</a></li>
     {% menu 1 %}
     {% menu 2 %}
-    <li class="dropdown {% active '^/(ocean-stories|data-catalog|data-gaps)/' %}">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">DATA &amp; STORIES <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="/ocean-stories">OCEAN STORIES</a></li>
-        <li><a href="/data-catalog">DATA CATALOG</a></li>
-        <li><a href="/data-gaps">DATA GAPS</a></li>
-        <li class="disabled"><a>REGIONAL OCEAN ASSESSMENT</a></li>
-        <li class="divider"></li>
-        <li class="disabled"><a>HOW TO USE OUR TOOLS</a></li>
-      </ul>
-    </li>
-    <li class="dropdown {% active '^/(calendar|styleguide)/' %}">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">GET INVOLVED <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="/calendar">CALENDAR OF EVENTS</a></li>
-        <li class="disabled"><a href="#">LATEST NEWS</a></li>
-        <li class="disabled"><a href="#">JOIN A MAP GROUP</a></li>
-        <li class="divider"></li>
-        <li class="disabled"><a href="#">ABOUT US</a></li>
-        <li class="disabled"><a href="#">MARCO COUNCIL</a></li>
-        <li class="disabled"><a href="#">CONTACT US</a></li>
-        {% if user.is_authenticated and perms.wagtailadmin.can_access_admin %}
-          <li class="divider"></li>
-          <li><a href="/styleguide">STYLE GUIDE</a></li>
-        {% endif %}
-      </ul>
-    </li>
   </ul>
 </div><!-- /.navbar-collapse -->
