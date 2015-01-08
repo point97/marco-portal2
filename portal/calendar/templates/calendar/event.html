@@ -1,5 +1,9 @@
-{% extends "cms_base.html" %}
+{% extends "layouts/detail.html" %}
 {% load wagtailcore_tags%}
 
-{% block content %}
+{% block back_text %}Calendar{% endblock %}
+
+{% block media %}
+  <div class="month">{{ self.date|date:"N" }}</div>
+  <div class="badge">{{ self.date|date:"j" }}</div>
 {% endblock %}

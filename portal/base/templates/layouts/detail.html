@@ -1,0 +1,23 @@
+{% extends "cms/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block page_header %}
+	<a href=".." class="back-button">{% block back_text %}{% endblock %}</a>
+	{% block detail %}
+		<div class="detail">
+			<div class="media">
+				<div class="media-left media-detail">
+					<div class="media-inner">
+						{% block media %}
+						{% endblock %}
+					</div>
+				</div>
+				<div class="media-body">
+					{% block media-body %}
+						{% include "cms/detail_frontmatter.html" %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endblock %}

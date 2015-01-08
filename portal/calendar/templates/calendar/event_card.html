@@ -1,0 +1,8 @@
+{% extends "portal/components/card.html" %}
+
+{% block media %}
+  <a href="{{ item.url }}">
+    <div class="month">{{ item.date|date:"N" }}</div>
+    <div class="badge">{{ item.date|date:"j" }}</div>
+  </a>
+{% endblock %}

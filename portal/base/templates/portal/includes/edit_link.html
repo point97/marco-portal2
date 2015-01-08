@@ -1,0 +1,4 @@
+{% load icon %}
+{% if perms.wagtailadmin.access_admin %}
+  <a href="{% url 'wagtailadmin_pages_edit' self.id %}">{% icon 'edit' %}</a>
+{% endif %}

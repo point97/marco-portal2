@@ -1,5 +1,7 @@
-{% extends "cms_base.html" %}
-{% load wagtailcore_tags%}
+{% extends "layouts/detail.html" %}
 
-{% block content %}
+{% block back_text %}Gaps{% endblock %}
+
+{% block media %}
+<a class="badge">{{ self.target_year|default:"NEED" }}</a>
 {% endblock %}

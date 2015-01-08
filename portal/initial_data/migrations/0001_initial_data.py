@@ -29,12 +29,12 @@ def create_initial_data(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ocean_stories', '__latest__'),
-        ('calendar', '__latest__'),
-        ('data_gaps', '__latest__'),
-        ('data_catalog', '__latest__'),
-        ('home', '__latest__'),
-
+        ('ocean_stories', '0001_initial'),
+        ('calendar', '0001_initial'),
+        ('data_gaps', '0001_initial'),
+        ('data_catalog', '0001_initial'),
+        ('home', '0001_initial'),
+    
     ]
 
     operations = [

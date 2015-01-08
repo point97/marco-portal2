@@ -2,8 +2,10 @@ from django.db import models
 
 from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel
+from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiFieldPanel
 from modelcluster.fields import ParentalKey
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.models import Image
 
 from django.core.exceptions import ValidationError
 import json
@@ -19,7 +21,7 @@ except ImportError: from urllib.parse import unquote
 # The abstract model for ocean story sections, complete with panels
 class OceanStorySectionBase(models.Model):
     title = models.CharField(max_length=255, blank=True)
-    body = RichTextField()
+    body = RichTextField(blank=True)
     map_state = models.TextField()
 
     panels = [
@@ -59,6 +61,7 @@ class OceanStorySectionBase(models.Model):
         return s
 
     def clean(self):
+        super(OceanStorySectionBase, self).clean()
         try:
             self.parsed_map_state
         except:
@@ -73,9 +76,24 @@ class OceanStorySection(Orderable, OceanStorySectionBase):
 class OceanStories(Page):
     subpage_types = ['OceanStory']
 
+    def get_children(self):
+        return OceanStory.objects.child_of(self)
+
 class OceanStory(Page):
     parent_page_types = ['OceanStories']
     subpage_types = []
+
+    hook = models.CharField(max_length=256, blank=True, null=True)
+    explore_title = models.CharField(max_length=256, blank=True, null=True)
+    explore_url = models.URLField(max_length=4096, blank=True, null=True)
+
+    feature_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     @property
     def as_json(self):
@@ -85,7 +103,14 @@ class OceanStory(Page):
             o = {'sections': []}
         return json.dumps(o);
 
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        ImageChooserPanel('feature_image'),
+    ]
+
+
 OceanStory.content_panels = [
     FieldPanel('title'),
+    MultiFieldPanel([FieldPanel('hook'), FieldPanel('explore_title'), FieldPanel('explore_url')], "Map overlay"),
     InlinePanel( OceanStory, 'sections', label="Story Sections" ),
 ]

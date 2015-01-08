@@ -1,1 +1,5 @@
-{% extends "portal/index_page.html" %}
+{% extends "cms/section.html" %}
+
+{% block content %}
+	{% include "portal/components/index_listing.html" with items=self.events item_template="calendar/event_card.html" only %}
+{% endblock %}

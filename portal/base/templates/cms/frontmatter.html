@@ -1,0 +1,17 @@
+{% load wagtailcore_tags%}
+
+{% block title %}<h1>{{ self.title }}</h1>{% endblock %}
+
+{% include 'portal/includes/edit_link.html' %}
+
+{% if self.description %}
+	<div class="description">
+		{{ self.description|richtext }}
+	</div>
+{% endif %}
+
+{% if self.body %}
+	<div class="page-body">
+		{{ self.body|richtext }}
+	</div>
+{% endif %}

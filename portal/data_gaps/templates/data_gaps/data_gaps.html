@@ -1,1 +1,5 @@
-{% extends "portal/index_page.html" %}
+{% extends "cms/section.html" %}
+
+{% block content %}
+	{% include "portal/components/index_listing.html" with items=self.get_children.live item_template="data_gaps/data_gap_card.html" only %}
+{% endblock %}

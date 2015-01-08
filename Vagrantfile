@@ -23,6 +23,13 @@ Vagrant::Config.run do |config|
     # If a 'Vagrantfile.local' file exists, import any configuration settings
     # defined there into here. Vagrantfile.local is ignored in version control,
     # so this can be used to add configuration specific to this computer.
+
+  config.vm.customize [
+                        "modifyvm", :id,
+                        "--name", "Test_Environment",
+                        "--memory", "2048"
+                      ]
+    
     if File.exist? "Vagrantfile.local"
         instance_eval File.read("Vagrantfile.local"), "Vagrantfile.local"
     end
