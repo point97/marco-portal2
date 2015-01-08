@@ -17,6 +17,7 @@ PIP=$VIRTUALENV_DIR/bin/pip
 su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DIR && \
     echo $PROJECT_DIR > $VIRTUALENV_DIR/.project && \
     PIP_DOWNLOAD_CACHE=/home/vagrant/.pip_download_cache $PIP install -r $PROJECT_DIR/requirements.txt"
+    $PIP install --src ./deps -r requirements.txt"
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
 
