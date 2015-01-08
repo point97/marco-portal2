@@ -1,0 +1,10 @@
+{% if menu %}
+<li class="dropdown {% if active %} active{% endif %}">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ menu.title }} <span class="caret"></span></a>
+  <ul class="dropdown-menu" role="menu">
+    {% for entry in menu.entries.all %}
+      <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+    {% endfor %}
+  </ul>
+</li>
+{% endif %}

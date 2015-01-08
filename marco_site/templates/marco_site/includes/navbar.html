@@ -1,4 +1,4 @@
-{% load static portal %}
+{% load static portal menu %}
 <!-- Brand and toggle get grouped for better mobile display -->
 <div class="navbar-header">
   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -16,6 +16,8 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   <ul class="nav navbar-nav navbar-right">
     <li class="{% active 'planner' %}"><a href="{% url 'planner' %}"><span class="icon-marco oversized"></span>&nbsp; MARINE PLANNER</a></li>
+    {% menu 1 %}
+    {% menu 2 %}
     <li class="dropdown {% active '^/(ocean-stories|data-catalog|data-gaps)/' %}">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">DATA &amp; STORIES <span class="caret"></span></a>
       <ul class="dropdown-menu" role="menu">
