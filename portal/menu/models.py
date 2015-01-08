@@ -13,10 +13,13 @@ class MenuEntryBase(models.Model):
 
     title = models.CharField(max_length=255)
     url = models.CharField(null=True, blank=True, max_length=4096)
+    show_divider_underneath = models.BooleanField(default=False)
+
 
     panels = [
         FieldPanel('title'),
         FieldPanel('url'),
+        FieldPanel('show_divider_underneath'),
     ]
 
     def __unicode__(self):

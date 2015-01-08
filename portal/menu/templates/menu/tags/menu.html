@@ -4,7 +4,10 @@
   <ul class="dropdown-menu" role="menu">
     {% for entry in menu.entries.all %}
       <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
-    {% endfor %}
+      {% if entry.show_divider_underneath %}
+      <li class="divider"></li>
+      {% endif %}
+      {% endfor %}
   </ul>
 </li>
 {% endif %}
