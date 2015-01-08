@@ -15,9 +15,10 @@ PIP=$VIRTUALENV_DIR/bin/pip
 
 # Virtualenv setup for project
 su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DIR && \
+    source $VIRTUALENV_DIR/bin/activate && \
     echo $PROJECT_DIR > $VIRTUALENV_DIR/.project && \
-    PIP_DOWNLOAD_CACHE=/home/vagrant/.pip_download_cache $PIP install -r $PROJECT_DIR/requirements.txt"
     ssh-keyscan -H bitbucket.org >> ~/.ssh/known_hosts && \
+    cd $PROJECT_DIR && \
     $PIP install --src ./deps -r requirements.txt"
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
