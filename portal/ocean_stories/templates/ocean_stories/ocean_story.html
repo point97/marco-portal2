@@ -12,22 +12,24 @@
     <div class="curtain">
         <div id="ocean-story-map"></div>
     </div>
+    {% if self.explore_title %}
     <div class="curtain overlay">
-      <a class="view-data" href='/visualize'>View data layers in Marine Planner</a>
+      <a class="view-data" href='{{ self.explore_url }}'>{{ self.explore_title }}</a>
     </div>
+    {% endif %}
     <div class="intro overlay">
       <div class="center">
         <div class="container">
           <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
-          <div class="hook">This is an invitation to speak up about ocean planning.</div>
+          {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
         </div>
       </div>
-      {% with page=self.get_prev_sibling %}
+      {% with page=self.get_prev_siblings.live.first %}
         {% if page %}
           <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
         {% endif %}
       {% endwith %}
-      {% with page=self.get_next_sibling %}
+      {% with page=self.get_next_siblings.live.first %}
         {% if page %}
           <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
         {% endif %}

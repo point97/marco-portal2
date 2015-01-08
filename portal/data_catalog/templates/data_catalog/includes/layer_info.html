@@ -1,0 +1,96 @@
+<h3>
+  <span class="layer-name catalog-tooltip" rel="popover"
+  data-name="{{layer.name}}"
+  data-thumbnail="{{layer.thumbnail}}"
+  data-content="{% if layer.tooltip %} {{layer.tooltip}} {% endif %}">{{layer.name}}
+  </span>
+  {% if layer.parent %}
+    <span class="layer-parent-name">
+      / {{ layer.parent.name }}
+    </span>
+  {% endif %}
+</h3>
+
+<ul class="layer-links">
+  <li>
+    {% if layer.bookmark_link %}
+    <a href="{{layer.bookmark_link}}" target="_blank">
+      <span rel="tooltip" title="data_catalog_view_link_tooltip">
+        data_catalog_view_link
+      </span>
+    </a>
+    {% else %}
+    <span class="link-not-available">
+      data_catalog_view_link
+    </span>
+    {% endif %}
+  </li>
+  <li>
+    {% if layer.kml %}
+    <a href="{{layer.kml}}" target="_blank">
+      <span rel="tooltip" title="data_catalog_kml_link_tooltip">
+        data_catalog_kml_link
+      </span>
+    </a>
+    {% else %}
+    <span class="link-not-available">
+      data_catalog_kml_link
+    </span>
+    {% endif %}
+  </li>
+  <li>
+    {% if layer.data_download_link %}
+    <a href="{{layer.data_download_link}}" target="_blank">
+      <span rel="tooltip" title="data_catalog_data_link_tooltip">
+        data_catalog_data_link
+      </span>
+    </a>
+    {% else %}
+    <span class="link-not-available">
+      data_catalog_data_link
+    </span>
+    {% endif %}
+  </li>
+  <li>
+    {% if layer.description_link %}
+    <a href="{{layer.description_link}}">
+      <span rel="tooltip" title="data_catalog_factsheet_link_tooltip">
+        data_catalog_factsheet_link
+      </span>
+    </a>
+    {% else %}
+    <span class="link-not-available">
+      data_catalog_factsheet_link
+    </span>
+    {% endif %}
+  </li>
+  <li>
+    {% if layer.metadata_link %}
+    <a href="{{layer.metadata_link}}" target="_blank">
+      <span rel="tooltip" title="data_catalog_metadata_link_tooltip">
+        data_catalog_metadata_link
+      </span>
+    </a>
+    {% else %}
+    <span class="link-not-available">
+      data_catalog_metadata_link
+    </span>
+    {% endif %}
+  </li>
+  <li>
+    {% if layer.source_link %}
+    <a href="{{layer.source_link}}" target="_blank">
+      <span rel="tooltip" title="data_catalog_source_link_tooltip">
+        data_catalog_source_link
+      </span>
+    </a>
+    {% else %}
+    <span class="link-not-available">
+      data_catalog_source_link
+    </span>
+    {% endif %}
+  </li>
+</ul>
+<p class="description">{{layer.description}}</p>
+<p class="source"><strong>Source:</strong> <a href="{{layer.source}}">{{layer.data_source}}</a></p>
+<p class="notes"><strong>Notes:</strong> {{layer.data_overview}}</p>

@@ -83,6 +83,10 @@ class OceanStory(Page):
     parent_page_types = ['OceanStories']
     subpage_types = []
 
+    hook = models.CharField(max_length=256, blank=True, null=True)
+    explore_title = models.CharField(max_length=256, blank=True, null=True)
+    explore_url = models.URLField(max_length=4096, blank=True, null=True)
+
     feature_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
@@ -107,5 +111,6 @@ class OceanStory(Page):
 
 OceanStory.content_panels = [
     FieldPanel('title'),
+    MultiFieldPanel([FieldPanel('hook'), FieldPanel('explore_title'), FieldPanel('explore_url')], "Map overlay"),
     InlinePanel( OceanStory, 'sections', label="Story Sections" ),
 ]

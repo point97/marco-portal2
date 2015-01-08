@@ -1,4 +1,5 @@
 .navbar {
+  z-index: 2000;
   border: 0;
   li > a {
     font-weight: 900;
@@ -19,6 +20,18 @@
 }
 
 @media (min-width: @grid-float-breakpoint) {
+  .navbar-nav > li {
+    &.active:after{
+      background: @brand-success;
+      border-radius: 2px;
+      height: 4px;
+      bottom: 14px;
+      content: "";
+      position: absolute;
+      width: 100%;
+    }
+  }
+
   .dropdown-menu {
     > li {
       > a {
