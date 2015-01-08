@@ -23,14 +23,7 @@ su - vagrant -c "/usr/local/bin/virtualenv --system-site-packages $VIRTUALENV_DI
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
 
-cat << EOF | su - postgres -c psql
--- uncomment to reset your DB
--- DROP DATABASE $APP_DB_NAME;
-CREATE DATABASE $APP_DB_NAME;
-\connect $APP_DB_NAME
-CREATE EXTENSION postgis;
-CREATE EXTENSION postgis_topology;
-EOF
+$PROJECT_NAME/scripts/reset_db $PROJECT_NAME
 
 # Set execute permissions on manage.py as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py
