@@ -7,3 +7,23 @@
   <div class="month">{{ self.date|date:"N" }}</div>
   <div class="badge">{{ self.date|date:"j" }}</div>
 {% endblock %}
+{% block media-body %}
+  {{ block.super }}
+    <div class="location">
+      <h4>Location</h4>
+      <div>{{ self.location|linebreaks }}</div>
+      <a href="https://maps.google.com?q={{ self.location }}"><i class="fa fa-map-marker"></i> Show on map</a>
+    </div>
+    <div class="when">
+      <h4>When</h4>
+      <span class="start-date">
+        {{ self.date|date:"D, N j" }}
+      </span>
+      {% if self.end_date %}
+        &mdash;
+        <span class="end-date">
+          {{ self.end_date|date:"D, N j" }}
+        </span>
+      {% endif %}
+      </div>
+{% endblock %}  
