@@ -1,0 +1,34 @@
+{% load static menu %}
+<div class="footer-inner">
+  <div class="info">
+    <a class="footer-brand" href="/">
+      <img src="{% static 'brand/MARCO_portal_logo_wht_yellow_recropped.svg' %}"></img>
+    </a>
+    <p class="about-text">Welcome to the Mid-Atlantic Ocean Data Portal, an ocean planning resource center, and the <a href="{% url 'planner' %}">Marine Planner</a>, an Interactive mapping tool.</p>
+    <form class="form-inline">
+      <div class="form-group">
+        <label class="sr-only" for="emailSignup">Sign up for our email list</label>
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </div>
+          <input type="text" class="form-control" id="emailSignup" placeholder="Sign up for our email list">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary">&rarr;</button>
+          </span>
+        </div>
+      </div>
+    </form>
+    <div class="contact">
+      <a class="email" href="mailto:portal@midatlanticocean.org">portal@midatlanticocean.org</a>
+       • 
+      <a class="tel" href="tel:+17322635392">(732) 263-5392</a>
+    </div>
+  </div>
+  <div class="menu">
+    {% menu 1 "plain" %}
+  </div>
+  <div class="menu">
+    {% menu 2 "plain" %}
+  </div>
+</div>
