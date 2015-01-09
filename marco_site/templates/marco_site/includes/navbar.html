@@ -46,7 +46,6 @@
     {% if user.is_authenticated %}
         <a href="{% url 'account:index' %}">{{ user.first_name }} <span class="fa fa-user"></span></a>
     {% else %}
-        <a href="{% url 'account:index' %}">LOG IN <span class="fa fa-user"></span></a>
         <a href="{% url 'account:index' %}?next={{ request.path }}">LOG IN <span class="fa fa-user"></span></a>
     {% endif %}
     </li>

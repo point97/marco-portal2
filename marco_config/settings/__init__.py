@@ -79,6 +79,7 @@ INSTALLED_APPS = (
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GooglePlusAuth',
     'social.backends.facebook.FacebookOAuth2',
+    'social.backends.email.EmailAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -138,6 +139,7 @@ from django.conf import global_settings
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    'social.apps.django_app.context_processors.backends',
 )
 
 TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
@@ -186,13 +188,13 @@ GEOJSON_SRID = 3857
 GEOJSON_DOWNLOAD = True  # force headers to treat like an attachment
 
 # authentication
-SOCIAL_AUTH_NEW_USER_URL = '/account/?new=true'
-SOCIAL_AUTH_FACBEOOK_NEW_USER_URL = '/account/?new=true&facebook'
-SOCIAL_AUTH_GOOGLE_PLUS_NEW_USER_URL = '/account/?new=true&gplus'
+SOCIAL_AUTH_NEW_USER_URL = '/account/?new=true&login=django'
+SOCIAL_AUTH_FACBEOOK_NEW_USER_URL = '/account/?new=true&login=facebook'
+SOCIAL_AUTH_GOOGLE_PLUS_NEW_USER_URL = '/account/?new=true&login=gplus'
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/?login-redirect'
-SOCIAL_AUTH_GOOGLE_PLUS_LOGIN_REDIRECT_URL = '/account/?login-redirect&gplus'
-SOCIAL_AUTH_FACEBOOK_LOGIN_REDIRECT_URL = '/account/?login-redirect&facebook'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/?login=django'
+SOCIAL_AUTH_GOOGLE_PLUS_LOGIN_REDIRECT_URL = '/account/?login=gplus'
+SOCIAL_AUTH_FACEBOOK_LOGIN_REDIRECT_URL = '/account/?login=facebook'
 
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
 SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '' 
@@ -205,11 +207,11 @@ SOCIAL_AUTH_FACEBOOK_KEY = ''
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
+SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
+SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'account.pipeline.send_validation_email'
+
 # Our authentication pipeline
 SOCIAL_AUTH_PIPELINE = (
-    # Save any redirect destination, if any
-    'accounts.pipeline.save_redirect',                        
-                        
     # Get the information we can about the user and return it in a simple
     # format to create the user instance later. On some cases the details are
     # already part of the auth response from the provider, but sometimes this
@@ -233,7 +235,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.get_username',
 
     # Send a validation email to the user to verify its email address.
-    # 'social.pipeline.mail.mail_validation',
+    'social.pipeline.mail.mail_validation',
 
     # Associates the current social details with another user account with
     # a similar email address.
@@ -255,8 +257,10 @@ SOCIAL_AUTH_PIPELINE = (
     # Set up default django permission groups for new users. 
     'accounts.pipeline.add_groups',
     
-    # Finally, redirect
-    'accounts.pipeline.redirect',
+    
+    
+        
+    'social.pipeline.debug.debug',
 )
 
 
