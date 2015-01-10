@@ -27,9 +27,8 @@
         <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">
           <div class="container">
             {% include 'marco_site/includes/navbar.html' %}
-          </div><!-- /.container-fluid -->
+          </div>
         </nav>
-
       {% endblock %}
     </header>
     {% block outer_content %}
@@ -45,6 +44,13 @@
         </div>
         {% block containerless_content %}{% endblock %}
       </div>
+      <footer>
+        {% block footer %}
+          <div class="container">
+            {% include 'marco_site/includes/footer.html' %}
+          </div>
+        {% endblock %}
+      </footer>
     {% endblock %}
 
     {% ga %}
@@ -56,6 +62,8 @@
 
     {% block extra_js %}{% endblock %}
 
-    {% feedback %}
+    <div class="container transparent-sticky-footer">
+      {% feedback %}
+    </div>
   </body>
 </html>

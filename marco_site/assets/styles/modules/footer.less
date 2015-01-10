@@ -1,0 +1,71 @@
+body footer {
+  @gutter: 4em;
+  @padding: 10px 0;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  background-color: @deep-blue;
+  color: @white;
+  a, a:hover {
+    color: @yellow;
+  }
+
+  .footer-inner {
+    & > * > * {
+      padding: @padding;
+    }
+    .make-row;
+    .info {
+      .make-md-column(6);
+      padding: 0 @gutter;
+    }
+    .menu {
+      .make-md-column(3);
+      padding: 0 @gutter;
+    }
+  }
+
+  h4 {
+    font: 12px @font-family-condensed;
+    
+    color: @yellow;
+    text-transform: uppercase;
+  }
+  
+  .info {
+    padding: 0 @gutter/2;
+    border-right: 1px solid @yellow;
+  }
+
+  .footer-brand {
+    margin: 10px 0;
+    img {
+      padding: 2px 0;
+      height: 25px;
+    }
+  }
+  .about-text {
+    font-size: 17px;
+    line-height: 32px;
+  }
+  .contact {
+    font-size: 12px;
+    color: @yellow;
+    > a {
+      color: @white;
+    }
+  }
+
+  .menu {
+    > ul {
+      padding-left: 0;
+      font-weight: 500;
+      > li {
+        list-style-type: none;
+        padding: @padding;
+        > a {
+          color: @white;
+        }
+      }
+    }
+  }
+}
