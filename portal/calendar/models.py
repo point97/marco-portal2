@@ -27,7 +27,7 @@ class Event(Page):
     date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
 
-    location = models.CharField(null=True, blank=True, max_length=255)
+    location = models.TextField(null=True, blank=True, max_length=1024)
 
     search_fields = Page.search_fields + ( # Inherit search_fields from Page
         index.SearchField('description'),
