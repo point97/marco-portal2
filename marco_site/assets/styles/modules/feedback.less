@@ -1,3 +1,16 @@
+.transparent-sticky-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  // height: 60px;
+  z-index: 1000;
+  pointer-events: none;
+  > * {
+    pointer-events: auto;
+  }
+}
+
 .template-visualize {
   .feedback-button {
     top: 95px;
@@ -6,10 +19,7 @@
   }
 }
 .feedback-button {
-  position: fixed;
-  right: 6px;
-  bottom: 6px;
-  z-index: 1000;
+  float: right;
 }
 
 #feedback-modal {
