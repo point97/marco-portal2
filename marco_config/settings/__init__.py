@@ -79,7 +79,6 @@ INSTALLED_APPS = (
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GooglePlusAuth',
     'social.backends.facebook.FacebookOAuth2',
-    'social.backends.email.EmailAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -207,8 +206,10 @@ SOCIAL_AUTH_FACEBOOK_KEY = ''
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
-SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
-SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'account.pipeline.send_validation_email'
+# SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
+SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'accounts.pipeline.send_validation_email'
+
+SOCIAL_AUTH_EMAIL_VALIDATION_URL = '/account/validate'
 
 # Our authentication pipeline
 SOCIAL_AUTH_PIPELINE = (
@@ -237,10 +238,6 @@ SOCIAL_AUTH_PIPELINE = (
     # Send a validation email to the user to verify its email address.
     'social.pipeline.mail.mail_validation',
 
-    # Associates the current social details with another user account with
-    # a similar email address.
-    # 'social.pipeline.social_auth.associate_by_email',
-
     # Create a user account if we haven't found one yet.
     'social.pipeline.user.create_user',
 
@@ -253,15 +250,16 @@ SOCIAL_AUTH_PIPELINE = (
 
     # Update the user record with any changed info from the auth service.
     'social.pipeline.user.user_details',
-    
+
     # Set up default django permission groups for new users. 
-    'accounts.pipeline.add_groups',
+    'accounts.pipeline.set_user_permissions',
     
-    
-    
-        
     'social.pipeline.debug.debug',
 )
+
+DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
+SERVER_EMAIL = "MARCO Site Errors <developers@pointnineseven.com>"
+EMAIL_SUBJECT_PREFIX = '[MARCO] ' # for mail to admins/managers only
 
 
 from .dev import *
