@@ -99,7 +99,6 @@
   }
 
   .content {
-    margin-top: calc(50vh ~"-" @navbar-height);
     a.anchor {
       display: block;
       position: relative;
@@ -108,9 +107,9 @@
     }
   }
 
-
-  // could add :last-child
-  section {
-    min-height: 50vh;
+  a.anchor.active + * {
+    > h2 {
+      color: @brand-success;
+    }
   }
 }
