@@ -1,8 +1,6 @@
 body footer {
-  @gutter: 4em;
-  @padding: 10px 0;
-  padding-top: 2em;
-  padding-bottom: 1em;
+  @gutter: 52px;
+  @margin: 10px 0;
   background-color: @deep-blue;
   color: @white;
   a, a:hover {
@@ -10,18 +8,19 @@ body footer {
   }
 
   .footer-inner {
-    & > * > * {
-      padding: @padding;
+    & > * {
+      margin-top: 2em;
+      margin-bottom: 1em;
+      > * {
+        margin: @margin;
+      }
     }
     .make-row;
     .info {
       .make-md-column(6);
     }
     .menu {
-      > * {
-        padding-left: @gutter;
-      }
-      .make-md-column(2);
+      .make-md-column(3);
     }
   }
 
@@ -60,12 +59,14 @@ body footer {
   }
 
   .menu {
+    > * {
+      padding-left: @gutter;
+    }
     > ul {
-      padding-left: 0;
       font-weight: 500;
       > li {
         list-style-type: none;
-        padding: @padding;
+        padding: @margin;
         > a {
           color: @white;
         }
