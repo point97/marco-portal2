@@ -21,7 +21,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="{% block body_class %}classless-page{% endblock %}">
+  <body class="{% block body_class %}classless-page{% endblock %} {% block layout %}base{% endblock %}-layout">
     <header>
       {% block header %}
         <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">

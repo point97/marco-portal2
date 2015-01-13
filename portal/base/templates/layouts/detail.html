@@ -1,6 +1,7 @@
 {% extends "cms/base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
+{% block layout %}detail{% endblock %}
 {% block page_header %}
 	<a href=".." class="back-button">{% block back_text %}{% endblock %}</a>
 	{% block detail %}

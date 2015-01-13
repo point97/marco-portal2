@@ -5,4 +5,4 @@ register = template.Library()
 
 @register.simple_tag
 def icon(name):
-    return '<i class="fa fa-%s fa-2x"></i>' % name
+    return '<i class="fa fa-%s"></i>' % name
