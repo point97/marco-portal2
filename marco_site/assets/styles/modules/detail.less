@@ -6,7 +6,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: @lines;
 	// fallback
-	height: @font-size-base*@line-height-base*@lines;
+	height: 1em*@line-height-base*@lines;
 }
 .overflow-on-hover(@background: @gray-light) {
 	&:hover {
@@ -17,7 +17,7 @@
 		> * {
 			display: block;
 			background: @background;
-			padding-bottom: @font-size-base*@line-height-base/2;
+			padding-bottom: 1em*@line-height-base/2;
 		}
 	}
 }
@@ -65,6 +65,7 @@
 			.overflow-on-hover;
 		}
 		.item-text {
+			font-size: 11px;
 			.ellipsis(@lines: 4);
 		}
 	}

@@ -1,6 +1,6 @@
 // Core variables and mixins
 @import "variables";
-@import "bootstrap/mixins";
+@import "mixins";
 
 // Reset and dependencies
 @import "bootstrap/normalize";
@@ -49,7 +49,8 @@
 @import "bootstrap/responsive-utilities";
 
 @import "modules/navbar";
-@import "modules/layout";
+@import "modules/page_header";
+@import "modules/content";
 @import "modules/footer";
 @import "modules/user_content";
 @import "modules/type";
@@ -57,7 +58,10 @@
 @import "modules/grid_view";
 @import "modules/detail";
 
-@import "pages/detail";
+@import "layouts/page";
+@import "layouts/section";
+@import "layouts/detail";
+
 @import "pages/styleguide";
 @import "pages/marine_planner";
 @import "pages/ocean_story";
