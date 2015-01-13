@@ -34,7 +34,7 @@ module.exports = function(containerSelector, sectionSelector, callback) {
   }
 
   function handleResize() {
-    offset = -$( this ).height() / 4;
+    offset = -$( this ).height() / 6;
     handleScroll();
   }
 
