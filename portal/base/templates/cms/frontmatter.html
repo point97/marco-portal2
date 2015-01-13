@@ -1,7 +1,8 @@
 {% load wagtailcore_tags%}
 
-{% block title %}<h1>{% include 'portal/includes/edit_link.html' %} {{ self.title }}</h1>{% endblock %}
-
+<div class="title-line">
+	{% block title %}<h1>{% include 'portal/includes/edit_link.html' %} {{ self.title }}</h1>{% endblock %}
+</div>
 
 {% if self.description %}
 	<div class="description">
