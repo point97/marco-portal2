@@ -11,86 +11,35 @@
   {% endif %}
 </h3>
 
-<ul class="layer-links">
-  <li>
-    {% if layer.bookmark_link %}
-    <a href="{{layer.bookmark_link}}" target="_blank">
-      <span rel="tooltip" title="data_catalog_view_link_tooltip">
-        data_catalog_view_link
-      </span>
+<div class="link-bar">
+  <span data-toggle="tooltip" data-placement="bottom" title="View in Marine Planner">
+    <a class="btn btn-mini{% if not layer.bookmark_link %} disabled{% endif %}" href="{{layer.bookmark_link}}">
+      view <span class="icon-marco"></span>
     </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_view_link
-    </span>
-    {% endif %}
-  </li>
-  <li>
-    {% if layer.kml %}
-    <a href="{{layer.kml}}" target="_blank">
-      <span rel="tooltip" title="data_catalog_kml_link_tooltip">
-        data_catalog_kml_link
-      </span>
+  </span>
+  <span data-toggle="tooltip" data-placement="bottom" title="Download for Google Maps">
+    <a class="btn btn-mini{% if not layer.kml %} disabled{% endif %}" href="{{layer.kml}}">
+      kml <i class="fa fa-arrow-down"></i>
     </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_kml_link
-    </span>
-    {% endif %}
-  </li>
-  <li>
-    {% if layer.data_download_link %}
-    <a href="{{layer.data_download_link}}" target="_blank">
-      <span rel="tooltip" title="data_catalog_data_link_tooltip">
-        data_catalog_data_link
-      </span>
+  </span>
+  <span data-toggle="tooltip" data-placement="bottom" title="Download ESRI Formatted Dataset">
+    <a class="btn btn-mini{% if not layer.data_download_link %} disabled{% endif %}" href="data_download_link">
+      data <i class="fa fa-arrow-down"></i>
     </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_data_link
-    </span>
-    {% endif %}
-  </li>
-  <li>
-    {% if layer.description_link %}
-    <a href="{{layer.description_link}}">
-      <span rel="tooltip" title="data_catalog_factsheet_link_tooltip">
-        data_catalog_factsheet_link
-      </span>
+  </span>
+  <span data-toggle="tooltip" data-placement="bottom" title="Download Metadata">
+    <a class="btn btn-mini{% if not layer.metadata_link %} disabled{% endif %}" href="metadata_link">
+      metadata <i class="fa fa-arrow-down"></i>
     </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_factsheet_link
-    </span>
-    {% endif %}
-  </li>
-  <li>
-    {% if layer.metadata_link %}
-    <a href="{{layer.metadata_link}}" target="_blank">
-      <span rel="tooltip" title="data_catalog_metadata_link_tooltip">
-        data_catalog_metadata_link
-      </span>
+  </span>
+  <span data-toggle="tooltip" data-placement="bottom" title="{{ layer.data_source }}">
+    <a class="btn btn-mini{% if not layer.source %} disabled{% endif %}" href="">
+      source <i class="fa fa-external-link-square"></i>
     </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_metadata_link
-    </span>
-    {% endif %}
-  </li>
-  <li>
-    {% if layer.source_link %}
-    <a href="{{layer.source_link}}" target="_blank">
-      <span rel="tooltip" title="data_catalog_source_link_tooltip">
-        data_catalog_source_link
-      </span>
-    </a>
-    {% else %}
-    <span class="link-not-available">
-      data_catalog_source_link
-    </span>
-    {% endif %}
-  </li>
-</ul>
+  </span>
+</div>
+
+
 <p class="description">{{layer.description}}</p>
 <p class="source"><strong>Source:</strong> <a href="{{layer.source}}">{{layer.data_source}}</a></p>
 <p class="notes"><strong>Notes:</strong> {{layer.data_overview}}</p>

@@ -9,7 +9,7 @@ var gulp = require('gulp')
     bower = require('gulp-bower')
     browserSync = require('browser-sync')
     webpackConfig = require('./webpack.config')
-    webpack = require('webpack')(webpackConfig);
+    webpack = require('webpack');
 
 var config = {
     stylePath: './styles',
@@ -23,13 +23,8 @@ gulp.task('bower', function() {
         .pipe(gulp.dest(config.bowerDir))
 });
 
-gulp.task('icons', function() {
-    return gulp.src(config.bowerDir + '/bootstrap-sass-official/assets/fonts/bootstrap/*')
-        .pipe(gulp.dest(config.outDir + '/fonts/bootstrap'));
-});
-
 gulp.task("webpack", function(callback) {
-  webpack.run(function(err, stats) {
+  webpack(webpackConfig).run(function(err, stats) {
     if(err) throw new gutil.PluginError("webpack", err);
     gutil.log("[webpack]", stats.toString({
       // output options
@@ -39,7 +34,7 @@ gulp.task("webpack", function(callback) {
 });
 
 gulp.task("webpack-watch", function(callback) {
-  webpack.watch(200, function(err, stats) {
+  webpack(webpackConfig).watch(200, function(err, stats) {
     if(err) throw new gutil.PluginError("webpack", err);
     gutil.log("[webpack]", stats.toString({
       // output options
@@ -55,21 +50,24 @@ gulp.task('css', function(){
   .on("error", notify.onError(function (error) {
     return "Error: " + error.message;
   }))
-  .pipe(autoprefix('last 2 version'))
+  .pipe(autoprefix())
   .pipe(gulp.dest(config.outDir + '/css'));
 });
 
 gulp.task('browser-sync', function(cb) {
   browserSync({
     proxy: "localhost:8111",
-    open: true,
-    files: ["../static/css/*.css","../static/bundles/*.js"],
+    open: false,
+    // tunnel: true,
+    
+    // ghostMode: true,
+    files: "../static/**/*",
   }, cb);
 });
 
 // Rerun the task when a file changes
-gulp.task('watch', ['webpack-watch', 'browser-sync'], function() {
+gulp.task('watch', ['browser-sync', 'webpack-watch'], function() {
     gulp.watch(config.stylePath + '/**/*.less', ['css']);
 });
 
-gulp.task('default', ['bower', 'icons', 'webpack', 'css']);
+gulp.task('default', ['bower', 'webpack', 'css']);

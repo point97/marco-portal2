@@ -10,16 +10,16 @@ def theme_query():
         }
     )
 
-def index(request):
-    template='data_catalog/index.html'
+def catalog(request):
+    template='data_catalog/catalog.html'
     themes = theme_query()
 
     return render_to_response(template, RequestContext(request, {'themes': themes}))
 
-def detail(request, theme_slug):
+def theme(request, theme_slug):
 
     theme = get_object_or_404(theme_query(), name=theme_slug)
-    template = 'data_catalog/detail.html'
+    template = 'data_catalog/theme.html'
 
     layers = theme.layer_set.exclude(layer_type='placeholder').order_by('name').select_related('parent');
 

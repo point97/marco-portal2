@@ -1,4 +1,4 @@
-{% load compress static wagtailuserbar feedback %}
+{% load compress static wagtailuserbar feedback ga %}
 
 <!doctype html>
 <html lang="en">
@@ -10,6 +10,7 @@
 
     {% block extra_css %}{% endblock %}
 
+    <link rel="shortcut icon" href="{% static 'favicon.ico?v=1' %}" />
     <link rel="stylesheet" href="{% static 'css/marco_site.css' %}" />
     <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
 
@@ -20,33 +21,49 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="{% block body_class %}classless-page{% endblock %}">
+  <body class="{% block body_class %}classless-page{% endblock %} {% block layout %}base{% endblock %}-layout">
     <header>
       {% block header %}
         <nav class="navbar navbar-default {% block navbar-extra-classes %}navbar-static-top{% endblock %}" role="navigation">
           <div class="container">
             {% include 'marco_site/includes/navbar.html' %}
-          </div><!-- /.container-fluid -->
+          </div>
         </nav>
-
       {% endblock %}
     </header>
     {% block outer_content %}
       <div class="content">
         <div class="container">
-          {% block page_header %}{% endblock %}
+          <a class="anchor" id="page-header"></a>
+          <div class="page-header">
+            {% block page_header %}
+              <h1>{% block page_title %}{{ title }}{% endblock %}</h1>
+            {% endblock %}
+          </div>
           {% block content %}{% endblock %}
         </div>
+        {% block containerless_content %}{% endblock %}
       </div>
+      <footer>
+        {% block footer %}
+          <div class="container">
+            {% include 'marco_site/includes/footer.html' %}
+          </div>
+        {% endblock %}
+      </footer>
     {% endblock %}
 
+    {% ga %}
     {% compress js %}
       <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
-      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>
-    {% endcompress %}
+      <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>      
+      <script src="{% static 'bundles/marco_site.js' %}"></script>
+      {% endcompress %}
 
     {% block extra_js %}{% endblock %}
 
-    {% feedback %}
+    <div class="container transparent-sticky-footer">
+      {% feedback %}
+    </div>
   </body>
 </html>

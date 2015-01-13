@@ -17,7 +17,7 @@
 @gray-dark:              #84837d;
 @gray:                   #b1b3b5;
 @gray-light:             #e7e7e8;
-@gray-lighter:           lighten(@gray-light, 50%);
+@gray-lighter:           mix(@gray-light, @white);
 
 @brand-primary:         @deep-blue;
 @brand-success:         @green;
@@ -32,6 +32,8 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,400,700,500,900,400italic,700italic|Roboto+Condensed:400,700&subset=latin);
 
 @font-family-sans-serif:  'Roboto', sans-serif;
+@font-family-condensed:  'Roboto Condensed', @font-family-sans-serif;
+
 
 // @font-size-smaller:       10px;
 @font-size-base:          14px;
@@ -50,12 +52,6 @@
 @screen-md-min:              @screen-md;
 
 @grid-float-breakpoint:     @screen-md-min;
-
-@navbar-height:                    67px;
-@navbar-default-bg:               white;
-@navbar-default-link-color:                @deep-blue;
-@navbar-default-link-active-color: @navbar-default-link-color;
-@navbar-default-link-active-bg: @navbar-default-bg;
 
 @border-radius-base:        0px;
 @border-radius-large:       0px;

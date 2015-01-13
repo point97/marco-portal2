@@ -1,0 +1,6 @@
+<h4>{{ menu.title }}</h4>
+<ul role="menu">
+  {% for entry in menu.entries.all %}
+    <li><a href="{{ entry.destination }}">{{ entry.text }}</a></li>
+  {% endfor %}
+</ul>

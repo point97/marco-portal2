@@ -12,25 +12,33 @@ module.exports = function(containerSelector, sectionSelector, callback) {
   var container = $(containerSelector);
   var sections = container.find(sectionSelector);
   var currentIndex;
-  var fuzz = 15;
+  var offset = 0;
 
   function handleScroll() {
     // Get container scroll position
     var scrollTop = $(this).scrollTop();
 
     var sectionIndex = _.findLastIndex(sections, function(s){
-      return scrollTop >= $(s).offset().top - fuzz;
+      return scrollTop >= $(s).offset().top + offset;
     })
 
     if (sectionIndex < 0) {
       sectionIndex = 0;
     }
     if (sectionIndex !== currentIndex) {
-      currentIndex = sectionIndex
+      $(sections[currentIndex]).removeClass('active');
+      $(sections[sectionIndex]).addClass('active');
+      currentIndex = sectionIndex;
       callback(currentIndex);
     }
   }
 
-  handleScroll.call(window)
+  function handleResize() {
+    offset = -$( this ).height() / 6;
+    handleScroll();
+  }
+
+  handleResize.call(window)
+  $(window).resize(handleResize);
   $(window).scroll(handleScroll);
 }

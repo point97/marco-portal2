@@ -1,0 +1,13 @@
+{% extends "portal/components/card.html" %}
+
+{% block feature %}
+	<div class="feature">
+		<a href="{{ item.name }}">
+			<img src="{{item.thumbnail}}">
+		</a>
+	</div>
+{% endblock %}
+
+{% block heading %}<a href="{{ item.name }}">{{ item.display_name }}</a>{% endblock %}
+{% block media %}<div class="badge">{{ item.layer_count }}</div>{% endblock %}
+{% block text %}{{ item.description|truncatechars_html:256 }}{% endblock %}

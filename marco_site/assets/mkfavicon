@@ -1,0 +1,8 @@
+cd ../static
+
+convert brand/marco_icon.svg \
+      \( -clone 0 -depth 8 -background transparent -flatten -resize 16x16 \) \
+      \( -clone 0 -depth 8 -background transparent -flatten -resize 32x32 \) \
+      \( -clone 0 -depth 8 -background transparent -flatten -resize 48x48 \) \
+      \( -clone 0 -depth 8 -background transparent -flatten -resize 64x64 \) \
+      -delete 0 -background none favicon.ico

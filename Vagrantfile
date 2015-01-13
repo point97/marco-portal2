@@ -4,7 +4,7 @@
 Vagrant::Config.run do |config|
     # Base box to build off, and download URL for when it doesn't exist on the user's system already
     config.vm.box = "p97-base-v0.4"
-    # config.vm.box_url = "http://downloads.torchbox.com/wagtail-base-v0.3.box"
+    config.vm.box_url = "http://downloads.point97.io/p97-base-v0.4.box"
 
     # Forward a port from the guest to the host, which allows for outside
     # computers to access the VM, whereas host only networking does not.
@@ -18,7 +18,7 @@ Vagrant::Config.run do |config|
     config.vm.share_folder "project", "/home/vagrant/marco_portal", "."
 
     # Enable provisioning with a shell script.
-    config.vm.provision :shell, :path => "scripts/vagrant_provision.sh", :args => "marco_portal"
+    config.vm.provision :shell, :path => "scripts/vagrant_provision.sh", :args => "marco_portal", :privileged => false
 
     # If a 'Vagrantfile.local' file exists, import any configuration settings
     # defined there into here. Vagrantfile.local is ignored in version control,
@@ -27,7 +27,7 @@ Vagrant::Config.run do |config|
   config.vm.customize [
                         "modifyvm", :id,
                         "--name", "Test_Environment",
-                        "--memory", "1024"
+                        "--memory", "2048"
                       ]
     
     if File.exist? "Vagrantfile.local"
