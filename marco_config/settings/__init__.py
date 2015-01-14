@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 from os.path import abspath, dirname, join
+from social.backends.google import GooglePlusAuth
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
@@ -32,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'email_log',
     'compressor',
     'taggit',
     'modelcluster',
@@ -69,6 +71,16 @@ INSTALLED_APPS = (
     'scenarios',
     'drawing',
     'manipulators',
+
+    # Account management
+    'social.apps.django_app.default',
+    'accounts',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.google.GooglePlusAuth',
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,6 +139,8 @@ from django.conf import global_settings
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
+    'social.apps.django_app.context_processors.backends',
+    'accounts.context_processors.login_disabled',
 )
 
 TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
@@ -135,8 +149,8 @@ TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
 
 # Wagtail settings
 
-LOGIN_URL = 'wagtailadmin_login'
-LOGIN_REDIRECT_URL = 'wagtailadmin_home'
+LOGIN_URL = 'account:login'
+# LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
 
@@ -161,19 +175,93 @@ FEEDBACK_IFRAME_URL = "//docs.google.com/a/pointnineseven.com/forms/d/1HMBSzAJ6Q
 SHARING_TO_PUBLIC_GROUPS = ['Share with Public']
 SHARING_TO_STAFF_GROUPS = ['Share with Staff']
 
+# KML SETTINGS
+KML_SIMPLIFY_TOLERANCE = 20 # meters
+KML_SIMPLIFY_TOLERANCE_DEGREES = 0.0002 # Very roughly ~ 20 meters
+KML_EXTRUDE_HEIGHT = 100
+KML_ALTITUDEMODE_DEFAULT = 'absolute'
 
 # madrona-scenarios
-GEOMETRY_DB_SRID = 3857
+GEOMETRY_DB_SRID = 99996
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
 GEOJSON_DOWNLOAD = True  # force headers to treat like an attachment
 
+# authentication
+SOCIAL_AUTH_NEW_USER_URL = '/account/?new=true&login=django'
+SOCIAL_AUTH_FACBEOOK_NEW_USER_URL = '/account/?new=true&login=facebook'
+SOCIAL_AUTH_GOOGLE_PLUS_NEW_USER_URL = '/account/?new=true&login=gplus'
 
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account/?login=django'
+SOCIAL_AUTH_GOOGLE_PLUS_LOGIN_REDIRECT_URL = '/account/?login=gplus'
+SOCIAL_AUTH_FACEBOOK_LOGIN_REDIRECT_URL = '/account/?login=facebook'
 
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '' 
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPES = (
+    'https://www.googleapis.com/auth/plus.login', # Minimum needed to login 
+    'https://www.googleapis.com/auth/plus.profile.emails.read', # emails
+)
 
+SOCIAL_AUTH_FACEBOOK_KEY = ''
+SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
+# SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
+SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'accounts.pipeline.send_validation_email'
 
+SOCIAL_AUTH_EMAIL_VALIDATION_URL = '/account/validate'
+
+# Our authentication pipeline
+SOCIAL_AUTH_PIPELINE = (
+    # Get the information we can about the user and return it in a simple
+    # format to create the user instance later. On some cases the details are
+    # already part of the auth response from the provider, but sometimes this
+    # could hit a provider API.
+    'social.pipeline.social_auth.social_details',
+
+    # Get the social uid from whichever service we're authing thru. The uid is
+    # the unique identifier of the given user in the provider.
+    'social.pipeline.social_auth.social_uid',
+
+    # Verifies that the current auth process is valid within the current
+    # project, this is were emails and domains whitelists are applied (if
+    # defined).
+    'social.pipeline.social_auth.auth_allowed',
+
+    # Checks if the current social-account is already associated in the site.
+    'social.pipeline.social_auth.social_user',
+
+    # Make up a username for this person, appends a random string at the end if
+    # there's any collision.
+    'social.pipeline.user.get_username',
+
+    # Send a validation email to the user to verify its email address.
+    'social.pipeline.mail.mail_validation',
+
+    # Create a user account if we haven't found one yet.
+    'social.pipeline.user.create_user',
+
+    # Create the record that associated the social account with this user.
+    'social.pipeline.social_auth.associate_user',
+
+    # Populate the extra_data field in the social record with the values
+    # specified by settings (and the default ones like access_token, etc).
+    'social.pipeline.social_auth.load_extra_data',
+
+    # Update the user record with any changed info from the auth service.
+    'social.pipeline.user.user_details',
+
+    # Set up default django permission groups for new users. 
+    'accounts.pipeline.set_user_permissions',
+    
+    'social.pipeline.debug.debug',
+)
+
+DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
+SERVER_EMAIL = "MARCO Site Errors <developers@pointnineseven.com>"
+EMAIL_SUBJECT_PREFIX = '[MARCO] ' # for mail to admins/managers only
 
 
 from .dev import *

@@ -1,7 +1,7 @@
 # Disable debug mode
 DEBUG = False
 TEMPLATE_DEBUG = False
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'email_log.backends.EmailBackend'
 
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
