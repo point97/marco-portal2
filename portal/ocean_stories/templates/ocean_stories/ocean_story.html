@@ -24,12 +24,12 @@
           {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
         </div>
       </div>
-      {% with page=self.get_prev_siblings.live.first %}
+      {% with page=self.portal_prev_sibling %}
         {% if page %}
           <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
         {% endif %}
       {% endwith %}
-      {% with page=self.get_next_siblings.live.first %}
+      {% with page=self.portal_next_sibling %}
         {% if page %}
           <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
         {% endif %}
