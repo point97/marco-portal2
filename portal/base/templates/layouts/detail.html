@@ -3,7 +3,9 @@
 
 {% block layout %}detail{% endblock %}
 {% block page_header %}
-	<a href=".." class="back-button">{% block back_text %}{% endblock %}</a>
+	<a href=".." class="btn btn-success"><span class="icon">←</span> {% block back_text %}{% endblock %}</a>
+{% endblock %}
+{% block content %}
 	{% block detail %}
 		<div class="detail">
 			<div class="media">
