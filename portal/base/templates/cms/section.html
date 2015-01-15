@@ -1,6 +1,15 @@
 {% extends "cms/base.html" %}
+{% load wagtailcore_tags%}
 
 {% block layout %}section{% endblock %}
 {% block page_header %}
   {% include "cms/frontmatter.html" %}
+{% endblock %}
+
+{% block content %}
+  {% if self.body %}
+  <div class="page-body">
+    {{ self.body|richtext }}
+  </div>
+  {% endif %}
 {% endblock %}
