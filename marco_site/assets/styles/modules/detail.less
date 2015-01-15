@@ -1,4 +1,4 @@
-.ellipsis(@lines: 1) {
+.ellipsis(@lines: 1, @line-height) {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	// multi-line ellipsis, webkit only
@@ -6,7 +6,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: @lines;
 	// fallback
-	height: 1em*@line-height-base*@lines;
+	height: @line-height*@lines;
 }
 .overflow-on-hover(@background: @gray-light) {
 	&:hover {
@@ -17,7 +17,6 @@
 		> * {
 			display: block;
 			background: @background;
-			padding-bottom: 1em*@line-height-base/2;
 		}
 	}
 }
@@ -66,12 +65,12 @@
 	}
 	.media-body {
 		.media-heading {
-			.ellipsis(@lines: 2);
+			.ellipsis(@lines: 2, @line-height: 1em*@headings-line-height);
 			.overflow-on-hover;
 		}
 		.item-text {
 			font-size: 11px;
-			.ellipsis(@lines: 4);
+			.ellipsis(@lines: 4, @line-height: 1em*@line-height-base);
 		}
 	}
 }
