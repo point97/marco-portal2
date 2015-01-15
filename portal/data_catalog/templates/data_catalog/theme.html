@@ -11,11 +11,9 @@
     {{ theme.description }}
   </div>
   {% if layers %}
-    <div class="list-group">
+    <div class="layer-list">
       {% for layer in layers %}
-        <div class="list-group-item" href="./{{ layer.name }}">
-          {% include "data_catalog/includes/layer_info.html" %}
-        </div>
+        {% include "data_catalog/includes/layer_info.html" %}
       {% endfor %}
     </div>
   {% endif %}
