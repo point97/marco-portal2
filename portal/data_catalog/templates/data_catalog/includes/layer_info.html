@@ -1,13 +1,9 @@
 <div class="layer-info">
   <h4>
-    <a class="{% if not layer.bookmark_link %} disabled{% endif %}" href="{{layer.bookmark_link}}">
+    <a href="{{layer.bookmark_link}}" class="layer-name{% if not layer.bookmark_link %} disabled{% endif %}" data-toggle="tooltip" 
+    title="View in Marine Planner" data-placement="top">
       <span class="icon-marco"></span>
-    </a>
-    <span class="layer-name" rel="popover"
-    data-name="{{layer.name}}"
-    data-thumbnail="{{layer.thumbnail}}"
-    data-content="{% if layer.tooltip %} {{layer.tooltip}} {% endif %}">{{layer.name}}
-    </span>
+      {{layer.name}}</a>
     {% if layer.is_sublayer %}
       <span class="layer-parent-name">
         / {{ layer.parent.name }}
