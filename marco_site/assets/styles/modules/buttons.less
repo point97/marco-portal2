@@ -1,0 +1,29 @@
+@import "../bootstrap/buttons";
+
+@btn-default-bg: @gray-light;
+@btn-default-color: @black;
+
+@btn-success-bg: @btn-default-bg;
+@btn-success-color: @btn-default-color;
+@btn-success-border: @brand-success;
+
+.btn-success {
+  .icon {
+    color: @brand-success;
+  }
+  border-width: 2px;
+}
+
+a.back-button {
+  
+  &::before { 
+    content: "← ";
+    color: @brand-success;
+  }
+  border: 2px solid @brand-success;
+  color: @brand-primary;
+  padding: .2em 1em .2em .5em;
+  margin-bottom: 2em;
+  margin-top: -3em;
+  display: inline-block;
+}
