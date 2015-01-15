@@ -1,45 +1,45 @@
-<h3>
-  <span class="layer-name catalog-tooltip" rel="popover"
-  data-name="{{layer.name}}"
-  data-thumbnail="{{layer.thumbnail}}"
-  data-content="{% if layer.tooltip %} {{layer.tooltip}} {% endif %}">{{layer.name}}
-  </span>
-  {% if layer.parent %}
-    <span class="layer-parent-name">
-      / {{ layer.parent.name }}
+<div class="layer-info">
+  <h4>
+    <a class="{% if not layer.bookmark_link %} disabled{% endif %}" href="{{layer.bookmark_link}}">
+      <span class="icon-marco"></span>
+    </a>
+    <span class="layer-name" rel="popover"
+    data-name="{{layer.name}}"
+    data-thumbnail="{{layer.thumbnail}}"
+    data-content="{% if layer.tooltip %} {{layer.tooltip}} {% endif %}">{{layer.name}}
     </span>
-  {% endif %}
-</h3>
+    {% if layer.is_sublayer %}
+      <span class="layer-parent-name">
+        / {{ layer.parent.name }}
+      </span>
+    {% endif %}
+  </h4>
 
-<div class="link-bar">
-  <span data-toggle="tooltip" data-placement="bottom" title="View in Marine Planner">
-    <a class="btn btn-mini{% if not layer.bookmark_link %} disabled{% endif %}" href="{{layer.bookmark_link}}">
-      view <span class="icon-marco"></span>
-    </a>
-  </span>
-  <span data-toggle="tooltip" data-placement="bottom" title="Download for Google Maps">
-    <a class="btn btn-mini{% if not layer.kml %} disabled{% endif %}" href="{{layer.kml}}">
-      kml <i class="fa fa-arrow-down"></i>
-    </a>
-  </span>
-  <span data-toggle="tooltip" data-placement="bottom" title="Download ESRI Formatted Dataset">
-    <a class="btn btn-mini{% if not layer.data_download_link %} disabled{% endif %}" href="data_download_link">
-      data <i class="fa fa-arrow-down"></i>
-    </a>
-  </span>
-  <span data-toggle="tooltip" data-placement="bottom" title="Download Metadata">
-    <a class="btn btn-mini{% if not layer.metadata_link %} disabled{% endif %}" href="metadata_link">
-      metadata <i class="fa fa-arrow-down"></i>
-    </a>
-  </span>
-  <span data-toggle="tooltip" data-placement="bottom" title="{{ layer.data_source }}">
-    <a class="btn btn-mini{% if not layer.source %} disabled{% endif %}" href="">
-      source <i class="fa fa-external-link-square"></i>
-    </a>
-  </span>
+  <div class="link-bar">
+    <span data-toggle="tooltip" data-placement="bottom" title="Download for Google Maps">
+      <a class="btn btn-mini{% if not layer.kml %} disabled{% endif %}" href="{{layer.kml}}">
+        kml <i class="fa fa-arrow-down"></i>
+      </a>
+    </span>
+    <span data-toggle="tooltip" data-placement="bottom" title="Download ESRI Formatted Dataset">
+      <a class="btn btn-mini{% if not layer.data_download_link %} disabled{% endif %}" href="data_download_link">
+        data <i class="fa fa-arrow-down"></i>
+      </a>
+    </span>
+    <span data-toggle="tooltip" data-placement="bottom" title="Download Metadata">
+      <a class="btn btn-mini{% if not layer.metadata_link %} disabled{% endif %}" href="metadata_link">
+        metadata <i class="fa fa-arrow-down"></i>
+      </a>
+    </span>
+    <span data-toggle="tooltip" data-placement="bottom" title="{{ layer.data_source }}">
+      <a class="btn btn-mini{% if not layer.source %} disabled{% endif %}" href="">
+        source <i class="fa fa-external-link-square"></i>
+      </a>
+    </span>
+  </div>
+
+
+  <p class="description">{{layer.description}}</p>
+  <p class="source"><strong>Source:</strong> <a href="{{layer.source}}">{{layer.data_source}}</a></p>
+  <p class="notes"><strong>Notes:</strong> {{layer.data_overview}}</p>
 </div>
-
-
-<p class="description">{{layer.description}}</p>
-<p class="source"><strong>Source:</strong> <a href="{{layer.source}}">{{layer.data_source}}</a></p>
-<p class="notes"><strong>Notes:</strong> {{layer.data_overview}}</p>
