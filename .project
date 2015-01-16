@@ -7,15 +7,12 @@
 		<project>madrona-features</project>
 		<project>madrona-forms</project>
 		<project>madrona-manipulators</project>
-		<project>madrona-openid</project>
 		<project>madrona-scenarios</project>
-		<project>madrona-user-profile</project>
 		<project>mp-accounts</project>
 		<project>mp-clipping</project>
 		<project>mp-data-manager</project>
 		<project>mp-drawing</project>
 		<project>mp-explore</project>
-		<project>mp-profile</project>
 		<project>mp-visualize</project>
 		<project>Nursery</project>
 	</projects>

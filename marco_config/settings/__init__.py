@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     # Account management
     'social.apps.django_app.default',
     'accounts',
+
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -206,7 +207,7 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPES = (
 
 SOCIAL_AUTH_FACEBOOK_KEY = ''
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile,email']
 
 # SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
 SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'accounts.pipeline.send_validation_email'
@@ -255,6 +256,9 @@ SOCIAL_AUTH_PIPELINE = (
 
     # Set up default django permission groups for new users. 
     'accounts.pipeline.set_user_permissions',
+    
+    # Grab relevant information from the social provider (avatar)
+    'accounts.pipeline.get_social_details',
     
     'social.pipeline.debug.debug',
 )
