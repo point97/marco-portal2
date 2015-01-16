@@ -1,3 +1,6 @@
+// a temporary mapping table from ArcGIS layer Ids to WMSServer layer ids
+// this will go away when we have a full ol3 arcrest implementation
+
 var _ = require('lodash');
 
 module.exports = function(l) {
