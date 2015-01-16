@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var ol = require('openlayers');
+var dataLayerFactory = require('./data_layer_factory');
 
 module.exports = function(element, animate) {
 
@@ -70,42 +71,6 @@ module.exports = function(element, animate) {
     console.log(e);
   });
 
-  var typeCreateHandlers = {
-    'XYZ': function(l) {
-      var fixedUrlTemplate = l.url.replace(/\$\{([xyz])\}/g, '\{$1\}')
-      return new ol.layer.Tile({
-        source: new ol.source.XYZ({
-          url: fixedUrlTemplate,
-        })
-      });
-    },
-    'Vector': function(l) {
-      return new ol.layer.Vector({
-        source: new ol.source.GeoJSON({
-          url: l.url,
-        }),
-        style: new ol.style.Style({
-          stroke: new ol.style.Stroke({
-            color: l.vector_outline_color,
-            width: 1.5,
-          }),
-          fill: new ol.style.Fill({
-            color: l.vector_color,
-          }),
-        }),
-        opacity: l.opacity,
-      });
-    },
-    'WMS': function(l) {
-      return new ol.layer.Tile({
-        // extent: [-13884991, 2870341, -7455066, 6338219],
-        source: new ol.source.TileWMS( ({
-          url: l.url,
-          params: {'LAYERS': l.arcgis_layers, 'TILED': true}
-        }))
-      })
-    },
-  }
 
   function wrapAnimations(animations, after) {
     return function(map, state) {
@@ -151,15 +116,11 @@ module.exports = function(element, animate) {
       view.setZoom(zoom);
     },
     newDataLayer: function(l) {
-      if (!typeCreateHandlers.hasOwnProperty(l.layer_type)) {
-        console.warn("Unknown layer_type: " + l.layer_type);
-        return null;
+      var layerObj = dataLayerFactory(l);
+      if (layerObj) {
+        layerObj.setVisible(false);
+        dataLayerGroup.getLayers().push(layerObj);        
       }
-
-      var layerObj = typeCreateHandlers[l.layer_type](l);
-      layerObj.setVisible(false);
-      dataLayerGroup.getLayers().push(layerObj);
-
       return layerObj;
     },
     showLayer: function(layer){ return layer.setVisible(true) },
