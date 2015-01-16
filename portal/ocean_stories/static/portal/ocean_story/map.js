@@ -57,7 +57,7 @@ module.exports = function(engine, story, layerCatalog) {
 
     // trim unused layers
     _.each(_.difference(visibleDataLayers, layerKeys), function(id) {
-      l = fetchDataLayer(id);
+      var l = fetchDataLayer(id);
       if (l){
         engine.hideLayer(l);
       }
@@ -65,7 +65,7 @@ module.exports = function(engine, story, layerCatalog) {
 
     // add new layers
     _.each(_.difference(layerKeys, visibleDataLayers), function(id) {
-      l = fetchDataLayer(id);
+      var l = fetchDataLayer(id);
       if (l){
         engine.showLayer(l);
       }
