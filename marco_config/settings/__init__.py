@@ -260,6 +260,10 @@ SOCIAL_AUTH_PIPELINE = (
     # Grab relevant information from the social provider (avatar)
     'accounts.pipeline.get_social_details',
     
+    # Confirm with the user that they really want to make an account, also
+    # make them enter an email address if they somehow didn't
+    'accounts.pipeline.confirm_account', 
+    
     'social.pipeline.debug.debug',
 )
 
