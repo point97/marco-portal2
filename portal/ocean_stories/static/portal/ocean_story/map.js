@@ -74,16 +74,16 @@ module.exports = function(engine, story, layerCatalog) {
   }
 
   return {
-    goToSection: function(section) {
-      if (section > story.sections.length - 1) {
-        console.warn("Requested story section " + (section+1) + ", but only " + story.sections.length + " are present.")
+    goToSection: function(sectionIndex) {
+      if (sectionIndex > story.sections.length - 1) {
+        console.warn("Requested story sectionIndex " + (sectionIndex+1) + ", but only " + story.sections.length + " are present.")
         return;
       }
-      var s = story.sections[section];
+      var section = story.sections[sectionIndex];
 
-      engine.setView(s.view.center, s.view.zoom, function(){
-        setBaseLayer(s.baseLayer);
-        setDataLayers(s.dataLayers);
+      engine.setView(section.view.center, section.view.zoom, function(){
+        setBaseLayer(section.baseLayer);
+        setDataLayers(section.dataLayers);
       });
     },
   };
