@@ -29,6 +29,8 @@ module.exports = function(element, animate) {
     console.log(e);
   });
 
+  // per-feature styles for vector layers with a lookup_field
+  var featureStyles = null;
 
   function wrapAnimations(animations, after) {
     return function(map, state) {
