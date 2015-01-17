@@ -150,7 +150,7 @@ TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
 
 # Wagtail settings
 
-LOGIN_URL = 'account:login'
+LOGIN_URL = 'account:index'
 # LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
@@ -211,8 +211,9 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile,email']
 
 # SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
 SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'accounts.pipeline.send_validation_email'
-
 SOCIAL_AUTH_EMAIL_VALIDATION_URL = '/account/validate'
+
+SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
 
 # Our authentication pipeline
 SOCIAL_AUTH_PIPELINE = (
@@ -238,6 +239,10 @@ SOCIAL_AUTH_PIPELINE = (
     # there's any collision.
     'social.pipeline.user.get_username',
 
+    # Confirm with the user that they really want to make an account, also
+    # make them enter an email address if they somehow didn't
+    'accounts.pipeline.confirm_account', 
+
     # Send a validation email to the user to verify its email address.
     'social.pipeline.mail.mail_validation',
 
@@ -259,11 +264,7 @@ SOCIAL_AUTH_PIPELINE = (
     
     # Grab relevant information from the social provider (avatar)
     'accounts.pipeline.get_social_details',
-    
-    # Confirm with the user that they really want to make an account, also
-    # make them enter an email address if they somehow didn't
-    'accounts.pipeline.confirm_account', 
-    
+        
     'social.pipeline.debug.debug',
 )
 
