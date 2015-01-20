@@ -12,9 +12,10 @@ from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.contrib.wagtailsitemaps.views import sitemap
+from django.contrib.auth.decorators import login_required
 
 admin.autodiscover()
-
+admin.site.login = login_required(admin.site.login, 'next')
 
 # Register search signal handlers
 from wagtail.wagtailsearch.signal_handlers import register_signal_handlers as wagtailsearch_register_signal_handlers
