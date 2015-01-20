@@ -19,9 +19,7 @@
     {% menu 1 %}
     {% menu 2 %}
     <li>
-    {% if LOGIN_DISABLED %}
-        LOG IN <span class="fa fa-user"></span>
-    {% else %}
+    {% if not LOGIN_DISABLED %}
         {% if user.is_authenticated %}
             <a href="{% url 'account:index' %}">{{ user.first_name }} <span class="fa fa-user"></span></a>
         {% else %}
