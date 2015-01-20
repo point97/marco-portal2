@@ -6,5 +6,5 @@ register = template.Library()
 @register.inclusion_tag('portal/tags/ga.html')
 def ga():
     return {
-        'ga_account': settings.GA_ACCOUNT,
+        'ga_account': settings.GA_ACCOUNT if hasattr(settings, 'GA_ACCOUNT') else '',
     }

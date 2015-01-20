@@ -1,4 +1,4 @@
-.ellipsis(@lines: 1) {
+.ellipsis(@lines: 1, @line-height) {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	// multi-line ellipsis, webkit only
@@ -6,7 +6,7 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: @lines;
 	// fallback
-	height: 1em*@line-height-base*@lines;
+	height: @line-height*@lines;
 }
 .overflow-on-hover(@background: @gray-light) {
 	&:hover {
@@ -17,13 +17,9 @@
 		> * {
 			display: block;
 			background: @background;
-			padding-bottom: 1em*@line-height-base/2;
 		}
 	}
 }
-
-@badge-diameter: 54px;
-@badge-border-width: 3px;
 
 .detail {
 	.feature {
@@ -41,32 +37,40 @@
 		text-align: center;
 
 		.media-inner {
-			padding: 1em;
-			padding-bottom: 3em;
+			> * {
+				margin-bottom: @padding-base-vertical;
+			}
+			padding: @padding-base-vertical;
+			padding-bottom: @padding-large-vertical;
 			border-right: 1px solid @gray;
 		}
-	}
-	.badge {
-		display: block;
-		border-radius: 50%;
-		border: @badge-border-width solid @deep-blue;
-		background-color: @deep-blue;
-		color: @yellow;
-		line-height: 54px;
-		width: @badge-diameter + 2*@badge-border-width;
-		height: @badge-diameter + 2*@badge-border-width;
-		font-family: @font-family-condensed;
-		font-weight: bold;
-		font-size: @badge-diameter/2;
+		.badge {
+			@badge-diameter: 54px;
+			@badge-border-width: 3px;
+			line-height: 54px;
+			display: block;
+			border-radius: 50%;
+			border: @badge-border-width solid @deep-blue;
+			background-color: @deep-blue;
+			color: @yellow;
+			.square(@badge-diameter + 2*@badge-border-width);
+			font-family: @font-family-condensed;
+			font-weight: bold;
+			font-size: @badge-diameter/2;
+		}
+		.icon {
+			font-size:20px;
+			// transform: scale(4);
+		}
 	}
 	.media-body {
 		.media-heading {
-			.ellipsis(@lines: 2);
+			.ellipsis(@lines: 2, @line-height: 1em*@headings-line-height);
 			.overflow-on-hover;
 		}
 		.item-text {
 			font-size: 11px;
-			.ellipsis(@lines: 4);
+			.ellipsis(@lines: 4, @line-height: 1em*@line-height-base);
 		}
 	}
 }
@@ -74,7 +78,7 @@
 
 .data-gaps-page, .data-gap-page {
 	.badge {
-		font-size: @badge-diameter/3;
+		font-size: 54px/3;
 	}
 }
 

@@ -23,7 +23,7 @@ PIP=$VIRTUALENV_DIR/bin/pip
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
 
-# $PROJECT_NAME/scripts/reset_db $PROJECT_NAME
+$PROJECT_NAME/scripts/reset_db $PROJECT_NAME
 
 # Set execute permissions on manage.py as they get lost if we build from a zip file
 chmod a+x $PROJECT_DIR/manage.py

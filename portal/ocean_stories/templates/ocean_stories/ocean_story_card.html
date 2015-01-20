@@ -1,5 +1,6 @@
 {% extends "portal/components/card.html" %}
 
 {% block media %}
-<a href="{{item.explore_url}}" title="{{item.explore_text}}"><span class="icon-marco oversized"></span></a>
+<a class="badge" href="{{ item.url }}">{{ item.sections.all|length }}</a>
+<a href="{{item.explore_url}}" title="{{item.explore_text}}"><span class="icon icon-marco"></span></a>
 {% endblock %}

@@ -24,6 +24,12 @@ class PageBase(Page):
         ], 'Page')
     ]
 
+    def portal_next_sibling(self):
+        return self.get_next_siblings().live().first() or self.get_siblings().live().first()
+
+    def portal_prev_sibling(self):
+        return self.get_prev_siblings().live().last() or self.get_siblings().live().last()
+
 class DetailPageBase(PageBase):
     is_abstract = True
     class Meta:
