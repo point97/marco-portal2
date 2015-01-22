@@ -7,7 +7,7 @@ from portal.base.models import PageBase,DetailPageBase
 class DataGaps(PageBase):
     subpage_types = ['DataGap']
 
-    def get_children(self):
+    def get_detail_children(self):
         return DataGap.objects.child_of(self)
 
 class DataGap(DetailPageBase):
