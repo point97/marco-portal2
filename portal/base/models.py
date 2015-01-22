@@ -12,9 +12,14 @@ from wagtail.wagtailimages.models import AbstractImage, AbstractRendition
 
 # Portal defines its own custom image class to replace wagtailimages.Image,
 # providing various additional data fields
+# see https://github.com/torchbox/verdant-rca/blob/staging/django-verdant/rca/models.py
 class PortalImage(AbstractImage):
-    pass
+    creator = models.CharField(max_length=255, blank=True)
+    creator_URL = models.URLField(blank=True)
 
+    search_fields = AbstractImage.search_fields + (
+        index.SearchField('creator'),
+    )
 
 # Receive the pre_delete signal and delete the file associated with the model instance.
 @receiver(pre_delete, sender=PortalImage)
