@@ -79,7 +79,7 @@ class OceanStorySection(Orderable, OceanStorySectionBase):
 class OceanStories(PageBase):
     subpage_types = ['OceanStory']
 
-    def get_children(self):
+    def get_detail_children(self):
         return OceanStory.objects.child_of(self)
 
 class OceanStory(DetailPageBase):
