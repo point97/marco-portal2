@@ -1,6 +1,7 @@
 from django.db import models
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import pre_delete
+from django.core.exceptions import ValidationError
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
@@ -41,6 +42,36 @@ def rendition_delete(sender, instance, **kwargs):
     # Pass false so FileField doesn't save the model.
     instance.file.delete(False)
 
+class MediaItem(models.Model):
+    media_position_choices = (
+        ('left','left'),
+        ('right','right'),
+        ('full','full'),
+    )
+    media_image = models.ForeignKey(
+        'base.PortalImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    media_embed_url = models.URLField(blank=True)
+    media_caption = models.CharField(max_length=255, blank=True)
+    media_position = models.CharField(max_length=8, choices=media_position_choices, default=media_position_choices[0][0])
+
+    panels = [
+        ImageChooserPanel('media_image'),
+        FieldPanel('media_embed_url'),
+        FieldPanel('media_caption'),
+        FieldPanel('media_position'),
+    ]
+
+    class Meta:
+        abstract = True
+
+    def clean(self):
+        if self.media_image is not None and self.media_embed_url != '':
+            raise ValidationError({'media_image': '', 'media_embed_url': 'Provide either an image or an embed URL, but not both.'})
 
 class PageBase(Page):
     is_abstract = True

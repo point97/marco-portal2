@@ -46,9 +46,7 @@
           <a class="anchor" id="section-{{forloop.counter}}"></a>
           <section>
               <h2>{{ section.title }}</h2>
-              {% if section.body %}
-                {{ section.body|richtext }}
-              {% endif %}
+              {% include "portal/components/media_item.html" with item=section only %}
           </section>
       {% endfor %}
   {% endif %}
