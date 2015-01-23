@@ -33,7 +33,7 @@ git stash pop
 ssh $REMOTE_HOST << ENDSSH
 source ~/env/marco_portal2/bin/activate
 cd $REMOTE_ROOT
-pip install -r requirements.txt
+pip install -r requirements.txt --exists-action=w
 ./manage.py migrate
 ./manage.py collectstatic -l --noinput
 ./manage.py compress
