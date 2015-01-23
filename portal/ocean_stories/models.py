@@ -19,16 +19,17 @@ from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiFieldPanel
 from modelcluster.fields import ParentalKey
 
-from portal.base.models import PageBase,DetailPageBase
+from portal.base.models import PageBase,DetailPageBase,MediaItem
 
 # The abstract model for ocean story sections, complete with panels
-class OceanStorySectionBase(models.Model):
+class OceanStorySectionBase(MediaItem):
     title = models.CharField(max_length=255, blank=True)
     body = RichTextField(blank=True)
     map_state = models.TextField()
 
     panels = [
         FieldPanel('title'),
+        MultiFieldPanel(MediaItem.panels, "media"),
         FieldPanel('body', classname="full"),
         FieldPanel('map_state'),
     ]
