@@ -27,5 +27,12 @@
         {% endif %}
     {% endif %}
     </li>
+    <li class="dropdown search-dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-search"></span> <span class="caret"></span></a>
+      <ul class="dropdown-menu" role="menu">
+        {% include "portal/components/search_form.html" %}
+      </ul>
+    </li>
+
   </ul>
 </div><!-- /.navbar-collapse -->
