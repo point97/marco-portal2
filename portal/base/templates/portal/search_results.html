@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body_class %}search-results-page{% endblock %}
+
+{% block title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+{% block page_title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+
+{% block content %}
+  {% include "portal/components/search_form.html" %}
+
+  {% if search_results %}
+      <ul>
+          {% for result in search_results %}
+              <li><a href="{{ result.specific.url }}">{{ result.specific }}</a></li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    $('.content .search-input').focus();
+  </script>
+{% endblock %}

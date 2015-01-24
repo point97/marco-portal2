@@ -155,6 +155,8 @@ LOGIN_URL = 'account:index'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
 
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'portal/search_results.html'
+
 # Use Elasticsearch as the search backend for extra performance and better search results:
 # http://wagtail.readthedocs.org/en/latest/howto/performance.html#search
 # http://wagtail.readthedocs.org/en/latest/core_components/search/backends.html#elasticsearch-backend
