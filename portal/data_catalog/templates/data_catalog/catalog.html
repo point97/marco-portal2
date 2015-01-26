@@ -2,7 +2,9 @@
 
 {% block body_class %}data-catalog-page{% endblock %}
 
-{% block page_title %}Data Catalog{% endblock %}
+{% block title %}Data catalog{% endblock %}
+{% block page_title %}Data catalog{% endblock %}
+
 {% block content %}
   {% include 'portal/components/index_listing.html' with item_template='data_catalog/theme_card.html' items=themes only %}
 {% endblock %}
