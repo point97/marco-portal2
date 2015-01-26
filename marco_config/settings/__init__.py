@@ -142,6 +142,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
     'social.apps.django_app.context_processors.backends',
     'accounts.context_processors.login_disabled',
+    'portal.base.context_processors.search_disabled',
 )
 
 TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (

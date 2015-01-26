@@ -18,21 +18,25 @@
     <li class="{% active 'planner' %}"><a href="{% url 'planner' %}"><span class="icon-marco oversized"></span>&nbsp; MARINE PLANNER</a></li>
     {% menu 1 %}
     {% menu 2 %}
-    <li>
     {% if not LOGIN_DISABLED %}
+      <li>
         {% if user.is_authenticated %}
             <a href="{% url 'account:index' %}">{{ user.first_name }} <span class="fa fa-user"></span></a>
         {% else %}
             <a href="{% url 'account:index' %}?next={{ request.path }}">LOG IN <span class="fa fa-user"></span></a>
         {% endif %}
+      </li>
     {% endif %}
-    </li>
-    <li class="dropdown search-dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-search"></span> <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu">
-        {% include "portal/components/search_form.html" %}
-      </ul>
-    </li>
+    {% if not SEARCH_DISABLED %}
+      <li class="dropdown search-dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-search"></span> <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="{% active 'planner' %}">
+            {% include "portal/components/search_form.html" %}
+          </li>
+        </ul>
+      </li>
+    {% endif %}
 
   </ul>
 </div><!-- /.navbar-collapse -->
