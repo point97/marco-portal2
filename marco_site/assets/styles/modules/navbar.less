@@ -25,7 +25,7 @@
   }
   .navbar-nav > .active > a {
     background-color: inherit;
-    color: @brand-primary;    
+    color: @brand-primary;
     .underbar(@brand-success);
     &:hover, &:focus {
       color: inherit;
@@ -73,6 +73,15 @@
       > a {
         padding-top:    @navbar-padding-vertical/2;
         padding-bottom: @navbar-padding-vertical/2;
+      }
+    }
+  }
+  .search-dropdown {
+    .dropdown-menu {
+      min-width: 300px;
+      visibility: hidden;
+      > * {
+        visibility: visible;
       }
     }
   }

@@ -1,0 +1,8 @@
+<form action="/search/" method="get">
+  <div class="input-group input-group-lg">
+    <input type="text" name="q"{% if query_string %} value="{{ query_string }}"{% endif %} class="form-control search-input">
+    <span class="input-group-btn">
+      <button class="btn btn-primary" type="button">Search</button>
+    </span>
+  </div>
+</form>

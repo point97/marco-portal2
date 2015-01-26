@@ -20,4 +20,13 @@ DATABASES = {
     }
 }
 
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+        'URLS': ['https://foo:bar@baz-us-east-1.searchly.com'],
+        'INDEX': 'marco_portal',
+        'TIMEOUT': 5,
+    }
+}
+
 EMBEDLY_KEY = 'F000000000'
