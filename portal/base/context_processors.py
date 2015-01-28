@@ -6,5 +6,5 @@ def search_disabled(request):
     This may be used in the future to automatically disable search if the search
     backend goes down.
     """
-
-    return dict(SEARCH_DISABLED=not settings.DEBUG)
+    return dict(SEARCH_DISABLED=False)
+    # return dict(SEARCH_DISABLED=not settings.DEBUG)

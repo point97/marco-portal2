@@ -16,6 +16,7 @@ from django.core.exceptions import ValidationError
 
 from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailsearch import index
 from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiFieldPanel
 from modelcluster.fields import ParentalKey
 
@@ -33,6 +34,11 @@ class OceanStorySectionBase(MediaItem):
         FieldPanel('body', classname="full"),
         FieldPanel('map_state'),
     ]
+
+    index_fields = MediaItem.index_fields + (
+        'title',
+        'body',
+    )
 
     class Meta:
         abstract = True
@@ -89,6 +95,11 @@ class OceanStory(DetailPageBase):
     hook = models.CharField(max_length=256, blank=True, null=True)
     explore_title = models.CharField(max_length=256, blank=True, null=True)
     explore_url = models.URLField(max_length=4096, blank=True, null=True)
+
+    search_fields = DetailPageBase.search_fields + (
+        index.SearchField('hook'),
+        index.SearchField('get_sections_search_text'),
+    )
 
     @property
     def as_json(self):

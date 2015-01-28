@@ -42,7 +42,17 @@ def rendition_delete(sender, instance, **kwargs):
     # Pass false so FileField doesn't save the model.
     instance.file.delete(False)
 
-class MediaItem(models.Model):
+class PageSection(models.Model):
+    class Meta:
+        abstract = True
+
+    index_fields = ()
+
+    def get_search_text(self):
+        return '\n'.join(getattr(self, field) for field in self.index_fields)
+
+
+class MediaItem(PageSection):
     media_position_choices = (
         ('left','left'),
         ('right','right'),
@@ -58,6 +68,10 @@ class MediaItem(models.Model):
     media_embed_url = models.URLField(blank=True)
     media_caption = models.CharField(max_length=255, blank=True)
     media_position = models.CharField(max_length=8, choices=media_position_choices, default=media_position_choices[0][0])
+
+    index_fields = PageSection.index_fields + (
+        'media_caption',
+    )
 
     panels = [
         ImageChooserPanel('media_image'),
@@ -82,6 +96,9 @@ class PageBase(Page):
     search_fields = Page.search_fields + ( # Inherit search_fields from Page
         index.SearchField('description'),
     )
+
+    def get_sections_search_text(self):
+        return '\n'.join(section.get_search_text() for section in self.sections.all())
 
     content_panels = [
         MultiFieldPanel([
