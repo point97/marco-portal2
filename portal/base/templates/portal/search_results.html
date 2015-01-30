@@ -3,10 +3,17 @@
 {% block body_class %}search-results-page{% endblock %}
 
 {% block title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+
 {% block page_title %}Search{% if search_results %} Results{% endif %}{% endblock %}
 
-{% block content %}
+{% block page_header %}
+{{ block.super }}
+<div class="search-container">
   {% include "portal/components/search_form.html" %}
+</div>
+{% endblock %}
+
+{% block content %}
 
   {% if search_results %}
       <ul>
