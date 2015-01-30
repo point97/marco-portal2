@@ -12,6 +12,7 @@ from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.contrib.wagtailsitemaps.views import sitemap
+from wagtail.wagtailimages import urls as wagtailimages_urls
 
 admin.autodiscover()
 
@@ -44,8 +45,8 @@ urlpatterns = patterns('',
     url(r'^scenario/', include('scenarios.urls')),
     url(r'^drawing/', include('drawing.urls')),
 
+    url(r'^images/', include(wagtailimages_urls)),
     url(r'', include(wagtail_urls)),
-
 )
 
 
