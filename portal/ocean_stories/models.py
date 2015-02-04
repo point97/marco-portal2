@@ -16,22 +16,29 @@ from django.core.exceptions import ValidationError
 
 from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailsearch import index
 from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiFieldPanel
 from modelcluster.fields import ParentalKey
 
-from portal.base.models import PageBase,DetailPageBase
+from portal.base.models import PageBase,DetailPageBase,MediaItem
 
 # The abstract model for ocean story sections, complete with panels
-class OceanStorySectionBase(models.Model):
+class OceanStorySectionBase(MediaItem):
     title = models.CharField(max_length=255, blank=True)
     body = RichTextField(blank=True)
     map_state = models.TextField()
 
     panels = [
         FieldPanel('title'),
+        MultiFieldPanel(MediaItem.panels, "media"),
         FieldPanel('body', classname="full"),
         FieldPanel('map_state'),
     ]
+
+    index_fields = MediaItem.index_fields + (
+        'title',
+        'body',
+    )
 
     class Meta:
         abstract = True
@@ -79,7 +86,7 @@ class OceanStorySection(Orderable, OceanStorySectionBase):
 class OceanStories(PageBase):
     subpage_types = ['OceanStory']
 
-    def get_children(self):
+    def get_detail_children(self):
         return OceanStory.objects.child_of(self)
 
 class OceanStory(DetailPageBase):
@@ -88,6 +95,11 @@ class OceanStory(DetailPageBase):
     hook = models.CharField(max_length=256, blank=True, null=True)
     explore_title = models.CharField(max_length=256, blank=True, null=True)
     explore_url = models.URLField(max_length=4096, blank=True, null=True)
+
+    search_fields = DetailPageBase.search_fields + (
+        index.SearchField('hook'),
+        index.SearchField('get_sections_search_text'),
+    )
 
     @property
     def as_json(self):

@@ -142,6 +142,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     'django.core.context_processors.request',
     'social.apps.django_app.context_processors.backends',
     'accounts.context_processors.login_disabled',
+    'portal.base.context_processors.search_disabled',
 )
 
 TEMPLATE_LOADERS = global_settings.TEMPLATE_LOADERS + (
@@ -155,20 +156,14 @@ LOGIN_URL = 'account:index'
 
 WAGTAIL_SITE_NAME = 'MARCO Portal'
 
-# Use Elasticsearch as the search backend for extra performance and better search results:
-# http://wagtail.readthedocs.org/en/latest/howto/performance.html#search
-# http://wagtail.readthedocs.org/en/latest/core_components/search/backends.html#elasticsearch-backend
-#
-# WAGTAILSEARCH_BACKENDS = {
-#     'default': {
-#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-#         'INDEX': 'marco_portal',
-#     },
-# }
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'portal/search_results.html'
 
 
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
+
+# Override the Image class used by wagtailimages with a custom one
+WAGTAILIMAGES_IMAGE_MODEL = 'base.PortalImage'
 
 FEEDBACK_IFRAME_URL = "//docs.google.com/a/pointnineseven.com/forms/d/1HMBSzAJ6QNpCOI01Z1CHHtrB0Fq6M081yXv5vBdBLm8/viewform?c=0&w=1"
 
@@ -199,9 +194,9 @@ SOCIAL_AUTH_GOOGLE_PLUS_LOGIN_REDIRECT_URL = '/account/?login=gplus'
 SOCIAL_AUTH_FACEBOOK_LOGIN_REDIRECT_URL = '/account/?login=facebook'
 
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '' 
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = ''
 SOCIAL_AUTH_GOOGLE_PLUS_SCOPES = (
-    'https://www.googleapis.com/auth/plus.login', # Minimum needed to login 
+    'https://www.googleapis.com/auth/plus.login', # Minimum needed to login
     'https://www.googleapis.com/auth/plus.profile.emails.read', # emails
 )
 
@@ -241,7 +236,7 @@ SOCIAL_AUTH_PIPELINE = (
 
     # Confirm with the user that they really want to make an account, also
     # make them enter an email address if they somehow didn't
-    'accounts.pipeline.confirm_account', 
+    'accounts.pipeline.confirm_account',
 
     # Send a validation email to the user to verify its email address.
     'social.pipeline.mail.mail_validation',
@@ -259,12 +254,12 @@ SOCIAL_AUTH_PIPELINE = (
     # Update the user record with any changed info from the auth service.
     'social.pipeline.user.user_details',
 
-    # Set up default django permission groups for new users. 
+    # Set up default django permission groups for new users.
     'accounts.pipeline.set_user_permissions',
-    
+
     # Grab relevant information from the social provider (avatar)
     'accounts.pipeline.get_social_details',
-        
+
     'social.pipeline.debug.debug',
 )
 

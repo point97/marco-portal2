@@ -2,7 +2,7 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ menu.title }} <span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
     {% for entry in menu.entries.all %}
-      <li><a href="{{ entry.destination }}">{{ entry.text }}</a></li>
+      <li><a href="{{ entry.destination }}"{% if entry.external %} target="_blank"{% endif %}>{{ entry.text }}</a></li>
       {% if entry.show_divider_underneath %}
       <li class="divider"></li>
       {% endif %}

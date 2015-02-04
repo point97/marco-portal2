@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 
 from wagtail.wagtailcore.models import Orderable
@@ -36,7 +38,11 @@ class MenuEntryBase(models.Model):
             return self.page.url
         else:
             return self.url
-    
+
+    def external(self):
+        pattern = re.compile(r"https?://");
+        return pattern.match(self.destination)
+
     @property
     def text(self):
         if self.title:
