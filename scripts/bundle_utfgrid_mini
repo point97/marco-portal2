@@ -1,0 +1,22 @@
+#!/bin/bash
+# grabs only the specified zoom levels for a directory of utfgrid layers
+# cd to the directory above the utfgrids
+# ex output: http://midatlantic.point97.io/static/data_manager/utfgrids_mini.tar.gz
+
+UTFGRIDS=./utfgrid
+TMPGRIDS=/tmp/utfgrid
+zooms="5 6 7 8 9"
+
+for i in $UTFGRIDS/*; do
+    if [ -d $i ]; then
+        layer=`basename $i`
+        echo $layer
+        tmpdir=$TMPGRIDS/$layer
+        mkdir -p $tmpdir
+        for zoom in $zooms; do
+            cp -r $i/$zoom $tmpdir/$zoom
+        done
+    fi
+done
+
+tar -czf utfgrids_mini.tar.gz $TMPGRIDS
