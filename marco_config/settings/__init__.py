@@ -75,7 +75,7 @@ INSTALLED_APPS = (
     # Account management
     'social.apps.django_app.default',
     'accounts',
-
+    'mapgroups',
 )
 
 AUTHENTICATION_BACKENDS = (

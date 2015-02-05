@@ -19,3 +19,4 @@ marco_site/static/fonts/
 marco_site/static/js/
 marco_site/static/bundles/
 htmlcov
+.coverage
