@@ -1,3 +1,11 @@
+# MARCO Portal Redesign
+
+This is the top level project for v2 of the MARCO Portal.
+
+## Useful links
+
+ - [Technical Specification]*https://docs.google.com/a/pointnineseven.com/document/d/1bTRnrWeFrgjQ6BqYmLdnf8uIE6iPPJKNZQ-E3jsw8Vc/edit(
+
 ## Development Setup
 
 ```
