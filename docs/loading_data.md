@@ -38,6 +38,19 @@ The json fixture should already be in the repo.
 dj loaddata marco_site/fixtures/content.json
 ```
 
+To load these fixtures into an existing database you may have to run:
+
+```
+from wagtail.wagtailcore.models import *
+Page.objects.all().delete()
+
+from wagtail.wagtailsearch.models import *
+Query.objects.all().delete()
+
+from portal.base.models import *
+PortalRendition.objects.all().delete()
+```
+
 **To recreate the content fixture** from prod/stage environments, see below. 
 Ideally we could exclude more apps to make this fixture as minimal as possible 
 but, for now, it works reliably. Beware that the `contrib.auth` users data is included
