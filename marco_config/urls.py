@@ -14,6 +14,8 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.contrib.wagtailsitemaps.views import sitemap
 from wagtail.wagtailimages import urls as wagtailimages_urls
 
+import mapgroups.urls
+
 admin.autodiscover()
 
 
@@ -32,6 +34,7 @@ urlpatterns = patterns('',
     # nested namespaces. It will likely be fixed in 0.22
     url('^account/auth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^account/', include('accounts.urls', namespace='account')),
+    url(r'^g/', include(mapgroups.urls.urls(namespace='groups'))),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
