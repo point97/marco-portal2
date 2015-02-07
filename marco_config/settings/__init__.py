@@ -74,7 +74,7 @@ INSTALLED_APPS = (
 
     # Account management
     'social.apps.django_app.default',
-    'accounts',
+    'accounts.apps.AccountsAppConfig',
     'mapgroups',
 )
 
