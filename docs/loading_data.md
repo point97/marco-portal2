@@ -38,6 +38,19 @@ The json fixture should already be in the repo.
 dj loaddata marco_site/fixtures/content.json
 ```
 
+To load these fixtures into an existing database you may have to run:
+
+```
+from wagtail.wagtailcore.models import *
+Page.objects.all().delete()
+
+from wagtail.wagtailsearch.models import *
+Query.objects.all().delete()
+
+from portal.base.models import *
+PortalRendition.objects.all().delete()
+```
+
 **To recreate the content fixture** from prod/stage environments, see below. 
 Ideally we could exclude more apps to make this fixture as minimal as possible 
 but, for now, it works reliably. Beware that the `contrib.auth` users data is included
@@ -48,6 +61,9 @@ python manage.py dumpdata --exclude data_manager \
     --exclude contenttypes --exclude auth.Permission \
     --exclude sessions --exclude admin --exclude scenarios \
     --natural --indent=2 > content.json
+
+# replace all passwords with "foobar"
+perl -pi -e 's/^(\s*"password":\s*")[^"]*(",\s*)$/\1pbkdf2_sha256\$15000\$9mX9qOxjyv3V\$TyVXAst+8rdc2RJLIIlDpXDW+ZuRV8G9+gM2GIz8LYE=\2/g;' content.json
 ```
 
 ### Data Manager

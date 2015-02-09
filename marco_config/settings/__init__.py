@@ -74,8 +74,8 @@ INSTALLED_APPS = (
 
     # Account management
     'social.apps.django_app.default',
-    'accounts',
-
+    'accounts.apps.AccountsAppConfig',
+    'mapgroups',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -178,7 +178,7 @@ KML_EXTRUDE_HEIGHT = 100
 KML_ALTITUDEMODE_DEFAULT = 'absolute'
 
 # madrona-scenarios
-GEOMETRY_DB_SRID = 99996
+GEOMETRY_DB_SRID = 3857
 GEOMETRY_CLIENT_SRID = 3857 #for latlon
 GEOJSON_SRID = 3857
 
