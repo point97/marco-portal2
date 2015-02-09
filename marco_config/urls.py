@@ -47,6 +47,7 @@ urlpatterns = patterns('',
     url(r'^features/', include('features.urls')),
     url(r'^scenario/', include('scenarios.urls')),
     url(r'^drawing/', include('drawing.urls')),
+    url(r'^proxy/', include('mp_proxy.urls')),
 
     url(r'^images/', include(wagtailimages_urls)),
     url(r'', include(wagtail_urls)),
