@@ -29,4 +29,5 @@ django-apptemplates==0.0.1
 -e git+git@bitbucket.org:point97/mp-visualize.git@master#egg=mp_visualize-master
 -e git+git@bitbucket.org:point97/mp-data-manager.git@master#egg=mp_data_manager-master
 -e git+git@bitbucket.org:point97/mp-proxy.git@master#egg=mp_proxy-master
+-e git+git@bitbucket.org:point97/marco-map_groups.git@master#egg=marco-map_groups
 -e git+git@bitbucket.org:point97/p97-nursery.git@master#egg=nursery-master
