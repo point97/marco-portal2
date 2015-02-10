@@ -54,7 +54,7 @@ function mount(mapElement, story, animate) {
     mapEngine.updateSize();
   }));
 
-  $.getJSON("/data_manager/api/layers", function(data) {
+  $.getJSON("/data_manager/api/layers/", function(data) {
 
     var dataLayers = _.indexBy(data, 'id');
     _.each(dataLayers, function(d) {
