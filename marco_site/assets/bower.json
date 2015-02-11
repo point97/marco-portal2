@@ -8,8 +8,6 @@
     "bigscreen": "~v1.0.0",
     "ratchet": "~v1.0.0",
     "jquery.bbq": "master",
-    "jscrollpane": "~v2.0.0",
-    "malihu-custom-scrollbar-plugin": "~2.8.0",
     "jqueryui-touch-punch": "*",
     "bootstrap3-typeahead": "~3.1.0",
     "jquery-ui": "~1.11.2",
