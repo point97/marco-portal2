@@ -196,12 +196,12 @@ SOCIAL_AUTH_GOOGLE_PLUS_LOGIN_REDIRECT_URL = '/account/?login=gplus'
 SOCIAL_AUTH_FACEBOOK_LOGIN_REDIRECT_URL = '/account/?login=facebook'
 SOCIAL_AUTH_TWITTER_LOGIN_REDIRECT_URL = '/account/?login=twitter'
 
-SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = ''
-SOCIAL_AUTH_GOOGLE_PLUS_SCOPES = (
-    'https://www.googleapis.com/auth/plus.login', # Minimum needed to login
-    'https://www.googleapis.com/auth/plus.profile.emails.read', # emails
-)
+# SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
+# SOCIAL_AUTH_GOOGLE_PLUS_SECRET = ''
+# SOCIAL_AUTH_GOOGLE_PLUS_SCOPES = (
+#     'https://www.googleapis.com/auth/plus.login', # Minimum needed to login
+#     'https://www.googleapis.com/auth/plus.profile.emails.read', # emails
+# )
 
 SOCIAL_AUTH_FACEBOOK_KEY = ''
 SOCIAL_AUTH_FACEBOOK_SECRET = ''
