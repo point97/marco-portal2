@@ -15,6 +15,7 @@ from wagtail.contrib.wagtailsitemaps.views import sitemap
 from wagtail.wagtailimages import urls as wagtailimages_urls
 
 import mapgroups.urls
+import accounts.urls
 
 admin.autodiscover()
 
@@ -33,7 +34,7 @@ urlpatterns = patterns('',
     # I want the psa urls to be inside the account urls, but PSA doesn't allow
     # nested namespaces. It will likely be fixed in 0.22
     url('^account/auth/', include('social.apps.django_app.urls', namespace='social')),
-    url(r'^account/', include('accounts.urls', namespace='account')),
+    url(r'^account/', include(accounts.urls.urls(namespace='account'))),
     url(r'^g/', include(mapgroups.urls.urls(namespace='groups'))),
 
     url(r'^admin/', include(wagtailadmin_urls)),
