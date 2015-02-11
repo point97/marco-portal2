@@ -108,7 +108,7 @@ cd marco-portal2/static/data_manager
 
 # Use the subset
 cd marco_site/fixtures
-curl http://midatlantic.point97.io/static/data_manager/utfgrid_subset.tar.gz
+curl -O http://midatlantic.point97.io/static/data_manager/utfgrid_subset.tar.gz
 cd ../../static
 tar -xzvf ../marco_site/fixtures/utfgrid_subset.tar.gz  
 ```
@@ -118,7 +118,7 @@ tar -xzvf ../marco_site/fixtures/utfgrid_subset.tar.gz
 ```
 # Use the subset
 cd marco_site/fixtures
-curl http://midatlantic.point97.io/static/data_manager/utfgrid_full.tar.gz
+curl -O http://midatlantic.point97.io/static/data_manager/utfgrid_full.tar.gz
 cd ../../static
 tar -xzvf ../marco_site/fixtures/utfgrid_full.tar.gz  
 ```
