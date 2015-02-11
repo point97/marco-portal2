@@ -212,6 +212,8 @@ SOCIAL_AUTH_DISCONNECT_REDIRECT_URL = '/'
 
 # Our authentication pipeline
 SOCIAL_AUTH_PIPELINE = (
+    'accounts.pipeline.clean_session',
+
     # Get the information we can about the user and return it in a simple
     # format to create the user instance later. On some cases the details are
     # already part of the auth response from the provider, but sometimes this
@@ -261,6 +263,7 @@ SOCIAL_AUTH_PIPELINE = (
     'accounts.pipeline.get_social_details',
 
     'social.pipeline.debug.debug',
+    'accounts.pipeline.clean_session',
 )
 
 DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
