@@ -546,16 +546,18 @@ body.template-visualize{
     .accordion-heading.active{
         background-color: @light-gray;
     }
-    .jspTrack{
-        border-left: 1px solid @light-gray;
-        border-right: 1px solid @light-gray;
-        background: @gray-lighter;
-    }
-    .jspDrag{
-        background: @gray;
-    }
     #data-panel{
         background-color: @gray-lighter;
+        .layer-row {
+            width: 100%;
+            .layer-name {
+              width: 60%;
+            }
+            .layer-controls {
+              width: 40%;
+              text-align: right;
+            }
+        }
     }
 
     ul.unstyled{
@@ -566,17 +568,6 @@ body.template-visualize{
     .btn:hover, .btn:focus , .btn.active, .btn.focus{
         color: @green;
         box-shadow: none;
-    }
-
-    #data-panel .dropdown-menu{
-        left:15px;
-        li{
-            a{
-                padding-top: 0px;
-                padding-bottom: 0px;
-            }
-
-        }
     }
 
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
