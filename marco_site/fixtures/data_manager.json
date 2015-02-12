@@ -3084,7 +3084,7 @@
     "vector_outline_opacity": null,
     "is_annotated": false,
     "bookmark": "",
-    "vector_graphic": "/media/data_manager/images/awc_hub_icon.png",
+    "vector_graphic": "/static/data_manager/images/awc_hub_icon.png",
     "kml": "",
     "source": "",
     "lookup_table": [],
@@ -9332,7 +9332,7 @@
   "fields": {
     "color": "#97E600",
     "dashstyle": "solid",
-    "graphic": "/media/data_manager/images/awc_hub_icon.png",
+    "graphic": "/static/data_manager/images/awc_hub_icon.png",
     "value": "Hub",
     "fill": false
   },
