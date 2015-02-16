@@ -528,6 +528,10 @@ body.template-visualize{
         text-decoration: none;
     }
 
+    .tab-pane {
+      overflow: hidden;
+    }
+    
     .tab-content, #data-accordion{
         background-color: @gray-lighter;
         overflow-y: auto;
@@ -551,12 +555,28 @@ body.template-visualize{
         .layer-row {
             table-layout: fixed;
             width: 100%;
-            .layer-name {
-              width: 60%;
-            }
-            .layer-controls {
-              width: 40%;
-              text-align: right;
+            tbody > tr > td {
+              > a:hover {
+                border: 1px solid @gray;
+              }
+              width: 40px;
+              &.layer-name {
+                width: initial;
+                > a {
+                  position: relative;
+                  display: block;
+                  > .add-on {
+                    float: right;
+                    margin-left: 12px;
+                    line-height: inherit;
+                  }
+                  > .text {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;                    
+                  }
+                }
+              }
             }
         }
     }
