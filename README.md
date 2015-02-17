@@ -40,6 +40,13 @@ npm install
 
 ## Production Setup
 
+
+### Putting site into maintenance mode
+
+In the webfaction interface, remove the 'marco_portal2' app at `/` and replace 
+with the maintenance page. Takes about 60 seconds to activate. Test out (http://midatlantic.point97.io)[http://midatlantic.point97.io]
+to confirm. 
+
 ### Dependencies
 
  - Elasticsearch

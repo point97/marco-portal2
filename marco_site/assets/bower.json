@@ -9,7 +9,7 @@
     "ratchet": "~v1.0.0",
     "jquery.bbq": "master",
     "jqueryui-touch-punch": "*",
-    "bootstrap3-typeahead": "~3.1.0",
+    "bootstrap3-typeahead": "https://github.com/bassjobsen/Bootstrap-3-Typeahead.git",
     "jquery-ui": "~1.11.2",
     "jquery-migrate": "~1.2.1",
     "ol3-unofficial": "~3.0.3",

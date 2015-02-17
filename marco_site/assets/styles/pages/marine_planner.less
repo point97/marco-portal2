@@ -27,6 +27,15 @@ body.template-visualize{
         width: 400px;
         padding: 0px;
     }
+    .search-icon {
+        color: @light-gray;
+    }
+    .search-instructions {
+        color: @light-gray;
+        text-transform: uppercase;
+        padding-top: 8px;
+        font-size: 90%;
+    }
     #aggregated-attribute-overlay-test {
         max-height: 250px;
     }
@@ -481,7 +490,7 @@ body.template-visualize{
     }
     .panel-heading {
         padding: 10px 4px;
-        height: 54px;
+        height: 105px;
         border: 0px;
     }
     .panel-default>.panel-heading{
@@ -583,7 +592,7 @@ body.template-visualize{
 
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
         color: @deep-blue;
-        background-color: transparent;
+        background-color: @light-gray; 
     }
     .btn{
         text-align: left;
@@ -704,10 +713,14 @@ body.template-visualize{
         background-color: @gray-lighter;
         font-size: 20px;
         font-weight: 100;
+        padding: 4px;
+        margin-top: 8px;
+        width: 250px;
     }
     #left-maximized{
         float: left;
         width: 350px;
+        padding-left: 26px;
     }
 
     #left-minimized{
@@ -804,8 +817,8 @@ body.template-visualize{
             font-size: 14px;
         }
         .form-search input {
-            width: 55%;
-            margin-left: -18px;
+            width: 100%;
+            margin-left: -2px;
         }
         #data-accordion .btn-group-layer .btn-layer {
           width: 68%;
