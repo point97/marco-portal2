@@ -17,14 +17,14 @@ ssh $REMOTE_HOST << ENDSSH
 cd $REMOTE_ROOT
 git stash
 git fetch
-git checkout origin/$RELEASE
+git checkout -f origin/$RELEASE
 ENDSSH
 
 
 # local
 git stash
 git fetch
-git checkout origin/$RELEASE
+git checkout -f origin/$RELEASE
 cd $ASSET_DIR
 npm install
 ./node_modules/.bin/gulp
