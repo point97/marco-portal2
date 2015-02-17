@@ -528,6 +528,10 @@ body.template-visualize{
         text-decoration: none;
     }
 
+    .tab-pane {
+      overflow: hidden;
+    }
+    
     .tab-content, #data-accordion{
         background-color: @gray-lighter;
         overflow-y: auto;
@@ -544,18 +548,30 @@ body.template-visualize{
     }
 
     .accordion-heading.active{
-        background-color: @light-gray;
+        background-color: @gray-light;
     }
     #data-panel{
         background-color: @gray-lighter;
         .layer-row {
+            table-layout: fixed;
             width: 100%;
-            .layer-name {
-              width: 60%;
+            > tbody > tr > td {
+              width: 40px;
+              &.layer-name {
+                width: initial;
+                table {
+                  width: 100%
+                }
+                > a {
+                  display: block;
+                }
+              }
             }
-            .layer-controls {
-              width: 40%;
-              text-align: right;
+            .add-on {
+              width: 1px;
+            }
+            .btn-layer {
+              white-space: normal;
             }
         }
     }
@@ -563,11 +579,6 @@ body.template-visualize{
     ul.unstyled{
         list-style: none;
         padding-left: 0px
-    }
-
-    .btn:hover, .btn:focus , .btn.active, .btn.focus{
-        color: @green;
-        box-shadow: none;
     }
 
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
@@ -718,20 +729,6 @@ body.template-visualize{
     .popover{
         min-width: 150px;
         min-height: 30px;
-    }
-
-    .tooltip-inner {
-        white-space: nowrap;
-        background-color: @gray-lighter;
-        color: @black;
-        border: 1px solid @black;
-    }
-
-    .tooltip.right .tooltip-arrow {
-        border-right: 5px solid @black;
-    }
-    .tooltip.left .tooltip-arrow {
-        border-left: 5px solid @black;
     }
 
     .popover-inner{
