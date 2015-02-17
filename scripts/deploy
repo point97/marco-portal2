@@ -6,6 +6,8 @@ STATIC_DIR="marco_site/static/"
 REMOTE_HOST="point97@midatlantic.point97.io"
 REMOTE_ROOT="~/webapps/marco_portal2/site"
 REMOTE_RESTART_CMD="~/webapps/marco_portal2/apache2/bin/restart"
+CELERY_PIDFILE=$HOME/run/marco_portal2_celery.pid
+CELERY_WORKER=$HOME/webapps/marco_portal2/site/scripts/celery-worker.sh
 
 ssh $REMOTE_HOST << ENDSSH
 cd $REMOTE_ROOT
@@ -31,6 +33,8 @@ git stash pop
 
 
 ssh $REMOTE_HOST << ENDSSH
+cat $CELERY_PIDFILE | xargs kill
+rm $CELERY_PIDFILE
 source ~/env/marco_portal2/bin/activate
 cd $REMOTE_ROOT
 pip install -r requirements.txt --exists-action=w
@@ -38,4 +42,5 @@ pip install -r requirements.txt --exists-action=w
 ./manage.py collectstatic -l --noinput
 ./manage.py compress
 ~/webapps/marco_portal2/apache2/bin/restart
+sh ~/webapps/marco_portal2/site/scripts/celery-worker.sh &
 ENDSSH

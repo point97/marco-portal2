@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'email_log',
+    'djcelery_email',
     'compressor',
     'taggit',
     'modelcluster',
@@ -271,6 +272,9 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.debug.debug',
     'accounts.pipeline.clean_session',
 )
+
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+CELERY_EMAIL_BACKEND = 'email_log.backends.EmailBackend'
 
 DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
 SERVER_EMAIL = "MARCO Site Errors <developers@pointnineseven.com>"
