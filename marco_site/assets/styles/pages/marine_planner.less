@@ -555,25 +555,23 @@ body.template-visualize{
         .layer-row {
             table-layout: fixed;
             width: 100%;
-            tbody > tr > td {
+            > tbody > tr > td {
               width: 40px;
               &.layer-name {
                 width: initial;
+                table {
+                  width: 100%
+                }
                 > a {
-                  position: relative;
                   display: block;
-                  > .add-on {
-                    float: right;
-                    margin-left: 12px;
-                    line-height: inherit;
-                  }
-                  > .text {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;                    
-                  }
                 }
               }
+            }
+            .add-on {
+              width: 1px;
+            }
+            .btn-layer {
+              white-space: normal;
             }
         }
     }
