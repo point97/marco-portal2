@@ -69,6 +69,8 @@ class OceanStorySectionBase(MediaItem):
         else:
             s = json.loads(self.map_state)
         return s
+    def data_layers(self):
+        return self.parsed_map_state['dataLayers'].keys()
 
     def clean(self):
         super(OceanStorySectionBase, self).clean()
@@ -109,7 +111,12 @@ class OceanStory(DetailPageBase):
             o = {'sections': []}
         return json.dumps(o);
 
+    def data_layers(self):
+        return set.union(*[set(s.data_layers()) for s in self.sections.all()])
 
+    def badge_metric(self):
+        return len(self.data_layers())
+        
 OceanStory.content_panels = DetailPageBase.content_panels + [
     MultiFieldPanel([FieldPanel('hook'), FieldPanel('explore_title'), FieldPanel('explore_url')], "Map overlay"),
     InlinePanel( OceanStory, 'sections', label="Sections" ),
