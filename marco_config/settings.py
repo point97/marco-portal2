@@ -8,17 +8,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
-from os.path import abspath, dirname, join
+import os
+from p97settings import IniParser
+from os.path import abspath, dirname
 from social.backends.google import GooglePlusAuth
 
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'w2pupo34%54!l7xmd#e52r($bu!w8c19)-x8_cqop*3u(9%@)z'
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+CONFIG_FILE = os.path.normpath(os.path.join(BASE_DIR, 'config.ini'))
+
+cfg = IniParser()
+cfg.read(CONFIG_FILE)
+
+DEBUG = cfg.getboolean('APP', 'DEBUG', True)
+TEMPLATE_DEBUG = cfg.getboolean('APP', 'TEMPLATE_DEBUG', True)
+
+SECRET_KEY = cfg.get('APP', 'SECRET_KEY', 'you forgot to set the secret key')
+
 
 # Application definition
 
@@ -102,20 +112,37 @@ ROOT_URLCONF = 'marco_config.urls'
 WSGI_APPLICATION = 'marco_config.wsgi.application'
 
 
+default = {
+    'ENGINE': cfg.get('DATABASE', 'ENGINE',
+                      'django.contrib.gis.db.backends.postgis'),
+}
+
+if default['ENGINE'].endswith('spatialite'):
+    SPATIALITE_LIBRARY_PATH = cfg.get('DATABASE', 'SPATIALITE_LIBRARY_PATH')
+    default['NAME'] = cfg.get('DATABASE', 'NAME', os.path.join(BASE_DIR, 'marco.db'))
+else:
+    default['NAME'] = cfg.get('DATABASE', 'NAME')
+    if cfg.has_option('DATABASE', 'USER'):
+        default['USER'] = cfg.get('DATABASE', 'USER')
+    default['HOST'] = cfg.get('DATABASE', 'HOST', 'localhost')
+    default['PORT'] = cfg.getint('DATABASE', 'PORT', 5432)
+    default['PASSWORD'] = cfg.get('DATABASE', 'PASSWORD')
+
+DATABASES = {'default': default}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = cfg.get('APP', 'TIME_ZONE', 'UTC')
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_ROOT = join(PROJECT_ROOT, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
@@ -124,9 +151,8 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
-MEDIA_ROOT = join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
 
 # Django compressor settings
 # http://django-compressor.readthedocs.org/en/latest/settings/
@@ -158,7 +184,6 @@ LOGIN_URL = 'account:index'
 WAGTAIL_SITE_NAME = 'MARCO Portal'
 
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'portal/search_results.html'
-
 
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
@@ -203,12 +228,12 @@ SOCIAL_AUTH_TWITTER_LOGIN_REDIRECT_URL = '/account/?login=twitter'
 #     'https://www.googleapis.com/auth/plus.profile.emails.read', # emails
 # )
 
-SOCIAL_AUTH_FACEBOOK_KEY = ''
-SOCIAL_AUTH_FACEBOOK_SECRET = ''
+SOCIAL_AUTH_FACEBOOK_KEY = cfg.get('SOCIAL_AUTH', 'FACEBOOK_KEY', '')
+SOCIAL_AUTH_FACEBOOK_SECRET = cfg.get('SOCIAL_AUTH', 'FACEBOOK_SECRET', '')
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile,email']
 
-SOCIAL_AUTH_TWITTER_KEY = ''
-SOCIAL_AUTH_TWITTER_SECRET = ''
+SOCIAL_AUTH_TWITTER_KEY = cfg.get('SOCIAL_AUTH', 'TWITTER_KEY', '')
+SOCIAL_AUTH_TWITTER_SECRET = cfg.get('SOCIAL_AUTH', 'FACEBOOK_KEY', '')
 
 # SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
 SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'accounts.pipeline.send_validation_email'
@@ -272,6 +297,13 @@ SOCIAL_AUTH_PIPELINE = (
     'accounts.pipeline.clean_session',
 )
 
+EMAIL_HOST = cfg.get('EMAIL', 'HOST', 'localhost')
+EMAIL_PORT = cfg.getint('EMAIL', 'PORT', 8025)
+if cfg.has_option('EMAIL', 'HOST_USER') and \
+        cfg.has_option('EMAIL', 'HOST_PASSWORD'):
+    EMAIL_HOST_USER = cfg.get('EMAIL', 'HOST_USER')
+    EMAIL_HOST_PASSWORD = cfg.get('EMAIL', 'HOST_PASSWORD')
+
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_BACKEND = 'email_log.backends.EmailBackend'
 
@@ -279,10 +311,9 @@ DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
 SERVER_EMAIL = "MARCO Site Errors <developers@pointnineseven.com>"
 EMAIL_SUBJECT_PREFIX = '[MARCO] ' # for mail to admins/managers only
 
+CELERY_RESULT_BACKEND = cfg.get('CELERY', 'RESULT_BACKEND', '')
+BROKER_URL = cfg.get('CELERY', 'BROKER_URL', '')
 
-from .dev import *
+GA_ACCOUNT = cfg.get('APP', 'GA_ACCOUNT', '')
 
-try:
-    from .local import *
-except ImportError:
-    pass
+
