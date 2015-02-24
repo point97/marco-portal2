@@ -21,3 +21,5 @@ marco_site/static/bundles/
 htmlcov
 .idea
 .coverage
+config.ini
+marco.db
