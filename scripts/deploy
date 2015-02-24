@@ -5,15 +5,10 @@ ASSET_DIR="marco_site/assets/"
 STATIC_DIR="marco_site/static/"
 REMOTE_ROOT="~/webapps/marco_portal2/site"
 REMOTE_RESTART_CMD="~/webapps/marco_portal2/apache2/bin/restart"
-CELERY_PIDFILE=$HOME/run/marco_portal2_celery.pid
-CELERY_WORKER=$HOME/webapps/marco_portal2/site/scripts/celery-worker.sh
+CELERY_PIDFILE="~/run/marco_portal2_celery.pid"
+CELERY_WORKER="~/webapps/marco_portal2/site/scripts/celery-worker.sh"
 
-if [ "$2" == "prod" ]
-  then
-    REMOTE_HOST="point97@midatlantic.point97.io"
-else
-    REMOTE_HOST="point97@midatlantic-sandbox.point97.io"
-fi
+REMOTE_HOST="point97@web410.webfaction.com"
 
 ssh $REMOTE_HOST << ENDSSH
 cd $REMOTE_ROOT
