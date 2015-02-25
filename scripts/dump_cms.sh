@@ -2,17 +2,25 @@
 
 # Script to zip up just the wagtail content from the database, for use locally.
 
-cd $HOME
-dumpdir=marco_cms_dump-`date -I`
-mkdir $dumpdir
-cd $HOME/webapps/marco_portal2/site
 source $HOME/env/marco_portal2/bin/activate
-for app in base data_catalog data_gaps home initial_data menu ocean_stories pages
- do
-  echo Dumping $app
-  python manage.py dumpdata $app > $HOME/$dumpdir/portal_$app.dump 2>/dev/null
- done
+
+dumpfile=marco_cms_dump-`date -I`.json
+
+# Apps are dumped in the order they appear here.
+apps="auth.user auth.group auth.permission wagtailcore wagtailimages base "
+apps="$apps data_gaps data_catalog home initial_data menu ocean_stories pages"
+
+echo "Dumping $apps, just a second"
+cd $HOME/webapps/marco_portal2/site
+python manage.py dumpdata --natural --indent=4 $apps > $HOME/$dumpfile 2>/dev/null
 
 cd $HOME
-tar czf $dumpdir.tar.gz $dumpdir
-rm -r $dumpdir
+gzip -9 $dumpfile
+
+echo All done, get your file with:
+echo scp `hostname`:~/$dumpfile.gz .
+
+# To restore to a fresh database, it seems that you have to manually delete all
+# of the auth.permission objects except the last one (id=215).
+# Alternatively, the creation of that last one should go into a data migration,
+# it belongs to the feature sharing system ("Can Share Features")
