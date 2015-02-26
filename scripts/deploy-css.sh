@@ -9,7 +9,7 @@ HERE="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 pushd .
 
 ASSETS_DIR=$HERE/../marco_site/assets
-STATIC_DIR=$HERE/../static
+STATIC_DIR=$HERE/../marco_site/static
 
 SANDBOX_STATIC=midatlantic-sandbox.point97.io:/home/point97/webapps/marco_portal2/site/marco_site/static
 
