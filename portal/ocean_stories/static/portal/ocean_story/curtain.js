@@ -46,7 +46,7 @@ var bindCurtain = function(elements, isCollapsed) {
     learnMoreHeight = $('.learn-more').height();
     viewHeight = $( this ).height();
     startHeight = viewHeight - learnMoreHeight;
-    endHeight = viewHeight/2;
+    endHeight = viewHeight * 0.40;
     update();
   }
   onResize();
