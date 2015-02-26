@@ -4,6 +4,8 @@
 @navbar-default-link-active-color: @navbar-default-link-color;
 @navbar-default-link-active-bg:    @gray-lighter;
 
+@navbar-default-link-hover-color: darken(@navbar-default-link-color, 15%);
+
 @import "../bootstrap/navbar";
 
 .dropdown-menu {
@@ -22,13 +24,19 @@
   .navbar-nav {
     text-transform: uppercase;
   }
+  /* Non .active Top level menu items */
+  .navbar-nav  > li > a {
+    &:hover, &:focus {
+      color: @navbar-default-link-hover-color;
+    }
+  }
+  /* Active top level menu items */
   .navbar-nav > .active > a {
     background-color: inherit;
     color: @brand-primary;
     .underbar(@brand-success);
     &:hover, &:focus {
-      color: inherit;
-      background-color: inherit;
+      color: @navbar-default-link-hover-color;
     }
   }
   .navbar-nav > .open > a {
