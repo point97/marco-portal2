@@ -1,3 +1,7 @@
+i.fa.deep-blue {
+    color: @deep-blue;
+}
+
 body footer {
   @gutter: 52px;
   @margin: 10px 0;
@@ -36,6 +40,16 @@ body footer {
     @media (min-width: @screen-md-min) {
       border-right: 1px solid @yellow;
     }
+  }
+
+  .social-links {
+      margin-top: 2em;
+  }
+
+  .social-links > a {
+      &, &:hover, &:active, &:visited {
+          color: inherit;
+      }
   }
 
   .footer-brand {
