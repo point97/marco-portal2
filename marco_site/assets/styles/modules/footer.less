@@ -1,5 +1,36 @@
+footer .fa-envelope {
+    color: @brand-primary;
+}
+footer .input-group-addon {
+    background-color: @white;
+    border-color: white;
+
+}
+
+footer #fieldEmail {
+    border: 0px solid white;
+    width: 300px;
+}
+
 i.fa.deep-blue {
     color: @deep-blue;
+}
+
+.inner-addon { position: relative; }
+.inner-addon input[type=email] { padding-left: 35px; padding-right: 30px; }
+.inner-addon i { z-index: 1000; position: absolute; padding: 10px 12px; cursor: default; }
+
+/* right icon */
+.inner-addon .right { right: 0px; }
+
+/* left icon */
+.inner-addon .left { left: 0px; }
+
+
+.inner-addon .right {
+    color: @dark-gray;
+    border-left: 1px solid #eee;
+    cursor: pointer;
 }
 
 body footer {
@@ -34,7 +65,7 @@ body footer {
     color: @yellow;
     text-transform: uppercase;
   }
-  
+
   .info {
     padding: 0 @gutter/2;
     @media (min-width: @screen-md-min) {
