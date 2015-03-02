@@ -185,6 +185,13 @@ WAGTAIL_SITE_NAME = 'MARCO Portal'
 
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'portal/search_results.html'
 
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.wagtailsearch.backends.db.DBSearch',
+#         'INDEX': 'marco_portal',
+#     }
+# }
+#
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 
@@ -233,7 +240,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = cfg.get('SOCIAL_AUTH', 'FACEBOOK_SECRET', '')
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['public_profile,email']
 
 SOCIAL_AUTH_TWITTER_KEY = cfg.get('SOCIAL_AUTH', 'TWITTER_KEY', '')
-SOCIAL_AUTH_TWITTER_SECRET = cfg.get('SOCIAL_AUTH', 'FACEBOOK_KEY', '')
+SOCIAL_AUTH_TWITTER_SECRET = cfg.get('SOCIAL_AUTH', 'TWITTER_SECRET', '')
 
 # SOCIAL_AUTH_EMAIL_FORCE_EMAIL_VALIDATION = True
 SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = 'accounts.pipeline.send_validation_email'
