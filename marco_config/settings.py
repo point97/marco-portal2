@@ -187,13 +187,17 @@ WAGTAIL_SITE_NAME = 'MARCO Portal'
 
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'portal/search_results.html'
 
-# WAGTAILSEARCH_BACKENDS = {
-#     'default': {
-#         'BACKEND': 'wagtail.wagtailsearch.backends.db.DBSearch',
-#         'INDEX': 'marco_portal',
-#     }
-# }
-#
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+        # 'URLS': ['https://iu20e5efzd:dibenj5fn5@point-97-elasticsear-6230081365.us-east-1.bonsai.io'],
+        'URLS': ['https://site:a379ac680e6aaa45f0c129c2cd28d064@bofur-us-east-1.searchly.com'],
+        'INDEX': 'marco_portal',
+        'TIMEOUT': 5,
+    }
+}
+
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
 
