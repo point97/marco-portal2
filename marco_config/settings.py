@@ -28,7 +28,7 @@ DEBUG = cfg.getboolean('APP', 'DEBUG', True)
 TEMPLATE_DEBUG = cfg.getboolean('APP', 'TEMPLATE_DEBUG', True)
 
 SECRET_KEY = cfg.get('APP', 'SECRET_KEY', 'you forgot to set the secret key')
-
+ALLOWED_HOSTS = cfg.getlist('APP', 'ALLOWED_HOSTS')
 
 # Application definition
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'p97settings',
 
     'email_log',
     'djcelery_email',
