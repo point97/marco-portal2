@@ -9,33 +9,35 @@
 
 {% block header %}
     {{ block.super }}
-    <div class="curtain">
-        <div id="ocean-story-map"></div>
-    </div>
-    {% if self.explore_title %}
-    <div class="curtain overlay">
-      <a class="btn btn-default btn-lg view-data" href='{{ self.explore_url }}'><span class="icon icon-marco oversized"></span>&nbsp; {{ self.explore_title }}</a>
-    </div>
-    {% endif %}
-    <div class="intro overlay">
-      <div class="center">
-        <div class="container">
-          <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
-          {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
+    <div class="curtain-container">
+        <div class="curtain">
+            <div id="ocean-story-map"></div>
         </div>
-      </div>
-      {% with page=self.portal_prev_sibling %}
-        {% if page %}
-          <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+        {% if self.explore_title %}
+        <div class="curtain overlay">
+          <a class="btn btn-default btn-lg view-data" href='{{ self.explore_url }}'><span class="icon icon-marco oversized"></span>&nbsp; {{ self.explore_title }}</a>
+        </div>
         {% endif %}
-      {% endwith %}
-      {% with page=self.portal_next_sibling %}
-        {% if page %}
-          <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
-        {% endif %}
-      {% endwith %}
+        <div class="intro overlay">
+          <div class="center">
+            <div class="container">
+              <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
+              {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
+            </div>
+          </div>
+          {% with page=self.portal_prev_sibling %}
+            {% if page %}
+              <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+            {% endif %}
+          {% endwith %}
+          {% with page=self.portal_next_sibling %}
+            {% if page %}
+              <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
+            {% endif %}
+          {% endwith %}
+        </div>
+        <a href="#page-header" class="learn-more animate">learn more</a>
     </div>
-    <a href="#page-header" class="learn-more animate">learn more</a>
 {% endblock %}
 
 {% block content %}
