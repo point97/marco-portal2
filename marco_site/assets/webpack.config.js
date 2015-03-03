@@ -20,6 +20,8 @@ module.exports = {
     path: path.join(__dirname, '..', 'static', 'bundles'),
     filename: "[name].js",
     chunkFilename: "[id].js",
+    // comment to minify
+    // debug: true
   },
   resolve: {
     root: roots,
