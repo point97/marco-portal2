@@ -6,6 +6,14 @@ This is the top level project for v2 of the MARCO Portal.
 
  - [Technical Specification](https://docs.google.com/a/pointnineseven.com/document/d/1bTRnrWeFrgjQ6BqYmLdnf8uIE6iPPJKNZQ-E3jsw8Vc/edit)
 
+## Prerequisites
+
+lesscss ~ 
+
+    npm install --global less
+
+
+
 ## Development Setup
 
 ```
@@ -93,3 +101,4 @@ drop/create
 
  - https://icomoon.io
  - https://www.npmjs.org/package/icomoon-build
+

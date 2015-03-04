@@ -157,10 +157,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Django compressor settings
-# http://django-compressor.readthedocs.org/en/latest/settings/
+# Note: make sure lessc & node are in the path
+CSS_MAP_URL = os.path.join(STATIC_URL, 'CACHE', 'css', 'marco_site.css.map')
+CSS_MAP_FILE = os.path.join(STATIC_ROOT, 'CACHE', 'css', 'marco_site.css.map')
 
+# Use a hacked command line to encourage the generation of CSS map files.
+# This doesn't work exactly right, since the file always has the same name.
+# If we let lessc figure out the source map name, it generates it, but
+# django-compressor doesn't know to look for the source map file, so it gets
+# left in $TMPDIR
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
+    ('text/x-scss', 'django_libsass.SassCompiler'), # for wagtail
+    ('text/less', ' '.join(['lessc',
+                            '--source-map-url=%s' % CSS_MAP_URL,
+                            '--source-map=%s' % CSS_MAP_FILE,
+                            '{infile}',
+                            '{outfile}'])),
 )
 
 

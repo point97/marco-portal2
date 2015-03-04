@@ -11,7 +11,9 @@
     {% block extra_css %}{% endblock %}
 
     <link rel="shortcut icon" href="{% static 'favicon.ico?v=1' %}" />
-    <link rel="stylesheet" href="{% static 'css/marco_site.css' %}" />
+      {% compress css %}
+    <link rel="stylesheet" type="text/less" href="{% static 'less/marco_site.less' %}" />
+      {% endcompress %}
     <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
