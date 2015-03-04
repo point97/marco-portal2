@@ -71,8 +71,14 @@ gulp.task('browser-sync', function(cb) {
 });
 
 // Rerun the task when a file changes
-gulp.task('watch', ['browser-sync', 'webpack-watch'], function() {
-    gulp.watch(config.stylePath + '/**/*.less', ['css']);
+gulp.task('watch', [/*'browser-sync',*/ 'webpack-watch'], function() {
+    // Note: watching the "bootstrap" directory results in a "too many open
+    // files" error
+
+    gulp.watch('Gulpfile.js', ['css']);
+    gulp.watch(config.stylePath + '/layouts/*.less', ['css']);
+    gulp.watch(config.stylePath + '/modules/*.less', ['css']);
+    gulp.watch(config.stylePath + '/pages/*.less', ['css']);
 });
 
 gulp.task('default', ['bower', 'webpack', 'css']);

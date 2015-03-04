@@ -8,6 +8,9 @@
 	// fallback
 	height: @line-height*@lines;
 }
+
+@hover-background-color: @gray;
+
 .overflow-on-hover(@background: @gray-light) {
 	&:hover {
 		position: relative;
@@ -16,9 +19,14 @@
 		-webkit-line-clamp: inherit;
 		> * {
 			display: block;
-			background: @background;
+			background: @hover-background-color;
 		}
 	}
+}
+
+.grid-view > .detail:hover {
+    background-color: @hover-background-color;
+    outline: 1px solid @turquoise;
 }
 
 .detail {
