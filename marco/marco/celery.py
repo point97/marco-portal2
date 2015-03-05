@@ -4,8 +4,8 @@ import os
 from celery import Celery
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'marco_config.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'marco.settings')
 
-app = Celery('marco_config')
+app = Celery('marco')
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)

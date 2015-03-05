@@ -112,8 +112,8 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
-ROOT_URLCONF = 'marco_config.urls'
-WSGI_APPLICATION = 'marco_config.wsgi.application'
+ROOT_URLCONF = 'marco.urls'
+WSGI_APPLICATION = 'marco.wsgi.application'
 
 
 default = {
