@@ -134,6 +134,17 @@ else:
 
 DATABASES = {'default': default}
 
+CACHES = {
+    'default': {
+        'BACKEND': cfg.get('CACHES', 'BACKEND'),
+        'LOCATION': cfg.get('CACHES', 'LOCATION'),
+        'KEY_PREFIX': 'marco_portal',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+        }
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
