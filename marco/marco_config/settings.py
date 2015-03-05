@@ -16,8 +16,10 @@ from social.backends.google import GooglePlusAuth
 # Absolute filesystem path to the Django project directory:
 PROJECT_ROOT = dirname(dirname(dirname(abspath(__file__))))
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+ASSETS_DIR = os.path.realpath(os.path.join(BASE_DIR, '..', 'assets'))
+STYLES_DIR = os.path.realpath(os.path.join(ASSETS_DIR, 'styles'))
 
 CONFIG_FILE = os.path.normpath(os.path.join(BASE_DIR, 'config.ini'))
 
@@ -146,6 +148,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    STYLES_DIR,
+)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
