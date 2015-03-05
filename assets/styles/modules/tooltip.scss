@@ -1,9 +1,11 @@
-//@import "../bootstrap/tooltip";
 
 $tooltip-color: $white;
 $tooltip-bg: $brand-success;
 $tooltip-opacity: 1;
 
+@import "../../bootstrap/stylesheets/bootstrap/tooltip";
+
 .tooltip-inner {
   white-space: nowrap;
 }
+

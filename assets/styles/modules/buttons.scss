@@ -1,11 +1,13 @@
-//@import "../bootstrap/buttons";
-
 $btn-default-bg: $gray-light;
 $btn-default-color: $black;
+$btn-primary-bg: $deep-blue;
+$btn-primary-color: $white;
 
 $btn-success-bg: $btn-default-bg;
 $btn-success-color: $btn-default-color;
 $btn-success-border: $brand-success;
+
+@import "../../bootstrap/stylesheets/bootstrap/buttons";
 
 .btn:active, .btn.active {
   box-shadow: none;
