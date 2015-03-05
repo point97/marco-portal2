@@ -1,0 +1,29 @@
+body.data-theme-page {
+  .layer-info {
+    h4 {
+      letter-spacing: 1em * 50/1000;
+      font-family: $font-family-condensed;
+      > a {
+        color: $brand-success;
+      }
+      .layer-parent-name {
+        color: $gray-dark;
+      }
+    }
+    .link-bar {
+      padding: $padding-base-vertical 0;
+      background-color: $white;
+      display: inline-block;
+      a {
+        color: $brand-primary;
+      }
+    }
+    p {
+      @extend .text-block;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: .055em;
+    }
+    padding-bottom: $padding-large-vertical;
+  }
+}

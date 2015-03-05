@@ -1,0 +1,41 @@
+# Configuration file for MARCO Portal deployments.
+# Server-specific configuration goes here.
+
+[APP]
+DEBUG = True
+TEMPLATE_DEBUG = True
+ALLOWED_HOSTS = localhost
+SECRET_KEY = You forgot to set the secret key
+TIME_ZONE = UTC
+GA_ACCOUNT = You forgot to set the google analytics account
+STATIC_ROOT = /path/to/static/root
+
+[CACHES]
+BACKEND = redis_cache.RedisCache
+LOCATION = /path/to/redis.sock
+
+[CELERY]
+RESULT_BACKEND = redis+socket:///path/to/redis.sock
+BROKER_URL = redis+socket:///path/to/redis.sock
+
+[DATABASE]
+ENGINE = django.contrib.gis.db.backends.postgis
+NAME = marco_portal
+HOST = localhost
+PORT = 5432
+USER = some user
+PASSWORD = some password
+
+[EMAIL]
+HOST = localhost
+PORT = 8025
+HOST_USER = mail user
+HOST_PASSWORD = mail password
+
+[SOCIAL_AUTH]
+GOOGLE_PLUS_KEY = You forgot to set the google plus key
+GOOGLE_PLUS_SECRET = You forgot to set the google plus secret
+FACEBOOK_KEY = You forgot to set the facebook key
+FACEBOOK_SECRET = You forgot to set the facebook secret
+TWITTER_KEY = You forgot to set the twitter key
+TWITTER_SECRET = You forgot to set the twitter secret

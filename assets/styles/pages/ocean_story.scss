@@ -1,0 +1,130 @@
+div.curtain-container {
+    margin-bottom: -$navbar-height;
+}
+
+.curtain {
+  position: fixed;
+  width: 100%;
+  background: $gray-dark;
+  overflow: hidden;
+  z-index: 800;
+  box-shadow: 0 0px 20px $gray;
+}
+
+.overlay {
+  z-index: 900;
+  background: transparent;
+  pointer-events: none;
+}
+
+.clickable {
+  pointer-events: auto;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translate(0, -50%);
+}
+
+.ocean-story-page {
+  #ocean-story-map {
+    &.full {
+      height: calc(100vh - #{$navbar-height});
+    }
+    &.half {
+      height: 40vh;
+    }
+    cursor: inherit;
+    position: relative;
+    top: 50%;
+    width: 100%;
+    transform: translate(0, -50%);
+  }
+
+  @extend .navbar-transparent;
+
+  .view-data {
+    @extend .clickable;
+    z-index: 900;
+    position: absolute;
+    @extend .font-medium;
+    font-size: 13px;
+    right: 8px;
+    bottom: 8px;
+    .icon {
+      color: $brand-success;
+    }
+  }
+
+  .intro {
+    width: 100%;
+    text-shadow:0px 0px .1em $black;
+    height: calc(100vh - #{$navbar-height});
+    position: relative;
+    .ocean-story-n {
+      font-family: "Roboto Condensed";
+      font-size: 16pt;
+      text-transform: uppercase;
+      margin-bottom: 0.5em;
+
+      > span {
+        border-bottom: 4px solid $brand-warning;
+      }
+    }
+    .hook {
+      font-size: 51pt;
+      line-height: 61pt;
+      font-weight: 600;
+    }
+    .center {
+      text-align: center;
+      color: $white;
+    }
+    a.next-page, a.previous-page {
+      @extend .clickable;
+      background: fade($gray-darker, 50%);
+      color: $white;
+      padding: 15px;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+    a.next-page {
+      right: 0;
+    }
+    a.previous-page {
+      left: 0;
+    }
+  }
+
+  .learn-more {
+    display: block;
+    height: $navbar-height;
+    line-height: $navbar-height;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  a.anchor {
+    display: block;
+    position: relative;
+    top: -40vh;
+    visibility: hidden;
+  }
+
+  .content {
+    section {
+      @extend .text-block;
+    }
+  }
+
+  a.anchor.active + * {
+    > h2 {
+      color: $brand-success;
+    }
+  }
+}

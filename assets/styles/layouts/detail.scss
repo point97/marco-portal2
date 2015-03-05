@@ -1,0 +1,10 @@
+body.detail-layout {
+  h2 {
+    width: 75%;
+  }
+  .content{
+    .description {
+      @extend .text-block;
+    }
+  }
+}

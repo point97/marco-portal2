@@ -1,0 +1,14 @@
+@import "../../bootstrap/stylesheets/bootstrap/glyphicons";
+@import "../../icomoon/style.css";
+
+[class^="icon-"], [class*=" icon-"] {
+  display: inline-block;
+  transform:  scale(1.5);
+  width: 1em;
+}
+  
+.oversized {
+  display: inline-block;
+  transform:  scale(2.0);
+  width: 1.3em;
+}

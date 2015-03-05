@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block body_class %}page-styleguide{% endblock %}
+
+{% block page_title %}Styleguide{% endblock %}
+
+{% block containerless_content %}
+<div class="container">
+  <div class="alert alert-info" role="alert">
+    This page is only visible to site admins.
+  </div>
+
+    <button class="btn btn-primary">Primary button</button>
+    <button class="btn btn-default">Default button</button>
+
+  <h2>Colors</h2>
+  <div class="color-palette">
+    <div class="palette-card">
+      <div class="swatch deep-blue"></div>
+      <div class="caption">
+          Deep Blue<br/>
+          #22408f<br/>
+          RGB: 34/64/143<br/>
+          CMYK: 100/88/10/1
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch green"></div>
+      <div class="caption">
+          Green<br/>
+          #00a564<br/>
+          RGB: 0/165/100<br/>
+          CMYK: 82/8/82/0
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch turquoise"></div>
+      <div class="caption">
+          Turquoise<br/>
+          #00788a<br/>
+          RGB: 0/120/138<br/>
+          CMYK: 88/39/38/7
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch yellow"></div>
+      <div class="caption">
+          Yellow<br/>
+          #eab13a<br/>
+          RGB: 234/177/58<br/>
+          CMYK: 8/31/90/0
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch dark-gray"></div>
+      <div class="caption">
+          Dark Gray<br/>
+          #58585b<br/>
+          RGB: 88/88/91<br/>
+          CMYK: 64/56/52/27
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch medium-gray"></div>
+      <div class="caption">
+          Medium Gray<br/>
+          #84837d<br/>
+          RGB: 132/131/135<br/>
+          CMYK: 50/41/47/7
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch gray"></div>
+      <div class="caption">
+          Gray<br/>
+          #b1b3b5<br/>
+          RGB: 177/179/181<br/>
+          CMYK: 31/24/24/0
+      </div>
+    </div>
+    <div class="palette-card">
+      <div class="swatch light-gray"></div>
+      <div class="caption">
+          Light Gray<br/>
+          #e7e7e8<br/>
+          RGB: 231/231/232<br/>
+          CMYK: 8/6/6/0
+      </div>
+    </div>
+  </div>
+
+  <div class="page-header">
+    <h1>Page headers are Roboto bold, 51/61, tracked out 35pt</h1>
+  </div>
+
+</div>
+
+<div class="container">
+    <h2>Fonts</h2>
+
+    <span style="font-size: 24px">
+        <p class="font-black">Roboto Black (Weight 900)</p>
+        <p class="font-bold">Roboto Bold (Weight 700)</p>
+        <p class="font-bold-italic">Roboto Bold Italic (Weight 700)</p>
+        <p class="font-medium">Roboto Medium (Weight 500)</p>
+        <p>Roboto Regular (Weight 400)</p>
+        <p class="font-regular">Roboto Regular (Weight 400)</p>
+        <p class="font-regular-italic">Roboto Regular Italic (Weight 400)</p>
+        <p class="font-light">Roboto Light (Weight 300)</p>
+
+        <p class="font-condensed">Roboto Condensed Regular (Weight 400)</p>
+        <p class="font-condensed-bold">Roboto Condensed Bold (Weight 700)</p>
+    </span>
+</div>
+
+
+<div class="container-fluid deep-blue">
+  <div class="container inverted">
+    <h2>Full Bleed (Deep Blue)</h2>
+    <p>Nunc congue, <a href="http://pointnineseven.com/">enim nec faucibus</a> rutrum, orci magna bibendum odio, nec euismod lectus neque at felis. Vestibulum lectus arcu, aliquet vel vulputate sed, aliquet convallis massa. Aenean urna ante, pretium in pellentesque at, posuere vitae urna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec in ipsum urna, id aliquet erat. Aliquam id nisi eu nunc pulvinar faucibus quis quis erat. Aliquam placerat auctor lectus, sit amet consectetur ipsum lacinia sit amet.</p>
+    <p>Duis vulputate bibendum elementum. Phasellus eu sodales ligula. Vivamus at justo mauris, id pretium libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas hendrerit dolor sit amet urna lacinia porttitor. Integer sed gravida turpis. Etiam varius nulla nulla, volutpat porta risus. Nullam sollicitudin augue posuere nisl sollicitudin ultrices. Morbi dignissim mauris varius orci placerat luctus. Aliquam et risus nulla, ac tincidunt augue. Integer interdum convallis nibh. Maecenas porttitor, leo at sollicitudin posuere, neque sem porttitor odio, et convallis sem massa id dolor. Sed molestie justo id lacus luctus vel commodo sem vestibulum. Vestibulum venenatis risus quis dui consectetur tempus. Suspendisse ultricies turpis sed odio laoreet imperdiet vel ac erat. In mattis enim ut orci tincidunt condimentum.</p>
+    <p>Phasellus non nibh ante, a elementum quam. Donec cursus fringilla dui et iaculis. Aenean rhoncus erat accumsan orci mollis vitae malesuada metus euismod. Maecenas aliquet leo et dui venenatis pulvinar sit amet id mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed non purus sed tellus vehicula ullamcorper. Curabitur in nisi faucibus enim rutrum placerat. Morbi consequat, magna at convallis tempus, eros ante cursus neque, quis fermentum quam est a est. Mauris non arcu nulla. Vestibulum facilisis pulvinar augue nec egestas. In iaculis diam in libero facilisis eu rutrum arcu elementum. Phasellus viverra porttitor interdum. Donec vel elit vel erat sollicitudin sollicitudin.</p>
+    <p>Ut libero turpis, tristique et euismod quis, feugiat eu lorem. Nulla facilisi. Donec nec cursus nisi. Suspendisse tempor egestas rutrum. Pellentesque ac velit eget nisl auctor tincidunt in at risus. Integer lacinia neque vel lacus ornare vehicula suscipit dolor suscipit. Nunc quam diam, consequat pulvinar egestas quis, congue ac lacus. Donec pharetra posuere lacus, eget egestas est feugiat vel. Fusce orci dolor, lacinia aliquet mollis quis, posuere at diam. Curabitur non nibh massa, elementum luctus dolor. Curabitur elit odio, elementum sit amet placerat ac, ullamcorper sagittis purus. Integer odio dolor, scelerisque nec hendrerit non, laoreet ut augue. Curabitur lorem odio, lacinia ac placerat in, condimentum a velit.</p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+.page-header {
+  border-bottom: none;
+  margin: $padding-large-vertical 0 $padding-base-vertical;
+  .title-line {
+    margin-bottom: $padding-large-vertical;
+  }
+  .description {
+    @extend .text-block;
+    padding-top: $padding-large-vertical;
+    padding-bottom: $padding-base-vertical;
+  }
+}
