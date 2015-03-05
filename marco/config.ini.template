@@ -8,6 +8,7 @@ ALLOWED_HOSTS = localhost
 SECRET_KEY = You forgot to set the secret key
 TIME_ZONE = UTC
 GA_ACCOUNT = You forgot to set the google analytics account
+STATIC_ROOT = /path/to/static/root
 
 [CACHES]
 BACKEND = redis_cache.RedisCache
