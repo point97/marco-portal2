@@ -1,12 +1,12 @@
 body.template-visualize{
     height: 100%;
 
-    @map-padding-top: 33px;
-    @map-padding-bottom: 44px;
-    @map-padding-right: 30px;
+    $map-padding-top: 33px;
+    $map-padding-bottom: 44px;
+    $map-padding-right: 30px;
 
     #primary-content {
-      height: calc(~"100vh - @{navbar-height}");
+      height: calc(100vh - #{$navbar-height});
       position: relative;
     }
     #fullscreen, #map-wrapper, #map {
@@ -34,13 +34,13 @@ body.template-visualize{
     }
 
     #baselayers {
-        bottom: @map-padding-bottom;
+        bottom: $map-padding-bottom;
         right: 80px;
     }
 
     #map-controls {
-        top: @map-padding-top;
-        right: @map-padding-right;
+        top: $map-padding-top;
+        right: $map-padding-right;
     }
 
     #right-btns {
@@ -100,30 +100,30 @@ body.template-visualize{
     }
 
     #left-panel{
-        @header-height: 105px;
+        $header-height: 105px;
         position: absolute;
-        top: @map-padding-top;
-        background-color: @light-gray;
+        top: $map-padding-top;
+        background-color: $light-gray;
         z-index:1000;
         width: 400px;
         padding: 0px;
-        height: calc(~"100% - @{map-padding-top} - @{map-padding-bottom}");
+        height: calc(100% - #{$map-padding-top} - #{$map-padding-bottom});
         .panel-heading {
             padding: 10px 4px;
-            height: @header-height;
+            height: $header-height;
             border: 0px;
-            background-color: @gray-lighter;
+            background-color: $gray-lighter;
         }
         .panel-body {
-            height: calc(~"100% - @{header-height}");
+            height: calc(100% - #{$header-height});
             padding: 0px;
         }
         #data-panel, .sidebar-nav {
           height: 100%;
         }
         #myTabContent {
-            @tab-height: 47px;
-            height: calc(~"100% - @{tab-height}");
+            $tab-height: 47px;
+            height: calc(100% - #{$tab-height});
         }
     }
 
@@ -158,7 +158,7 @@ body.template-visualize{
         max-height: 250px;
         opacity: 0.9;
         .accordion-heading{
-            background-color: @light-gray;
+            background-color: $light-gray;
         }
         .accordion-toggle, .accordion-toggle:hover{
             cursor: pointer;
@@ -220,8 +220,8 @@ body.template-visualize{
         background-image: url(../visualize/img/baselayer.png);
         display: table-cell;
         vertical-align: bottom;
-        border: 1px solid @gray-darker;
-        color: @gray-dark;
+        border: 1px solid $gray-darker;
+        color: $gray-dark;
     }
 
     .olControlScaleBar {
@@ -242,7 +242,7 @@ body.template-visualize{
             margin-left: auto;
             margin-right: auto;
             span{
-                background-color: @gray-light;
+                background-color: $gray-light;
                 padding: 2px;
             }
         }
@@ -265,13 +265,13 @@ body.template-visualize{
         display: block;
         margin: 2px;
         padding: 2px 0px 0px 2px;
-        color: @gray-darker;
+        color: $gray-darker;
         text-decoration: none;
         text-align: center;
         height: 24px;
         width: 24px;
         line-height: 19px;
-        background: @gray-light;
+        background: $gray-light;
         filter: alpha(opacity=100);
         margin-bottom: 10px;
         border-bottom-left-radius: 0px;
@@ -327,7 +327,7 @@ body.template-visualize{
     #map-controls a:hover,
     #right-btns a:hover,
     #right-btns a.active {
-        color: @green;
+        color: $green;
     }
 
     #map.zoomBox .olHandlerBoxZoomBox {
@@ -338,11 +338,11 @@ body.template-visualize{
         position: absolute;
         bottom: 32px;
         right: 150px;
-        background-color: @gray-light;
-        border: 2px solid @gray-light;
+        background-color: $gray-light;
+        border: 2px solid $gray-light;
         max-width: 450px;
         text-align: left;
-        background: @gray-light;
+        background: $gray-light;
         opacity: 1;
         border-radius: 0px;
         display: none; 
@@ -358,7 +358,7 @@ body.template-visualize{
       padding:0px;
       padding-left: 0px;
       font-size: 14px;
-      background: @gray-light;
+      background: $gray-light;
       opacity: 1;
       width: 62px;
       margin: 4px 0px 3px 7px;
@@ -379,7 +379,7 @@ body.template-visualize{
         text-align: center;
         height: 60px;
         width: 60px;
-        color: @gray;
+        color: $gray;
         font-size: 12px;
       }
       
@@ -536,7 +536,7 @@ body.template-visualize{
     .panel-title>a{
         float: right;
         color: white;
-        background-color: @green;
+        background-color: $green;
         border-radius: 50%;
         width: 25px;
         height: 25px;
@@ -545,23 +545,23 @@ body.template-visualize{
         text-align: center;
     }
     .search-icon {
-        color: @light-gray;
+        color: $light-gray;
     }
     .search-instructions {
-        color: @light-gray;
+        color: $light-gray;
         text-transform: uppercase;
         padding-top: 8px;
         font-size: 90%;
     }
     .nav-tabs{
         border-top: 1px solid #ddd;
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
         text-align: center;
         .disabled{
-            background-color:@gray-lighter;
+            background-color:$gray-lighter;
             
             a{
-               color: @gray !important;
+               color: $gray !important;
             }
         }
     }
@@ -577,14 +577,14 @@ body.template-visualize{
         border-right: 0px;
         border-radius: 0px;
         text-decoration: none;
-        color: @gray-darker;
+        color: $gray-darker;
     }
     .nav-tabs li.active{
-        background-color: @light-gray;
+        background-color: $light-gray;
     }
     .nav-tabs>li.active a, .nav-tabs>li.active a:hover, .nav-tabs>li.active a:focus {
-        border-bottom: 2px solid @green;
-        color: @green;
+        border-bottom: 2px solid $green;
+        color: $green;
         border-left: 0px;
         border-right: 0px;
         text-decoration: none;
@@ -596,7 +596,7 @@ body.template-visualize{
     }
     
     .tab-content, #data-accordion{
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
     }
     .tab-content .tab-pane{
         overflow-y: auto;
@@ -605,15 +605,15 @@ body.template-visualize{
     .accordion-toggle{
         padding: 10px 20px;
         display: block;
-        color: @dark-gray;
+        color: $dark-gray;
         font-size: 16px;
     }
 
     .accordion-heading.active{
-        background-color: @gray-light;
+        background-color: $gray-light;
     }
     #data-panel{
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
         .layer-row {
             table-layout: fixed;
             width: 100%;
@@ -644,8 +644,8 @@ body.template-visualize{
     }
 
     .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{
-        color: @deep-blue;
-        background-color: @light-gray; 
+        color: $deep-blue;
+        background-color: $light-gray; 
     }
     .btn{
         text-align: left;
@@ -671,22 +671,22 @@ body.template-visualize{
     }
 
     #legend-popover{
-        top: @map-padding-top;
-        right: @map-padding-right + 45px;
+        top: $map-padding-top;
+        right: $map-padding-right + 45px;
         left: inherit !important;
         width: 270px;
         max-width: 280px;
         height: 320px;
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
         border: none;
         border-radius:0px;
         box-shadow: none;
         h3{
-            color: @green;
+            color: $green;
             font-size: 14px;
         }
         a:hover{
-            color: @green;
+            color: $green;
         }
         a.close-popup{
             padding: 5px;
@@ -698,7 +698,7 @@ body.template-visualize{
             overflow-y:auto;
             overflow-x:hidden;
             height: 280px;
-            background-color: @white;
+            background-color: $white;
 
             #legend-content{
                 padding: 10px;
@@ -714,20 +714,20 @@ body.template-visualize{
         width: 450px;
         max-width: 460px;
         height: 320px;
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
         border: none;
         border-radius:0px;
         box-shadow: none;
         .popover-title{
-            background-color: @gray-lighter;
+            background-color: $gray-lighter;
 
         }
         h3{
-            color: @green;
+            color: $green;
             font-size: 14px;
         }
         a:hover{
-            color: @green;
+            color: $green;
         }
         a.close-popup{
             padding: 5px;
@@ -736,14 +736,14 @@ body.template-visualize{
             right: 5px;
         }
         hr{
-            border-top: 1px solid @light-gray;
+            border-top: 1px solid $light-gray;
         }
         input{
             width: 75%;
         }
     }
     .bookmark-settings-popover {
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
         border: none;
         border-radius:0px;
         a{
@@ -761,10 +761,10 @@ body.template-visualize{
     }
     .search-box{
         border: none;
-        border-bottom: 1px solid @dark-gray;
+        border-bottom: 1px solid $dark-gray;
         box-shadow: none;
         border-radius: 0px;
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
         font-size: 20px;
         font-weight: 100;
         padding: 4px;
@@ -772,10 +772,10 @@ body.template-visualize{
         width: 250px;
     }
     .search-icon {
-        color: @light-gray;
+        color: $light-gray;
     }
     .search-instructions {
-        color: @light-gray;
+        color: $light-gray;
         text-transform: uppercase;
         padding-top: 8px;
         font-size: 90%;
@@ -794,7 +794,7 @@ body.template-visualize{
     }
 
     .popover-inner{
-        background-color: @gray-lighter;
+        background-color: $gray-lighter;
     }
 
 

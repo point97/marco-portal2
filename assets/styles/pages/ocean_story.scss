@@ -1,14 +1,14 @@
 div.curtain-container {
-    margin-bottom: -@navbar-height;
+    margin-bottom: -$navbar-height;
 }
 
 .curtain {
   position: fixed;
   width: 100%;
-  background: @gray-dark;
+  background: $gray-dark;
   overflow: hidden;
   z-index: 800;
-  box-shadow: 0 0px 20px @gray;
+  box-shadow: 0 0px 20px $gray;
 }
 
 .overlay {
@@ -31,7 +31,7 @@ div.curtain-container {
 .ocean-story-page {
   #ocean-story-map {
     &.full {
-      height: calc(100vh ~"-" @navbar-height);
+      height: calc(100vh - #{$navbar-height});
     }
     &.half {
       height: 40vh;
@@ -43,25 +43,25 @@ div.curtain-container {
     transform: translate(0, -50%);
   }
 
-  .navbar-transparent;
+  @extend .navbar-transparent;
 
   .view-data {
-    .clickable;
+    @extend .clickable;
     z-index: 900;
     position: absolute;
-    .font-medium;
+    @extend .font-medium;
     font-size: 13px;
     right: 8px;
     bottom: 8px;
     .icon {
-      color: @brand-success;
+      color: $brand-success;
     }
   }
 
   .intro {
     width: 100%;
-    text-shadow:0px 0px .1em @black;
-    height: calc(100vh ~"-" @navbar-height);
+    text-shadow:0px 0px .1em $black;
+    height: calc(100vh - #{$navbar-height});
     position: relative;
     .ocean-story-n {
       font-family: "Roboto Condensed";
@@ -70,7 +70,7 @@ div.curtain-container {
       margin-bottom: 0.5em;
 
       > span {
-        border-bottom: 4px solid @brand-warning;
+        border-bottom: 4px solid $brand-warning;
       }
     }
     .hook {
@@ -80,12 +80,12 @@ div.curtain-container {
     }
     .center {
       text-align: center;
-      color: @white;
+      color: $white;
     }
     a.next-page, a.previous-page {
-      .clickable;
-      background: fade(@gray-darker, 50%);
-      color: @white;
+      @extend .clickable;
+      background: fade($gray-darker, 50%);
+      color: $white;
       padding: 15px;
       position: absolute;
       top: 50%;
@@ -101,8 +101,8 @@ div.curtain-container {
 
   .learn-more {
     display: block;
-    height: @navbar-height;
-    line-height: @navbar-height;
+    height: $navbar-height;
+    line-height: $navbar-height;
     width: 100%;
     text-align: center;
     font-style: italic;
@@ -118,13 +118,13 @@ div.curtain-container {
 
   .content {
     section {
-      .text-block();
+      @extend .text-block;
     }
   }
 
   a.anchor.active + * {
     > h2 {
-      color: @brand-success;
+      color: $brand-success;
     }
   }
 }

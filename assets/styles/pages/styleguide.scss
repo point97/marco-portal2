@@ -2,40 +2,40 @@
 
 .page-styleguide {
 	.color-palette {
-	  .make-row;
+	  @include make-row();
 		.palette-card {
-	  	.make-sm-column(6);
-	  	.make-md-column(3);
+	  	@include make-sm-column(6);
+	  	@include make-md-column(3);
 		}
 	}
 	.swatch {
 		border-radius: 50%;
 		width: 100px;
 		height: 100px;
-	  .center-block;
+	    @include center-block();
 	}
   .deep-blue {
-	  background-color: @deep-blue;
+	  background-color: $deep-blue;
 	}
   .green {
-	  background-color: @green;
+	  background-color: $green;
 	}
   .turquoise {
-	  background-color: @turquoise;
+	  background-color: $turquoise;
 	}
   .yellow {
-	  background-color: @yellow;
+	  background-color: $yellow;
 	}
   .dark-gray {
-	  background-color: @dark-gray;
+	  background-color: $dark-gray;
 	}
   .medium-gray {
-	  background-color: @medium-gray;
+	  background-color: $medium-gray;
 	}
   .gray {
-	  background-color: @gray;
+	  background-color: $gray;
 	}
   .light-gray {
-	  background-color: @light-gray;
+	  background-color: $light-gray;
 	}
 }

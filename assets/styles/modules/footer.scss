@@ -1,8 +1,8 @@
 footer .fa-envelope {
-    color: @brand-primary;
+    color: $brand-primary;
 }
 footer .input-group-addon {
-    background-color: @white;
+    background-color: $white;
     border-color: white;
 
 }
@@ -13,7 +13,7 @@ footer #fieldEmail {
 }
 
 i.fa.deep-blue {
-    color: @deep-blue;
+    color: $deep-blue;
 }
 
 .inner-addon { position: relative; }
@@ -28,18 +28,19 @@ i.fa.deep-blue {
 
 
 .inner-addon .right {
-    color: @dark-gray;
+    color: $dark-gray;
     border-left: 1px solid #eee;
     cursor: pointer;
 }
 
 body footer {
-  @gutter: 52px;
-  @margin: 10px 0;
-  background-color: @deep-blue;
-  color: @white;
+  $gutter: 52px;
+  $margin: 10px 0;
+  
+  background-color: $deep-blue;
+  color: $white;
   a, a:hover {
-    color: @yellow;
+    color: $yellow;
   }
 
   .footer-inner {
@@ -47,29 +48,29 @@ body footer {
       margin-top: 2em;
       margin-bottom: 1em;
       > * {
-        margin: @margin;
+        margin: $margin;
       }
     }
-    .make-row;
+    @include make-row();
     .info {
-      .make-md-column(4);
+      @include make-md-column(4);
     }
     .menu {
-      .make-md-column(2);
+      @include make-md-column(2);
     }
   }
 
   h4 {
-    font: 12px @font-family-condensed;
+    font: 12px $font-family-condensed;
     
-    color: @yellow;
+    color: $yellow;
     text-transform: uppercase;
   }
 
   .info {
-    padding: 0 @gutter/2;
-    @media (min-width: @screen-md-min) {
-      border-right: 1px solid @yellow;
+    padding: 0 $gutter/2;
+    @media (min-width: $screen-md-min) {
+      border-right: 1px solid $yellow;
     }
   }
 
@@ -93,27 +94,27 @@ body footer {
   .about-text {
     font-size: 17px;
     line-height: 32px;
-    .text-block();
+    @extend .text-block;
   }
   .contact {
     font-size: 12px;
-    color: @yellow;
+    color: $yellow;
     > a {
-      color: @white;
+      color: $white;
     }
   }
 
   .menu {
     > * {
-      padding-left: @gutter;
+      padding-left: $gutter;
     }
     > ul {
       font-weight: 500;
       > li {
         list-style-type: none;
-        padding: @margin;
+        padding: $margin;
         > a {
-          color: @white;
+          color: $white;
         }
       }
     }

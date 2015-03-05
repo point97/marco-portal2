@@ -1,39 +1,39 @@
-@import "bootstrap/variables";
+//@import "bootstrap/variables";
 
 // Gray and brand colors for use across Bootstrap.
 
-@deep-blue: #22408f;
-@green: #00a564;
-@turquoise: #00788a;
-@yellow: #eab13a;
-@dark-gray: #58585b;
-@medium-gray: #84837d;
-@gray: #b1b3b5;
-@light-gray: #e7e7e8;
+$deep-blue: #22408f;
+$green: #00a564;
+$turquoise: #00788a;
+$yellow: #eab13a;
+$dark-gray: #58585b;
+$medium-gray: #84837d;
+$gray: #b1b3b5;
+$light-gray: #e7e7e8;
 
-@white:                  white;
-@black:                  black;
-@gray-darker:            #58585b;
-@gray-dark:              #84837d;
-@gray:                   #b1b3b5;
-@gray-medium-light:      #c9cacc;
-@gray-light:             #e7e7e8;
-@gray-lighter:           mix(@gray-light, @white);
+$white:                  white;
+$black:                  black;
+$gray-darker:            #58585b;
+$gray-dark:              #84837d;
+$gray:                   #b1b3b5;
+$gray-medium-light:      #c9cacc;
+$gray-light:             #e7e7e8;
+$gray-lighter:           mix($gray-light, $white);
 
-@brand-primary:         @deep-blue;
-@brand-success:         @green;
-@brand-info:            @turquoise;
-@brand-warning:         @yellow;
+$brand-primary:         $deep-blue;
+$brand-success:         $green;
+$brand-info:            $turquoise;
+$brand-warning:         $yellow;
 // @brand-danger
 
-@body-bg:               @gray-light;
-@text-color:            @black;
+$body-bg:               $gray-light;
+$text-color:            $black;
 
 // http://www.google.com/fonts#UsePlace:use/Collection:Roboto:300,500,700,900,400italic,700italic|Roboto+Condensed:400,700
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900,400italic,700italic|Roboto+Condensed:400,700&subset=latin);
 
-@font-family-sans-serif:  'Roboto', sans-serif;
-@font-family-condensed:  'Roboto Condensed', @font-family-sans-serif;
+$font-family-sans-serif:  'Roboto', sans-serif;
+$font-family-condensed:  'Roboto Condensed', $font-family-sans-serif;
 .font-black { font-weight: 900; }
 .font-bold { font-weight: 700; }
 .font-bold-italic { font-weight: 700; font-style: italic; }
@@ -41,33 +41,33 @@
 /* .font-regular { font-weight: 400; } */
 .font-regular-italic { font-weight: 400; font-style: italic; }
 .font-light { font-weight: 300; }
-.font-condensed { font-family: @font-family-condensed }
-.font-condensed-bold { font-family: @font-family-condensed; font-weight: 700; }
+.font-condensed { font-family: $font-family-condensed }
+.font-condensed-bold { font-family: $font-family-condensed; font-weight: 700; }
 
 // @font-size-smaller:       10px;
-@font-size-base:          14px;
-@font-size-large:         16px;
-@font-size-small:         12px;
+$font-size-base:          14px;
+$font-size-large:         16px;
+$font-size-small:         12px;
 
-@font-size-h1:            51px;
-@font-size-h2:            36px;
-@headings-font-weight:    700;
+$font-size-h1:            51px;
+$font-size-h2:            36px;
+$headings-font-weight:    700;
 
-@headings-line-height:    1.42;
+$headings-line-height:    1.42;
 
-@dropdown-link-color:            @black;
-@dropdown-link-hover-color:      @black;
-@dropdown-link-hover-bg:         @gray-light;
+$dropdown-link-color:            $black;
+$dropdown-link-hover-color:      $black;
+$dropdown-link-hover-bg:         $gray-light;
 
-@screen-md:                  992px;
-@screen-md-min:              @screen-md;
+$screen-md:                  992px;
+$screen-md-min:              $screen-md;
 
-@grid-float-breakpoint:     @screen-md-min;
+$grid-float-breakpoint:     $screen-md-min;
 
-@border-radius-base:        0px;
-@border-radius-large:       0px;
-@border-radius-small:       0px;
+$border-radius-base:        0px;
+$border-radius-large:       0px;
+$border-radius-small:       0px;
 
-@btn-default-bg: @gray-lighter;
+$btn-default-bg: $gray-lighter;
 
-@input-color: @black;
+$input-color: $black;

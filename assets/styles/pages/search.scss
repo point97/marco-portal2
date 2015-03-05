@@ -1,7 +1,7 @@
 .search-container {
-  .make-row();
+  @include make-row();
   form.search {
-    .make-sm-column(8);
-    .make-md-column(6);
+    @include make-sm-column(8);
+    @include make-md-column(6);
   }
 }
