@@ -3,7 +3,10 @@ Django<1.8
 
 # django-compressor scss hack
 -e git+git@github.com:point97/django-libsass@a181d9412f4d7b991ca73f287741716be09f0533#egg=django_libsass-master
-libsass==0.7.0
+
+# Note: django-libsass needs libsass>0.4
+# 0.5.1 is the latest version that we can install on WF
+libsass==0.5.1
 
 wagtail==0.8.5
 # -e git+https://github.com/torchbox/wagtail.git@master#egg=wagtail
