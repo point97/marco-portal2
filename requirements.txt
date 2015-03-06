@@ -1,5 +1,10 @@
 # Minimal requirements
-Django==1.7.3
+Django<1.8
+
+# django-compressor scss hack
+-e git+git@github.com:point97/django-libsass@a181d9412f4d7b991ca73f287741716be09f0533#egg=django_libsass-master
+libsass==0.7.0
+
 wagtail==0.8.5
 # -e git+https://github.com/torchbox/wagtail.git@master#egg=wagtail
 
