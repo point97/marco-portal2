@@ -20,13 +20,17 @@
         </div>
     </form>
     <div class="social-links">
-        <a class="fa-stack fa-lg" href="https://www.facebook.com/midatlanticocean">
+        <a class="fa-stack fa-lg" href="https://www.facebook.com/midatlanticocean" target="_blank">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-facebook fa-stack-1x deep-blue"></i>
         </a>
-        <a class="fa-stack fa-lg" href="https://twitter.com/PortalMARCO">
+        <a class="fa-stack fa-lg" href="https://twitter.com/PortalMARCO" target="_blank">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-twitter fa-stack-1x deep-blue"></i>
+        </a>
+        <a class="fa-stack fa-lg" href="https://vimeo.com/marcoportal" target="_blank">
+            <!--<i class="fa fa-circle fa-stack-2x"></i>-->
+            <i class="fa fa-vimeo-square fa-stack-2x "></i>
         </a>
     </div>
 
@@ -44,11 +48,11 @@
   <div class="menu">
       <h4>Log In</h4>
       <ul role="menu">
-          <li><a href="#nowhere">Log In</a></li>
-          <li><a href="#nowhere">Register</a></li>
+          <li><a href="{% url 'account:login' %}">Log In</a></li>
+          <li><a href="{% url 'account:register' %}">Register</a></li>
           <li><a href="#nowhere">Account settings</a></li>
           <li><a href="#nowhere">My map groups</a></li>
-          <li><a href="#nowhere">Log out</a></li>
+          <li><a href="{% url 'account:logout' %}">Log out</a></li>
       </ul>
   </div>
 </div>
