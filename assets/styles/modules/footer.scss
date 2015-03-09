@@ -33,7 +33,18 @@ i.fa.deep-blue {
     cursor: pointer;
 }
 
+html, body {
+    height: 100%;
+}
+header + div {
+    min-height: calc(100% - 72px - #{$navbar-height});
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+$footer-height: 383px;
 body footer {
+
   $gutter: 52px;
   $margin: 10px 0;
   
