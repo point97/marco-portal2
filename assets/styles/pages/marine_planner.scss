@@ -49,10 +49,10 @@ body.template-visualize{
     }
 
     .panel.collapsible {
-        transition: any .5s "ease-out";
+        @include transition(any 0.5s "ease-out");
       
         .panel-heading {
-            transition: any .5s "ease-out";
+            @include transition(any 0.5s, "ease-out");
         }
         .panel-title {
             position: relative;
@@ -61,7 +61,7 @@ body.template-visualize{
                 position: absolute;
                 right: 0;
                 top: 0;
-                transition: transform .5s "ease-out";
+                @include transition(transform 0.5s "ease-out");
             }
         }
         &.collapsed {
@@ -74,9 +74,8 @@ body.template-visualize{
             display: none;
           }
           .collapse-button {
-            transform-origin: 50% 50%;
-            transform: rotate(180deg);
-            
+              @include transform-origin(50% 50%);
+              @include rotate(180deg);
           }
           .panel-heading {
             padding-bottom: 0 !important;
@@ -423,7 +422,7 @@ body.template-visualize{
         max-width: 460px;
         border: none;
         border-radius: 0px;
-        box-shadow: none;
+        @include box-shadow(none);
         .pull-right{
             margin: 6px 0 0 0px;
         }
@@ -680,7 +679,7 @@ body.template-visualize{
         background-color: $gray-lighter;
         border: none;
         border-radius:0px;
-        box-shadow: none;
+        @include box-shadow(none);
         h3{
             color: $green;
             font-size: 14px;
@@ -717,7 +716,7 @@ body.template-visualize{
         background-color: $gray-lighter;
         border: none;
         border-radius:0px;
-        box-shadow: none;
+        @include box-shadow(none);
         .popover-title{
             background-color: $gray-lighter;
 
@@ -762,7 +761,7 @@ body.template-visualize{
     .search-box{
         border: none;
         border-bottom: 1px solid $dark-gray;
-        box-shadow: none;
+        @include box-shadow(none);
         border-radius: 0px;
         background-color: $gray-lighter;
         font-size: 20px;

@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2015 by original authors @ fontello.com</metadata>
+<defs>
+<font id="a" horiz-adv-x="1000" >
+<font-face font-family="a" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="vimeo" unicode="&#xe800;" d="m896 558q-32-186-171-351t-245-237q-42-28-81-17t-66 38-43 61q-16 32-78 239t-74 223q-16 12-38 5t-44-21l-20-14-36 50q18 20 46 52t100 89 124 67q30 6 53-7t36-35 23-60 15-70 12-75 13-67q14-54 21-80t17-54 18-39 18-11q40 0 126 166 42 76 6 124t-112 2q22 126 140 188 104 54 182 8 80-46 58-174z" horiz-adv-x="901" />
+<glyph glyph-name="group" unicode="&#xe801;" d="m0 106l0 134q0 26 18 32l171 80q-66 39-68 131 0 56 35 103 37 41 90 43 31 0 63-19-49-125 23-237-12-11-25-19l-114-55q-48-23-52-84l0-143-114 0q-25 0-27 34z m193-59l0 168q0 27 22 37l152 70 57 28q-37 23-60 66t-22 94q0 76 46 130t110 54 109-54 45-130q0-106-78-158l61-30 146-70q24-10 24-37l0-168q-2-37-37-41l-541 0q-14 2-24 14t-10 27z m473 330q68 106 22 231 31 19 66 21 49 0 90-43 35-41 35-103 0-82-65-131l168-80q18-10 18-32l0-134q0-32-27-34l-118 0 0 143q0 57-50 84l-110 53q-15 8-29 25z" horiz-adv-x="1000" />
+</font>
+</defs>
+</svg>
