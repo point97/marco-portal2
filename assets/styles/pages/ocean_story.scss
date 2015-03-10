@@ -22,11 +22,13 @@ div.curtain-container {
 }
 
 .center {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  transform: translate(0, -50%);
+    position: absolute;
+    top: 50%;
+    width: 100%;
+
+    @include translate(0, -50%);
 }
+
 
 .ocean-story-page {
   #ocean-story-map {
@@ -40,8 +42,9 @@ div.curtain-container {
     position: relative;
     top: 50%;
     width: 100%;
-    transform: translate(0, -50%);
-  }
+
+        @include translate(0, -50%);
+    }
 
   @extend .navbar-transparent;
 
@@ -89,7 +92,8 @@ div.curtain-container {
       padding: 15px;
       position: absolute;
       top: 50%;
-      transform: translate(0, -50%);
+
+        @include translate(0, -50%);
     }
     a.next-page {
       right: 0;
