@@ -12,5 +12,22 @@
 {% endblock %}
 
 {% block heading %}<a href="{{ item.name }}">{{ item.display_name }}</a>{% endblock %}
-{% block media %}<div class="badge">{{ item.layer_count }}</div>{% endblock %}
+{% block media %}
+    <div class="badge">
+        <span> DATA LAYERS</span>
+        {{ item.layer_count }}
+    </div>
+<script type="text/javascript">
+    function spanify() {
+        var root = document.querySelector('.badge');
+        var span = document.querySelector('.badge > span');
+        root.removeChild(span);
+        var text = span.innerText;
+        console.log("InnerText is ", text);
+        for (var i = 0; i < text.length; i++) {
+            root.innerHTML += "<span class='letter" + (1+i) + "'>" + text[i] + "</span>";
+        }
+    }
+</script>
+{% endblock %}
 {% block text %}{{ item.description|truncatechars_html:256 }}{% endblock %}

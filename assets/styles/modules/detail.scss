@@ -33,6 +33,16 @@ $hover-background-color: $gray-medium-light;
     margin-bottom: 2em;
 }
 
+@mixin rotated-text($len: 12, $angle-span: 180deg, $angle-offset: -105deg) {
+    $angle-per-char: $angle-span / $len;
+    @for $i from 1 through $len {
+        .letter#{$i} {
+            @include rotate($angle-offset + ($angle-per-char * $i));
+        }
+    }
+}
+
+
 .detail {
 	.feature {
 		height: 194px;
@@ -84,6 +94,18 @@ $hover-background-color: $gray-medium-light;
 		font-family: $font-family-condensed;
 		font-weight: bold;
 		font-size: $badge-diameter/2;
+
+        position: relative;
+        > span[class^="letter"] {
+            @include transform-origin(bottom center);
+            top: -2px;
+            left: ($badge-diameter - 12px) / 2;
+            position: absolute;
+            height: $badge-diameter / 2;
+            width: $badge-diameter / 4;
+            font: 8px verdana;
+        }
+		@include rotated-text();
 	}
 }
 
