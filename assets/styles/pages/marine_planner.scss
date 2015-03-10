@@ -422,7 +422,7 @@ body.template-visualize{
         max-width: 460px;
         border: none;
         border-radius: 0px;
-        box-shadow: none;
+        @include box-shadow(none);
         .pull-right{
             margin: 6px 0 0 0px;
         }
@@ -679,7 +679,7 @@ body.template-visualize{
         background-color: $gray-lighter;
         border: none;
         border-radius:0px;
-        box-shadow: none;
+        @include box-shadow(none);
         h3{
             color: $green;
             font-size: 14px;
@@ -716,7 +716,7 @@ body.template-visualize{
         background-color: $gray-lighter;
         border: none;
         border-radius:0px;
-        box-shadow: none;
+        @include box-shadow(none);
         .popover-title{
             background-color: $gray-lighter;
 
@@ -761,7 +761,7 @@ body.template-visualize{
     .search-box{
         border: none;
         border-bottom: 1px solid $dark-gray;
-        box-shadow: none;
+        @include box-shadow(none);
         border-radius: 0px;
         background-color: $gray-lighter;
         font-size: 20px;

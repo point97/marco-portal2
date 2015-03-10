@@ -8,7 +8,7 @@ div.curtain-container {
   background: $gray-dark;
   overflow: hidden;
   z-index: 800;
-  box-shadow: 0 0px 20px $gray;
+  @include box-shadow(0 0px 20px $gray);
 }
 
 .overlay {
