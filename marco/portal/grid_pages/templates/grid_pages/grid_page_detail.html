@@ -1,0 +1,19 @@
+{% extends "layouts/detail.html" %}
+
+{% block back_text %}{{ self.get_parent }}{% endblock %}
+
+{% block media %}
+<a class="badge">{{ self.target_year|default:"NEED" }}</a>
+{% endblock %}
+
+{% block content %}
+  {% if self.sections %}
+      {% for section in self.sections.all %}
+          <a class="anchor" id="section-{{forloop.counter}}"></a>
+          <section>
+              <h2>{{ section.title }}</h2>
+              {% include "portal/components/media_item.html" with item=section only %}
+          </section>
+      {% endfor %}
+  {% endif %}
+{% endblock %}

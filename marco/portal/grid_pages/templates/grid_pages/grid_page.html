@@ -1,0 +1,5 @@
+{% extends "cms/section.html" %}
+
+{% block content %}
+	{% include "portal/components/index_listing.html" with items=self.get_detail_children.live item_template="grid_pages/grid_page_card.html" only %}
+{% endblock %}
