@@ -1,4 +1,11 @@
 body.data-theme-page {
+    span[id^="layer-info-"] {
+        display: block;
+        height: $navbar-height;
+        margin-top: -$navbar-height;
+        visibility: hidden;
+    }
+
   .layer-info {
     h4 {
       letter-spacing: 1em * 50/1000;
