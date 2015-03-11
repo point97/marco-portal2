@@ -348,3 +348,4 @@ BROKER_URL = cfg.get('CELERY', 'BROKER_URL', '')
 GA_ACCOUNT = cfg.get('APP', 'GA_ACCOUNT', '')
 
 
+ADMINS = (('Seth', 'seth@pointnineseven.com'),)
