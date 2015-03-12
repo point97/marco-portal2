@@ -1,10 +1,15 @@
 body.detail-layout {
-  h2 {
-    width: 75%;
-  }
-  .content{
-    .description {
-      @extend .text-block;
+    h2 {
+        width: 75%;
     }
-  }
+
+    .content{
+        .description {
+            @extend .text-block;
+        }
+    }
+
+    section:last-child {
+        margin-bottom: 4em;
+    }
 }

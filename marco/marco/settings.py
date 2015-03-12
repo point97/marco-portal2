@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'portal.ocean_stories',
     'portal.calendar',
     'portal.data_gaps',
+    'portal.grid_pages',
     'portal.data_catalog',
     'portal.initial_data',
     'rest_framework',
