@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ENV=$HOME/env/marco_portal2
-APPDIR=$HOME/webapps/marco_portal2/site
+APPDIR=$HOME/code/marco_portal2/prototype/marco
 CELERY=$ENV/bin/celery
 PIDFILE=$HOME/run/marco_portal2_celery.pid
 
@@ -14,7 +14,7 @@ cd $APPDIR
 # (to save memory).
 
 celery worker                   \
-       --app marco_config       \
+       --app marco              \
        --quiet                  \
        --pidfile $PIDFILE       \
        --loglevel INFO          \
