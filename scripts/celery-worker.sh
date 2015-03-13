@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ENV=$HOME/env/marco_portal2
-APPDIR=$HOME/code/marco_portal2/prototype/marco
+APPDIR=$HOME/code/marco-portal2/prototype/marco
 CELERY=$ENV/bin/celery
 PIDFILE=$HOME/run/marco_portal2_celery.pid
 
