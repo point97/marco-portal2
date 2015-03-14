@@ -1,7 +1,22 @@
 body.section-layout {
   .page-header {
-    .description {
-      color: $gray-dark;
-    }  
+    .description p {
+      color: $deep-blue;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1.6em;
+        letter-spacing: 0.045em;
+    }
   }
+}
+
+.rich-text {
+    font-size: 18px;
+    line-height: 32px;
+    color: black;
+    @extend .font-regular;
+}
+
+.media-left {
+    padding-right: 0;
 }

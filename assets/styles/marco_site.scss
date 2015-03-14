@@ -74,9 +74,38 @@
 
 @import "pages/styleguide";
 @import "pages/data_theme";
-@import "pages/marine_planner";
 @import "pages/ocean_story";
 @import "pages/search";
 
+
+
+/* ***********************
+    Move to new file later.
+   *********************** */
+
+/* Space above footer */
+.content:last-child {
+    margin-bottom: 4em;
+}
+
+/* Increase P+P spacing */
+p + p {
+    margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+
 /* This is a little weird, but the module-specific CSS has to be somewhere */
 @import "accounts/accounts.scss";
+@import "marine_planner.scss";
+
+
+
+
+

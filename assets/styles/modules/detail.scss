@@ -90,7 +90,9 @@ $hover-background-color: $gray-medium-light;
 
 .data-gaps-page, .data-gap-page {
 	.detail .badge {
-		font-size: 54px/2.5;
+		/* font-size: 54px/2.5;*/
+		/* Shrink the badge text a bit, 54 is way too big.  */
+		font-size: 20px;
 	}
 }
 
