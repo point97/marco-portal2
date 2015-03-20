@@ -2,7 +2,7 @@
 Django<1.8
 
 # django-compressor scss hack
--e git+git@github.com:point97/django-libsass@master#egg=django_libsass-master
+-e git+git@github.com:point97/django-libsass.git@master#egg=django_libsass-master
 
 # Note: django-libsass needs libsass>0.4
 # 0.5.1 is the latest version that we can install on WF

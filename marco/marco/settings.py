@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'compressor',
     'taggit',
     'modelcluster',
+    'rpc4django',
 
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',
@@ -112,6 +113,8 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 ROOT_URLCONF = 'marco.urls'
 WSGI_APPLICATION = 'marco.wsgi.application'

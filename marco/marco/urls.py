@@ -29,7 +29,9 @@ urlpatterns = patterns('',
     url('^sitemap\.xml$', sitemap),
 
     url(r'^django-admin/', include(admin.site.urls)),
-    
+
+    url(r'^rpc$', 'rpc4django.views.serve_rpc_request'),
+
     # https://github.com/omab/python-social-auth/issues/399
     # I want the psa urls to be inside the account urls, but PSA doesn't allow
     # nested namespaces. It will likely be fixed in 0.22

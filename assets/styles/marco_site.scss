@@ -102,10 +102,6 @@ p + p {
 
 
 /* This is a little weird, but the module-specific CSS has to be somewhere */
+/* todo: add an assets/styles static directory to all of the sub projects */
 @import "accounts/accounts.scss";
 @import "marine_planner.scss";
-
-
-
-
-
