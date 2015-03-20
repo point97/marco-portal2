@@ -60,7 +60,7 @@ function jsonrpc_call(method, args, options) {
     request_encoded = JSON.stringify(request);
         
     $.ajax({
-        url: '/rpc/',
+        url: '/rpc',
         method: 'POST',
         data: request_encoded, 
         dataType: 'json',
