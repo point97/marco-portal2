@@ -2,7 +2,7 @@
 {% load wagtailcore_tags static icon %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'bower_components/ol3-unofficial/ol.css' %}" />
+    <link rel="stylesheet" href="{% static 'bower_components/ol3-unofficial/ol.css' %}" />
 {% endblock %}
 
 {% block navbar-extra-classes %}navbar-fixed-top{% endblock %}
@@ -14,27 +14,27 @@
             <div id="ocean-story-map"></div>
         </div>
         {% if self.explore_title %}
-        <div class="curtain overlay">
-          <a class="btn btn-default btn-lg view-data" href='{{ self.explore_url }}'><span class="icon icon-marco oversized"></span>&nbsp; {{ self.explore_title }}</a>
-        </div>
+            <div class="curtain overlay">
+                <a class="btn btn-default btn-lg view-data" href='{{ self.explore_url }}'><span class="icon icon-marco oversized"></span>&nbsp; {{ self.explore_title }}</a>
+            </div>
         {% endif %}
         <div class="intro overlay">
-          <div class="center">
-            <div class="container">
-              <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
-              {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
+            <div class="center">
+                <div class="container">
+                    <div class="ocean-story-n"><span>OCEAN STORY #{{ self.get_prev_siblings.count|add:1 }}</span></div>
+                    {% if self.hook %}<div class="hook">{{ self.hook }}</div>{% endif %}
+                </div>
             </div>
-          </div>
-          {% with page=self.portal_prev_sibling %}
-            {% if page %}
-              <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
-            {% endif %}
-          {% endwith %}
-          {% with page=self.portal_next_sibling %}
-            {% if page %}
-              <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
-            {% endif %}
-          {% endwith %}
+            {% with page=self.portal_prev_sibling %}
+                {% if page %}
+                    <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+                {% endif %}
+            {% endwith %}
+            {% with page=self.portal_next_sibling %}
+                {% if page %}
+                    <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
+                {% endif %}
+            {% endwith %}
         </div>
         <a href="#page-header" class="learn-more animate">learn more</a>
     </div>
@@ -43,23 +43,23 @@
 {% block content %}
 
 
-  {% if self.sections %}
-      {% for section in self.sections.all %}
-          <a class="anchor" id="section-{{forloop.counter}}"></a>
-          <section>
-              <h2>{{ section.title }}</h2>
-              {% include "portal/components/media_item.html" with item=section only %}
-          </section>
-      {% endfor %}
-  {% endif %}
+    {% if self.sections %}
+        {% for section in self.sections.all %}
+            <a class="anchor" id="section-{{forloop.counter}}"></a>
+            <section>
+                <h2>{{ section.title }}</h2>
+                {% include "portal/components/media_item.html" with item=section only %}
+            </section>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
 
 {% block extra_js %}
-  <script src="{% static 'bower_components/ol3-unofficial/ol.js' %}"></script>
-  <script src="{% static 'bundles/ocean_story.js' %}"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      oceanStory($('#ocean-story-map'), {{ self.as_json|safe }}, true);
-    })
-  </script>
+    <script src="{% static 'bower_components/ol3-unofficial/ol.js' %}"></script>
+    <script src="{% static 'bundles/ocean_story.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            oceanStory($('#ocean-story-map'), {{ self.as_json|safe }}, true);
+        })
+    </script>
 {% endblock %}
