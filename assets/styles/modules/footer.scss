@@ -117,7 +117,7 @@ body footer {
 
   .menu {
     > * {
-      padding-left: $gutter;
+      padding-left: $gutter/2;
     }
     > ul {
       font-weight: 500;
