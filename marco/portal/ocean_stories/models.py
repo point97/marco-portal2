@@ -20,7 +20,7 @@ from wagtail.wagtailsearch import index
 from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiFieldPanel
 from modelcluster.fields import ParentalKey
 
-from portal.base.models import PageBase,DetailPageBase,MediaItem
+from portal.base.models import PageBase, DetailPageBase, MediaItem
 
 # The abstract model for ocean story sections, complete with panels
 class OceanStorySectionBase(MediaItem):

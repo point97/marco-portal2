@@ -1,10 +1,11 @@
 {% load wagtailcore_tags %}
 <div class="media-item media">
-    {% if item.media_position == 'left' %}
+    {% if item.media_image and item.media_position == 'left' %}
         <div class="media-left thumbnail">
             {% include "portal/components/media.html" %}
         </div>
     {% endif %}
+
     <div class="media-body">
         <div class="item-text">
             {% block body %}
@@ -12,15 +13,17 @@
             {% endblock %}
         </div>
     </div>
-    {% if item.media_position == 'right' %}
+
+    {% if item.media_image and item.media_position == 'right' %}
         <div class="media-right thumbnail">
             {% include "portal/components/media.html" %}
         </div>
     {% endif %}
 </div>
 
-{% if item.media_position == 'full' %}
+{% if item.media_image and item.media_position == 'full' %}
     <div class="media-full">
         {% include "portal/components/media.html" %}
     </div>
 {% endif %}
+
