@@ -27,12 +27,16 @@
             </div>
             {% with page=self.portal_prev_sibling %}
                 {% if page %}
-                    <a class="previous-page" href="{% pageurl page %}">{% icon "caret-left" %}</a>
+                    <a class="previous-page" href="{% pageurl page %}">
+                        <i class="fa fa-caret-left"></i>
+                    </a>
                 {% endif %}
             {% endwith %}
             {% with page=self.portal_next_sibling %}
                 {% if page %}
-                    <a class="next-page" href="{% pageurl page %}">{% icon "caret-right" %}</a>
+                    <a class="next-page" href="{% pageurl page %}">
+                        <i class="fa fa-caret-right"></i>
+                    </a>
                 {% endif %}
             {% endwith %}
         </div>
