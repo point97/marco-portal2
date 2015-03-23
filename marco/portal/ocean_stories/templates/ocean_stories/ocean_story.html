@@ -28,14 +28,14 @@
             {% with page=self.portal_prev_sibling %}
                 {% if page %}
                     <a class="previous-page" href="{% pageurl page %}">
-                        <i class="fa fa-caret-left"></i>
+                        <i class="fa fa-2x fa-caret-left"></i>
                     </a>
                 {% endif %}
             {% endwith %}
             {% with page=self.portal_next_sibling %}
                 {% if page %}
                     <a class="next-page" href="{% pageurl page %}">
-                        <i class="fa fa-caret-right"></i>
+                        <i class="fa fa-2x fa-caret-right"></i>
                     </a>
                 {% endif %}
             {% endwith %}
