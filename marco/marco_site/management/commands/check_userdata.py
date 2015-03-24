@@ -16,8 +16,12 @@ class Command(NoArgsCommand):
             try:
                 userdata = u.userdata
             except UserData.DoesNotExist:
-                users_updated.append(u)
                 u.userdata = UserData()
+
+            if not u.userdata.real_name:
+                users_updated.append(u)
+                u.userdata.real_name = ' '.join([u.first_name, u.last_name])
+                u.userdata.preferred_name = u.first_name
                 u.userdata.save()
                 u.save()
 
