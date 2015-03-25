@@ -11,6 +11,7 @@ MEDIA_URL = /media/
 TIME_ZONE = UTC
 GA_ACCOUNT = You forgot to set the google analytics account
 STATIC_ROOT = /path/to/static/root
+EMAIL_SUBJECT_PREFIX = [Marco]
 
 [CACHES]
 BACKEND = redis_cache.RedisCache

@@ -350,7 +350,8 @@ CELERY_EMAIL_BACKEND = 'email_log.backends.EmailBackend'
 
 DEFAULT_FROM_EMAIL = "MARCO Portal Team <portal@midatlanticocean.org>"
 SERVER_EMAIL = "MARCO Site Errors <developers@pointnineseven.com>"
-EMAIL_SUBJECT_PREFIX = '[MARCO] ' # for mail to admins/managers only
+# for mail to admins/managers only
+EMAIL_SUBJECT_PREFIX = cfg.get('APP', 'EMAIL_SUBJECT_PREFIX', '[MARCO]') + ' '
 
 CELERY_RESULT_BACKEND = cfg.get('CELERY', 'RESULT_BACKEND', '')
 BROKER_URL = cfg.get('CELERY', 'BROKER_URL', '')
