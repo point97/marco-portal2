@@ -24,8 +24,6 @@ admin.autodiscover()
 from wagtail.wagtailsearch.signal_handlers import register_signal_handlers as wagtailsearch_register_signal_handlers
 wagtailsearch_register_signal_handlers()
 
-def error(*args):
-    1/0
 
 urlpatterns = patterns('',
     url('^sitemap\.xml$', sitemap),
@@ -33,9 +31,6 @@ urlpatterns = patterns('',
     url(r'^django-admin/', include(admin.site.urls)),
 
     url(r'^rpc$', 'rpc4django.views.serve_rpc_request'),
-
-    # Error url for testing
-    url('^error/$', error),
 
     # https://github.com/omab/python-social-auth/issues/399
     # I want the psa urls to be inside the account urls, but PSA doesn't allow
