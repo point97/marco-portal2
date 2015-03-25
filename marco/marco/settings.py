@@ -32,6 +32,11 @@ TEMPLATE_DEBUG = cfg.getboolean('APP', 'TEMPLATE_DEBUG', True)
 SECRET_KEY = cfg.get('APP', 'SECRET_KEY', 'you forgot to set the secret key')
 ALLOWED_HOSTS = cfg.getlist('APP', 'ALLOWED_HOSTS')
 
+# Set logging to default, and then make admin error emails come through as HTML
+from django.utils.log import DEFAULT_LOGGING
+LOGGING = DEFAULT_LOGGING
+LOGGING['handlers']['mail_admins']['include_html'] = True
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -44,6 +49,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.webdesign',
 
     'p97settings',
 
@@ -210,15 +216,15 @@ WAGTAIL_SITE_NAME = 'MARCO Portal'
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'portal/search_results.html'
 
 
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-        # 'URLS': ['https://iu20e5efzd:dibenj5fn5@point-97-elasticsear-6230081365.us-east-1.bonsai.io'],
-        'URLS': ['https://site:a379ac680e6aaa45f0c129c2cd28d064@bofur-us-east-1.searchly.com'],
-        'INDEX': 'marco_portal',
-        'TIMEOUT': 5,
-    }
-}
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+#         # 'URLS': ['https://iu20e5efzd:dibenj5fn5@point-97-elasticsear-6230081365.us-east-1.bonsai.io'],
+#         'URLS': ['https://site:a379ac680e6aaa45f0c129c2cd28d064@bofur-us-east-1.searchly.com'],
+#         'INDEX': 'marco_portal',
+#         'TIMEOUT': 5,
+#     }
+# }
 
 # Whether to use face/feature detection to improve image cropping - requires OpenCV
 WAGTAILIMAGES_FEATURE_DETECTION_ENABLED = False
@@ -351,5 +357,24 @@ BROKER_URL = cfg.get('CELERY', 'BROKER_URL', '')
 
 GA_ACCOUNT = cfg.get('APP', 'GA_ACCOUNT', '')
 
-
 ADMINS = (('Seth', 'seth@pointnineseven.com'),)
+
+
+if False:
+    MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+    INSTALLED_APPS += ('debug_toolbar',)
+    DEBUG_TOOLBAR_PANELS2 = (
+        'debug_toolbar.panels.cache.CachePanel',
+        'debug_toolbar.panels.headers.HeadersPanel',
+        'debug_toolbar.panels.logging.LoggingPanel',
+        'debug_toolbar.panels.profiling.ProfilingPanel',
+        'debug_toolbar.panels.redirects.RedirectsPanel',
+        'debug_toolbar.panels.request.RequestPanel',
+        'debug_toolbar.panels.settings.SettingsPanel',
+        'debug_toolbar.panels.signals.SignalsPanel',
+        'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+        'debug_toolbar.templates.panel.TemplatesPanel',
+        'debug_toolbar.panels.timer.TimerPanel',
+        # 'debug_toolbar.sql.panel.SQLPanel',
+    )
+    import debug_toolbar.panels
