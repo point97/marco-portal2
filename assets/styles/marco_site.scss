@@ -83,6 +83,11 @@
     Move to new file later.
    *********************** */
 
+/* Drop-down menu cursor */
+.dropdown-menu > li > a {
+    cursor: pointer;
+}
+
 /* Space above footer */
 .content:last-child {
     margin-bottom: 4em;
