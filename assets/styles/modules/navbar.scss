@@ -12,7 +12,7 @@ header {
     padding-bottom: $navbar-height;
 }
 
-.dropdown-menu {
+nav .dropdown-menu {
   > li > a {
     &:hover, &:focus {
       background-color: $navbar-default-link-active-bg;
@@ -81,7 +81,7 @@ header {
 
 @media (min-width: $grid-float-breakpoint) {
 
-  .dropdown-menu {
+  nav .dropdown-menu {
     > li {
       > a {
         padding-top:    $navbar-padding-vertical/2;
