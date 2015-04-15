@@ -6,7 +6,6 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $lines;
 	// fallback
-	height: $line-height * $lines;
 }
 
 $hover-background-color: $gray-medium-light;
@@ -65,22 +64,24 @@ $hover-background-color: $gray-medium-light;
 		.media-heading {
 			@include ellipsis($lines: 2, $line-height: 1em*$headings-line-height);
 			@include overflow-on-hover();
+			font-size: 22px;
+			font-weight: normal;
 		}
 		.item-text {
-			font-size: 11px;
+			font-size: 15px;
 			@include ellipsis($lines: 4, $line-height: 1em*$line-height-base);
 		}
 	}
 	.badge {
-		$badge-diameter: 54px;
+		$badge-diameter: 48px;
 		$badge-border-width: 3px;
-		line-height: 54px;
+		line-height: 48px;
 		display: block;
 		border-radius: 50%;
 		border: $badge-border-width solid $deep-blue;
 		background-color: $deep-blue;
 		color: $yellow;
-		@include square($badge-diameter + 2*$badge-border-width);
+		@include square($badge-diameter + $badge-border-width);
 		font-family: $font-family-condensed;
 		font-weight: bold;
 		font-size: $badge-diameter/2;
