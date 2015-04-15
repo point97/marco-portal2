@@ -51,12 +51,20 @@ $hover-background-color: $gray-medium-light;
 			> * {
 				margin-bottom: $padding-base-vertical;
 			}
+
+			> a {
+				border-top: 1px solid $gray;
+				padding: 11px;
+			}
 			padding: $padding-base-vertical;
 			padding-bottom: $padding-large-vertical;
 			border-right: 1px solid $gray;
+			
 		}
 		.icon {
+			padding-top: 11px;
 			font-size:20px;
+			color: $deep-blue;
 			// transform: scale(4);
 		}
 	}

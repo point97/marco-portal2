@@ -12,5 +12,14 @@
 {% endblock %}
 
 {% block heading %}<a href="{{ item.name }}">{{ item.display_name }}</a>{% endblock %}
-{% block media %}<div class="badge">{{ item.layer_count }}</div>{% endblock %}
+
+{% block media %}
+	<div class="badge">
+	{{ item.layer_count }}
+	</div>
+	<a href="{{item.explore_url}}" title="{{item.explore_text}}">
+		<span class="icon icon-marco"></span>
+	</a>
+{% endblock %}
+
 {% block text %}{{ item.description|truncatechars_html:256 }}{% endblock %}
