@@ -3,7 +3,6 @@
   <h4>
     <a href="{{layer.bookmark_link}}" class="layer-name{% if not layer.bookmark_link %} disabled{% endif %}" data-toggle="tooltip" 
     title="View in Marine Planner" data-placement="top">
-      <span class="icon-marco"></span>
       {{layer.name}}</a>
     {% if layer.is_sublayer %}
       <span class="layer-parent-name">
@@ -13,21 +12,30 @@
   </h4>
 
   <div class="link-bar">
+    <span data-toggle="tooltip" data-placement="bottom" title="View in Marine Planner">
+      <a class="btn btn-mini{% if not layer.bookmark_link %} disabled{% endif %}" href="{{layer.bookmark_link}}">
+        <i class="icon-marco oversized"></i>
+      </a>
+    </span>
+    <span class="divider"></span>
     <span data-toggle="tooltip" data-placement="bottom" title="Download for Google Maps">
       <a class="btn btn-mini{% if not layer.kml %} disabled{% endif %}" href="{{layer.kml}}">
         kml <i class="fa fa-arrow-down"></i>
       </a>
     </span>
+    <span class="divider"></span>
     <span data-toggle="tooltip" data-placement="bottom" title="Download ESRI Formatted Dataset">
       <a class="btn btn-mini{% if not layer.data_download_link %} disabled{% endif %}" href="data_download_link">
         data <i class="fa fa-arrow-down"></i>
       </a>
     </span>
-    <span data-toggle="tooltip" data-placement="bottom" title="Download Metadata">
+    <span class="divider"></span>
+    <span data-toggle="tooltip" data-placement="bottom" title="View Metadata">
       <a class="btn btn-mini{% if not layer.metadata_link %} disabled{% endif %}" href="metadata_link">
         metadata <i class="fa fa-arrow-down"></i>
       </a>
     </span>
+    <span class="divider"></span>
     <span data-toggle="tooltip" data-placement="bottom" title="{{ layer.data_source }}">
       <a class="btn btn-mini{% if not layer.source %} disabled{% endif %}" href="">
         source <i class="fa fa-external-link-square"></i>

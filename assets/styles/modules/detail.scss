@@ -41,6 +41,9 @@ $hover-background-color: $gray-medium-light;
 			width: auto;
 		}
 	}
+	.media-left.media-detail {
+		padding-top: 20px;
+	}
 	.media-detail {
 		a:hover {
 			text-decoration: none;
@@ -69,6 +72,7 @@ $hover-background-color: $gray-medium-light;
 		}
 	}
 	.media-body {
+		padding-left: 5px;
 		.media-heading {
 			@include ellipsis($lines: 2, $line-height: 1em*$headings-line-height);
 			@include overflow-on-hover();
@@ -78,6 +82,14 @@ $hover-background-color: $gray-medium-light;
 		.item-text {
 			font-size: 15px;
 			@include ellipsis($lines: 4, $line-height: 1em*$line-height-base);
+		}
+		h2 {
+			font-size: 46px;
+			margin-bottom: 5px;
+		}
+		> .description {
+			font-size: 19px;
+			padding-bottom: 30px;
 		}
 	}
 	.badge {
