@@ -1,0 +1,26 @@
+{% extends "cms/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block layout %}detail{% endblock %}
+{% block page_header %}
+	<a href=".." class="btn btn-success"><span class="icon">←</span> {% block back_text %}{% endblock %}</a>
+{% endblock %}
+{% block content %}
+	{% block detail %}
+		<div class="detail catalog-padding">
+			<div class="media">
+				<div class="media-left media-detail">
+					<div class="media-inner">
+						{% block media %}
+						{% endblock %}
+					</div>
+				</div>
+				<div class="media-body">
+					{% block media-body %}
+						{% include "cms/detail_frontmatter.html" %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endblock %}

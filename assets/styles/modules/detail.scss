@@ -28,8 +28,16 @@ $hover-background-color: $gray-medium-light;
     outline: 1px solid $turquoise;
 }
 
+.grid-view > .detail > .media > .media-detail > .media-inner {
+	border-right: 1px solid $gray;
+}
+
 .detail + .detail {
     margin-bottom: 2em;
+}
+
+.catalog-padding {
+	padding: 30px 0 0 65px;
 }
 
 .detail {
@@ -40,9 +48,6 @@ $hover-background-color: $gray-medium-light;
 			height: 100%;
 			width: auto;
 		}
-	}
-	.media-left.media-detail {
-		padding-top: 20px;
 	}
 	.media-detail {
 		a:hover {
@@ -60,9 +65,7 @@ $hover-background-color: $gray-medium-light;
 				padding: 11px;
 			}
 			padding: $padding-base-vertical;
-			padding-bottom: $padding-large-vertical;
-			border-right: 1px solid $gray;
-			
+			padding-bottom: $padding-large-vertical;			
 		}
 		.icon {
 			padding-top: 11px;
@@ -72,7 +75,6 @@ $hover-background-color: $gray-medium-light;
 		}
 	}
 	.media-body {
-		padding-left: 5px;
 		.media-heading {
 			@include ellipsis($lines: 2, $line-height: 1em*$headings-line-height);
 			@include overflow-on-hover();
@@ -83,13 +85,21 @@ $hover-background-color: $gray-medium-light;
 			font-size: 15px;
 			@include ellipsis($lines: 4, $line-height: 1em*$line-height-base);
 		}
-		h2 {
-			font-size: 46px;
-			margin-bottom: 5px;
+		.theme-detail-border {
+			border-left: 1px solid $gray;
+			margin-left: 0px;
+			padding-left: 10px;
+			margin-top: -30px;
+			h2 {
+				font-size: 48px;
+			}
+			.description {
+				font-size: 19px;
+			}
 		}
-		> .description {
-			font-size: 19px;
-			padding-bottom: 30px;
+		.layer-list{
+			padding-top: 25px;
+			padding-left: 10px;
 		}
 	}
 	.badge {
