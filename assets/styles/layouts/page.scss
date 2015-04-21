@@ -1,11 +1,13 @@
 body.page-layout {
   $margin-left: 60px;
-  .description {
-    margin-left: $margin-left;
-    color: $brand-primary;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 32px;
+  .page-header {
+    .description p {
+      margin-left: $margin-left;
+      color: $brand-primary;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 32px;
+    }
   }
   .page-body {
     @extend .text-block;
