@@ -28,6 +28,8 @@ django-celery-email
 
 django-apptemplates==0.0.1
 
+rpc4django
+
 -e git+git@bitbucket.org:point97/madrona-analysistools.git@master#egg=madrona_analysistools-master
 -e git+git@bitbucket.org:point97/madrona-features.git@master#egg=madrona_features-master
 -e git+git@bitbucket.org:point97/madrona-forms.git@master#egg=madrona_forms-master
