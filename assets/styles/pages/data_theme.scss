@@ -13,6 +13,11 @@ body.data-theme-page {
       padding: 40px 0 40px 0;
 
     }
+    .layer-list {
+      section:last-child {
+        border: none;
+      }
+    }
   }
 
   .layer-info {
