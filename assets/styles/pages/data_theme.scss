@@ -6,12 +6,21 @@ body.data-theme-page {
         visibility: hidden;
     }
 
+  .catalog-padding {
+    padding: 30px 0 0 50px;
+    .layer-info {
+      border-bottom: 1px solid $gray;
+      padding: 40px 0 40px 0;
+
+    }
+  }
+
   .layer-info {
     h4 {
       font-size: 24px;
       letter-spacing: 1em * 50/1000;
       font-family: $font-family-condensed;
-      padding-bottom: 10px;
+      padding-bottom: 15px;
       > a {
         color: $brand-success;
       }
@@ -24,12 +33,12 @@ body.data-theme-page {
       background-color: $white;
       display: inline-block;
       font-size: 19px;
-      font-weight: bold;
+      @extend .font-bold;
       letter-spacing: 1em * 100/1000;
       a {
         color: $brand-primary;
         padding-right: 8px;
-        font-weight: bold;
+        @extend .font-bold;
         > .oversized {
           padding-left: 5px;
         }
@@ -43,12 +52,12 @@ body.data-theme-page {
     p {
       @extend .text-block;
       font-size: 16px;
-      line-height: 20px;
+      line-height: 26px;
       letter-spacing: .055em;
       margin: 0px;
     }
     p.description {
-     padding: 10px 0 10px 0;
+     padding: 15px 0 15px 0;
     }
     padding-bottom: $padding-large-vertical;
   }

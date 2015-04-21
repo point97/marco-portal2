@@ -36,10 +36,6 @@ $hover-background-color: $gray-medium-light;
     margin-bottom: 2em;
 }
 
-.catalog-padding {
-	padding: 30px 0 0 65px;
-}
-
 .detail {
 	.feature {
 		height: 194px;
@@ -79,11 +75,12 @@ $hover-background-color: $gray-medium-light;
 			@include ellipsis($lines: 2, $line-height: 1em*$headings-line-height);
 			@include overflow-on-hover();
 			font-size: 22px;
-			font-weight: normal;
+			@extend .font-medium;
+
 		}
 		.item-text {
 			font-size: 15px;
-			height: 9.5em;
+			height: 10em;
 			@include ellipsis($lines: 7, $line-height: 1em*$line-height-base);
 		}
 		.theme-detail-border {
@@ -99,7 +96,6 @@ $hover-background-color: $gray-medium-light;
 			}
 		}
 		.layer-list{
-			padding-top: 25px;
 			padding-left: 10px;
 		}
 	}
