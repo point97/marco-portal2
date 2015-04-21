@@ -83,7 +83,8 @@ $hover-background-color: $gray-medium-light;
 		}
 		.item-text {
 			font-size: 15px;
-			@include ellipsis($lines: 4, $line-height: 1em*$line-height-base);
+			height: 9.5em;
+			@include ellipsis($lines: 7, $line-height: 1em*$line-height-base);
 		}
 		.theme-detail-border {
 			border-left: 1px solid $gray;
