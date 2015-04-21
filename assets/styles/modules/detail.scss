@@ -6,7 +6,6 @@
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: $lines;
 	// fallback
-	height: $line-height * $lines;
 }
 
 $hover-background-color: $gray-medium-light;
@@ -29,8 +28,16 @@ $hover-background-color: $gray-medium-light;
     outline: 1px solid $turquoise;
 }
 
+.grid-view > .detail > .media > .media-detail > .media-inner {
+	border-right: 1px solid $gray;
+}
+
 .detail + .detail {
     margin-bottom: 2em;
+}
+
+.catalog-padding {
+	padding: 30px 0 0 65px;
 }
 
 .detail {
@@ -52,12 +59,18 @@ $hover-background-color: $gray-medium-light;
 			> * {
 				margin-bottom: $padding-base-vertical;
 			}
+
+			> a {
+				border-top: 1px solid $gray;
+				padding: 11px;
+			}
 			padding: $padding-base-vertical;
-			padding-bottom: $padding-large-vertical;
-			border-right: 1px solid $gray;
+			padding-bottom: $padding-large-vertical;			
 		}
 		.icon {
+			padding-top: 11px;
 			font-size:20px;
+			color: $deep-blue;
 			// transform: scale(4);
 		}
 	}
@@ -65,22 +78,41 @@ $hover-background-color: $gray-medium-light;
 		.media-heading {
 			@include ellipsis($lines: 2, $line-height: 1em*$headings-line-height);
 			@include overflow-on-hover();
+			font-size: 22px;
+			font-weight: normal;
 		}
 		.item-text {
-			font-size: 11px;
-			@include ellipsis($lines: 4, $line-height: 1em*$line-height-base);
+			font-size: 15px;
+			height: 9.5em;
+			@include ellipsis($lines: 7, $line-height: 1em*$line-height-base);
+		}
+		.theme-detail-border {
+			border-left: 1px solid $gray;
+			margin-left: 0px;
+			padding-left: 10px;
+			margin-top: -30px;
+			h2 {
+				font-size: 48px;
+			}
+			.description {
+				font-size: 19px;
+			}
+		}
+		.layer-list{
+			padding-top: 25px;
+			padding-left: 10px;
 		}
 	}
 	.badge {
-		$badge-diameter: 54px;
+		$badge-diameter: 48px;
 		$badge-border-width: 3px;
-		line-height: 54px;
+		line-height: 48px;
 		display: block;
 		border-radius: 50%;
 		border: $badge-border-width solid $deep-blue;
 		background-color: $deep-blue;
 		color: $yellow;
-		@include square($badge-diameter + 2*$badge-border-width);
+		@include square($badge-diameter + $badge-border-width);
 		font-family: $font-family-condensed;
 		font-weight: bold;
 		font-size: $badge-diameter/2;

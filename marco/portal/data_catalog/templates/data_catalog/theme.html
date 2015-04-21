@@ -1,4 +1,4 @@
-{% extends "layouts/detail.html" %}
+{% extends "data_catalog/override-detail.html" %}
 
 {% block title %}Data Catalog: {{theme.display_name}}{% endblock %}
 {% block body_class %}data-theme-page{% endblock %}
@@ -6,9 +6,11 @@
 {% block back_text %}Data catalog{% endblock %}
 
 {% block media-body %}
-  <h2>{{ theme.display_name }}</h2>
-  <div class="description">
+  <div class='theme-detail-border'>
+    <h2>{{ theme.display_name }}</h2>
+    <div class="description">
     {{ theme.description }}
+    </div>
   </div>
   {% if layers %}
     <div class="layer-list">
@@ -19,7 +21,15 @@
   {% endif %}
 {% endblock %}
 
-{% block media %}<div class="badge">{{ theme.layer_count }}</div>{% endblock %}
+{% block media %}
+<div class="badge">
+  {{ theme.layer_count }}
+</div>
+<a href="{{theme.url}}" title="{{theme.display_name}}">
+  <span class="icon icon-marco"></span>
+</a>
+{% endblock %}
+
 {% block extra_js %}
 <script>
   $(function () {

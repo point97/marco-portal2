@@ -19,6 +19,15 @@ $btn-success-border: $brand-success;
     color: $brand-success;
   }
   border-width: 2px;
+
+  &:hover,
+  &:active,
+  &:focus,
+  .active,
+  .focus {
+    background-color: $gray-lighter;
+    border-color: $green
+  }
 }
 
 a.back-button {
