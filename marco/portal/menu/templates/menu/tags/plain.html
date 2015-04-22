@@ -1,6 +1,9 @@
 <h4>{{ menu.title }}</h4>
 <ul role="menu">
   {% for entry in menu.entries.all %}
-    <li><a href="{{ entry.destination }}"{% if entry.external %} target="_blank"{% endif %}>{{ entry.text }}</a></li>
+    <li>
+    	<a href="{{ entry.destination }}"{% if entry.external %} target="_blank" {% endif %}>{{ entry.text }} 
+    	{% if entry.external %} <i class="fa fa-external-link-square"></i> {% endif %} </a>
+    </li>
   {% endfor %}
 </ul>
