@@ -32,6 +32,12 @@ $hover-background-color: $gray-medium-light;
 	border-right: 1px solid $gray;
 }
 
+.grid-view {
+	.media {
+		height: 15em;
+	}
+}
+
 .detail + .detail {
     margin-bottom: 2em;
 }
