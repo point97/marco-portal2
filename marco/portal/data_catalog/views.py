@@ -17,12 +17,6 @@ def theme_query():
         }
     )
 
-def catalog(request):
-    template='data_catalog/catalog.html'
-    themes = theme_query()
-
-    return render_to_response(template, RequestContext(request, {'themes': themes}))
-
 def theme(request, theme_slug):
 
     theme = get_object_or_404(theme_query(), name=theme_slug)
