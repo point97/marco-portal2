@@ -43,14 +43,14 @@ class GridPage(PageBase):
 class GridPageDetail(DetailPageBase):
     parent_page_types = ['GridPage']
 
-    target_year = models.CharField(max_length=4)
+    metric = models.CharField(max_length=4, blank=True, null=True)
 
     search_fields = DetailPageBase.search_fields + (
-        index.FilterField('target_year'),
+        index.FilterField('metric'),
     )
 
     content_panels = DetailPageBase.content_panels + [
-        FieldPanel('target_year'),
+        FieldPanel('metric'),
     ]
 GridPageDetail.content_panels += [InlinePanel(GridPageDetail, 'sections',
                                               label="Sections"),]
