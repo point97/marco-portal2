@@ -1,7 +1,7 @@
 .content {
   padding-bottom: $padding-large-vertical;
   .errorlist {
-  	color: #d9534f;
+  	color: $danger;
   	@extend .font-bold;
   }
 }
