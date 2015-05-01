@@ -53,8 +53,6 @@ class GridPage(PageBase):
 class GridPageDetail(DetailPageBase):
     parent_page_types = ['GridPage']
 
-    url_override = models.CharField(max_length=255, null=True, blank=True, help_text="Overrides Default Slug on Welcome Page (ex. /[actual_slug]/)")
-
     metric = models.CharField(max_length=4, blank=True, null=True)
 
     search_fields = DetailPageBase.search_fields + (
@@ -63,7 +61,6 @@ class GridPageDetail(DetailPageBase):
 
     content_panels = DetailPageBase.content_panels + [
         FieldPanel('metric'),
-        FieldPanel('url_override'),
     ]
 GridPageDetail.content_panels += [InlinePanel(GridPageDetail, 'sections',
                                               label="Sections"),]
