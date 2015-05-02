@@ -7,10 +7,14 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiField
 from modelcluster.fields import ParentalKey
 
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailcore.fields import RichTextField
+
+from portal.base.models import MediaItem
 
 class WelcomePageEntry(Orderable):
-    welcome_page = ParentalKey('WelcomePage', related_name='wtf')
+    welcome_page = ParentalKey('WelcomePage', related_name='entries')
     title = models.CharField(null=True, blank=True, max_length=255)
+    description = RichTextField(blank=True)
     url = models.CharField(null=True, blank=True, max_length=4096)
     show_divider_underneath = models.BooleanField(default=False)
 
@@ -24,6 +28,7 @@ class WelcomePageEntry(Orderable):
 
     panels = [
         FieldPanel('title'),
+        FieldPanel('description'),
         PageChooserPanel('page'),
         FieldPanel('url'),
         FieldPanel('show_divider_underneath'),
@@ -56,6 +61,7 @@ class WelcomePageEntry(Orderable):
 @register_snippet
 class WelcomePage(models.Model):
     title = models.CharField(max_length=255)
+    body = RichTextField(null=True, blank=True)
     active = models.BooleanField(default=False)
 
     def __str__(self):
@@ -68,8 +74,9 @@ class WelcomePage(models.Model):
 
 WelcomePage.panels = [
     MultiFieldPanel([
-        FieldPanel("title", 'active'),
+        FieldPanel('title'),
+        FieldPanel('body'),
         FieldPanel('active'),
     ]),
-    InlinePanel(WelcomePage, 'wtf', label='Entries')
+    InlinePanel(WelcomePage, 'entries', label='Entries')
 ]

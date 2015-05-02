@@ -1,5 +1,8 @@
+{% load wagtailcore_tags%}
 
-{% for welcome_entry in welcome_entry.wtf.all %}
-    <h1 class="blink">{{ welcome_entry.title }}</h1>
-    <span class="blink">{{ welcome_entry.url }}</span>
+<h1>{{welcome_entry.title}}</h1>
+{{ welcome_entry.body|richtext }}
+{% for entry in welcome_entry.entries.all %}
+	<h3>{{ entry.title }}</h3>
+	{{ entry.description|richtext }}
 {% endfor %}
