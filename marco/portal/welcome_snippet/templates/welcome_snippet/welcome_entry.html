@@ -1,8 +1,38 @@
-{% load wagtailcore_tags%}
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="grid-view">
+	{% for entry in welcome_entry.entries.all %}
+	<div class="detail">
+	  {% block feature %}
+	    <div class="feature">
+	      {% if entry.feature_image %}
+	        <a href="{{ entry.destination }}">
+	          {% image entry.feature_image fill-345x194 class="feature" %}
+	        </a>
+	      {% endif %}
+	    </div>
+	  {% endblock %}
+	  <div class="media">
+	    <div class="media-left media-detail">
+	      <div class="media-inner">
+	        {% block media %}
+	          <div class="badge">{{ entry.id }}</div>
+	        {% endblock %}
+	      </div>
+	    </div>
+	    <div class="media-body">
+	      <h4 class="media-heading">{% block heading %}<a href="{{ entry.destination }}">{{ entry.title }}</a>{% endblock %}</h4>
+	      <div class="item-text">
+	        {% block text %}
+	          {% if entry.search_description %}
+	            {{ entry.search_description|striptags|truncatechars:256 }}
+	          {% else %}
+	            {{ entry.description|striptags|truncatechars:256 }}
+	          {% endif %}
+	        {% endblock %}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	{% endfor %}
+</div>
 
-<h1>{{welcome_entry.title}}</h1>
-{{ welcome_entry.body|richtext }}
-{% for entry in welcome_entry.entries.all %}
-	<h3>{{ entry.title }}</h3>
-	{{ entry.description|richtext }}
-{% endfor %}

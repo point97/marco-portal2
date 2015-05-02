@@ -9,7 +9,8 @@ from modelcluster.fields import ParentalKey
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailcore.fields import RichTextField
 
-from portal.base.models import MediaItem
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.models import AbstractImage, AbstractRendition
 
 class WelcomePageEntry(Orderable):
     welcome_page = ParentalKey('WelcomePage', related_name='entries')
@@ -26,20 +27,26 @@ class WelcomePageEntry(Orderable):
         related_name='+',
     )
 
+    media_image = models.ForeignKey(
+        'base.PortalImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
     panels = [
         FieldPanel('title'),
         FieldPanel('description'),
-        PageChooserPanel('page'),
+        ImageChooserPanel('media_image'),
         FieldPanel('url'),
+        PageChooserPanel('page'),
         FieldPanel('show_divider_underneath'),
     ]
 
     @property
     def destination(self):
-        if self.page:
-            return self.page.url
-        else:
-            return self.url
+        return self.url
 
     def external(self):
         pattern = re.compile(r"https?://")
