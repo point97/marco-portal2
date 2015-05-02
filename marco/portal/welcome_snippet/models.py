@@ -46,7 +46,10 @@ class WelcomePageEntry(Orderable):
 
     @property
     def destination(self):
-        return self.url
+        if self.page:
+            return self.page.url
+        else:
+            return "/%s/" % self.url
 
     def external(self):
         pattern = re.compile(r"https?://")

@@ -4,8 +4,6 @@
 	{% block title %}<h1>{% include 'portal/includes/edit_link.html' %} {{ self.title }}</h1>{% endblock %}
 </div>
 
-{% include 'accounts/check_your_email.html' %}
-
 {% if self.description %}
 	<div class="description">
 		{{ self.description|richtext }}
