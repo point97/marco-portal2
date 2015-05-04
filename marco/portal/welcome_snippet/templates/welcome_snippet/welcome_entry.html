@@ -3,7 +3,9 @@
 	<div class="title-line">
 		{% block title %}<h1> {{ welcome_entry.title }}</h1>{% endblock %}
 	</div>
+
 	{% include "accounts/check_your_email.html" %}
+
 	{% block content %}
 	  {% if welcome_entry.body %}
 	  <div class="description">
@@ -18,7 +20,7 @@
 		  {% block feature %}
 		    <div class="feature">
 		      {% if entry.feature_image %}
-		        <a href="{{ entry.destination }}">
+		        <a href="{{ entry.destination }}"{% if entry.external %} target="_blank" {% endif %}>
 		          {% image entry.feature_image fill-345x194 class="feature" %}
 		        </a>
 		      {% endif %}
@@ -33,7 +35,11 @@
 		      </div>
 		    </div>
 		    <div class="media-body">
-		      <h4 class="media-heading">{% block heading %}<a href="{{ entry.destination }}">{{ entry.title }}</a>{% endblock %}</h4>
+		      <h4 class="media-heading">
+		      {% block heading %}
+		      	<a href="{{ entry.destination }}"{% if entry.external %} target="_blank" {% endif %}>{{ entry.text }}</a>
+		      {% endblock %}
+		      </h4>
 		      <div class="item-text">
 		        {% block text %}
 		          {% if entry.search_description %}
