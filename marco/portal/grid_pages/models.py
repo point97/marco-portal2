@@ -9,6 +9,8 @@ from wagtail.wagtailsearch import index
 
 from portal.base.models import PageBase, DetailPageBase, MediaItem
 
+from accounts.forms import SignUpForm
+
 
 # The abstract model for ocean story sections, complete with panels
 class GridPageSectionBase(MediaItem):
@@ -40,6 +42,14 @@ class GridPage(PageBase):
     def get_detail_children(self):
         return GridPageDetail.objects.child_of(self)
 
+    def get_context(self, request, *args, **kwargs):
+        return {
+            'self': self,
+            'request': request,
+            'form': SignUpForm()
+        }
+
+
 class GridPageDetail(DetailPageBase):
     parent_page_types = ['GridPage']
 
@@ -54,4 +64,5 @@ class GridPageDetail(DetailPageBase):
     ]
 GridPageDetail.content_panels += [InlinePanel(GridPageDetail, 'sections',
                                               label="Sections"),]
+
 
