@@ -19,9 +19,9 @@
 		<div class="detail">
 		  {% block feature %}
 		    <div class="feature">
-		      {% if entry.feature_image %}
+		      {% if entry.media_image %}
 		        <a href="{{ entry.destination }}"{% if entry.external %} target="_blank" {% endif %}>
-		          {% image entry.feature_image fill-345x194 class="feature" %}
+		          {% image entry.media_image fill-345x194 class="feature" %}
 		        </a>
 		      {% endif %}
 		    </div>
