@@ -3,9 +3,7 @@
 	<div class="title-line">
 		{% block title %}<h1> {{ welcome_entry.title }}</h1>{% endblock %}
 	</div>
-
-	{% include "accounts/check_your_email.html" %}
-
+	
 	{% block content %}
 	  {% if welcome_entry.body %}
 	  <div class="description">
