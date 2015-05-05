@@ -7,23 +7,36 @@
   <div class="month">{{ self.date|date:"N" }}</div>
   <div class="badge">{{ self.date|date:"j" }}</div>
 {% endblock %}
+
 {% block media-body %}
   {{ block.super }}
-  <div class="date">
-    <h4>Date</h4>
-    <span class="start-date">
-      {{ self.date|date:"D, N j" }}
-    </span>
-    {% if self.end_date %}
-      &mdash;
-      <span class="end-date">
-        {{ self.end_date|date:"D, N j" }}
-      </span>
-    {% endif %}
+
+  <div class="calendar-container">
+      <div class="col-md-6 location">
+          <p style="padding-bottom: 15px;">LOCATION</p>
+          <h4>Location</h4>
+          <div>{{ self.location|linebreaks }}</div>
+          <a href="https://maps.google.com?q={{ self.location }}"><i class="fa fa-map-marker"></i> Show on map</a>
+      </div>
+      <div class="col-md-6 social-links">
+        <p style="padding-bottom: 15px;">SHARE THIS EVENT</p>
+         <a class="fa-stack fa-lg" href="https://www.facebook.com/midatlanticocean" target="_blank">
+            <i class="fa fa-circle fa-stack-2x gray"></i>
+            <i class="fa fa-facebook fa-stack-1x light-gray"></i>
+        </a>
+        <a class="fa-stack fa-lg" href="https://twitter.com/PortalMARCO" target="_blank">
+            <i class="fa fa-circle fa-stack-2x gray"></i>
+            <i class="fa fa-twitter fa-stack-1x light-gray"></i>
+        </a>
+        <a class="fa-stack fa-lg" href="#" target="_blank">
+            <i class="fa fa-envelope-o fa-2x gray"></i>
+        </a>
+      </div>
   </div>
-  <div class="location">
-    <h4>Location</h4>
-    <div>{{ self.location|linebreaks }}</div>
-    <a href="https://maps.google.com?q={{ self.location }}"><i class="fa fa-map-marker"></i> Show on map</a>
-  </div>
+
+
+
+
 {% endblock %}  
+
+

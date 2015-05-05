@@ -128,6 +128,9 @@ $hover-background-color: $gray-medium-light;
 		/* Shrink the badge text a bit, 54 is way too big.  */
 		font-size: 20px;
 	}
+	.media-inner {
+		padding-top: 20px;
+	}
 }
 
 .data-catalog-page, .data-theme-page {
@@ -137,6 +140,11 @@ $hover-background-color: $gray-medium-light;
 
 .calendar-page, .event-page {
 	.media-detail {
+		padding-top: 15px;
+		.media-inner {
+			border-right: 1px solid $gray;
+			padding-right: 15px;
+		}
 		.month {
 			color: $green;
 			font-weight: bold;
@@ -147,6 +155,22 @@ $hover-background-color: $gray-medium-light;
 			border-color:  $green;
 			background: transparent;
 			color: $deep-blue;
+		}
+	}
+	.media-body {
+		padding-left: 10px;
+
+		.calendar-container {
+			padding-top: 20px;
+			.location, .social-links {
+				padding: 15px 0 15px 0;
+				h4 {
+					margin-bottom: 0;
+				}
+				p {
+					font-size: 13px;
+				}
+			}
 		}
 	}
 }
