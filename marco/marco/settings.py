@@ -60,6 +60,8 @@ INSTALLED_APPS = (
     'modelcluster',
     'rpc4django',
 
+    'django_social_share',
+
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',
     'wagtail.wagtaildocs',

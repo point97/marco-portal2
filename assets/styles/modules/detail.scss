@@ -173,6 +173,22 @@ $hover-background-color: $gray-medium-light;
 			}
 		}
 	}
+	.content {
+		margin-bottom: 2em;
+		.page-footer-nav {
+			margin-top: 25px;
+			padding-top: 40px;
+			border-top: 1px solid $gray;
+			a {
+				@extend .font-bold;
+				text-decoration: none;
+				font-size: 16px;
+			}
+			.nav-text {
+				color: $black;
+			}
+		}
+	}
 }
 
 .welcome-snippet {
