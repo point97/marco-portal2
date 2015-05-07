@@ -66,4 +66,26 @@ body.data-theme-page {
     }
     padding-bottom: $padding-large-vertical;
   }
+  .explore {
+    h4 {
+      padding: 35px 0 5px 0;
+    }
+    .row {
+      width: 75%;
+      p.explore-info {
+        width: 100%;
+      }
+      pre {
+        border-radius: 7px 7px 7px 7px;
+        -moz-border-radius: 7px 7px 7px 7px;
+        -webkit-border-radius: 7px 7px 7px 7px;
+        padding: 10px;
+        background-color: $gray-lighter;
+      }
+    }
+    .row.split {
+        border-bottom: 1px solid $medium-gray;
+        padding: 20px 0 35px 0;
+    }
+  }
 }

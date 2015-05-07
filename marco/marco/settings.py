@@ -95,6 +95,7 @@ INSTALLED_APPS = (
     'scenarios',
     'drawing',
     'manipulators',
+    'explore',
 
     # Account management
     'social.apps.django_app.default',

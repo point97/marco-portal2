@@ -16,6 +16,7 @@ from wagtail.wagtailimages import urls as wagtailimages_urls
 
 import mapgroups.urls
 import accounts.urls
+import explore.urls
 
 admin.autodiscover()
 
@@ -38,6 +39,7 @@ urlpatterns = patterns('',
     url('^account/auth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^account/', include(accounts.urls.urls(namespace='account'))),
     url(r'^g/', include(mapgroups.urls.urls(namespace='groups'))),
+    url(r'^explore/', include('explore.urls')),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
