@@ -25,20 +25,26 @@
     </span>
     <span class="divider"></span>
     <span data-toggle="tooltip" data-placement="bottom" title="Download ESRI Formatted Dataset">
-      <a class="btn btn-mini{% if not layer.data_download_link %} disabled{% endif %}" href="data_download_link">
+      <a class="btn btn-mini{% if not layer.data_download_link %} disabled{% endif %}" href=" {{ layer.data_download_link }}">
         data <i class="fa fa-arrow-down"></i>
       </a>
     </span>
     <span class="divider"></span>
     <span data-toggle="tooltip" data-placement="bottom" title="View Metadata">
-      <a class="btn btn-mini{% if not layer.metadata_link %} disabled{% endif %}" href="metadata_link">
+      <a class="btn btn-mini{% if not layer.metadata_link %} disabled{% endif %}" href="{{ layer.metadata_link }}">
         metadata <i class="fa fa-arrow-down"></i>
       </a>
     </span>
     <span class="divider"></span>
     <span data-toggle="tooltip" data-placement="bottom" title="{{ layer.data_source }}">
-      <a class="btn btn-mini{% if not layer.source %} disabled{% endif %}" href="">
+      <a class="btn btn-mini{% if not layer.source %} disabled{% endif %}" href=" {{ layer.source }}">
         source <i class="fa fa-external-link-square"></i>
+      </a>
+    </span>
+    <span class="divider"></span>
+    <span data-toggle="tooltip" data-placement="bottom" title="{{ layer.tiles }}">
+      <a class="btn btn-mini{% if not layer.shareable_url %} disabled{% endif %}" href="{{ layer.tiles_link }}">
+        tiles <i class="fa fa-external-link-square"></i>
       </a>
     </span>
   </div>
