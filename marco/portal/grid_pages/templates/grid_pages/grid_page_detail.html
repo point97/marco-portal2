@@ -3,7 +3,7 @@
 {% block back_text %}{{ self.get_parent }}{% endblock %}
 
 {% block media %}
-<div class="badge">{{ self.target_year|default:"NEED" }}</div>
+<div class="badge">{{ self.metric|default:"NEED" }}</div>
 {% endblock %}
 
 {% block content %}
