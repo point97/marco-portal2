@@ -1,5 +1,5 @@
 {% extends "portal/components/card.html" %}
 
 {% block media %}
-	<div class="badge">{{ item.metric|default:"NEED" }}</div>
+	<div class="badge">{{ item.target_year|default:"NEED" }}</div>
 {% endblock %}
