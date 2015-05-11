@@ -7,23 +7,35 @@
   <div class="month">{{ self.date|date:"N" }}</div>
   <div class="badge">{{ self.date|date:"j" }}</div>
 {% endblock %}
+
 {% block media-body %}
   {{ block.super }}
-  <div class="date">
-    <h4>Date</h4>
-    <span class="start-date">
-      {{ self.date|date:"D, N j" }}
-    </span>
-    {% if self.end_date %}
-      &mdash;
-      <span class="end-date">
-        {{ self.end_date|date:"D, N j" }}
-      </span>
-    {% endif %}
+  <div class="calendar-container">
+      <div class="col-md-6 location">
+          <p style="padding-bottom: 15px;">LOCATION</p>
+          <h4>Location</h4>
+          <div>{{ self.location|linebreaks }}</div>
+          <a href="https://maps.google.com?q={{ self.location }}"><i class="fa fa-map-marker"></i> Show on map</a>
+      </div>
+      <div class="col-md-6 social-links">
+        <p style="padding-bottom: 15px;">SHARE THIS EVENT</p>
+        
+        {% load social_share %}
+
+        {% post_to_facebook object_or_url %}
+
+        {% post_to_twitter "Mark your calendars for {{ self.title }} on {{ self.date }}. Register at: http://midatlantic.point97.io{{ self.url }}" %}
+
+        <a class="fa-stack fa-lg" href="mailto:?subject=Mark%20your%20calendars%20for%20{{self.title}}%20on%20{{ self.date }}" target="_blank" title="Email">
+            <i class="fa fa-circle fa-stack-2x gray"></i>
+            <i class="fa fa-envelope-o fa-stack-1x light-gray"></i>
+        </a>
+      </div>
   </div>
-  <div class="location">
-    <h4>Location</h4>
-    <div>{{ self.location|linebreaks }}</div>
-    <a href="https://maps.google.com?q={{ self.location }}"><i class="fa fa-map-marker"></i> Show on map</a>
-  </div>
-{% endblock %}  
+{% endblock %} 
+
+{% block nav_footer %}
+ {% include "calendar/calendar_nav.html" %}
+{% endblock %}
+
+

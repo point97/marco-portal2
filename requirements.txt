@@ -28,6 +28,8 @@ django-celery-email
 
 django-apptemplates==0.0.1
 
+django-social-share
+
 rpc4django
 
 -e git+git@bitbucket.org:point97/madrona-analysistools.git@master#egg=madrona_analysistools-master
