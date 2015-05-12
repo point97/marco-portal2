@@ -60,8 +60,6 @@ INSTALLED_APPS = (
     'modelcluster',
     'rpc4django',
 
-    'django_social_share',
-
     'wagtail.wagtailcore',
     'wagtail.wagtailadmin',
     'wagtail.wagtaildocs',
@@ -102,6 +100,7 @@ INSTALLED_APPS = (
     # Account management
     'social.apps.django_app.default',
     'accounts.apps.AccountsAppConfig',
+    'django_social_share',
     'mapgroups',
 )
 
