@@ -17,6 +17,7 @@ class DataGap(DetailPageBase):
     target_year = models.CharField(max_length=4)
 
     search_fields = DetailPageBase.search_fields + (
+        index.SearchField('description'),
         index.FilterField('target_year'),
     )
 

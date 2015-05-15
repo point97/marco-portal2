@@ -16,6 +16,7 @@ class Event(DetailPageBase):
     location = models.TextField(null=True, blank=True, max_length=1024)
 
     search_fields = DetailPageBase.search_fields + (
+        index.SearchField('description'),
         index.FilterField('date'),
     )
     content_panels = DetailPageBase.content_panels + [

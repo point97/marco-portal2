@@ -126,6 +126,8 @@ class DetailPageBase(PageBase):
         related_name='+'
     )
 
+    search_fields = (index.SearchField('description'),)
+
     subpage_types = []
     content_panels = PageBase.content_panels + [
         MultiFieldPanel([
