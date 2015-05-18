@@ -138,7 +138,7 @@ $hover-background-color: $gray-medium-light;
 	}
 }
 
-.calendar-page, .event-page {
+.calendar-page, .event-page, .news-page, .story-page {
 	.media-detail {
 		padding-top: 15px;
 		.media-inner {
@@ -193,4 +193,8 @@ $hover-background-color: $gray-medium-light;
 
 .welcome-snippet {
 	margin-top: -35px;
+}
+
+body.story-page .detail .media-item .media-body .item-text {
+    height: auto;
 }

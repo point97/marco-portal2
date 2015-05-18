@@ -1,0 +1,69 @@
+{% extends "cms/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags wagtailuserbar social_share %}
+
+{% block layout %}detail{% endblock %}
+
+{% block page_header %}
+	<a href=".." class="btn btn-success"><span class="icon">&larr;</span> News</a>
+{% endblock %}
+
+{% block content %}
+<div class="detail">
+    <div class="media">
+        <div class="media-left media-detail">
+            <div class="media-inner">
+                <div class="badge">{{ self.posted|date:"j" }}</div>
+                <div class="month">{{ self.posted|date:"N" }}</div>
+                {% if item.map_link %}
+                <a href="{{ item.map_link }}" title="{{item.display_name}}">
+                    <span class="icon icon-marco"></span>
+                </a>
+                {% else %}
+                    <a><span class="icon icon-marco"></span></a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="media-body">
+            <div class="title-line">
+                <h1>{% include 'portal/includes/edit_link.html' %}{{ self.title }}</h1>
+            </div>
+
+            {% if self.description %}
+            <div class="description">
+                {{ self.description|richtext }}
+            </div>
+            {% endif %}
+
+            {% for section in self.story_sections.all %}
+            <a class="anchor" id="section-{{ forloop.counter }}"></a>
+            <section>
+                <h2>{{ section.header }}</h2>
+                {% include "portal/components/media_item.html" with item=section only %}
+            </section>
+            {% endfor %}
+
+            <p></p>
+                <p style="padding-bottom: 15px; text-transform: uppercase">Share this story</p>
+
+                {% load social_share %}
+
+                {% post_to_facebook object_or_url %}
+
+                {% post_to_twitter "Mark your calendars for {{ self.title }} on {{ self.posted }}. Register at: http://midatlantic.point97.io{{ self.url }}" %}
+
+                <a class="fa-stack fa-lg"
+                   href="mailto:?subject=Mark%20your%20calendars%20for%20{{self.title}}%20on%20{{ self.posted }}"
+                   target="_blank" title="Email">
+                    <i class="fa fa-circle fa-stack-2x gray"></i>
+                    <i class="fa fa-envelope-o fa-stack-1x light-gray"></i>
+                </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block nav_footer %}
+    {% include "news/story_nav.html" %}
+    <!-- Story Last updated: {{ self.latest_revision_created_at|date:"c" }} -->
+{% endblock %}
