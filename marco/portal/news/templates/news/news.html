@@ -1,0 +1,10 @@
+{% extends "cms/section.html" %}
+
+{% block content %}
+
+<div class="grid-view">
+    {% for item in self.stories %}
+	    {% include "news/story_card.html" with item=item %}
+    {% endfor %}
+</div>
+{% endblock %}

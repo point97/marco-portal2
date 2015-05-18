@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'portal.data_catalog',
     'portal.initial_data',
     'portal.welcome_snippet',
+    'portal.news',
     'rest_framework',
 
     'flatblocks',

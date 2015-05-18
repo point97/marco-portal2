@@ -1,0 +1,13 @@
+{% extends "portal/components/card.html" %}
+
+{% block media %}
+    <div class="month">{{ item.posted|date:"N" }}</div>
+    <div class="badge">{{ item.posted|date:"j" }}</div>
+    {% if item.map_link %}
+	<a href="{{ item.map_link }}" title="{{item.display_name}}">
+		<span class="icon icon-marco"></span>
+	</a>
+    {% else %}
+        <a><span class="icon icon-marco"></span></a>
+    {% endif %}
+{% endblock %}

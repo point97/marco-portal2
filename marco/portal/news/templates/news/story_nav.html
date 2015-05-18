@@ -1,0 +1,23 @@
+{% if self.pk %}{# Required to render the page in preview mode #}
+<div class='page-footer-nav'>
+  <div class="col-md-4" style="float: left;">
+        {% with self.get_previous_by_posted as prev %}
+            {% if prev %}
+                <a href=" {{ prev.url }}"><i class="fa fa-long-arrow-left"></i><span class="nav-text">&nbsp;&nbsp;Previous</span></a>
+            {% endif %}
+        {% endwith %}
+  </div>
+
+  <div class="col-md-4 center-block" style="text-align: center;">
+    <a href=".." class="btn btn-success">News</a>
+  </div>
+
+  <div class="col-md-4">
+  {% with self.get_next_by_posted as next %}
+    {% if next %}
+      <a href="{{ next.url }}" style="float: right;"><span class="nav-text">Next&nbsp;&nbsp;</span><i class="fa fa-long-arrow-right"></i></a>
+    {% endif %}
+  {% endwith %}
+  </div>
+</div>
+{% endif %}
