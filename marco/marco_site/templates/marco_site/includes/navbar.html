@@ -17,9 +17,6 @@
   <ul class="nav navbar-nav navbar-right">
     <li class="{% active 'planner' %}"><a href="{% url 'planner' %}"><span class="icon-marco oversized"></span>MARINE PLANNER</a></li>
     {% menus %}
-    <li class="{% active 'ocean-stories' %}">
-          <a href="/ocean-stories">Ocean Stories</a>
-    </li>
     <li class="{% active 'account' %}">
       {% if user.is_authenticated %}
           <a href="{% url 'account:index' %}">{{ user.first_name }} <span class="fa fa-user"></span></a>
