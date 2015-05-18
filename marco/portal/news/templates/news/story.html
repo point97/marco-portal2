@@ -49,10 +49,10 @@
 
                 {% post_to_facebook object_or_url %}
 
-                {% post_to_twitter "Mark your calendars for {{ self.title }} on {{ self.posted }}. Register at: http://midatlantic.point97.io{{ self.url }}" %}
+                {% post_to_twitter "http://midatlantic.point97.io{{ self.url }} - Mid-Atlantic Ocean Data Portal" %}
 
                 <a class="fa-stack fa-lg"
-                   href="mailto:?subject=Mark%20your%20calendars%20for%20{{self.title}}%20on%20{{ self.posted }}"
+                   href="mailto:?subject={{self.title}}%20From%20Mid-Atlantic%20Ocean%20Data%20Portal"
                    target="_blank" title="Email">
                     <i class="fa fa-circle fa-stack-2x gray"></i>
                     <i class="fa fa-envelope-o fa-stack-1x light-gray"></i>
