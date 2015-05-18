@@ -79,6 +79,15 @@ class Menu(models.Model):
     ]
 
     def __unicode__(self):
-        return self.title
+        s = self.title
+        opts = []
+        if self.active:
+            opts.append('active')
+        if self.footer:
+            opts.append('footer')
+        else:
+            opts.append('navbar')
+
+        return '%s (%s)' % (s, ', '.join(opts))
 
 Menu.panels.append(InlinePanel( Menu, 'entries', label="Entries" ))
