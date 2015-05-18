@@ -64,15 +64,21 @@ class MenuEntry(Orderable, MenuEntryBase):
 @register_snippet
 class Menu(models.Model):
     title = models.CharField(max_length=255)
+    active = models.BooleanField(default=False, help_text=("To display this "
+       "menu, check this box. "))
+    footer = models.BooleanField(default=False, help_text=("Select to display "
+       "this menu in the footer rather than in the nav bar. (Only the first "
+       "three menus will display.)"))
 
     panels = [
-        FieldPanel('title'),
+        MultiFieldPanel([
+            FieldPanel('title'),
+            FieldPanel('active'),
+            FieldPanel('footer'),
+        ]),
     ]
 
     def __unicode__(self):
         return self.title
 
-Menu.panels = [
-    FieldPanel('title'),
-    InlinePanel( Menu, 'entries', label="Entries" ),
-]
+Menu.panels.append(InlinePanel( Menu, 'entries', label="Entries" ))
