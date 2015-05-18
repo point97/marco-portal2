@@ -5,7 +5,7 @@ from portal.menu.models import Menu
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
-def menus(context, kind='footer', menu_type='dropdown'):
+def menus(context, kind='header', menu_type='dropdown'):
     """Template tag to render all available menus.
     """
     t = get_template("menu/tags/%s.html" % menu_type)
