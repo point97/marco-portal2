@@ -81,7 +81,7 @@ class Menu(models.Model):
     footer = models.BooleanField(default=False, help_text=("Select to display "
        "this menu in the footer rather than in the nav bar. The footer has "
        "enough room for four menus."))
-    order = models.PositiveSmallIntegerField(default=100, help_text=("The "
+    order = models.PositiveSmallIntegerField(default=1, help_text=("The "
         "order that this menu appears. Lower numbers appear first."))
 
     panels = [
