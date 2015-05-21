@@ -38,7 +38,8 @@ urlpatterns = patterns('',
     # nested namespaces. It will likely be fixed in 0.22
     url('^account/auth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^account/', include(accounts.urls.urls(namespace='account'))),
-    url(r'^g/', include(mapgroups.urls.urls(namespace='groups'))),
+    url(r'^groups/', include(mapgroups.urls.urls(namespace='groups'))),
+    url(r'^g/', RedirectView.as_view(url='/groups/')), # 301
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_urls)),
