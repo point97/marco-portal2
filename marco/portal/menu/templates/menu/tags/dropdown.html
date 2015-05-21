@@ -1,13 +1,19 @@
 {% for menu in menus %}
 <li class="dropdown {% if active %} active{% endif %}">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ menu.title }} <span class="caret"></span></a>
-  <ul class="dropdown-menu" role="menu">
-    {% for entry in menu.entries.all %}
-      <li><a href="{{ entry.destination }}"{% if entry.external %} target="_blank"{% endif %}>{{ entry.text }}</a></li>
-      {% if entry.show_divider_underneath %}
-      <li class="divider"></li>
-      {% endif %}
-      {% endfor %}
-  </ul>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ menu.title }} <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+        {% for entry in menu.entries.all %}
+            {# This logic should _NOT_ Be in the template, but template tags don't know who the user is :( #}
+            {# A = all users, O = only signed out users, I = only signed in users (see models.py) #}
+            {# AND has a higher precedence than OR, so this expression is parsed like: #}
+            {# A or (anon and O) or (not_anon and I) #}
+            {% if entry.display_options == 'A' or request.user.is_anonymous and entry.display_options == 'O' or request.user.is_authenticated and entry.display_options == 'I' %}
+            <li><a href="{{ entry.destination }}"{% if entry.external %} target="_blank"{% endif %}>{{ entry.text }}</a></li>
+                {% if entry.show_divider_underneath %}
+                    <li class="divider"></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </ul>
 </li>
 {% endfor %}
