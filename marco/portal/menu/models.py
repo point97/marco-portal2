@@ -1,3 +1,4 @@
+from django.utils.safestring import mark_safe
 import re
 
 from django.db import models
@@ -14,7 +15,9 @@ class MenuEntryBase(models.Model):
         abstract = True
 
     title = models.CharField(null=True, blank=True, max_length=255)
-    url = models.CharField(null=True, blank=True, max_length=4096)
+    url = models.CharField(null=True, blank=True, max_length=4096,
+                           help_text=("Note: URLs starting with http:// will "
+                                      "open in a new window."))
     show_divider_underneath = models.BooleanField(default=False)
     display_options = models.CharField(max_length=1, default='A', choices=(
         ('A', 'Always display'),
@@ -69,31 +72,42 @@ class MenuEntry(Orderable, MenuEntryBase):
 
 @register_snippet
 class Menu(models.Model):
+    class Meta:
+        ordering = ('footer', 'order',)
+
     title = models.CharField(max_length=255)
     active = models.BooleanField(default=False, help_text=("To display this "
        "menu, check this box. "))
     footer = models.BooleanField(default=False, help_text=("Select to display "
-       "this menu in the footer rather than in the nav bar. (Only the first "
-       "three menus will display.)"))
+       "this menu in the footer rather than in the nav bar. The footer has "
+       "enough room for four menus."))
+    order = models.PositiveSmallIntegerField(default=100, help_text=("The "
+        "order that this menu appears. Lower numbers appear first."))
 
     panels = [
         MultiFieldPanel([
             FieldPanel('title'),
             FieldPanel('active'),
             FieldPanel('footer'),
+            FieldPanel('order'),
         ]),
     ]
 
     def __unicode__(self):
-        s = self.title
-        opts = []
         if self.active:
-            opts.append('active')
-        if self.footer:
-            opts.append('footer')
+            active = ''
         else:
-            opts.append('navbar')
+            active = '(inactive)'
 
-        return '%s (%s)' % (s, ', '.join(opts))
+        if self.footer:
+            position = 'Footer'
+        else:
+            position = 'Navbar'
+
+        s = '%s %d. <b>%s</b> %s' % (position, self.order, self.title, active)
+        if not self.active:
+            s = "<i style='color:#999'>%s</i>" % s
+
+        return mark_safe(s)
 
 Menu.panels.append(InlinePanel( Menu, 'entries', label="Entries" ))
