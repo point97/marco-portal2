@@ -66,12 +66,11 @@ class WelcomePageEntry(Orderable):
 
     def __str__(self):
         if self.title:
-            return self.title + '1'
+            return self.title
         elif self.page:
-            return self.page.title + '2'
+            return self.page.title
         else:
-            return "3"
-
+            return ''
 
 @register_snippet
 class WelcomePage(models.Model):
