@@ -16,6 +16,11 @@ class MenuEntryBase(models.Model):
     title = models.CharField(null=True, blank=True, max_length=255)
     url = models.CharField(null=True, blank=True, max_length=4096)
     show_divider_underneath = models.BooleanField(default=False)
+    display_options = models.CharField(max_length=1, default='A', choices=(
+        ('A', 'Always display'),
+        ('I', 'Display only to logged-in users'),
+        ('O', 'Display only to anonymous users'),
+    ))
 
     page = models.ForeignKey(
         'wagtailcore.Page',
@@ -29,6 +34,7 @@ class MenuEntryBase(models.Model):
         FieldPanel('title'),
         PageChooserPanel('page'),
         FieldPanel('url'),
+        FieldPanel('display_options'),
         FieldPanel('show_divider_underneath'),
     ]
 
@@ -40,7 +46,7 @@ class MenuEntryBase(models.Model):
             return self.url
 
     def external(self):
-        pattern = re.compile(r"https?://");
+        pattern = re.compile(r"https?://")
         return pattern.match(self.destination)
 
     @property

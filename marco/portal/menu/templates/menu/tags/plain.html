@@ -2,12 +2,15 @@
 <div class="menu">
     <h4>{{ menu.title }}</h4>
     <ul role="menu">
-      {% for entry in menu.entries.all %}
-        <li>
-            <a href="{{ entry.destination }}"{% if entry.external %} target="_blank" {% endif %}>{{ entry.text }}
-            {% if entry.external %} <i class="fa fa-external-link-square"></i> {% endif %} </a>
-        </li>
-      {% endfor %}
+        {% for entry in menu.entries.all %}
+            {# See dropdown.html for comments on display logic #}
+            {% if entry.display_options == 'A' or request.user.is_anonymous and entry.display_options == 'O' or request.user.is_authenticated and entry.display_options == 'I' %}
+                <li>
+                    <a href="{{ entry.destination }}"{% if entry.external %} target="_blank" {% endif %}>{{ entry.text }}
+                    {% if entry.external %} <i class="fa fa-external-link-square"></i> {% endif %} </a>
+                </li>
+            {% endif %}
+        {% endfor %}
     </ul>
 </div>
 {% endfor %}
