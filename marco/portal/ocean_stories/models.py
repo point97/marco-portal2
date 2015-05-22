@@ -101,14 +101,13 @@ class OceanStory(DetailPageBase):
         index.SearchField('get_sections_search_text'),
     )
 
-    @property
     def as_json(self):
         try:
             o = {'sections': [ s.parsed_map_state for s in self.sections.all() ]}
         except:
             o = {'sections': []}
-        return json.dumps(o);
-
+        return json.dumps(o)
+    
 
 OceanStory.content_panels = DetailPageBase.content_panels + [
     MultiFieldPanel([FieldPanel('hook'), FieldPanel('explore_title'), FieldPanel('explore_url')], "Map overlay"),
