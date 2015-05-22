@@ -26,6 +26,9 @@ class StorySection(Orderable, MediaItem):
     ]
 
 class Story(Page):
+    class Meta:
+        ordering = ('-posted',)
+
     parent_page_types = ['News']
 
     posted = models.DateField(help_text=("Date story posted"))
