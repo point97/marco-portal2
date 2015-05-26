@@ -1,15 +1,11 @@
+from itertools import izip_longest
 import json
-import re
+from data_manager.models import Layer
 
 try:
-    from urlparse import urlparse
+    import urlparse as parse
 except ImportError:
-    from urllib.parse import urlparse
-
-try:
-    from urllib import unquote
-except ImportError:
-    from urllib.parse import unquote
+    from urllib import parse
 
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -22,17 +18,28 @@ from modelcluster.fields import ParentalKey
 
 from portal.base.models import PageBase, DetailPageBase, MediaItem
 
+def grouper(iterable, n, fillvalue=None):
+    """Collect data into fixed-length chunks or blocks.
+    See: https://docs.python.org/2/library/itertools.html#recipes
+    """
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
+    args = [iter(iterable)] * n
+    return izip_longest(fillvalue=fillvalue, *args)
+
 # The abstract model for ocean story sections, complete with panels
 class OceanStorySectionBase(MediaItem):
     title = models.CharField(max_length=255, blank=True)
     body = RichTextField(blank=True)
     map_state = models.TextField()
+    map_legend = models.BooleanField(default=False, help_text=("Check to "
+       "display the map's legend to the right of the the section text."))
 
     panels = [
         FieldPanel('title'),
         MultiFieldPanel(MediaItem.panels, "media"),
         FieldPanel('body', classname="full"),
         FieldPanel('map_state'),
+        FieldPanel('map_legend'),
     ]
 
     index_fields = MediaItem.index_fields + (
@@ -43,37 +50,45 @@ class OceanStorySectionBase(MediaItem):
     class Meta:
         abstract = True
 
-    @property
     def parsed_map_state(self):
-        if (self.map_state.startswith("http")):
-            o = urlparse(self.map_state)
-            if o:
-                dataLayers = {}
-                data = {}
-                params = [(unquote(p[0]), unquote(p[1])) for p in [q.split('=') for q in o.fragment.split('&')]]
+        if not self.map_state.startswith("http"):
+            return json.loads(self.map_state)
 
-                for k,v in params:
-                    if k == "dls[]":
-                        if re.match("^\d+$", v):
-                            dataLayers[v] = {};
-                    else:
-                        data[k] = v
-                s = {
-                    'view': {
-                        'center': (data['x'], data['y']),
-                        'zoom': data['z'],
-                    },
-                    'baseLayer': data['basemap'].replace('+', ' '),
-                    'dataLayers': dataLayers,
-                }
-        else:
-            s = json.loads(self.map_state)
+        o = parse.urlparse(self.map_state)
+        data_layers = {}
+        params = parse.parse_qs(o.fragment)
+
+        # Change:
+        # dls[]=[true,1,54,true,0.5,42,...] ->
+        # dls[] = [(true, 1, 54), (true, 0.5, 42), ...]
+        dls = params.pop('dls[]')
+        for visible, opacity, layer_id in grouper(dls, 3):
+            layer = Layer.objects.filter(id=layer_id).values('legend',
+                                                             'name')
+            layer_id = int(layer_id)
+            data_layers[layer_id] = {}
+            if not layer:
+                continue
+            layer = layer[0]
+
+            data_layers[layer_id]['name'] = layer['name']
+            data_layers[layer_id]['legend'] = layer['legend']
+
+        s = {
+            'view': {
+                'center': (params['x'][0], params['y'][0]),
+                'zoom': params['z'][0],
+            },
+            'baseLayer': params['basemap'][0],
+            'dataLayers': data_layers,
+        }
+
         return s
 
     def clean(self):
         super(OceanStorySectionBase, self).clean()
         try:
-            self.parsed_map_state
+            self.parsed_map_state()
         except:
             raise ValidationError({'map_state': 'Invalid map state'})
 
@@ -101,13 +116,12 @@ class OceanStory(DetailPageBase):
         index.SearchField('get_sections_search_text'),
     )
 
-    @property
     def as_json(self):
-        try:
-            o = {'sections': [ s.parsed_map_state for s in self.sections.all() ]}
-        except:
-            o = {'sections': []}
-        return json.dumps(o);
+        # try:
+        o = {'sections': [s.parsed_map_state() for s in self.sections.all()]}
+        # except:
+        # o = {'sections': []}
+        return json.dumps(o)
 
 
 OceanStory.content_panels = DetailPageBase.content_panels + [

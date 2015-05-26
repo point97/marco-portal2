@@ -58,7 +58,29 @@
 
     {% if self.sections %}
         {% for section in self.sections.all %}
-            <a class="anchor" id="section-{{forloop.counter}}"></a>
+            <a style="clear:right" class="anchor" id="section-{{forloop.counter}}"></a>
+            {% if section.map_legend %}
+                <div style="
+                    float: right;
+                    width: 200px;
+                    {# if there's a section title, move the legend in line with the top of the body text #}
+                    {% if section.title %}margin-top: 84px;
+                    {% else %}margin-top: 18px;{% endif %}
+                    ">
+                    <!-- div style="border: 2px solid black; background-color: rgba(0, 0, 0, 0.5); display: block;" -->
+                    <div class="well" style="
+                        text-align:left;
+                        background-color: white;
+                        overflow-y: auto;
+                        max-height: 400px;
+                        ">
+                        <p style="text-align: center"><strong>Legend</strong></p>
+                        {% for legend in section.parsed_map_state.dataLayers.values %}
+                            <p class="font-condensed">{{ legend.name }}<br><img src="{{ legend.legend }}"></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
             <section>
                 <h2>{{ section.title }}</h2>
                 {% include "portal/components/media_item.html" with item=section only %}
