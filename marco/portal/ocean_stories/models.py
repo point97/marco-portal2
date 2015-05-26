@@ -1,4 +1,7 @@
+from itertools import izip_longest
 import json
+from data_manager.models import Layer
+
 try:
     import urlparse as parse
 except ImportError:
@@ -14,6 +17,14 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel,InlinePanel,MultiField
 from modelcluster.fields import ParentalKey
 
 from portal.base.models import PageBase, DetailPageBase, MediaItem
+
+def grouper(iterable, n, fillvalue=None):
+    """Collect data into fixed-length chunks or blocks.
+    See: https://docs.python.org/2/library/itertools.html#recipes
+    """
+    # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx
+    args = [iter(iterable)] * n
+    return izip_longest(fillvalue=fillvalue, *args)
 
 # The abstract model for ocean story sections, complete with panels
 class OceanStorySectionBase(MediaItem):
@@ -40,47 +51,38 @@ class OceanStorySectionBase(MediaItem):
         abstract = True
 
     def parsed_map_state(self):
-        if (self.map_state.startswith("http")):
-            o = parse.urlparse(self.map_state)
-            if o:
-                dataLayers = {}
-                data = {}
-                params = parse.parse_qsl(o.fragment)
+        if not self.map_state.startswith("http"):
+            return json.loads(self.map_state)
 
-                from data_manager.models import Layer
+        o = parse.urlparse(self.map_state)
+        data_layers = {}
+        params = parse.parse_qs(o.fragment)
 
-                for k, v in params:
-                    if k == "dls[]":
-                        try:
-                            v = int(v)
-                        except ValueError:
-                            continue
+        # Change:
+        # dls[]=[true,1,54,true,0.5,42,...] ->
+        # dls[] = [(true, 1, 54), (true, 0.5, 42), ...]
+        dls = params.pop('dls[]')
+        for visible, opacity, layer_id in grouper(dls, 3):
+            layer = Layer.objects.filter(id=layer_id).values('legend',
+                                                             'name')
+            layer_id = int(layer_id)
+            data_layers[layer_id] = {}
+            if not layer:
+                continue
+            layer = layer[0]
 
-                        # Sigh. Fetch the legend URL here.
-                        layer = Layer.objects.filter(id=v)
-                        # values_list returns a ValuesListQuerySet
-                        values = layer.values('legend', 'name')
-                        dataLayers[v] = {}
-                        if not values:
-                            continue
+            data_layers[layer_id]['name'] = layer['name']
+            data_layers[layer_id]['legend'] = layer['legend']
 
-                        values = values[0]
+        s = {
+            'view': {
+                'center': (params['x'][0], params['y'][0]),
+                'zoom': params['z'][0],
+            },
+            'baseLayer': params['basemap'][0],
+            'dataLayers': data_layers,
+        }
 
-                        dataLayers[v]['name'] = values['name']
-                        dataLayers[v]['legend'] = values['legend']
-
-                    else:
-                        data[k] = v
-                s = {
-                    'view': {
-                        'center': (data['x'], data['y']),
-                        'zoom': data['z'],
-                    },
-                    'baseLayer': data['basemap'].replace('+', ' '),
-                    'dataLayers': dataLayers,
-                }
-        else:
-            s = json.loads(self.map_state)
         return s
 
     def clean(self):

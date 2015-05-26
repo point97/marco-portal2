@@ -63,7 +63,9 @@
                 <div style="
                     float: right;
                     width: 200px;
-                    margin-top: calc(20px + 8px + 56px);   /* match to top of section paragraph */
+                    {# if there's a section title, move the legend in line with the top of the body text #}
+                    {% if section.title %}margin-top: 84px;
+                    {% else %}margin-top: 18px;{% endif %}
                     ">
                     <!-- div style="border: 2px solid black; background-color: rgba(0, 0, 0, 0.5); display: block;" -->
                     <div class="well" style="
@@ -72,9 +74,9 @@
                         overflow-y: auto;
                         max-height: 400px;
                         ">
-                        <b >Legend</b><br>
+                        <p style="text-align: center"><strong>Legend</strong></p>
                         {% for legend in section.parsed_map_state.dataLayers.values %}
-                            {{ legend.name }}<br><img src="{{ legend.legend }}"><br>
+                            <p class="font-condensed">{{ legend.name }}<br><img src="{{ legend.legend }}"></p>
                         {% endfor %}
                     </div>
                 </div>
