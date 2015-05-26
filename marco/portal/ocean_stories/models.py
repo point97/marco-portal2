@@ -1,15 +1,8 @@
 import json
-import re
-
 try:
-    from urlparse import urlparse
+    import urlparse as parse
 except ImportError:
-    from urllib.parse import urlparse
-
-try:
-    from urllib import unquote
-except ImportError:
-    from urllib.parse import unquote
+    from urllib import parse
 
 from django.db import models
 from django.core.exceptions import ValidationError
@@ -27,12 +20,15 @@ class OceanStorySectionBase(MediaItem):
     title = models.CharField(max_length=255, blank=True)
     body = RichTextField(blank=True)
     map_state = models.TextField()
+    map_legend = models.BooleanField(default=False, help_text=("Check to "
+       "display the map's legend to the right of the the section text."))
 
     panels = [
         FieldPanel('title'),
         MultiFieldPanel(MediaItem.panels, "media"),
         FieldPanel('body', classname="full"),
         FieldPanel('map_state'),
+        FieldPanel('map_legend'),
     ]
 
     index_fields = MediaItem.index_fields + (
@@ -43,19 +39,36 @@ class OceanStorySectionBase(MediaItem):
     class Meta:
         abstract = True
 
-    @property
     def parsed_map_state(self):
         if (self.map_state.startswith("http")):
-            o = urlparse(self.map_state)
+            o = parse.urlparse(self.map_state)
             if o:
                 dataLayers = {}
                 data = {}
-                params = [(unquote(p[0]), unquote(p[1])) for p in [q.split('=') for q in o.fragment.split('&')]]
+                params = parse.parse_qsl(o.fragment)
 
-                for k,v in params:
+                from data_manager.models import Layer
+
+                for k, v in params:
                     if k == "dls[]":
-                        if re.match("^\d+$", v):
-                            dataLayers[v] = {};
+                        try:
+                            v = int(v)
+                        except ValueError:
+                            continue
+
+                        # Sigh. Fetch the legend URL here.
+                        layer = Layer.objects.filter(id=v)
+                        # values_list returns a ValuesListQuerySet
+                        values = layer.values('legend', 'name')
+                        dataLayers[v] = {}
+                        if not values:
+                            continue
+
+                        values = values[0]
+
+                        dataLayers[v]['name'] = values['name']
+                        dataLayers[v]['legend'] = values['legend']
+
                     else:
                         data[k] = v
                 s = {
@@ -73,7 +86,7 @@ class OceanStorySectionBase(MediaItem):
     def clean(self):
         super(OceanStorySectionBase, self).clean()
         try:
-            self.parsed_map_state
+            self.parsed_map_state()
         except:
             raise ValidationError({'map_state': 'Invalid map state'})
 
@@ -102,12 +115,12 @@ class OceanStory(DetailPageBase):
     )
 
     def as_json(self):
-        try:
-            o = {'sections': [ s.parsed_map_state for s in self.sections.all() ]}
-        except:
-            o = {'sections': []}
+        # try:
+        o = {'sections': [s.parsed_map_state() for s in self.sections.all()]}
+        # except:
+        # o = {'sections': []}
         return json.dumps(o)
-    
+
 
 OceanStory.content_panels = DetailPageBase.content_panels + [
     MultiFieldPanel([FieldPanel('hook'), FieldPanel('explore_title'), FieldPanel('explore_url')], "Map overlay"),
