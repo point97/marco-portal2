@@ -79,6 +79,7 @@ class OceanStorySectionBase(MediaItem):
                 'center': (params['x'][0], params['y'][0]),
                 'zoom': params['z'][0],
             },
+            'url': self.map_state,
             'baseLayer': params['basemap'][0],
             'dataLayers': data_layers,
         }

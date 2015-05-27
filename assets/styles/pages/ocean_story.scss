@@ -231,3 +231,20 @@ transform:translateY(35%);
   opacity: 1;
 }
 }
+
+.legend-well {
+    float: right;
+    width: 200px;
+    margin-top: 84px;
+}
+
+.legend-well.no-headline {
+    margin-top: 18px;
+}
+
+.legend-well > .well {
+    text-align:left;
+    background-color: white;
+    overflow-y: auto;
+    max-height: 400px;
+}
