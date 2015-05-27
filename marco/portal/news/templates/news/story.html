@@ -14,8 +14,8 @@
             <div class="media-inner">
                 <div class="badge">{{ self.posted|date:"j" }}</div>
                 <div class="month">{{ self.posted|date:"N" }}</div>
-                {% if item.map_link %}
-                <a href="{{ item.map_link }}" title="{{item.display_name}}">
+                {% if self.map_link %}
+                <a href="{{ self.map_link }}" title="{{self.display_name}}">
                     <span class="icon icon-marco"></span>
                 </a>
                 {% else %}
