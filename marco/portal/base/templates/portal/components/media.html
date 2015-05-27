@@ -1,11 +1,11 @@
 {% load wagtailimages_tags wagtailembeds_tags %}
 {% if item.media_image %}
-  {% image item.media_image fill-345x194 class="media-object" %}
+    {% image item.media_image fill-345x194 class="media-object" %}
 {% elif item.media_embed_url %}
-  <div class="embed-responsive embed-responsive-16by9">
-    {{ item.media_embed_url|embed }}
-  </div>
+    <div class="embed-responsive embed-responsive-16by9">
+        {{ item.media_embed_url|embed }}
+    </div>
 {% endif %}
 {% if item.media_caption %}
-  <div class="caption">{{item.media_caption}}</div>
+    <div class="caption">{{item.media_caption}}</div>
 {% endif %}
