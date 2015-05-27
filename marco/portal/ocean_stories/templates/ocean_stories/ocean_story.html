@@ -54,8 +54,6 @@
 {% endblock %}
 
 {% block content %}
-
-
     {% if self.sections %}
         {% for section in self.sections.all %}
             <a style="clear:right" class="anchor" id="section-{{forloop.counter}}"></a>
@@ -66,9 +64,9 @@
                     <div class="well">
                         <p style="text-align: center">
                             <a target="_blank" href="{{ section.parsed_map_state.url }}" title="View data layers in Marine Planner"><span class="icon icon-marco"></span></a> <strong class="deep-blue">Legend</strong></p>
-                        {% for legend in section.parsed_map_state.dataLayers.values %}
+                            {% for legend in section.parsed_map_state.dataLayers.values %}
                             <p class="font-condensed">{{ legend.name }}<br><img src="{{ legend.legend }}"></p>
-                        {% endfor %}
+                            {% endfor %}
                     </div>
                 </div>
             {% endif %}
