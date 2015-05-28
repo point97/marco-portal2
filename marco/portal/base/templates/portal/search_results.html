@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}search-results-page{% endblock %}
 
@@ -37,7 +38,7 @@
     <h3>Ocean Stories</h3>
       {% for result in ocean_story_results %}
            <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
-           <span class="item-text">{{ result.description }}</span>
+           <span class="item-text">{{ result.description|richtext }}</span>
       {% endfor %}
   </div>
 
@@ -49,7 +50,7 @@
 
           {% else %}
             <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
-            <span class="item-text">{{ result.description }}</span>
+            <span class="item-text">{{ result.description|richtext }}</span>
           {% endif %}
 
         {% endfor %}

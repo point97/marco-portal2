@@ -53,7 +53,7 @@ def search(request, template=settings.WAGTAILSEARCH_RESULTS_TEMPLATE):
             theme_results.append(theme)
 
         # search layers from data_catalog   
-        layer_results.extend(Layer.objects.exclude(layer_type='placeholder').filter(name__icontains=query_string))
+        layer_results.extend(Layer.objects.exclude(layer_type='placeholder').filter(themes__visible=True, name__icontains=query_string))
 
     return render_to_response(template, RequestContext(request, {
         'ocean_story_results': ocean_story_results,
