@@ -14,29 +14,39 @@
 {% endblock %}
 
 {% block content %}
+  <div>
+    <h3>DATA</h3>
+      {% for result in theme_results %}
+          <p style="font-size:18px;"><a href="/data-catalog/{{ result.name }}">{{ result.display_name }}</a></p>
+      {% endfor %}
+        
+      {% for result in layer_results %}
+           <p style="font-size:18px;"><a href="{{ result.get_absolute_url }}">{{ result.name }}</a></p>
+      {% endfor %}
 
-  {% if theme_results or layer_results %}
-    <ul>
-      {% if theme_results %}
-        {% for result in theme_results %}
-            <li><a href="/data-catalog/{{ result.name }}">{{ result.display_name }}</a></li>
-        {% endfor %}
-      {% endif %}
+      {% for result in data_needs_results %}
+           <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+      {% endfor %}
 
-      {% if layer_results %}
-          {% for result in layer_results %}
-            <li><a href="{{ result.get_absolute_url }}">{{ result.name }}</a></li>
+      {% for result in resources_results %}
+           <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+      {% endfor %}
+  </div>
+
+
+  <div>
+    <h3>OCEAN STORIES</h3>
+      {% for result in ocean_story_results %}
+           <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+      {% endfor %}
+  </div>
+
+  <div>
+    <h3>CALENDAR/NEWS</h3>
+        {% for result in calendar_news_results %}
+             <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
         {% endfor %}
-      {% endif %}
-    </ul>
-  {% endif %}
-  {% if wagtail_search_results %}
-      <ul>
-          {% for result in wagtail_search_results %}
-              <li><a href="{{ result.specific.url }}">{{ result.specific }}</a></li>
-          {% endfor %}
-      </ul>
-  {% endif %}
+  </div>
 {% endblock %}
 
 {% block extra_js %}
