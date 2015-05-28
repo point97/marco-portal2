@@ -2,9 +2,9 @@
 
 {% block body_class %}search-results-page{% endblock %}
 
-{% block title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+{% block title %}Search{% if wagtail_search_results or data_catalog_results %} Results{% endif %}{% endblock %}
 
-{% block page_title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+{% block page_title %}Search{% if wagtail_search_results or data_catalog_results %} Results{% endif %}{% endblock %}
 
 {% block page_header %}
 {{ block.super }}
@@ -15,9 +15,16 @@
 
 {% block content %}
 
-  {% if search_results %}
+  {% if data_catalog_results %}
+    <ul>
+        {% for result in data_catalog_results %}
+            <li><a href="{{ result.url }}">{{ result.display_name }}</a></li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+  {% if wagtail_search_results %}
       <ul>
-          {% for result in search_results %}
+          {% for result in wagtail_search_results %}
               <li><a href="{{ result.specific.url }}">{{ result.specific }}</a></li>
           {% endfor %}
       </ul>
