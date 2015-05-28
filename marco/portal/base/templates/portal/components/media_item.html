@@ -1,9 +1,17 @@
 {% load wagtailcore_tags %}
 <div class="media-item media">
-    {% if item.media_image and item.media_position == 'left' %}
-        <div class="media-left thumbnail">
+    {% if item.media_position == 'left' %}
+        {% if item.media_image %}
+            <div class="media-left thumbnail">
+                {% include "portal/components/media.html" %}
+            </div>
+        {% endif %}
+
+        {% if item.media_embed_url %}
+        <div class="media-full">
             {% include "portal/components/media.html" %}
         </div>
+        {% endif %}
     {% endif %}
 
     <div class="media-body">
@@ -14,10 +22,18 @@
         </div>
     </div>
 
-    {% if item.media_image and item.media_position == 'right' %}
+    {% if item.media_position == 'right' %}
+        {% if item.media_image %}
         <div class="media-right thumbnail">
             {% include "portal/components/media.html" %}
         </div>
+        {% endif %}
+
+        {% if item.media_embed_url %}
+        <div class="media-full">
+            {% include "portal/components/media.html" %}
+        </div>
+        {% endif %}
     {% endif %}
 </div>
 

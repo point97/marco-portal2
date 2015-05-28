@@ -1,5 +1,15 @@
 .media-item {
-  .embed-responsive {
-    min-width: 274px;
-  }
+    .embed-responsive {
+      min-width: 274px;
+    }
+}
+
+$video-bottom-margin: 2em;
+.embed-responsive {
+    margin-bottom: $video-bottom-margin;
+}
+
+.embed-responsive + .caption {
+    margin-top: -$video-bottom-margin; /* Eat embed-responsive margin, and add it to the bottom */
+    margin-bottom: $video-bottom-margin;
 }

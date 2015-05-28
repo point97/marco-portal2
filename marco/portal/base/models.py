@@ -2,6 +2,7 @@ from django.db import models
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import pre_delete
 from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
 
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField
@@ -65,7 +66,11 @@ class MediaItem(PageSection):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-    media_embed_url = models.URLField(blank=True)
+    media_embed_url = models.URLField(blank=True, help_text=(mark_safe("The URL to a "
+        "video that you'd like to embed, e.g., https://vimeo.com/121095661. <br>"
+        "To position this "
+        "video before the text, set <em>Media position</em> to left, to position after, "
+        "set <em>Media position</em> to right.")))
     media_caption = models.CharField(max_length=255, blank=True)
     media_position = models.CharField(max_length=8, choices=media_position_choices, default=media_position_choices[0][0])
 
