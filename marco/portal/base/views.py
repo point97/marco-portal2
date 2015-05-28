@@ -9,27 +9,23 @@ from wagtail.wagtailsearch.backends import get_search_backend
 
 from data_manager.models import Layer, Theme
 
-def search(
-        request,
-        template=settings.WAGTAILSEARCH_RESULTS_TEMPLATE,
-    ):
-
+def search(request, template=settings.WAGTAILSEARCH_RESULTS_TEMPLATE):
     query_string = request.GET.get('q', '')
 
-    # Search
     if query_string != '':
         wagtail_search_results = []
-        data_catalog_results = []
+        theme_results = []
+        layer_results = []
         s = get_search_backend()
         models = get_indexed_models()
         models.remove(Page)
 
         # search themes from data_catalog
         for theme in Theme.objects.filter(visible=True, display_name__icontains=query_string):
-            data_catalog_results.append(theme)
+            theme_results.append(theme)
 
         # search layers from data_catalog   
-        data_catalog_results.extend(Layer.objects.exclude(layer_type='placeholder').filter(name__icontains=query_string))
+        layer_results.extend(Layer.objects.exclude(layer_type='placeholder').filter(name__icontains=query_string))
 
         # search wagtail pages
         for item in models:
@@ -38,9 +34,11 @@ def search(
                 
     else:
         wagtail_search_results = None
-        data_catalog_results = None
+        theme_results = None
+        layer_results = None
 
     return render_to_response(template, RequestContext(request, {
         'wagtail_search_results': wagtail_search_results,
-        'data_catalog_results': data_catalog_results,
+        'theme_results': theme_results,
+        'layer_results': layer_results
     }));

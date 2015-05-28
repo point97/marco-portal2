@@ -2,9 +2,9 @@
 
 {% block body_class %}search-results-page{% endblock %}
 
-{% block title %}Search{% if wagtail_search_results or data_catalog_results %} Results{% endif %}{% endblock %}
+{% block title %}Search{% if wagtail_search_results or theme_results or layer_results %} Results{% endif %}{% endblock %}
 
-{% block page_title %}Search{% if wagtail_search_results or data_catalog_results %} Results{% endif %}{% endblock %}
+{% block page_title %}Search{% if wagtail_search_results or theme_results or layer_results %} Results{% endif %}{% endblock %}
 
 {% block page_header %}
 {{ block.super }}
@@ -15,11 +15,19 @@
 
 {% block content %}
 
-  {% if data_catalog_results %}
+  {% if theme_results or layer_results %}
     <ul>
-        {% for result in data_catalog_results %}
-            <li><a href="{{ result.url }}">{{ result.display_name }}</a></li>
+      {% if theme_results %}
+        {% for result in theme_results %}
+            <li><a href="/data-catalog/{{ result.name }}">{{ result.display_name }}</a></li>
         {% endfor %}
+      {% endif %}
+
+      {% if layer_results %}
+          {% for result in layer_results %}
+            <li><a href="{{ result.get_absolute_url }}">{{ result.name }}</a></li>
+        {% endfor %}
+      {% endif %}
     </ul>
   {% endif %}
   {% if wagtail_search_results %}
