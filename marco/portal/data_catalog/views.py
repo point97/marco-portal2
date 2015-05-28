@@ -22,7 +22,7 @@ def theme(request, theme_slug):
     theme = get_object_or_404(theme_query(), name=theme_slug)
     template = 'data_catalog/theme.html'
 
-    layers = theme.layer_set.exclude(layer_type='placeholder').order_by('name').select_related('parent');
+    layers = theme.layer_set.exclude(layer_type='placeholder').order_by('name').select_related('parent')
 
     return render_to_response(template, RequestContext(request, {
         'theme': theme,
