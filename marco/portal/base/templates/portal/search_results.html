@@ -46,6 +46,10 @@
         {% for result in calendar_news_results %}
           {% if result.date %}
             <p><a href="{{ result.specific.url }}">{{ result.specific }}</a> <span class="date">{{ result.date }}</span></p>
+
+          {% else %}
+            <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+            <span class="item-text">{{ result.description }}</span>
           {% endif %}
 
         {% endfor %}
