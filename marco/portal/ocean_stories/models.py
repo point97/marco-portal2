@@ -61,7 +61,7 @@ class OceanStorySectionBase(MediaItem):
         # Change:
         # dls[]=[true,1,54,true,0.5,42,...] ->
         # dls[] = [(true, 1, 54), (true, 0.5, 42), ...]
-        dls = params.pop('dls[]')
+        dls = params.pop('dls[]', [])
         for visible, opacity, layer_id in grouper(dls, 3):
             layer = Layer.objects.filter(id=layer_id).values('legend',
                                                              'name')
@@ -76,11 +76,12 @@ class OceanStorySectionBase(MediaItem):
 
         s = {
             'view': {
-                'center': (params['x'][0], params['y'][0]),
-                'zoom': params['z'][0],
+                'center': (params.get('x', [-73.24])[0],
+                           params.get('y', [38.93])[0]),
+                'zoom': params.get('z', [7])[0],
             },
             'url': self.map_state,
-            'baseLayer': params['basemap'][0],
+            'baseLayer': params.get('basemap', ['Ocean'])[0],
             'dataLayers': data_layers,
         }
 
