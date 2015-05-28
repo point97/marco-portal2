@@ -138,9 +138,14 @@ $hover-background-color: $gray-medium-light;
 	}
 }
 
-.calendar-page, .event-page, .news-page, .story-page {
+.story-page, .event-page {
 	.media-detail {
 		padding-top: 15px;
+	}
+}
+
+.calendar-page, .event-page, .news-page, .story-page {
+	.media-detail {
 		.media-inner {
 			border-right: 1px solid $gray;
 			padding-right: 15px;
