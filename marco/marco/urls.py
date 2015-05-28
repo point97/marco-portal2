@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     url(r'^g/', RedirectView.as_view(url='/groups/')), # 301
 
     url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^search/', include(wagtailsearch_urls)),
+    url(r'^search/', 'portal.base.views.search'),
     url(r'^documents/', include(wagtaildocs_urls)),
 
     # url(r'^data-catalog/', include('portal.data_catalog.urls')),

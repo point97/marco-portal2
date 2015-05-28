@@ -2,9 +2,9 @@
 
 {% block body_class %}search-results-page{% endblock %}
 
-{% block title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+{% block title %}Search{% if wagtail_search_results or theme_results or layer_results %} Results{% endif %}{% endblock %}
 
-{% block page_title %}Search{% if search_results %} Results{% endif %}{% endblock %}
+{% block page_title %}Search{% if wagtail_search_results or theme_results or layer_results %} Results{% endif %}{% endblock %}
 
 {% block page_header %}
 {{ block.super }}
@@ -14,14 +14,42 @@
 {% endblock %}
 
 {% block content %}
+  <div class="search-results data">
+    <h3>Data</h3>
+      {% for result in theme_results %}
+          <p><a href="/data-catalog/{{ result.name }}">{{ result.display_name }}</a></p>
+      {% endfor %}
+        
+      {% for result in layer_results %}
+           <p><a href="{{ result.get_absolute_url }}">{{ result.name }}</a></p>
+      {% endfor %}
 
-  {% if search_results %}
-      <ul>
-          {% for result in search_results %}
-              <li><a href="{{ result.specific.url }}">{{ result.specific }}</a></li>
-          {% endfor %}
-      </ul>
-  {% endif %}
+      {% for result in data_needs_results %}
+           <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+      {% endfor %}
+
+      {% for result in resources_results %}
+           <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+      {% endfor %}
+  </div>
+
+  <div class="search-results ocean-story">
+    <h3>Ocean Stories</h3>
+      {% for result in ocean_story_results %}
+           <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+           <span class="item-text">{{ result.description }}</span>
+      {% endfor %}
+  </div>
+
+  <div class="search-results calendar-news">
+    <h3>Calendar/News</h3>
+        {% for result in calendar_news_results %}
+          {% if result.date %}
+            <p><a href="{{ result.specific.url }}">{{ result.specific }}</a> <span class="date">{{ result.date }}</span></p>
+          {% endif %}
+
+        {% endfor %}
+  </div>
 {% endblock %}
 
 {% block extra_js %}

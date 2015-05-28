@@ -5,3 +5,31 @@
     @include make-md-column(6);
   }
 }
+
+.search-results {
+	width: 75%;
+	p {
+		font-size: 18px;
+	}
+	.item-text {
+		font-size: 15px;
+		@include ellipsis($lines: 2, $line-height: 1em*$line-height-base);
+	}
+}
+
+.search-results.data {
+	p {
+		margin:5px 0 0 0;
+	}
+}
+
+.search-results.calendar-news,
+.search-results.ocean-story {
+	p {
+		margin-bottom: 2px;
+	}
+	.date {
+		font-size: 13px;
+		vertical-align: middle;
+	}
+}

@@ -39,6 +39,8 @@ class GridPageSection(Orderable, GridPageSectionBase):
 class GridPage(PageBase):
     subpage_types = ['GridPageDetail']
 
+    search_fields = (index.SearchField('description'),)
+
     def get_detail_children(self):
         return GridPageDetail.objects.child_of(self)
 
@@ -56,6 +58,7 @@ class GridPageDetail(DetailPageBase):
     metric = models.CharField(max_length=4, blank=True, null=True)
 
     search_fields = DetailPageBase.search_fields + (
+        index.SearchField('description'),
         index.FilterField('metric'),
     )
 
