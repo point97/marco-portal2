@@ -33,7 +33,7 @@ def search(request, template=settings.WAGTAILSEARCH_RESULTS_TEMPLATE):
             for item in results:
                 if '/ocean-stories/' in item.url:
                     ocean_story_results.append(item)
-                elif '/calendar/' in item.url:
+                elif '/calendar/' in item.url or '/news/' in item.url:
                     calendar_news_results.append(item)
                 elif '/data-needs-and-priorities/' in item.url:
                     data_needs_results.append(item)
@@ -46,7 +46,6 @@ def search(request, template=settings.WAGTAILSEARCH_RESULTS_TEMPLATE):
 
         # search layers from data_catalog   
         layer_results.extend(Layer.objects.exclude(layer_type='placeholder').filter(name__icontains=query_string))
-
 
     return render_to_response(template, RequestContext(request, {
         'ocean_story_results': ocean_story_results,

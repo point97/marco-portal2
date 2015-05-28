@@ -14,37 +14,38 @@
 {% endblock %}
 
 {% block content %}
-  <div>
-    <h3>DATA</h3>
+  <div class="search-results data">
+    <h3>Data</h3>
       {% for result in theme_results %}
-          <p style="font-size:18px;"><a href="/data-catalog/{{ result.name }}">{{ result.display_name }}</a></p>
+          <p><a href="/data-catalog/{{ result.name }}">{{ result.display_name }}</a></p>
       {% endfor %}
         
       {% for result in layer_results %}
-           <p style="font-size:18px;"><a href="{{ result.get_absolute_url }}">{{ result.name }}</a></p>
+           <p><a href="{{ result.get_absolute_url }}">{{ result.name }}</a></p>
       {% endfor %}
 
       {% for result in data_needs_results %}
-           <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+           <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
       {% endfor %}
 
       {% for result in resources_results %}
-           <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+           <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
       {% endfor %}
   </div>
 
 
-  <div>
-    <h3>OCEAN STORIES</h3>
+  <div class="search-results ocean-story">
+    <h3>Ocean Stories</h3>
       {% for result in ocean_story_results %}
-           <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+           <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+           <span class="item-text">{{ result.description }}</span>
       {% endfor %}
   </div>
 
-  <div>
-    <h3>CALENDAR/NEWS</h3>
+  <div class="search-results calendar-news">
+    <h3>Calendar/News</h3>
         {% for result in calendar_news_results %}
-             <p style="font-size:18px;"><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+             <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
         {% endfor %}
   </div>
 {% endblock %}
