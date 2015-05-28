@@ -16,6 +16,7 @@ class Event(DetailPageBase):
     location = models.TextField(null=True, blank=True, max_length=1024)
 
     search_fields = DetailPageBase.search_fields + (
+        index.SearchField('title'),
         index.SearchField('description'),
         index.FilterField('date'),
     )
@@ -31,6 +32,9 @@ class Calendar(PageBase):
     subpage_types = ['Event']
 
     def events(self):
+
+        search_fields = (index.SearchField('description'),)
+
         # Get list of live event pages that are descendants of this page
         events = Event.objects.live().child_of(self)
 

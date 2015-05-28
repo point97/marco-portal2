@@ -33,7 +33,6 @@
       {% endfor %}
   </div>
 
-
   <div class="search-results ocean-story">
     <h3>Ocean Stories</h3>
       {% for result in ocean_story_results %}
@@ -45,7 +44,7 @@
   <div class="search-results calendar-news">
     <h3>Calendar/News</h3>
         {% for result in calendar_news_results %}
-             <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
+            <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
         {% endfor %}
   </div>
 {% endblock %}
