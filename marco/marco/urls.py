@@ -58,7 +58,7 @@ urlpatterns = patterns('',
     url(r'^drawing/', include('drawing.urls')),
     url(r'^proxy/', include('mp_proxy.urls')),
 
-    url(r'^join/', TemplateView.as_view(template_name="welcome_snippet/welcome_landing_page.html")),
+    url(r'^join/', RedirectView.as_view(url='/account/register/')),
 
     url(r'^images/', include(wagtailimages_urls)),
     url(r'', include(wagtail_urls)),
