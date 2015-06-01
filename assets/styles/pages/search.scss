@@ -8,29 +8,32 @@
 
 .search-results {
 	width: 75%;
-	p {
-		font-size: 18px;
-	}
 	.item-text {
 		font-size: 15px;
+		margin-bottom: 18px;
 		@include ellipsis($lines: 2, $line-height: 1em*$line-height-base);
 		.rich-text {
 			font-size: 15px;
+			b, p, i, u {
+				font-weight: 400;
+				font-style: normal;
+			}
 		}
 	}
-}
-
-.search-results.data {
 	p {
 		margin:5px 0 0 0;
 	}
+	.calendar {
+		margin-bottom: 14px;
+	}
+}
+
+.search-results > p {
+	font-size: 18px;
 }
 
 .search-results.calendar-news,
 .search-results.ocean-story {
-	p {
-		margin-bottom: 2px;
-	}
 	.date {
 		font-size: 13px;
 		vertical-align: middle;

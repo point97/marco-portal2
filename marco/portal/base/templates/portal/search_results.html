@@ -46,7 +46,7 @@
     <h3>Calendar/News</h3>
         {% for result in calendar_news_results %}
           {% if result.date %}
-            <p><a href="{{ result.specific.url }}">{{ result.specific }}</a> <span class="date">{{ result.date }}</span></p>
+            <p class='calendar'><a href="{{ result.specific.url }}">{{ result.specific }}</a> <span class="date">{{ result.date }}</span></p>
 
           {% else %}
             <p><a href="{{ result.specific.url }}">{{ result.specific }}</a></p>
