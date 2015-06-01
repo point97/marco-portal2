@@ -58,14 +58,25 @@ class OceanStorySectionBase(MediaItem):
         data_layers = {}
         params = parse.parse_qs(o.fragment)
 
-        # Change:
+        dls = params.pop('dls[]', [])
+
         # dls[]=[true,1,54,true,0.5,42,...] ->
         # dls[] = [(true, 1, 54), (true, 0.5, 42), ...]
-        dls = params.pop('dls[]', [])
         for visible, opacity, layer_id in grouper(dls, 3):
-            layer = Layer.objects.filter(id=layer_id).values('legend',
-                                                             'name')
-            layer_id = int(layer_id)
+            visible = visible.lower() in ('true', '1')
+            opacity = float(opacity)
+            try:
+                int(layer_id)
+            except ValueError:
+                # IDs that can't be converted to integers are features, e.g.,
+                # 'drawing_aoi_13', which can't be displayed on ocean story
+                # maps, so just continue.
+                continue
+
+            layer = Layer.objects.filter(id=layer_id)
+            layer = layer.values('legend', 'name')
+
+            # layer ID must be a string here
             data_layers[layer_id] = {}
             if not layer:
                 continue
@@ -91,7 +102,7 @@ class OceanStorySectionBase(MediaItem):
         super(OceanStorySectionBase, self).clean()
         try:
             self.parsed_map_state()
-        except:
+        except Exception as e:
             raise ValidationError({'map_state': 'Invalid map state'})
 
 # The real model which combines the abstract model, an
