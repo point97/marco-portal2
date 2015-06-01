@@ -78,6 +78,10 @@
     {% endif %}
 {% endblock %}
 
+{% block nav_footer %}
+ {% include "ocean_stories/ocean_story_nav.html" %}
+{% endblock %}
+
 {% block extra_js %}
     <script src="{% static 'bower_components/ol3-unofficial/ol.js' %}"></script>
     <script src="{% static 'bundles/ocean_story.js' %}"></script>

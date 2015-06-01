@@ -143,6 +143,16 @@ div.curtain-container {
     -o-animation: bounce 3s 3s ease-out;
     animation: bounce 3s 3s ease-out;
   }
+
+  .footer-nav {
+    margin-top: 10em;
+    .nav-text {
+      color: $black;
+    }
+    .btn {
+      font-weight: bold;
+    }
+  }
 }
 
 @-webkit-keyframes bounce {
