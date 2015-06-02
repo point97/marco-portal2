@@ -76,6 +76,6 @@ class News(PageBase):
     def stories(self):
         # Get list of live event pages that are descendants of this page
         stories = Story.objects.live().child_of(self)
-        stories = stories.order_by('posted')
+        stories = stories.order_by('-posted')
 
         return stories
