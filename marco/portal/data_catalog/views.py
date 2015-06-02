@@ -15,7 +15,7 @@ def theme_query():
         select={
             'layer_count': "SELECT COUNT(*) FROM data_manager_layer_themes as mm LEFT JOIN data_manager_layer as l ON mm.layer_id = l.id WHERE mm.theme_id = data_manager_theme.id AND l.layer_type != 'placeholder'"
         }
-    )
+    ).order_by('display_name')
 
 def theme(request, theme_slug):
 
