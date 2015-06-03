@@ -67,10 +67,7 @@ class MediaItem(PageSection):
         related_name='+'
     )
     media_embed_url = models.URLField(blank=True, help_text=(mark_safe("The URL to a "
-        "video that you'd like to embed, e.g., https://vimeo.com/121095661. <br>"
-        "To position this "
-        "video before the text, set <em>Media position</em> to left, to position after, "
-        "set <em>Media position</em> to right.")))
+        "video that you'd like to embed, e.g., https://vimeo.com/121095661.")))
     media_caption = models.CharField(max_length=255, blank=True)
     media_position = models.CharField(max_length=8, choices=media_position_choices, default=media_position_choices[0][0])
 
