@@ -7,5 +7,5 @@ class HomePage(Page):
     parent_page_types = []
 
     def serve(self, request):
-        story = OceanStory.objects.live().order_by('?')[0]
+        story = OceanStory.objects.live().exclude(display_home_page=False).order_by('?')[0]
         return HttpResponseRedirect(story.url)
