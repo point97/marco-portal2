@@ -141,6 +141,17 @@ class OceanStory(DetailPageBase):
         # o = {'sections': []}
         return json.dumps(o)
 
+    def get_siblings(self, inclusive=True):
+        return self.__class__.objects.sibling_of(self, inclusive)
+
+    def os_next_sibling(self):
+        return self.get_next_siblings().live().filter(display_home_page=True).first() or \
+            self.get_siblings().live().filter(display_home_page=True).first()
+
+    def os_prev_sibling(self):
+        return self.get_prev_siblings().live().filter(display_home_page=True).first() or \
+            self.get_siblings().live().filter(display_home_page=True).last()
+
 
 OceanStory.content_panels = DetailPageBase.content_panels + [
     FieldPanel('display_home_page'),
