@@ -122,6 +122,8 @@ class OceanStories(PageBase):
 class OceanStory(DetailPageBase):
     parent_page_types = ['OceanStories']
 
+    display_home_page = models.BooleanField(default=True, help_text=("Check to "
+       "display this ocean story on the home page"))
     hook = models.CharField(max_length=256, blank=True, null=True)
     explore_title = models.CharField(max_length=256, blank=True, null=True)
     explore_url = models.URLField(max_length=4096, blank=True, null=True)
@@ -141,6 +143,7 @@ class OceanStory(DetailPageBase):
 
 
 OceanStory.content_panels = DetailPageBase.content_panels + [
+    FieldPanel('display_home_page'),
     MultiFieldPanel([FieldPanel('hook'), FieldPanel('explore_title'), FieldPanel('explore_url')], "Map overlay"),
     InlinePanel( OceanStory, 'sections', label="Sections" ),
 ]
