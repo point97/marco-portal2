@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'django.contrib.webdesign',
 
@@ -122,7 +123,12 @@ MIDDLEWARE_CLASSES = (
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'marco.host_site_middleware.HostSiteMiddleware',
 )
+
+# Valid site IDs are 1 and 2, corresponding to the primary site(1) and the
+# test site(2)
+SITE_ID = 1
 
 INTERNAL_IPS = ('127.0.0.1',)
 
@@ -338,7 +344,7 @@ SOCIAL_AUTH_PIPELINE = (
     # Grab relevant information from the social provider (avatar)
     'accounts.pipeline.get_social_details',
 
-    'social.pipeline.debug.debug',
+    # 'social.pipeline.debug.debug',
     'accounts.pipeline.clean_session',
 )
 
