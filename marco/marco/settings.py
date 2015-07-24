@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'accounts.apps.AccountsAppConfig',
     'django_social_share',
     'mapgroups',
+    'import_export',
 )
 
 AUTHENTICATION_BACKENDS = (
