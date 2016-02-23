@@ -2,14 +2,13 @@
 Django<1.8
 
 # django-compressor scss hack
--e git+git@github.com:point97/django-libsass.git@master#egg=django_libsass-master
+-e git+https://github.com/MidAtlanticPortal/django-libsass.git@master#egg=django_libsass-master
 
 # Note: django-libsass needs libsass>0.4
 # 0.5.1 is the latest version that we can install on WF
 libsass==0.5.1
 
 wagtail==0.8.5
-# -e git+https://github.com/torchbox/wagtail.git@master#egg=wagtail
 
 # Recommended components (require additional setup):
 psycopg2==2.5.2
@@ -17,14 +16,16 @@ elasticsearch==1.3.0
 embedly==0.5.0
 
 # Recommended components to improve performance in production:
-# django-redis-cache==0.13.0
+django-redis-cache==0.13.0
 # django-celery==3.1.10
 
 django-email-log
 celery>=3.1,<3.2
 django-celery
-django-redis-cache
 django-celery-email
+kombu
+
+requests==2.9.1
 
 django-apptemplates==0.0.1
 
@@ -32,20 +33,21 @@ django-social-share
 
 rpc4django
 
--e git+git@bitbucket.org:point97/madrona-analysistools.git@master#egg=madrona_analysistools-master
--e git+git@bitbucket.org:point97/madrona-features.git@master#egg=madrona_features-master
--e git+git@bitbucket.org:point97/madrona-forms.git@master#egg=madrona_forms-master
--e git+git@bitbucket.org:point97/madrona-scenarios.git@master#egg=madrona_scenarios-master
--e git+git@bitbucket.org:point97/madrona-manipulators.git@master#egg=madrona_manipulators-master
--e git+git@bitbucket.org:point97/mp-clipping.git@master#egg=mp_clipping-master
--e git+git@bitbucket.org:point97/mp-drawing.git@master#egg=mp_drawing-master
--e git+git@bitbucket.org:point97/mp-explore.git@master#egg=mp_explore-master
--e git+git@bitbucket.org:point97/mp-accounts.git@master#egg=mp_accounts-master
--e git+git@bitbucket.org:point97/mp-visualize.git@master#egg=mp_visualize-master
--e git+git@bitbucket.org:point97/mp-data-manager.git@master#egg=mp_data_manager-master
--e git+git@bitbucket.org:point97/mp-proxy.git@master#egg=mp_proxy-master
--e git+git@bitbucket.org:point97/marco-map_groups.git@master#egg=marco-map_groups
--e git+git@bitbucket.org:point97/p97-nursery.git@master#egg=nursery-master
--e git+git@bitbucket.org:point97/p97settings.git@master#egg=p97settings
+-e git+https://github.com/MidAtlanticPortal/madrona-analysistools.git@master#egg=madrona_analysistools-master
+-e git+https://github.com/MidAtlanticPortal/madrona-features.git@master#egg=madrona_features-master
+-e git+https://github.com/MidAtlanticPortal/madrona-forms.git@master#egg=madrona_forms-master
+-e git+https://github.com/MidAtlanticPortal/madrona-scenarios.git@master#egg=madrona_scenarios-master
+-e git+https://github.com/MidAtlanticPortal/madrona-manipulators.git@master#egg=madrona_manipulators-master
+-e git+https://github.com/MidAtlanticPortal/mp-clipping.git@master#egg=mp_clipping-master
+-e git+https://github.com/MidAtlanticPortal/mp-drawing.git@master#egg=mp_drawing-master
+-e git+https://github.com/MidAtlanticPortal/mp-explore.git@master#egg=mp_explore-master
+-e git+https://github.com/MidAtlanticPortal/mp-accounts.git@master#egg=mp_accounts-master
+-e git+https://github.com/MidAtlanticPortal/mp-visualize.git@master#egg=mp_visualize-master
+-e git+https://github.com/MidAtlanticPortal/mp-data-manager.git@master#egg=mp_data_manager-master
+-e git+https://github.com/MidAtlanticPortal/mp-proxy.git@master#egg=mp_proxy-master
+-e git+https://github.com/MidAtlanticPortal/marco-map_groups.git@master#egg=marco-map_groups
+-e git+https://github.com/MidAtlanticPortal/p97-nursery.git@master#egg=nursery-master
+-e git+https://github.com/MidAtlanticPortal/p97settings.git@master#egg=p97settings
 
+django-compressor==1.5
 django-import-export==0.2.7

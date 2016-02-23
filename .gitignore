@@ -7,6 +7,7 @@
 /media/
 /.vagrant/
 Vagrantfile.local
+vagrant
 /docs/_build/
 /db.sqlite3
 deps
@@ -23,3 +24,9 @@ htmlcov
 .coverage
 config.ini
 marco.db
+
+.otto*
+.virtualenvs*
+env/
+.pip_download_cache*
+.bashrc

@@ -15,21 +15,15 @@ Vagrant::Config.run do |config|
     # Share an additional folder to the guest VM. The first argument is
     # an identifier, the second is the path on the guest to mount the
     # folder, and the third is the path on the host to the actual folder.
-    config.vm.share_folder "project", "/home/vagrant/marco_portal", "."
+    config.vm.share_folder "project", "/home/vagrant/marco_portal2", "."
 
     # Enable provisioning with a shell script.
-    config.vm.provision :shell, :path => "scripts/vagrant_provision.sh", :args => "marco_portal", :privileged => false
+    config.vm.provision :shell, :path => "scripts/vagrant_provision.sh", :args => "'marco_portal2' 'marco' 'marco_portal'", :privileged => false
 
     # If a 'Vagrantfile.local' file exists, import any configuration settings
     # defined there into here. Vagrantfile.local is ignored in version control,
     # so this can be used to add configuration specific to this computer.
 
-  config.vm.customize [
-                        "modifyvm", :id,
-                        "--name", "Test_Environment",
-                        "--memory", "2048"
-                      ]
-    
     if File.exist? "Vagrantfile.local"
         instance_eval File.read("Vagrantfile.local"), "Vagrantfile.local"
     end

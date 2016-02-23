@@ -41,6 +41,7 @@ LOGGING['handlers']['mail_admins']['include_html'] = True
 
 INSTALLED_APPS = (
     'marco_site',
+    'kombu.transport.django',
 
     'django.contrib.admin',
     'django.contrib.auth',
