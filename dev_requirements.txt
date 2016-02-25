@@ -1,0 +1,40 @@
+# Minimal requirements
+Django<1.8
+
+# django-compressor scss hack
+-e git+https://github.com/MidAtlanticPortal/django-libsass.git@master#egg=django_libsass
+
+# Note: django-libsass needs libsass>0.4
+# 0.5.1 is the latest version that we can install on WF
+libsass==0.5.1
+
+django-modelcluster==0.6.2
+wagtail==0.8.5
+
+# Recommended components (require additional setup):
+psycopg2
+elasticsearch
+embedly
+
+# Recommended components to improve performance in production:
+django-redis-cache==0.13.0
+# django-celery==3.1.10
+
+django-email-log
+celery>=3.1,<3.2
+django-celery
+django-celery-email
+kombu
+
+requests==2.5.1 
+
+django-apptemplates
+
+django-social-share
+
+rpc4django
+
+django-compressor==1.5
+django-import-export
+
+pyshp
