@@ -10,8 +10,8 @@ Vagrantfile.local
 vagrant
 /docs/_build/
 /db.sqlite3
-apps
-deps
+/apps/
+/deps/
 .sass-cache
 node_modules
 

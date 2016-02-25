@@ -15,7 +15,6 @@ EMAIL_SUBJECT_PREFIX = [Marco]
 
 [CACHES]
 BACKEND = redis_cache.RedisCache
-LOCATION = /path/to/redis.sock
 
 [CELERY]
 RESULT_BACKEND = redis+socket:///path/to/redis.sock
