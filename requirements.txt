@@ -2,7 +2,7 @@
 Django<1.8
 
 # django-compressor scss hack
--e git+https://github.com/MidAtlanticPortal/django-libsass.git@master#egg=django_libsass-master
+-e git+https://github.com/MidAtlanticPortal/django-libsass.git@master#egg=django_libsass
 
 # Note: django-libsass needs libsass>0.4
 # 0.5.1 is the latest version that we can install on WF
@@ -34,20 +34,20 @@ django-social-share
 
 rpc4django
 
--e git+https://github.com/MidAtlanticPortal/madrona-analysistools.git@master#egg=madrona_analysistools-master
--e git+https://github.com/MidAtlanticPortal/madrona-features.git@master#egg=madrona_features-master
--e git+https://github.com/MidAtlanticPortal/madrona-forms.git@master#egg=madrona_forms-master
--e git+https://github.com/MidAtlanticPortal/madrona-scenarios.git@master#egg=madrona_scenarios-master
--e git+https://github.com/MidAtlanticPortal/madrona-manipulators.git@master#egg=madrona_manipulators-master
--e git+https://github.com/MidAtlanticPortal/mp-clipping.git@master#egg=mp_clipping-master
--e git+https://github.com/MidAtlanticPortal/mp-drawing.git@master#egg=mp_drawing-master
--e git+https://github.com/MidAtlanticPortal/mp-explore.git@master#egg=mp_explore-master
--e git+https://github.com/MidAtlanticPortal/mp-accounts.git@master#egg=mp_accounts-master
--e git+https://github.com/MidAtlanticPortal/mp-visualize.git@master#egg=mp_visualize-master
--e git+https://github.com/MidAtlanticPortal/mp-data-manager.git@master#egg=mp_data_manager-master
--e git+https://github.com/MidAtlanticPortal/mp-proxy.git@master#egg=mp_proxy-master
+-e git+https://github.com/MidAtlanticPortal/madrona-analysistools.git@master#egg=madrona_analysistools
+-e git+https://github.com/MidAtlanticPortal/madrona-features.git@master#egg=madrona_features
+-e git+https://github.com/MidAtlanticPortal/madrona-forms.git@master#egg=madrona_forms
+-e git+https://github.com/MidAtlanticPortal/madrona-scenarios.git@master#egg=madrona_scenarios
+-e git+https://github.com/MidAtlanticPortal/madrona-manipulators.git@master#egg=madrona_manipulators
+-e git+https://github.com/MidAtlanticPortal/mp-clipping.git@master#egg=mp_clipping
+-e git+https://github.com/MidAtlanticPortal/mp-drawing.git@master#egg=mp_drawing
+-e git+https://github.com/MidAtlanticPortal/mp-explore.git@master#egg=mp_explore
+-e git+https://github.com/MidAtlanticPortal/mp-accounts.git@master#egg=mp_accounts
+-e git+https://github.com/MidAtlanticPortal/mp-visualize.git@master#egg=mp_visualize
+-e git+https://github.com/MidAtlanticPortal/mp-data-manager.git@master#egg=mp_data_manager
+-e git+https://github.com/MidAtlanticPortal/mp-proxy.git@master#egg=mp_proxy
 -e git+https://github.com/MidAtlanticPortal/marco-map_groups.git@master#egg=marco-map_groups
--e git+https://github.com/MidAtlanticPortal/p97-nursery.git@master#egg=nursery-master
+-e git+https://github.com/MidAtlanticPortal/p97-nursery.git@master#egg=nursery
 -e git+https://github.com/MidAtlanticPortal/p97settings.git@master#egg=p97settings
 
 django-compressor==1.5

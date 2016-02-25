@@ -19,7 +19,7 @@ PIP=$VIRTUALENV_DIR/bin/pip
     source $VIRTUALENV_DIR/bin/activate && \
     echo $PROJECT_DIR > $VIRTUALENV_DIR/.project && \
     cd $PROJECT_DIR && \
-    $PIP install --src ./deps -r requirements.txt
+    $PIP install --src ./apps -r requirements.txt
 
 echo "workon $PROJECT_NAME" >> /home/vagrant/.bashrc
 
@@ -29,6 +29,7 @@ $PROJECT_DIR/scripts/reset_db $3
 chmod a+x $PROJECT_DIR/$APP_NAME/manage.py
 
 # Run syncdb/migrate/update_index
+$PYTHON $PROJECT_DIR/$APP_NAME/manage.py makemigrations && \
 $PYTHON $PROJECT_DIR/$APP_NAME/manage.py migrate --noinput && \
 $PYTHON $PROJECT_DIR/$APP_NAME/manage.py update_index
 

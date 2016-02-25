@@ -1,7 +1,7 @@
 *.pyc
 .DS_Store
 /.venv/
-/deps/
+/apps/
 /*/settings/local.py
 /static/
 /media/
@@ -10,7 +10,7 @@ Vagrantfile.local
 vagrant
 /docs/_build/
 /db.sqlite3
-deps
+apps
 .sass-cache
 node_modules
 
