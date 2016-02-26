@@ -35,6 +35,6 @@ django-social-share
 rpc4django
 
 django-compressor==1.5
-django-import-export
+django-import-export==0.2.7
 
 pyshp

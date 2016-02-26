@@ -51,6 +51,6 @@ rpc4django
 -e git+https://github.com/MidAtlanticPortal/p97settings.git@master#egg=p97settings
 
 django-compressor==1.5
-django-import-export
+django-import-export==0.2.7
 
 pyshp

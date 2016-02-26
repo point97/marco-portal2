@@ -21,7 +21,7 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
       curl https://api.github.com/users/MidAtlanticPortal/repos | jq .[].clone_url | xargs –n 1 git clone
       ```
 2. Once your folder structure is setup, create a *config.ini* file by following the general outline in *config.ini.template* and modify the following for use with vagrant
-    * **MEDIA_URL:** /home/vagrant/macro_portal2/media
+    * **MEDIA_URL:** /media/
     * **STATIC_URL:** /home/vagrant/marco_porta2/static
     * **[DATABASE] USER:** vagrant
     * **[DATABASE] PASSWORD:** [remove entirely]
@@ -29,7 +29,7 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
 4. Download and install [vagrant](https://www.vagrantup.com/downloads.html) and [virtual box](https://www.virtualbox.org/wiki/Downloads) (if you haven't already done so already)
 5. Install the vagrant-faster plugin
    ```
-   vagrant pluging install vagrant-faster
+   vagrant plugin install vagrant-faster
    ```
 6. At the root of *marco-portal2*, run the following and let it install ALL of dependencies MARCO relies upon:
     ```
@@ -60,7 +60,8 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
    ```
    dj loaddata dev-fixture.json
    ```
-3. **[OPTIONAL]** - If you decide to use pgAdmin3 for database management instead of the command line, you'll need to allow/enable access to your virtual machine.
+4. Retrieve the media folder via ssh at /webapps/marco_portal_media/ and add it to your static media path - of note, you may want to exclude the data_manager folder unless you're interested in several GBs of utfgrid layers 
+5. **[OPTIONAL]** - If you decide to use pgAdmin3 for database management instead of the command line, you'll need to allow/enable access to your virtual machine.
     * Enter into *postgres.conf* and change *listen_addresses*:
       ```
       sudo nano /etc/postgresql/9.3/main/postgresql.conf
@@ -80,7 +81,7 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
      *  **Host:** localhost
      *  **Port:** 65432
      *  **Username:** vagrant
-     
+
 ## Production Setup
 
 
