@@ -47,9 +47,12 @@ chmod a+x $PROJECT_DIR/$APP_NAME/manage.py
 
 # Run syncdb/migrate/update_index
 echo "database syncing and migrations"
-$PYTHON $PROJECT_DIR/$APP_NAME/manage.py makemigrations && \
 $PYTHON $PROJECT_DIR/$APP_NAME/manage.py migrate --noinput && \
 $PYTHON $PROJECT_DIR/$APP_NAME/manage.py update_index
+
+# Load dev fixture
+echo "loading dev fixture data"
+$PYTHON $PROJECT_DIR/$APP_NAME/manage.py loaddata dev_fixture.json
 
 # Add a couple of aliases to manage.py into .bashrc
 cat << EOF >> ~/.bashrc

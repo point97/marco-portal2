@@ -27,3 +27,4 @@ config.ini
 marco.db
 
 .bashrc
+dev_fixture.json

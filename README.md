@@ -5,7 +5,7 @@
 #### ~Development Installation
 
 ##### Initial Setup using Vagrant:
-The following is the **_recommended_** folder structure for the **_entire_** MARCO project and the customized provisioning script is inherently dependent on it. Altering the folder structure *may* require modifications to the provisioning script.
+The following is the **_recommended_** folder structure for the **entire** MARCO project and the customized provisioning script is inherently dependent on it. Altering the folder and naming structure will require modifications to the provisioning script, so please be aware! The provisioning script is designed to be a **one-step** install after initial setup. 
 
 ```
   -- marco-portal2
@@ -16,28 +16,31 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
 ```
 
  1. Clone [marco-portal2](https://github.com/MidAtlanticPortal/marco-portal2.git) at the top level and the remaining repositories within a subfolder named *apps*
-    * To quickly clone all the repositiories from [MidAtlanticPortal](https://github.com/MidAtlanticPortal), run the following curl command in Ruby. In doing so, this will clone all of the respositories at the same level and in doing so, will require you to move all the non *marco-portal2* repositories to a subfolder - called *apps*
+    * To quickly clone all the repositiories from [MidAtlanticPortal](https://github.com/MidAtlanticPortal), run the following curl command with Ruby. In doing so, this will clone all of the respositories at the same level and will require you to move all the non *marco-portal2* repositories to a subfolder - called *apps*
       ```
       curl https://api.github.com/users/MidAtlanticPortal/repos | jq .[].clone_url | xargs –n 1 git clone
       ```
 2. Once your folder structure is setup, create a *config.ini* file by following the general outline in *config.ini.template* and modify the following for use with vagrant
-    * **MEDIA_URL:** /media/
+    * **MEDIA_URL:** /home/vagrant/marco_portal2/media
     * **STATIC_URL:** /home/vagrant/marco_porta2/static
     * **[DATABASE] USER:** vagrant
     * **[DATABASE] PASSWORD:** [remove entirely]
-3. Download and install the neccessary [bower_components](http://portal.midatlanticocean.org/static/bower_components.tar.gz) within your /static/ directory
-4. Download and install [vagrant](https://www.vagrantup.com/downloads.html) and [virtual box](https://www.virtualbox.org/wiki/Downloads) (if you haven't already done so already)
-5. Install the vagrant-faster plugin
+3. Download and install the neccessary [bower_components](http://portal.midatlanticocean.org/static/bower_components.tar.gz) within your */static/* directory
+4. Retrieve the media folder via ssh at */webapps/marco_portal_media/* and add it to your */media/* path defined in *config.ini* 
+    * Of note - you may want to exclude the data_manager folder unless you're interested in several GBs of utfgrid layers. 
+6. Retrieve the data & content fixture from */fixture/dev_fixture.json* via ssh and place it at the root level of *marco-portal2*
+7. Download and install [vagrant](https://www.vagrantup.com/downloads.html) and [virtual box](https://www.virtualbox.org/wiki/Downloads) (if you haven't already done so already)
+8. Install the vagrant-faster plugin
    ```
    vagrant plugin install vagrant-faster
    ```
-6. At the root of *marco-portal2*, run the following and let it install ALL of dependencies MARCO relies upon:
+9. At the root of *marco-portal2*, run the following and let it install ALL of dependencies MARCO relies upon:
     ```
     vagrant up
     ```
-7. At this point you should be completely setup sans having actual content loaded within your new database
+10. At this point, you should be completely setup!
 
-##### Running Vagrant after Initial Setup
+##### Using Vagrant
 * Access your VM by running the following command. This will automatically log you into your virtual machine with your virtual environment activated at the project root level
    ```
    vagrant ssh
@@ -47,21 +50,17 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
      ```
      dj makemigrations
      dj migrate
+     dj dumpdata
      etc.
      ```
   * To run your dev server - remember to add your sample data first (see below):
     ```
     djrun
     ```
+*  **NOTE:** The provisioning script is designed for a fresh install and will completely wipe the database and any associated content - IF you decide to shutdown/halt your VM! Anytime *vagrant up* or *vagrant provision* is run, the provisioning script will re-run.
 
-##### Fixture/Sample Data
-1. Sample fixture data must be retrieved via ssh from the webserver at /fixture/dev-fixture.json.
-2. After retrieving it, load the fixture:
-   ```
-   dj loaddata dev-fixture.json
-   ```
-4. Retrieve the media folder via ssh at /webapps/marco_portal_media/ and add it to your static media path - of note, you may want to exclude the data_manager folder unless you're interested in several GBs of utfgrid layers 
-5. **[OPTIONAL]** - If you decide to use pgAdmin3 for database management instead of the command line, you'll need to allow/enable access to your virtual machine.
+##### OPTIONAL
+If you decide to use pgAdmin3 for database management rather than using the command line, you'll need to allow/enable access to your virtual machine.
     * Enter into *postgres.conf* and change *listen_addresses*:
       ```
       sudo nano /etc/postgresql/9.3/main/postgresql.conf
@@ -81,6 +80,7 @@ The following is the **_recommended_** folder structure for the **_entire_** MAR
      *  **Host:** localhost
      *  **Port:** 65432
      *  **Username:** vagrant
+
 
 ## Production Setup
 
